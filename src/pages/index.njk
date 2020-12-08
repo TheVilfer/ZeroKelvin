@@ -4,5 +4,9 @@ permalink: index.html
 layout: main.njk
 ---
 <main class="page__main">
-    Hello world
+    {%- for product in collections.product -%}
+    <div class="product__card">
+    {{product.data.title}}
+    </div>      
+    {%- endfor -%}
 </main>

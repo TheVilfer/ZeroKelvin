@@ -7,6 +7,7 @@ layout: main.njk
     {%- for product in collections.product -%}
     <div class="product__card">
     {{product.data.title}}
+    <a href="{{product.url}}">Ссылка на продукт</a>
     </div>      
     {%- endfor -%}
 </main>

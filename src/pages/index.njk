@@ -1,13 +1,94 @@
 ---
-title: ScienceShop
+title: Science Shop | НАУЧНЫЕ СТИКЕРЫ
 permalink: index.html
 layout: main.njk
+sliders:
+    - 1
+    - 5
 ---
+<header>
+    <div class="page__block swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img class="slide-image" src="images/slider/1.png">
+            </div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</header>
 <main class="page__main">
-    {%- for product in collections.product -%}
-    <div class="product__card">
-    {{product.data.title}}
-    <a href="{{product.url}}">Ссылка на продукт</a>
-    </div>      
-    {%- endfor -%}
+
+          <!--  {%- for img in sliders -%}
+                <li class="splide__slide">
+                    <img src="images/slider/{{img}}.png">
+                </li>
+            {%- endfor -%}
+            -->
+    <h2 class="main__title">Категории</h2>
+    <div class="page__block main__category">
+        <a href="" class="category__sticker category__block">
+            <h3 class="sticker_title category__title">Стикеры</h3>
+        </a>
+        <a href="" class="category__bags category__block">
+            <h3 class="bags_title category__title">Шопперы</h3>
+        </a>
+            <a href="" class="category__cards category__block">
+                    <h3 class="cards_title category__title">Открытки</h3>
+                </a>
+                <a href="" class="category__boxs category__block">
+                    <h3 class="boxs_title category__title">Боксы</h3>
+                </a>
+                <a href="" class="category__stocks category__block">
+                    <h3 class="stocks_title category__title">Акции</h3>
+                </a>
+    </div>
+
+    <h2 class="main__title">Популярное</h2>
+
+    <div class="page__block page__catalog">
+
+            <div class="catalog__item">
+            <div class="item__container">
+                <img src="/images/products/stickerpack_physics.jpg" alt="" class="item__image">
+                <div class="item__status"></div>
+                <button class="item__favorite icon__favorite"></button>
+            </div>
+            <div class="item__text">
+              <div class="item__category">СТИКЕРПАКИ</div>
+              <div class="item__name">Стикерпак "Физика"</div>
+              <div class="item__price">145₽</div>
+              <div class="item__cart icon__cart"></div>
+            </div>
+            </div>
+
+    </div>
+    <div class="page__block main__production">
+        <video playsinline autoplay muted loop id="bgvid">
+            <source src="/media/production.webm" type="video/webm">
+            <source src="/media/production.mp4" type="video/mp4">
+        </video>
+        <div class="production__title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae rem quam esse, dolore cum voluptatem laborum impedit illo ex fugit cumque, illum dolor veniam aspernatur quod iste. Perferendis, molestiae beatae?</div>
+    </div>
+    <div class="page__block main__about">
+        <img src="/images/any.jpg" alt="" class="about-image">
+        <div class="about-text text">
+        "Наука — это атмосфера. Наука — это увлечённые люди. Я искренне хочу, чтобы в нашей жизни было больше интереса к науке. Через научный мерч вы можете показать свой интерес и создать научную атмосферу...".
+        <p><a href="https://www.instagram.com/any.physics">@any.physics</a></p>
+        </div>
+
+    </div>
 </main>
+<!--
+{%- for products__popular in collections.popular -%}
+            <div class="catalog__item">
+                <picture>
+                <source type="image/webp" srcset="/images/products/{{products__popular.data.img}}.webp 1x">
+                <img class="catalog__item__image" src="/images/products/{{products__popular.data.img}}.jpg" srcset="/images/products/{{products__popular.data.img}}.jpg 2x" alt="">
+                </picture>
+                <p class="catalog__item__name">{{products__popular.data.title}}</p>
+                <p class="catalog__item__price">{{products__popular.data.price}} руб.</p>
+            </div>
+        {%- endfor -%}
+-->

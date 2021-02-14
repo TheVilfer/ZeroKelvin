@@ -1,12 +1,12 @@
 {
-  "name": "Site science__shop",
+  "name": "site_science__shop",
   "version": "1.0.0",
-  "description": "Ecommerce site for instagram shop sticker @science__shop",
+  "description": "Ecommerce site for instagram shop @science__shop",
   "private": true,
   "scripts": {
     "start": "eleventy --serve --quiet"
   },
-  "author": "",
+  "author": "MadeByVilfer",
   "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "^0.11.1",

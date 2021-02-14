@@ -4,6 +4,7 @@ module.exports = (config) => {
     config.addPassthroughCopy('src/images');
     config.addPassthroughCopy('src/scripts');
     config.addPassthroughCopy('src/styles');
+    config.addPassthroughCopy('src/media');
     return {
         dir: {
             input: 'src',

@@ -1,0 +1,46 @@
+@font-face {
+     font-family: 'Yanone Kaffeesatz';
+     src: url('subset-YanoneKaffeesatz-Regular.woff2') format('woff2'),
+         url('subset-YanoneKaffeesatz-Regular.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+     font-display: swap;
+ }
+ 
+ @font-face {
+     font-family: 'Yanone Kaffeesatz';
+     src: url('subset-YanoneKaffeesatz-Medium.woff2') format('woff2'),
+         url('subset-YanoneKaffeesatz-Medium.woff') format('woff');
+     font-weight: 500;
+     font-style: normal;
+     font-display: swap;
+ }
+ 
+ @font-face {
+     font-family: 'Mazzard H';
+     src: url('subset-MazzardH-SemiBold.woff2') format('woff2'),
+         url('subset-MazzardH-SemiBold.woff') format('woff');
+     font-weight: 600;
+     font-style: normal;
+     font-display: swap;
+ }
+ 
+ @font-face {
+     font-family: 'Mazzard H';
+     src: url('subset-MazzardH-Regular.woff2') format('woff2'),
+         url('subset-MazzardH-Regular.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+     font-display: swap;
+ }
+ 
+ @font-face {
+     font-family: 'Mazzard H';
+     src: url('subset-MazzardH-Medium.woff2') format('woff2'),
+         url('subset-MazzardH-Medium.woff') format('woff');
+     font-weight: 500;
+     font-style: normal;
+     font-display: swap;
+ }
+ 
+ 

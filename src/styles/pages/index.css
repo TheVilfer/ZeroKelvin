@@ -86,6 +86,50 @@
     grid-row: 4/5;
 }
 
+.collections__container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.collections__card {
+  width: 100%;
+  max-width: 300px;
+  min-width: 300px;
+  height: 100%;
+  max-height: 300px;
+  min-height: 300px;
+  background: #F5F5F5;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+.collections__card:hover{
+  opacity: 0.6;
+}
+
+.collections__card + .collections__card{
+  margin-left: 2em;
+}
+
+.collections__card__name{
+  font-size: 1.5em;
+  font-weight: 400;
+}
+.collections__card__icon {
+  width: 128px;
+  height: 128px;
+  background-repeat: no-repeat;
+}
+.collections__card__name + .collections__card__icon{
+  margin-top: 50px;
+}
+
+
+
 .catalog__item{
     display: inline-block;
     color: black;
@@ -105,16 +149,16 @@
 }
 .item__status{
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 0;
+    left: 0;
     width: 30px;
     height: 30px;
     background-color:green;
 }
 .item__favorite{
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 0;
+    right: 0;
     width: 30px;
     height: 30px;
     border: 0;
@@ -158,7 +202,7 @@
     object-fit: cover;
     width: 100%;
     height: 100%;
-    filter: blur(4.8px) brightness(0.2);
+    filter: blur(4.8px) brightness(0.3);
     position: absolute;
     top: 0;
     left: 0;
@@ -175,11 +219,12 @@
 .main__about{
     width: 100%;
     height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 30px;
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-content: center;
 }
-.about-image{
+.about__image{
     border-radius: 50%;
     width: 100%;
     max-width: 350px;
@@ -188,12 +233,15 @@
     align-self: center;
     justify-self: end;
 }
-.about-text{
+.about__text{
     width: 100%;
     max-width: 500px;
     min-width: 200px;
     height: auto;
     align-self: center;
     justify-self: start;
-    font-size:1.2em
+    font-size:1.1em
+}
+.about__image + .about__text{
+  margin-left: 2em;
 }

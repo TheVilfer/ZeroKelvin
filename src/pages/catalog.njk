@@ -1,7 +1,26 @@
 ---
 title: Каталог | НАУЧНЫЕ СТИКЕРЫ
-permalink: catalog.html
+permalink: /catalog/
 layout: main.njk
 ---
-<header class="page__block">
-    <img class="slide-image" src="images/slider/1.png">
+<header class="page__header">
+    <img class="slide-image" src="/images/slider/1.png">
+</header>
+<main class="page__block page__main">
+{% for item in collections.product %}
+    <div class="catalog__item">
+        <div class="item__container">
+            <img src="/images/products/{{item.data.img}}.jpg" alt="" class="item__image">
+            <div class="item__status"></div>
+            <button class="item__favorite icon__favorite"></button>
+        </div>
+        <div class="item__text">
+            <div class="item__category">СТИКЕРПАКИ</div>
+            <div class="item__name">{{item.data.title}}</div>
+            <div class="item__price">{{item.data.price}}₽</div>
+            <div class="item__cart icon__cart"></div>
+            <button class="item__cart__test">Добавить в корзину</button>
+        </div>
+    </div>
+{% endfor %}
+</main>

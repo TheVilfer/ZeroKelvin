@@ -114,6 +114,7 @@
     padding-left: 50px;
     padding-right: 10px;
     z-index: 4;
+    width: 100%;
   }
 }
 
@@ -166,7 +167,7 @@
   margin: 0;
   padding: 80px 0;
   list-style: none;
-  text-align: center;
+  text-align: left;
   background-color: #ECEFF1;
   box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
   z-index:2;

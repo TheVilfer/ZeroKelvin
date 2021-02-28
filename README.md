@@ -1,9 +1,9 @@
 <!--
-repo name: BEST-README
+repo name: science__shop
 description: An awesome README template to jumpstart your projects!
 github name:  TheVilfer
 link: LINK
-logo path: assets/logo.png
+logo path: src/images/logo.jpg
 screenshot: assets/ss.png
 twitter: vilfer
 email: polin-2020@yandex.ru

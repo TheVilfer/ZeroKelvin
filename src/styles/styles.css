@@ -16,5 +16,8 @@
 /* styles for index page*/
 @import 'pages/index.css';
 
+/* styles for catalog page*/
+@import 'pages/catalog.css';
+
 /* styles for footer*/
 @import 'footer.css';

@@ -29,12 +29,28 @@
     <a href="" class="nav__icon icon__favorite"></a>
     <a href="" class="nav__icon icon__profile"></a>
     <a href="" class="nav__icon icon__cart"></a>
-    <button class="nav-mobile__button" type="button" aria-expanded="false" aria-controls="nav-mobile__box">
-      <svg class="nav-mobile__icon" aria-hidden="true" width="32" height="32">
-        <use class="nav-mobile__icon-menu" href="/images/icons/sprite.svg#menu"></use>
-        <use class="nav-mobile__icon-cross" href="/images/icons/sprite.svg#cross"></use>
-      </svg>
-    </button>
   </div>
-  <!-- <ul class="nav-mobile__box" id="nav-mobile__box"> <li> <a class="nav-mobile__link" href="#">Каталог</a> </li> <li> <a class="nav-mobile__link" href="#">Оплата и доставка</a> </li> <li> <a class="nav-mobile__link" href="#">О нас</a> </li> <li> <a class="nav-mobile__link" href="#">Блог</a> </li> <li> <a class="nav-mobile__link" href="#">Контакты</a> </li> <li> <button class="toggle-mode nav__icon icon__sun"></button> </li> </ul> -->
+    <div class="hamburger-menu">
+      <input id="menu__toggle" type="checkbox"/>
+      <label class="menu__btn" for="menu__toggle">
+        <span></span>
+      </label>
+      <ul class="menu__box">
+        <li>
+          <a class="menu__item" href="#">Каталог</a>
+        </li>
+        <li>
+          <a class="menu__item" href="#">Оплата и доставка</a>
+        </li>
+        <li>
+          <a class="menu__item" href="#">О нас</a>
+        </li>
+        <li>
+          <a class="menu__item" href="#">Блог</a>
+        </li>
+        <li>
+          <a class="menu__item" href="#">Контакты</a>
+        </li>
+      </ul>
+    </div>
 </nav>

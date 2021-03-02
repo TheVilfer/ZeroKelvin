@@ -4,7 +4,7 @@
   "description": "Ecommerce site for instagram shop @science__shop",
   "private": true,
   "scripts": {
-    "start": "eleventy --serve --quiet",
+    "start": "rimraf dist && eleventy --serve --quiet",
     "publish": "git push -f origin master"
   },
   "author": "MadeByVilfer",
@@ -22,6 +22,7 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "autoprefixer": "^10.1.0"
+    "autoprefixer": "^10.1.0",
+    "rimraf": "^2.7.1"
   }
 }

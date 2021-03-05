@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "start": "rimraf dist && eleventy --serve --quiet",
-    "publish": "git push -f origin master"
+    "deploy": "git push -f origin master"
   },
   "author": "MadeByVilfer",
   "license": "ISC",

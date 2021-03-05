@@ -1,0 +1,7 @@
+.page__catalog{
+    display: flex;
+    flex-wrap: wrap;
+}
+.catalog__item + .catalog__item{
+    margin-left: 15px;
+}

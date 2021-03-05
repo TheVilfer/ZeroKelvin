@@ -1,0 +1,213 @@
+.nav {
+  width: 100%;
+  padding: 20px 30px;
+}
+@media screen and (max-width: 800px) {
+  .nav {
+    display: none;
+  }
+}
+
+.nav__header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media screen and (max-width: 800px) {
+  .nav__header {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 1vh;
+  }
+}
+
+.toggle-mode {
+  justify-self: flex-start;
+  background-color: white;
+  border: 0;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  .toggle-mode {
+    justify-self: center;
+  }
+}
+
+.nav__logo {
+  justify-self: center;
+}
+@media screen and (max-width: 800px) {
+  .nav__logo {
+    justify-self:start;
+    align-self: center;
+  }
+}
+
+
+.nav__logo>.logo {
+  display: block;
+  width: 200px;
+  height: 100%;
+}
+@media screen and (max-width: 800px) {
+  .nav__logo>.logo {
+    display: block;
+    width: 150px;
+    height: 20px;
+  }
+}
+
+.nav__shop {
+  justify-self: flex-end;
+}
+
+.nav__footer {
+  margin-top: 10px;
+}
+
+.nav__links {
+  text-align: center;
+}
+
+.nav__link+.nav__link {
+  margin-left: 2vw;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+
+.nav__link:hover {
+  opacity: 0.8;
+}
+
+.nav__icon {
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.nav__icon+.nav__icon {
+  margin-left: 15px;
+}
+@media screen and (max-width: 800px) {
+  .nav__icon+.nav__icon {
+    margin-left: 1vw;
+  }
+}
+/* Mobile navigation */
+.nav-mobile{
+  display: none;
+}
+@media screen and (max-width: 800px) {
+  .nav-mobile {
+    background-color: white;
+    position:fixed;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    align-content: center;
+    height: 4rem;
+    padding-left: 50px;
+    padding-right: 10px;
+    z-index: 4;
+    width: 100%;
+  }
+}
+
+/* скрываем чекбокс */
+#menu__toggle {
+  opacity: 0;
+}
+.hamburger-menu{
+  position: absolute;
+}
+/* стилизуем кнопку */
+.menu__btn {
+  display: flex; /* используем flex для центрирования содержимого */
+  align-items: center;  /* центрируем содержимое кнопки */
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 3;
+}
+/* добавляем "гамбургер" */
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #616161;
+}
+.menu__btn > span::before {
+  content: '';
+  top: -8px;
+}
+.menu__btn > span::after {
+  content: '';
+  top: 8px;
+}
+/* контейнер меню */
+.menu__box {
+  display: block;
+  position: fixed;
+  visibility: hidden;
+  top: 0;
+  left: -100%;
+  width: 300px;
+  height: 100%;
+  margin: 0;
+  padding: 80px 0;
+  list-style: none;
+  text-align: left;
+  background-color: #ECEFF1;
+  box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
+  z-index:2;
+}
+/* элементы меню */
+.menu__item {
+  display: block;
+  padding: 12px 24px;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.menu__item:hover {
+  background-color: #CFD8DC;
+}
+#menu__toggle:checked ~ .menu__btn > span {
+  transform: rotate(45deg);
+}
+#menu__toggle:checked ~ .menu__btn > span::before {
+  top: 0;
+  transform: rotate(0);
+}
+#menu__toggle:checked ~ .menu__btn > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+#menu__toggle:checked ~ .menu__box {
+  visibility: visible;
+  left: 0;
+}
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  transition-duration: .25s;
+}
+.menu__box {
+  transition-duration: .25s;
+}
+.menu__item {
+  transition-duration: .25s;
+}

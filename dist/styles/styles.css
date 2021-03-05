@@ -1,0 +1,23 @@
+/* Fonts*/
+@import '/fonts/fonts.css';
+
+/* Normalize css + box sizing*/
+@import 'normalize.css';
+
+/* global styles and variables*/
+@import 'global.css';
+
+/* styles for header*/
+@import 'nav.css';
+
+/* styles for slider */
+@import 'slider/swiper-bundle.min.css';
+
+/* styles for index page*/
+@import 'pages/index.css';
+
+/* styles for catalog page*/
+@import 'pages/catalog.css';
+
+/* styles for footer*/
+@import 'footer.css';

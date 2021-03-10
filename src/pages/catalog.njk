@@ -8,7 +8,7 @@ layout: main.njk
 </header>
 <main class="page__block page__main page__catalog">
 {% for item in collections.product %}
-    <div class="catalog__item">
+    <div class="catalog__item" data-id="{{item.data.id}}">
         <div class="item__container">
             <img src="/images/products/{{item.data.img}}.jpg" alt="" class="item__image">
             <div class="item__status"></div>

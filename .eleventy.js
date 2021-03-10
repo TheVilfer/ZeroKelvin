@@ -6,6 +6,7 @@ module.exports = (config) => {
     config.addPassthroughCopy('src/styles');
     config.addPassthroughCopy('src/media');
     config.addPassthroughCopy('src/admin');
+    config.addPassthroughCopy("src/functions");
     config.setDataDeepMerge(true);
     return {
         dir: {

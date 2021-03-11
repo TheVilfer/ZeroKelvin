@@ -30,21 +30,20 @@ var catalogSwiper = new Swiper('.swiper-catalog', {
 
 //cart
 document.addEventListener('DOMContentLoaded', () =>{
+  localStorage.setItem('storage', JSON.stringify({}));
   const productBtn = document.querySelectorAll('.item__cart__test');
   productBtn.forEach(el => {
     el.addEventListener('click', (e) =>{
       let self = e.currentTarget;
       let parent = self.closest('.catalog__item');
       let id = parent.dataset.id;
-      addStorage(id);
+      addCart(id);
     }); 
   });
 });
 
-const addStorage = (id) =>{
-  if (localStorage.getItem(id) != null){
-    localStorage.setItem(id, parseInt(localStorage.getItem(id))+1)
-  } else{
-    localStorage.setItem(id, '1')
+const addCart = (id) =>{
+  localStorage.setItem('storage', JSON.stringify({id:"1"}))
+  let str = JSON.parse(localStorage.storage);
+  console.log(str);
   }
-}; 

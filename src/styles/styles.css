@@ -19,5 +19,8 @@
 /* styles for catalog page*/
 @import 'pages/catalog.css';
 
+/* styles for cart*/
+@import 'pages/cart.css';
+
 /* styles for footer*/
 @import 'footer.css';

@@ -30,20 +30,23 @@ var catalogSwiper = new Swiper('.swiper-catalog', {
 
 //cart
 document.addEventListener('DOMContentLoaded', () =>{
-  localStorage.setItem('storage', JSON.stringify({}));
+  if (localStorage.getItem('cart') == null) localStorage.setItem('cart', JSON.stringify({}));
   const productBtn = document.querySelectorAll('.item__cart__test');
   productBtn.forEach(el => {
     el.addEventListener('click', (e) =>{
       let self = e.currentTarget;
       let parent = self.closest('.catalog__item');
       let id = parent.dataset.id;
-      addCart(id);
+      addStorage('cart',id);
     }); 
   });
 });
 
-const addCart = (id) =>{
-  localStorage.setItem('storage', JSON.stringify({id:"1"}))
-  let str = JSON.parse(localStorage.storage);
-  console.log(str);
+const addStorage = (storage,id) =>{
+  let items = JSON.parse(localStorage.getItem(storage));
+  if (isNaN(items[id])) items[id] = 0;
+  items[id] += 1;
+  localStorage.setItem(storage, JSON.stringify(items));
+  console.log(localStorage.cart);
+  console.log(localStorage.favorite);
   }

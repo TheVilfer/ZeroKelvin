@@ -106,7 +106,6 @@
 @media screen and (max-width: 800px) {
   .nav-mobile {
     background-color: white;
-    position:fixed;
     display:grid;
     grid-template-columns: 1fr 1fr;
     align-content: center;

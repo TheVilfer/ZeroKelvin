@@ -5,7 +5,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 const getData = async(id) => {
     await client.connect();
     const collection = client.db("kelvinsite").collection("products");
-    return await collection.findOne({"_id": String(id)}).toArray().price;
+    return await collection.findOne({"_id": String(id)}).price;
 };
 
 exports.handler = event => {

@@ -8,12 +8,12 @@ const getData = async(id) => {
     return await collection.findOne({"_id": String(id)}).price;
 };
 
-exports.handler = event => {
+exports.handler = async event => {
       // if (event.httpMethod !== "POST") {
       //   return { statusCode: 405, body: "Method Not Allowed" };
       // }
       const id = event.queryStringParameters.id;
-      const rst = getData(id);
+      const rst = await getData(id);
       console.log(rst);
       return {
         statusCode: 200,

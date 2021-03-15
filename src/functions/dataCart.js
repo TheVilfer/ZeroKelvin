@@ -8,7 +8,7 @@ const getData = async(id) => {
     return await collection.findOne({"_id": String(id)}).toArray().price;
 };
 
-exports.handler = async event => {
+exports.handler = event => {
       // if (event.httpMethod !== "POST") {
       //   return { statusCode: 405, body: "Method Not Allowed" };
       // }

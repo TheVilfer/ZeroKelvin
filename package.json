@@ -15,6 +15,7 @@
     "@babel/preset-env": "^7.12.7",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.0.1",
+    "mongodb": "^3.6.4",
     "postcss": "^8.2.6",
     "postcss-loader": "^5.0.0",
     "style-loader": "^2.0.0",
@@ -23,6 +24,8 @@
   },
   "dependencies": {
     "autoprefixer": "^10.1.0",
+    "pug": "^3.0.1",
+    "pug-code-gen": "^3.0.2",
     "rimraf": "^2.7.1"
   }
 }

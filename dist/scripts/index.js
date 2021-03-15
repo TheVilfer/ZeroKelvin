@@ -13,29 +13,33 @@ var collectionsSwiper = new Swiper('.swiper-collections', {
   spaceBetween: 30,
   centeredSlides: true,
   loop:true,
-  keyboard: {
-    enabled: true,
-  },
 });
 
-var catalogSwiper = new Swiper('.swiper-catalog', {
+var catalogSwiper = new Swiper('.swiper-popular', {
   slidesPerView: 'auto',
   spaceBetween: 30,
   centeredSlides: true,
   loop:true,
+  loopedSlides: 3,
+  loopAdditionalSlides: 3,
   keyboard: {
     enabled: true,
+    onlyInViewport: true,
+  },
+  navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
   },
 });
 
 //cart
 document.addEventListener('DOMContentLoaded', () =>{
   if (localStorage.getItem('cart') == null) localStorage.setItem('cart', JSON.stringify({}));
-  const productBtn = document.querySelectorAll('.item__cart__test');
+  const productBtn = document.querySelectorAll('.popular-item__cart');
   productBtn.forEach(el => {
     el.addEventListener('click', (e) =>{
       let self = e.currentTarget;
-      let parent = self.closest('.catalog__item');
+      let parent = self.closest('.catalog-item');
       let id = parent.dataset.id;
       addStorage('cart',id);
     }); 

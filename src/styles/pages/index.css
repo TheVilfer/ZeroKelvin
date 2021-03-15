@@ -174,89 +174,70 @@
   margin-top: 50px;
 }
 
-
-
-.catalog__item {
-  display: inline-block;
-  color: black;
+.page__popular {
   width: 100%;
-  max-width: 250px;
-  min-width: 200px;
-  font-size: 16px;
+  height: 100%;
+  margin: 2em 0;
+  margin-bottom: 3em;
 }
 
-.item__container {
+.popular-item {
+  width: 100%;
+  height: 100%;
+  max-width: 300px;
+  min-width: 300px;
   position: relative;
+}
+
+.popular-item__image {
   width: 100%;
 }
 
-.item__image {
-  object-fit: contain;
+.popular-item__category {
+  font-size: 0.8em;
+  opacity: 0.5;
+  display: block;
   width: 100%;
-}
-
-.item__status {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 30px;
-  height: 30px;
-  background-color: green;
-}
-
-.item__favorite {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 30px;
-  height: 30px;
-  border: 0;
-  padding: 0;
-  background-color: hsla(0, 0%, 0%, 0);
-}
-
-.item__text {
-  position: relative;
-  text-align: start;
-}
-
-.item__category {
-  text-align: inherit;
-  opacity: 0.8;
-  margin: 5px 0;
-  font-size: 0.6em;
-}
-
-.item__name {
-  text-align: inherit;
   margin: 5px 0;
 }
 
-.item__price {
-  text-align: inherit;
+.popular-item__name {
+  display: block;
+  width: 100%;
   margin: 5px 0;
 }
 
-.item__cart {
-  width: 25px;
-  height: 25px;
-  position: absolute;
-  top: 0;
-  right: 0;
+.popular-item__price {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
 }
 
-.item__cart__test {
-  width: 80%;
-  padding: 10px;
-  border-radius: 8px;
+.popular-item__cart {
+  width: 100%;
+  background-color: transparent;
   border: 1px solid black;
-  background: white;
+  border-radius: 8px;
+  display: block;
+  padding: 5px;
+}
 
+.popular-item__favorite {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding: 3px;
 }
 
 .main__production {
   width: 100%;
-  height: 70vh;
+  height: 100vh;
   background: black;
   position: relative;
   padding: 0 0;

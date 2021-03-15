@@ -10,8 +10,11 @@
 /* styles for header*/
 @import 'nav.css';
 
-/* styles for slider */
+/* styles for swiper */
 @import 'slider/swiper-bundle.min.css';
+
+/*addon for swiper*/
+@import 'modif-swiper.css';
 
 /* styles for index page*/
 @import 'pages/index.css';

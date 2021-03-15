@@ -1,9 +1,21 @@
-.page__catalog{
+.page__catalog {
     display: grid;
     grid-gap: 1rem;
-    grid-template-columns: repeat(4, 1fr);
-    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 350px));
     width: 100%;
     height: 100%;
     margin: 1rem 0;
+    padding: 1em;
+}
+
+@media screen and (max-width: 800px) {
+    .page__catalog {
+        justify-content: center;
+    }
+}
+
+.catalog-item {
+    width: 100%;
+    grid-column: 1 span;
+    position: relative;
 }

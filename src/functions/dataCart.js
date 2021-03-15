@@ -5,7 +5,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 const getData = async(id) => {
     await client.connect();
     const collection = client.db("kelvinsite").collection("products");
-    return await collection.find({"_id": id}).toArray();
+    return await collection.find({"_id": id}).toArray()[0].price;
 };
 
 exports.handler = async event => {
@@ -15,6 +15,6 @@ exports.handler = async event => {
       const id = event.queryStringParameters.id;
       return {
         statusCode: 200,
-        body: `${getData(id).price}`,
+        body: `${getData(id)}`,
       }
     }

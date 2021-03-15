@@ -5,7 +5,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 const getData = async(id) => {
     await client.connect();
     const collection = client.db("kelvinsite").collection("products");
-    return await collection.find({"_id": id}).toArray()[0].price;
+    return await collection.findOne({"_id": String(id)}).toArray().price;
 };
 
 exports.handler = async event => {
@@ -13,8 +13,9 @@ exports.handler = async event => {
       //   return { statusCode: 405, body: "Method Not Allowed" };
       // }
       const id = event.queryStringParameters.id;
+      const rst = getData(id);
       return {
         statusCode: 200,
-        body: `${getData(id)}`,
+        body: `${rst}`,
       }
     }

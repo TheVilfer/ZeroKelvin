@@ -14,6 +14,7 @@ exports.handler = async event => {
       // }
       const id = event.queryStringParameters.id;
       const rst = getData(id);
+      console.log(rst);
       return {
         statusCode: 200,
         body: `${rst}`,

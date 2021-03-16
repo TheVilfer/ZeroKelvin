@@ -19,14 +19,14 @@ const connectToDatabase = async (uri) => {
 };
 
 const queryDatabase = async (db, data) => {
-  const product = await db.collection("products").find({"_id": data.id}).toArray();
+  const product = await db.collection("products").find({}).toArray();
 
   return {
     statusCode: 200,
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(product),
+    body: JSON.stringify(data),
   };
 };
 

@@ -26,7 +26,7 @@ const queryDatabase = async (db, data) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(product),
+    body: JSON.stringify(data.id),
   };
 };
 

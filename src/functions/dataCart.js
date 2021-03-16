@@ -1,4 +1,5 @@
 // this code made by @stephencookdev. Thx <3
+const mongoUtil = require("mongodb")
 const MongoClient = require("mongodb").MongoClient;
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -19,14 +20,14 @@ const connectToDatabase = async (uri) => {
 };
 
 const queryDatabase = async (db, data) => {
-  const product = await db.collection("products").findOne({"_id":data.id});
+  const product = await db.collection("products").find(new mongoUtil.ObjectID(data.id));
 
   return {
     statusCode: 200,
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(data.id),
+    body: JSON.stringify(product),
   };
 };
 

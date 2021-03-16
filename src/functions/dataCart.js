@@ -1,22 +1,41 @@
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://dbZero:2JRbWHDlAfun5n1N@clusterzk.kcwyc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const MongoClient = require("mongodb").MongoClient;
 
-const getData = async(id) => {
-    await client.connect();
-    const collection = client.db("kelvinsite").collection("products");
-    return await collection.findOne({"_id": String(id)}).price;
+const MONGODB_URI = process.env.MONGODB_URI;
+const DB_NAME = 'kelvinsite';
+
+let cachedDb = null;
+
+const connectToDatabase = async (uri) => {
+  // we can cache the access to our database to speed things up a bit
+  // (this is the only thing that is safe to cache here)
+  if (cachedDb) return cachedDb;
+
+  const client = await MongoClient.connect(uri, {
+    useUnifiedTopology: true,
+  });
+
+  cachedDb = client.db(DB_NAME);
+
+  return cachedDb;
 };
 
-exports.handler = async event => {
-      // if (event.httpMethod !== "POST") {
-      //   return { statusCode: 405, body: "Method Not Allowed" };
-      // }
-      const id = event.queryStringParameters.id;
-      const rst = await getData(id);
-      console.log(rst);
-      return {
-        statusCode: 200,
-        body: `${rst}`,
-      }
-    }
+const queryDatabase = async (db) => {
+  const product = await db.collection("products").find({}).toArray();
+
+  return {
+    statusCode: 200,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(product),
+  };
+};
+
+module.exports.handler = async (event, context) => {
+  // otherwise the connection will never complete, since
+  // we keep the DB connection alive
+  context.callbackWaitsForEmptyEventLoop = false;
+
+  const db = await connectToDatabase(MONGODB_URI);
+  return queryDatabase(db);
+};

@@ -20,7 +20,15 @@ const connectToDatabase = async (uri) => {
 };
 
 const queryDatabase = async (db, data) => {
-  const product = await db.collection("products").find(new mongoUtil.ObjectID(data.id)).toArray();
+  const product;
+  try {
+    product = await db.collection("products").find(new mongoUtil.ObjectID(data.id)).toArray();
+  } 
+  catch (err) {
+    console.log(err);
+    product = {"error": "fail to parse id"}
+  }
+
 
   return {
     statusCode: 200,

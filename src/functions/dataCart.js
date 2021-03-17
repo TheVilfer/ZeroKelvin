@@ -20,7 +20,7 @@ const connectToDatabase = async (uri) => {
 };
 
 const queryDatabase = async (db, data) => {
-  const product;
+  const product = 0;
   try {
     product = await db.collection("products").find(new mongoUtil.ObjectID(data.id)).toArray();
   } 

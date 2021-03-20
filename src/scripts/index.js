@@ -58,7 +58,7 @@ const addStorage = (storage, id) => {
 const updateCart = async () => {
   let amoutPrice = 0
   const cart = JSON.parse(localStorage.getItem("cart"));
-  Object.entries(cart).forEach(async el => {
+  await Object.entries(cart).forEach(async el => {
     const item = await sendRequestCart(el[0]);
     amoutPrice += item[0].price
     console.log(item);

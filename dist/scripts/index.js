@@ -64,8 +64,8 @@ const updateCart = async () => {
       'Content-Type': 'application/json;charset=utf-8',
       'Access-Control-Allow-Origin': '*'
     },
-    body: JSON.stringify(items)
+    body: items
   });
-  console.log(response);
+  console.log(items["604f667c185c5ca4b32e1536"]);
 
 }

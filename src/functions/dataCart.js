@@ -49,7 +49,7 @@ module.exports.handler = async (event, context) => {
     };
   }
   context.callbackWaitsForEmptyEventLoop = false;
-  const data = querystring.parse(event.body);
+  const data = JSON.parse(event.body);
 
   const db = await connectToDatabase(MONGODB_URI);
   return queryDatabase(db, data);

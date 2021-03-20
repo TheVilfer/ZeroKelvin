@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "start": "rimraf dist && eleventy --serve --quiet",
-    "deploy": "git push -f origin master"
+    "deploy": "git push -f origin master",
+    "netlify": "git add . && git commit -m 'netlify test' && git push -f origin master"
   },
   "author": "MadeByVilfer",
   "license": "ISC",

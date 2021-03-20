@@ -81,9 +81,10 @@ const sendRequestCart = async (id) => {
 const getAmoutPrice = async (cart) => {
   total = 0
   cart.forEach(async el => {
-    const item = await sendRequestCart(el[0]);
-    total += item[0].price
+    sendRequestCart(el[0]).then(item =>{
+      total += item[0].price
+    });
     console.log(item);
   });
-  return await total;
+  return total;
 };

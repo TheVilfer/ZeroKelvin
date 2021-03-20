@@ -56,9 +56,8 @@ const addStorage = (storage, id) => {
   console.log(localStorage.favorite);
 };
 const updateCart = async () => {
-  let amoutPrice = 0
   const cart = Object.entries(JSON.parse(localStorage.getItem("cart")));
-  console.log(amoutPrice(cart))
+  console.log(getAmoutPrice(cart))
 }
 const sendRequestCart = async (id) => {
   const url = '/.netlify/functions/dataCart';

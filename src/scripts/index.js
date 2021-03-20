@@ -62,8 +62,8 @@ const updateCart = async () => {
     const item = await sendRequestCart(el[0]);
     amoutPrice += item[0].price
     console.log(item);
-    console.log(amoutPrice);
   });
+  await console.log(amoutPrice);
 }
 const sendRequestCart = async (id) => {
   const url = '/.netlify/functions/dataCart';

@@ -56,9 +56,11 @@ const addStorage = (storage, id) => {
   console.log(localStorage.favorite);
 };
 const updateCart = async () => {
+  let amoutPrice = 0
   const cart = JSON.parse(localStorage.getItem("cart"));
   Object.entries(cart).forEach(async el => {
     const item = await sendRequestCart(el[0]);
+    amoutPrice += item.price
     console.log(item);
   });
 }

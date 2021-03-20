@@ -55,7 +55,7 @@ const addStorage = (storage, id) => {
   console.log(localStorage.cart);
   console.log(localStorage.favorite);
 };
-const updateCart = async () => {
+const updateCart = () => {
   const cart = JSON.parse(localStorage.getItem("cart"));
   Object.entries(cart).forEach(el => {
     const item = await sendRequestCart(el[0]);
@@ -79,5 +79,6 @@ const sendRequestCart = async (id) => {
     return response;
   } catch (err) {
     console.error(err);
-  }
+    return null
+  };
 };

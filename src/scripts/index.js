@@ -71,12 +71,11 @@ const sendRequestCart = async (id) => {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        'Access-Control-Allow-Origin': '*'
+        'Content-Type': 'application/json;charset=utf-8'
       },
       body: JSON.stringify(item)
     });
-    return response.body;
+    return response;
   } catch (err) {
     console.error(err);
     return null

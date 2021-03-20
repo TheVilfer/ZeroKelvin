@@ -63,7 +63,7 @@ const updateCart = () => {
   });
 }
 const sendRequestCart = async (id) => {
-  const url = 'https://zerokelvin.netlify.app/.netlify/functions/dataCart';
+  const url = '/.netlify/functions/dataCart';
   const item = {
     id: id
   };

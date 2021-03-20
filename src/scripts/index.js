@@ -57,18 +57,18 @@ const addStorage = (storage, id) => {
 };
 const updateCart = async () => {
   const cart = JSON.parse(localStorage.getItem("cart"));
-  Object.entries(cart).forEach(el => {
+  Object.entries(cart).forEach(async el => {
     const item = await sendRequestCart(el[0]);
     console.log(item);
   });
 }
-const sendRequestCart = (id) => {
+const sendRequestCart = async (id) => {
   const url = '/.netlify/functions/dataCart';
   const item = {
     id: id
   };
   try {
-    const response = fetch(url, {
+    const response = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

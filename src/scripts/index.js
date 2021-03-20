@@ -62,13 +62,13 @@ const updateCart = async () => {
     console.log(item);
   });
 }
-const sendRequestCart = async (id) => {
+const sendRequestCart = (id) => {
   const url = '/.netlify/functions/dataCart';
   const item = {
     id: id
   };
   try {
-    const response = await fetch(url, {
+    const response = fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

@@ -23,10 +23,10 @@
     object-fit: contain;
 }
 
-.cart-element__price {}
+/* .cart-element__price {} */
 
 .cart-element__category {
     opacity: 0.5;
 }
 
-.cart-element__delete {}
+/* .cart-element__delete {} */

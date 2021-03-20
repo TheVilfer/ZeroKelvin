@@ -1,25 +1,24 @@
-
-var mySwiper = new Swiper('.swiper-banner', {
-    speed: 400,
-    spaceBetween: 100,
-    loop: true,
-    keyboard: {
-      enabled: true,
-    },
+const mySwiper = new Swiper('.swiper-banner', {
+  speed: 400,
+  spaceBetween: 100,
+  loop: true,
+  keyboard: {
+    enabled: true,
+  },
 });
 
-var collectionsSwiper = new Swiper('.swiper-collections', {
+const collectionsSwiper = new Swiper('.swiper-collections', {
   slidesPerView: 'auto',
   spaceBetween: 30,
   centeredSlides: true,
-  loop:true,
+  loop: true,
 });
 
-var catalogSwiper = new Swiper('.swiper-popular', {
+const catalogSwiper = new Swiper('.swiper-popular', {
   slidesPerView: 'auto',
   spaceBetween: 30,
   centeredSlides: true,
-  loop:true,
+  loop: true,
   loopedSlides: 3,
   loopAdditionalSlides: 3,
   keyboard: {
@@ -27,30 +26,46 @@ var catalogSwiper = new Swiper('.swiper-popular', {
     onlyInViewport: true,
   },
   navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
   },
 });
 
 //cart
-document.addEventListener('DOMContentLoaded', () =>{
+document.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('cart') == null) localStorage.setItem('cart', JSON.stringify({}));
   const productBtn = document.querySelectorAll('.popular-item__cart');
+  if (window.location.pathname == "/cart/") updateCart();
   productBtn.forEach(el => {
-    el.addEventListener('click', (e) =>{
+    el.addEventListener('click', (e) => {
       let self = e.currentTarget;
       let parent = self.closest('.catalog-item');
       let id = parent.dataset.id;
-      addStorage('cart',id);
-    }); 
+      addStorage('cart', id);
+
+    });
   });
 });
 
-const addStorage = (storage,id) =>{
+const addStorage = (storage, id) => {
   let items = JSON.parse(localStorage.getItem(storage));
   if (isNaN(items[id])) items[id] = 0;
   items[id] += 1;
   localStorage.setItem(storage, JSON.stringify(items));
   console.log(localStorage.cart);
   console.log(localStorage.favorite);
-  }
+};
+const updateCart = async () => {
+  let items = JSON.parse(localStorage.getItem("cart"));
+  const url = 'https://zerokelvin.netlify.app/.netlify/functions/dataCart';
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      'Access-Control-Allow-Origin': '*'
+    },
+    body: JSON.stringify(items)
+  });
+  console.log(response);
+
+}

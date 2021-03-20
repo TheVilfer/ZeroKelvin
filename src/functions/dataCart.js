@@ -1,6 +1,7 @@
 // this code made by @stephencookdev. Thx <3
 const mongoUtil = require("mongodb")
 const MongoClient = require("mongodb").MongoClient;
+const querystring = require("querystring");
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = 'kelvinsite';
@@ -23,10 +24,11 @@ const queryDatabase = async (db, data) => {
   let product = 0;
   try {
     product = await db.collection("products").find(new mongoUtil.ObjectID(data.id)).toArray();
-  } 
-  catch (err) {
+  } catch (err) {
     console.log(err);
-    product = {"error": "fail to parse id"}
+    product = {
+      "error": "fail to parse id"
+    }
   }
 
 
@@ -40,9 +42,15 @@ const queryDatabase = async (db, data) => {
 };
 
 module.exports.handler = async (event, context) => {
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 405,
+      body: "Method Not Allowed"
+    };
+  }
   context.callbackWaitsForEmptyEventLoop = false;
-  const data = JSON.parse(event.body);
+  const data = querystring.parse(event.body);
 
   const db = await connectToDatabase(MONGODB_URI);
-  return queryDatabase(db,data);
+  return queryDatabase(db, data);
 };

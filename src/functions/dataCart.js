@@ -1,7 +1,6 @@
 // this code made by @stephencookdev. Thx <3
 const mongoUtil = require("mongodb")
 const MongoClient = require("mongodb").MongoClient;
-const querystring = require("querystring");
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = 'kelvinsite';
@@ -25,7 +24,7 @@ const queryDatabase = async (db, data) => {
   try {
     product = await db.collection("products").find(new mongoUtil.ObjectID(data.id)).toArray();
   } catch (err) {
-    console.log(err);
+    console.error(err);
     product = {
       "error": "fail to parse id"
     }

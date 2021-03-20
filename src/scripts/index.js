@@ -60,7 +60,7 @@ const updateCart = async () => {
   const cart = JSON.parse(localStorage.getItem("cart"));
   Object.entries(cart).forEach(async el => {
     const item = await sendRequestCart(el[0]);
-    amoutPrice += item.price
+    amoutPrice += item[0].price
     console.log(item);
   });
   console.log("Amout price is " + amoutPrice)

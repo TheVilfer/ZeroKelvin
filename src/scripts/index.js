@@ -78,7 +78,7 @@ const sendRequestCart = async (id) => {
     return null
   };
 };
-const getAmoutPrice = async (cart) => {
+const getAmoutPrice = (cart) => {
   total = 0
   cart.forEach(async el => {
     sendRequestCart(el[0]).then(item => {

@@ -86,5 +86,6 @@ const getAmoutPrice = async (cart) => {
     total += item[0].price
     console.log(item);
   });
-  return (await total);
+  Promise.all()
+  return total;
 };

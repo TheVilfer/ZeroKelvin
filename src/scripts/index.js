@@ -75,7 +75,7 @@ const sendRequestCart = async (id) => {
       },
       body: JSON.stringify(item)
     });
-    return response;
+    return response.json();
   } catch (err) {
     console.error(err);
     return null

@@ -82,8 +82,9 @@ const getAmoutPrice = (cart) => {
   total = 0
   cart.forEach(async el => {
     let item = await sendRequestCart(el[0]);
-    console.log(item)
-    // total += item[0].price
+    console.log(total)
+    total += item[0].price
   });
+  console.log(total)
   // return total;
 };

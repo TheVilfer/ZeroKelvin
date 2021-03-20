@@ -55,17 +55,25 @@ const addStorage = (storage, id) => {
   console.log(localStorage.cart);
   console.log(localStorage.favorite);
 };
-const updateCart = async () => {
-  let items = JSON.parse(localStorage.getItem("cart"));
+const updateCart = () => {
+  const cart = JSON.parse(localStorage.getItem("cart"));
+  Object.entries(cart).forEach(el => {
+    const item = sendRequestCart(el[0])
+    console.log(item)
+  });
+}
+const sendRequestCart = async (id) => {
   const url = 'https://zerokelvin.netlify.app/.netlify/functions/dataCart';
+  const item = {
+    id: id
+  };
   const response = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
       'Access-Control-Allow-Origin': '*'
     },
-    body: items
+    body: JSON.stringify(item)
   });
-  console.log(items["604f667c185c5ca4b32e1536"]);
-
-}
+  return response;
+};

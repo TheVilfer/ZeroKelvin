@@ -55,25 +55,36 @@ const addStorage = (storage, id) => {
   console.log(localStorage.cart);
   console.log(localStorage.favorite);
 };
-const updateCart = () => {
-  const cart = JSON.parse(localStorage.getItem("cart"));
-  Object.entries(cart).forEach(el => {
-    const item = sendRequestCart(el[0])
-    console.log(item)
-  });
+const updateCart = async () => {
+  const cart = Object.entries(JSON.parse(localStorage.getItem("cart")));
+  console.log(getAmoutPrice(cart))
 }
 const sendRequestCart = async (id) => {
-  const url = 'https://zerokelvin.netlify.app/.netlify/functions/dataCart';
+  const url = '/.netlify/functions/dataCart';
   const item = {
     id: id
   };
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-      'Access-Control-Allow-Origin': '*'
-    },
-    body: JSON.stringify(item)
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify(item)
+    });
+    return response.json();
+  } catch (err) {
+    console.error(err);
+    return null
+  };
+};
+const getAmoutPrice = (cart) => {
+  total = 0
+  cart.forEach(async el => {
+    let item = await sendRequestCart(el[0]);
+    Promise.all(item);
+    total += item[0].price
   });
-  return response;
+  console.log(total)
+  // return total;
 };

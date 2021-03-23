@@ -88,3 +88,6 @@ const getAmoutPrice = async (cart) => {
   }
   return total;
 };
+const RenderCart = (item) => {
+
+};

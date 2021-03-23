@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/instagram"
+  to = "https://www.instagram.com/zerokelvin.ru/"
+  status = 200
+  force = true

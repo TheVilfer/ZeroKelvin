@@ -1,10 +1,5 @@
 [[redirects]]
-  from = "/*"
-  to = "/coming/"
-  status = 200
-  force = true
-[[redirects]]
   from = "/instagram"
-  to = "https://www.instagram.com/zerokelvin.ru/"
+  to = "https://www.instagram.com/zerokelvinru/"
   status = 200
   force = true

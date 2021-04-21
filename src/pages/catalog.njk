@@ -9,7 +9,7 @@ layout: main.njk
 <main class="page__main page__catalog">
     {% for item in collections.product %}
     <div class="catalog-item" data-id="{{item.data.id}}">
-        <img class="popular-item__image" src="/images/products/{{item.data.img}}.jpg" alt="">
+        <img class="popular-item__image" src="/images/products/{{item.data.id}}.jpg" alt="">
         <span class="popular-item__category">СТИКЕРПАКИ</span>
         <span class="popular-item__name">{{item.data.title}}</span>
         <span class="popular-item__price">{{item.data.price}} руб</span>

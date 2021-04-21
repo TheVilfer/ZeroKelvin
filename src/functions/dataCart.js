@@ -1,4 +1,4 @@
-// this code made by @stephencookdev. Thx <3
+// fork code made by @stephencookdev. Thx <3
 const mongoUtil = require("mongodb")
 const MongoClient = require("mongodb").MongoClient;
 
@@ -20,13 +20,14 @@ const connectToDatabase = async (uri) => {
 };
 
 const queryDatabase = async (db, data) => {
-  let product = 0;
+  let response = null;
   try {
-    product = await db.collection("products").find(new mongoUtil.ObjectID(data.id)).toArray();
+    response = await db.collection("products").find(new mongoUtil.ObjectID(data.id)).toArray();
   } catch (err) {
     console.error(err);
-    product = {
-      "error": "fail to parse id"
+    response = {
+      "error": "fail to parse id",
+      "detail": err
     }
   }
 
@@ -36,7 +37,7 @@ const queryDatabase = async (db, data) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(product),
+    body: JSON.stringify(response),
   };
 };
 

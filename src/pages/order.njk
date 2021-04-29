@@ -1,0 +1,56 @@
+---
+title: Оплата | НАУЧНЫЕ СТИКЕРЫ
+permalink: /order/
+layout: main.njk
+---
+<header>
+    <h1>Оплата</h1>
+</header>
+<main>
+    <form action="" autocomplete="on">
+        <fieldset>
+            <legend>Личные данные</legend>
+            <label for="name">Имя</label>
+            <input type="text" name="given-name" id="name" autocomplete="given-name" required>
+            <label for="surname">Фамилия</label>
+            <input type="text" name="family-name" id="surname" autocomplete="family-name" required>
+            <label for="tel">Телефон</label>
+            <input type="tel" name="tel" id="phone" autocomplete="home tel" required>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" autocomplete="home email" required>
+            <label for="country">Страна</label>
+            <input type="text" name="country" id="country" autocomplete="shipping country-name" required>
+            <label for="state">Регион</label>
+            <input type="text" name="state" id="state" autocomplete="shipping address-level1" required>
+            <label for="city">Город / Село</label>
+            <input type="text" name="city" id="city" autocomplete="shipping address-level2" required>
+            <label for="street">Улица, дом</label>
+            <input type="text" name="street" id="street" autocomplete="shipping address-line1" required>
+            <label for="housing">Корпус</label>
+            <input type="text" name="housing" id="housing" autocomplete="shipping address-line3">
+            <label for="room">Квартира</label>
+            <input type="text" name="room" id="room" autocomplete="shipping address-line2">
+            <label for="postalcode">Почтовый индекс</label>
+            <input type="text" name="postalcode" id="postalcode" autocomplete="shipping postal-code">
+        </fieldset>
+        <fieldset>
+            <legend>Способ доставки</legend>
+            <label for="delivery-russia">Почта России - <span class="delivery-russia__price">100 руб.</span></label>
+            <input type="radio" name="delivery" id="delivery-russia" checked value="russiapost">
+            <label for="delivery-cdek">СДЕК - <span class="delivery-cdek__price">150 руб.</span></label>
+            <input type="radio" name="delivery" id="delivery-cdek" value="cdek">
+        </fieldset>
+        <fieldset>
+            <legend>Промокод</legend>
+            <input type="text" name="promocode" id="promocode">
+        </fieldset>
+        <fieldset>
+            <legend>Детали</legend>
+            <label for="comment">Комментарий к заказу</label>
+            <textarea name="comment" id="comment" cols="15" rows="3"></textarea>
+            <label for="distribution">Хочу подписаться на Email рассылку</label>
+            <input type="checkbox" name="distribution" id="distribution" value="yes">
+        </fieldset>
+        <button type="submit">Оформить заказ</button>
+    </form>
+</main>

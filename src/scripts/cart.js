@@ -8,6 +8,11 @@ const Cart = async () => {
     cart = await GetLocalStorage('cart');
     if (cart == null)
         cart = JSON.parse("{}")
+    if (window.location.pathname == "/order/") {
+        if (Object.entries(cart).length == 0) {
+            window.location.replace("https://zerokelvin.ru");
+        }
+    }
     if (window.location.pathname == "/cart/") {
         InitCart();
     } else {
@@ -21,11 +26,11 @@ const SetLocalStorage = async (storage, value) => {
     localStorage.setItem(storage, JSON.stringify(value))
 };
 const EnableAllAddToCart = () => {
-    const productBtn = document.querySelectorAll('.popular-item__cart');
+    const productBtn = document.querySelectorAll('.cart-add');
     productBtn.forEach(el => {
         el.addEventListener('click', (e) => {
             let self = e.currentTarget;
-            let parent = self.closest('.catalog-item');
+            let parent = self.closest('.cart__item');
             let id = parent.dataset.id;
             AddToCart(id);
         });

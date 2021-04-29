@@ -9,9 +9,7 @@ const Cart = async () => {
     if (cart == null)
         cart = JSON.parse("{}")
     if (window.location.pathname == "/order/") {
-        if (Object.entries(cart).length == 0) {
-            window.location.replace("https://zerokelvin.ru");
-        }
+        InitOrder();
     }
     if (window.location.pathname == "/cart/") {
         InitCart();
@@ -117,3 +115,11 @@ const SendRequestCart = async (id) => {
         return null
     };
 };
+const InitOrder = async () => {
+    if (Object.entries(cart).length == 0) {
+        window.location.replace("https://zerokelvin.ru");
+    }
+    var inputTel = IMask(document.getElementById('phone'), {
+        mask: '+{7}(000) 000-00-00'
+    });
+}

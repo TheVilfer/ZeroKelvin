@@ -15,8 +15,10 @@
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.7",
     "babel-loader": "^8.2.2",
+    "chalk": "^4.1.1",
     "css-loader": "^5.0.1",
     "mongodb": "^3.6.4",
+    "netlify-cli": "^3.23.3",
     "postcss": "^8.2.6",
     "postcss-loader": "^5.0.0",
     "standard": "^16.0.3",
@@ -26,6 +28,8 @@
   },
   "dependencies": {
     "autoprefixer": "^10.1.0",
+    "each-async": "^1.1.1",
+    "indent-string": "^5.0.0",
     "pug": "^3.0.1",
     "pug-code-gen": "^3.0.2",
     "rimraf": "^2.7.1"

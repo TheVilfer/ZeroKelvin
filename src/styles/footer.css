@@ -42,9 +42,31 @@
   gap: 10px 10px;
 }
 
+@media screen and (max-width: 800px) {
+  .footer__social {
+    justify-items: start;
+    grid-auto-rows: 50px;
+    grid-template-columns: repeat(3, 50px) 1fr;
+    gap: 15px 15px;
+  }
+}
+
 .social__logo {
   grid-area: span 1 / span 2;
+  width: 100%;
   height: 100%;
+  text-align: center;
+}
+
+.logo--black {
+  height: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .social__logo {
+    grid-area: span 1 / span 1;
+  }
+
 }
 
 .social__icon {

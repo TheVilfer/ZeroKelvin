@@ -80,15 +80,14 @@
 
     <footer class="page__footer footer">
 
-  <div class="footer__links">
-    <div class="footer__link"><a href="/">Главная</a></div>
-    <div class="footer__link"><a href="">Каталог</a></div>
-    <div class="footer__link"><a href="">Оплата и доставка</a></div>
-    <div class="footer__link"><a href="">О нас</a></div>
-    <div class="footer__link"><a href="">Блог</a></div>
-    <div class="footer__link"><a href="">Контакты</a></div>
-    <div class="footer__link"><a href="">Политика обработки <br> персональных данных</a></div>
-  </div>
+  <ul class="footer__menu">
+    <li class=""><a class="link footer__menu__link" href="">Главная</a></li>
+    <li class=""><a class="link footer__menu__link" href="">Каталог</a></li>
+    <li class=""><a class="link footer__menu__link" href="">Оплата и доставка</a></li>
+    <li class=""><a class="link footer__menu__link" href="">О нас</a></li>
+    <li class=""><a class="link footer__menu__link" href="">Статьи</a></li>
+    <li class=""><a class="link footer__menu__link" href="">Контакты</a></li>
+  </ul>
 
   <div class="footer__social">
     <a class="social__logo" href="/"><img class="logo--black" src="/images/logo_black.svg" alt=""></a>
@@ -97,9 +96,9 @@
   </div>
 
   <div class="footer__offer">
-    <p class="offer__text">Дарим скидку 10% на первый заказ</p>
     <form action="" class="offer__form" autocomplete="on">
-      <input class="form__input" type="email" placeholder="Ваш Email">
+      <label for="offer__input">Дарим скидку 10% на первый заказ</label>
+      <input class="form__input" id="offer__input" type="email" placeholder="Ваш Email">
       <button class="form__submit" type="submit">Подписаться</button>
     </form>
   </div>

@@ -1,7 +1,7 @@
 .footer {
   font-size: 0.9em;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   background: black;
   opacity: 0.9;
   color: white;
@@ -10,28 +10,31 @@
 
 @media screen and (max-width: 800px) {
   .footer {
-    grid-template-columns: 1fr;
-    grid-auto-rows: min-content;
+    grid-template-columns: 80%;
+    padding: 30px;
     gap: 30px 30px;
+    justify-content: center;
   }
 }
 
-.footer__links {
+.footer__menu {
   display: grid;
   grid-auto-rows: min-content;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
   gap: 10px 10px;
   text-align: left;
-}
-
-.footer__link>a {
   color: inherit;
-  opacity: 0.8;
+  list-style: none;
+  padding: 0;
 }
 
-.footer__link>a:hover {
-  opacity: 1;
+.footer__menu__link {
+  color: inherit;
+}
+
+.link {
+  color: inherit;
 }
 
 .footer__social {
@@ -83,14 +86,9 @@
   justify-self: flex-start;
 }
 
-.footer__offer {
-  display: flex;
-  flex-direction: column;
-}
-
-.offer__text {
-  display: inline;
-  margin: 3px 0;
+.offer__form {
+  display: grid;
+  gap: 10px 10px;
 }
 
 .form__input {
@@ -102,7 +100,6 @@
   border-radius: 8px;
   padding: 10px;
   width: 100%;
-  max-width: 200px;
 }
 
 .form__submit {
@@ -115,4 +112,5 @@
   cursor: pointer;
   padding: 12px;
   border-radius: 8px;
+  width: 100%;
 }

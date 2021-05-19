@@ -1,5 +1,5 @@
 ---
 title: {{title}}
 permalink: /about/
-layout: template_main.njk
+layout: template_main.njk 
 ---

@@ -1,5 +1,5 @@
 ---
-title: О нас | НАУЧНЫЕ СТИКЕРЫ
+title: {{title}}
 permalink: /about/
 layout: template_main.njk
 ---

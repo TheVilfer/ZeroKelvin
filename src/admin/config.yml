@@ -20,12 +20,9 @@ collections:
   - name: 'About' # Used in routes, e.g., /admin/collections/blog
     label: 'О Нас' # Used in the UI
     folder: 'src/about' # The path to the folder where the documents are stored
-    create: true # Allow users to create new documents in this collection
+    create: false # Allow users to create new documents in this collection
     slug: '{{slug}}' # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
       - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Price', name: 'price', widget: 'string' }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "product.njk" }
-      - { label: 'Image', name: 'img', widget: 'string' }
-      - { label: 'Tags', name: 'tags', widget: 'list', required: true}
+      - { label: "Layout", name: "layout", widget: "hidden", default: "template_main.njk" }
       - { label: 'Body', name: 'body', widget: 'markdown' }

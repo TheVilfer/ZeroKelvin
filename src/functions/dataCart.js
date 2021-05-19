@@ -3,7 +3,7 @@ const mongoUtil = require("mongodb")
 const MongoClient = require("mongodb").MongoClient;
 
 const MONGODB_URI = process.env.MONGODB_URI;
-const DB_NAME = 'kelvinsite';
+const DB_NAME = process.env.DB_NAME;
 
 let cachedDb = null;
 
@@ -30,8 +30,6 @@ const queryDatabase = async (db, data) => {
       "detail": err
     }
   }
-
-
   return {
     statusCode: 200,
     headers: {

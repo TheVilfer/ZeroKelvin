@@ -38,6 +38,7 @@ module.exports = (config) => {
     config.addPassthroughCopy('src/media');
     config.addPassthroughCopy('src/admin');
     config.addPassthroughCopy("src/functions");
+    config.addPassthroughCopy("src/privacy");
     config.setDataDeepMerge(true);
     return {
         dir: {
@@ -54,4 +55,4 @@ module.exports = (config) => {
             'md', 'njk'
         ],
     };
-  };
+};

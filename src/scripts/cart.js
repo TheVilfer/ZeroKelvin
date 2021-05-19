@@ -1,13 +1,15 @@
-let cart = null;
-let cartElements = null;
-let listCart = null;
+let cart = {
+    "products": {},
+    "detail": {},
+};
 document.addEventListener('DOMContentLoaded', async () => {
     Cart();
 });
 const Cart = async () => {
-    cart = await GetLocalStorage('cart');
-    if (cart == null)
-        cart = JSON.parse("{}")
+    if (await GetLocalStorage('cart') == null)
+        SetLocalStorage('cart', cart)
+    else
+        cart = await GetLocalStorage('cart');
     if (window.location.pathname == "/order/") {
         InitOrder();
     }
@@ -18,19 +20,23 @@ const Cart = async () => {
     };
 };
 const GetLocalStorage = async (storage) => {
+    if (localStorage.getItem(storage) == "undefined")
+        return null
     return JSON.parse(localStorage.getItem(storage));
 };
 const SetLocalStorage = async (storage, value) => {
     localStorage.setItem(storage, JSON.stringify(value))
 };
 const EnableAllAddToCart = () => {
-    const productBtn = document.querySelectorAll('.cart-add');
+    const productBtn = document.querySelectorAll('.cart__add');
     productBtn.forEach(el => {
         el.addEventListener('click', (e) => {
             let self = e.currentTarget;
             let parent = self.closest('.cart__item');
+            let name = parent.querySelector('.cart__name').innerHTML;
+            let price = parent.querySelector('.cart__price').innerHTML.split(' ')[0];
             let id = parent.dataset.id;
-            AddToCart(id);
+            AddToCart(id, name, price);
         });
     });
 };
@@ -47,54 +53,61 @@ const EnableDeleteButtons = () => {
 };
 const DeleteElement = async (id, el) => {
     el.remove();
-    cartElements["totalprice"] -= (cartElements["items"][id].count * cartElements["items"][id].price);
     UpdateTotalPrice();
-    delete cart[id];
-    listCart = Object.entries(cart);
-    delete cartElements["items"][id];
+    delete cart.products[id];
     SetLocalStorage('cart', cart);
 };
 const UpdateTotalPrice = async () => {
-    document.querySelector('.cart-total__price').innerHTML = cartElements["totalprice"];
+    document.querySelector('.cart-total__price').innerHTML = cart.detail.totalprice;
 }
-const AddToCart = (id) => {
-    if (isNaN(cart[id] += 1))
-        cart[id] = 1;
+const AddToCart = (id, name, price) => {
+    if (cart.products[id] == undefined) {
+        cart.products[id] = {
+            "id": id,
+            "name": name,
+            "price": price,
+            "count": 1,
+        };
+    } else {
+        cart.products[id].count += 1
+    }
+    CalculateTotalPrice();
+    HtmlRender();
     SetLocalStorage('cart', cart);
     console.log(localStorage.cart);
 };
 const InitCart = async () => {
     cart = await GetLocalStorage('cart');
-    listCart = await Object.entries(cart);
-    cartElements = await GetCartElements();
-    document.querySelector('.cart').insertAdjacentHTML('afterbegin', await CartToHtml());
-    UpdateTotalPrice(0);
+    document.querySelector('.cart').insertAdjacentHTML('afterbegin', cart.detail.html);
+    UpdateTotalPrice();
     EnableDeleteButtons();
 };
-const CartToHtml = () => {
-    let result = "";
-    for (const el of Object.entries(cartElements["items"])) {
-        result += `<li class="cart-element" data-id="${el[1]._id}">
-            <span class="cart-element__count">${el[1].count}x</span>
-            <img class="cart-element__image" src="/images/products/${el[1]._id}.jpg" alt="">
-            <span class="cart-element__name">${el[1].name}</span>
-            <span class="cart-element__price">${el[1].price} руб</span>
+const CalculateTotalPrice = () => {
+    cart.detail.totalprice = 0;
+    for (const [key, value] of Object.entries(cart.products)) {
+        cart.detail.totalprice += value.price * value.count
+    }
+};
+const HtmlRender = () => {
+    cart.detail.html = '';
+    for (const [key, value] of Object.entries(cart.products)) {
+        cart.detail.html +=
+            `<li class="cart-element" data-id="${value.id}">
+            <span class="cart-element__count">${value.count}x</span>
+            <img class = "cart-element__image"
+            src = "/images/products/${value.id}.jpg"
+            alt = "">
+            <span class = "cart-element__name" > $ {
+                value.name
+            } </span>
+            <span class = "cart-element__price" > $ {
+                value.price
+            }
+            руб </span>
             <button class="cart-element__delete">Удалить</button>
         </li>`;
     }
-    return result;
-}
-const GetCartElements = async () => {
-    let result = {};
-    result["items"] = {};
-    result["totalprice"] = 0;
-    for (const el of listCart) {
-        let elcart = (await SendRequestCart(el[0]))[0];
-        elcart.count = el[1];
-        result["totalprice"] += elcart.price * elcart.count;
-        result["items"][elcart._id] = elcart;
-    }
-    return result;
+
 }
 const SendRequestCart = async (id) => {
     const url = '/.netlify/functions/dataCart';
@@ -115,8 +128,9 @@ const SendRequestCart = async (id) => {
         return null
     };
 };
+//order
 const InitOrder = async () => {
-    if (Object.entries(cart).length == 0) {
+    if (CartIsEmpty()) {
         window.location.replace("https://zerokelvin.ru");
     }
     var inputTel = IMask(document.getElementById('phone'), {

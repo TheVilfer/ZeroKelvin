@@ -1,6 +1,9 @@
 let cart = {
     "products": {},
-    "detail": {},
+    "detail": {
+        "totalprice": 0,
+        "html": "",
+    },
 };
 document.addEventListener('DOMContentLoaded', async () => {
     Cart();
@@ -53,8 +56,10 @@ const EnableDeleteButtons = () => {
 };
 const DeleteElement = async (id, el) => {
     el.remove();
-    UpdateTotalPrice();
     delete cart.products[id];
+    await CalculateTotalPrice();
+    UpdateTotalPrice();
+    HtmlRender();
     SetLocalStorage('cart', cart);
 };
 const UpdateTotalPrice = async () => {
@@ -65,8 +70,10 @@ const AddToCart = (id, name, price) => {
         cart.products[id] = {
             "id": id,
             "name": name,
+            "type": '',
             "price": price,
             "count": 1,
+            "description": '',
         };
     } else {
         cart.products[id].count += 1
@@ -94,16 +101,9 @@ const HtmlRender = () => {
         cart.detail.html +=
             `<li class="cart-element" data-id="${value.id}">
             <span class="cart-element__count">${value.count}x</span>
-            <img class = "cart-element__image"
-            src = "/images/products/${value.id}.jpg"
-            alt = "">
-            <span class = "cart-element__name" > $ {
-                value.name
-            } </span>
-            <span class = "cart-element__price" > $ {
-                value.price
-            }
-            руб </span>
+            <img class = "cart-element__image" src = "/images/products/${value.id}.jpg" alt = "">
+            <span class = "cart-element__name">${value.name}</span>
+            <span class = "cart-element__price">${value.price}руб</span>
             <button class="cart-element__delete">Удалить</button>
         </li>`;
     }

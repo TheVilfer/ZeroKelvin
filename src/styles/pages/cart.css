@@ -7,13 +7,18 @@
 .cart {
     width: 100%;
     padding: 0;
+    display: grid;
+    grid-auto-rows: max-content;
+    gap: 10px;
 }
 
 .cart-element {
     width: 100%;
-    display: flex;
+    display: grid;
     list-style: none;
-    align-content: center;
+    grid-template-columns: repeat(5, 1fr);
+    place-items: center;
+    gap: 10px;
 }
 
 .cart-element__image {

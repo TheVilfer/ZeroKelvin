@@ -88,11 +88,18 @@ const InitCart = async () => {
     document.querySelector('.cart').insertAdjacentHTML('afterbegin', cart.detail.html);
     UpdateTotalPrice();
     EnableDeleteButtons();
+    if (CartIsEmpty()) {
+        document.getElementsByClassName("cart-checkout")[0].disabled = true;
+        console.log(document.getElementsByClassName("cart-checkout"));
+    }
+    document.getElementsByClassName("cart-checkout")[0].addEventListener('click', (e) => {
+        window.location.href = '/order/';
+    })
 };
 const CalculateTotalPrice = () => {
     cart.detail.totalprice = 0;
     for (const [key, value] of Object.entries(cart.products)) {
-        cart.detail.totalprice += value.price * value.count
+        cart.detail.totalprice += value.price * value.count;
     }
 };
 const HtmlRender = () => {
@@ -136,4 +143,7 @@ const InitOrder = async () => {
     var inputTel = IMask(document.getElementById('phone'), {
         mask: '+{7}(000) 000-00-00'
     });
+}
+const CartIsEmpty = () => {
+    return Object.entries(cart.products).length == 0;
 }

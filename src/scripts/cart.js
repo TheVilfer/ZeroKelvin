@@ -60,6 +60,7 @@ const DeleteElement = async (id, el) => {
     await CalculateTotalPrice();
     UpdateTotalPrice();
     HtmlRender();
+    CartDisable();
     SetLocalStorage('cart', cart);
 };
 const UpdateTotalPrice = async () => {
@@ -84,14 +85,10 @@ const AddToCart = (id, name, price) => {
     console.log(localStorage.cart);
 };
 const InitCart = async () => {
-    cart = await GetLocalStorage('cart');
     document.querySelector('.cart').insertAdjacentHTML('afterbegin', cart.detail.html);
     UpdateTotalPrice();
     EnableDeleteButtons();
-    if (CartIsEmpty()) {
-        document.getElementsByClassName("cart-checkout")[0].disabled = true;
-        console.log(document.getElementsByClassName("cart-checkout"));
-    }
+    CartDisable();
     document.getElementsByClassName("cart-checkout")[0].addEventListener('click', (e) => {
         window.location.href = '/order/';
     })
@@ -102,6 +99,11 @@ const CalculateTotalPrice = () => {
         cart.detail.totalprice += value.price * value.count;
     }
 };
+const CartDisable = async () => {
+    if (CartIsEmpty()) {
+        document.getElementsByClassName("cart-checkout")[0].disabled = true;
+    }
+}
 const HtmlRender = () => {
     cart.detail.html = '';
     for (const [key, value] of Object.entries(cart.products)) {
@@ -116,34 +118,40 @@ const HtmlRender = () => {
     }
 
 }
-const SendRequestCart = async (id) => {
-    const url = '/.netlify/functions/dataCart';
-    const item = {
-        id: id
-    };
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: JSON.stringify(item)
-        });
-        return response.json();
-    } catch (err) {
-        console.error(err);
-        return null
-    };
-};
+
 //order
 const InitOrder = async () => {
     if (CartIsEmpty()) {
         window.location.replace("https://zerokelvin.ru");
     }
+    document.getElementsByClassName("order__submit")[0].addEventListener('click', (e) => {
+        console.log(GeneratePaymentLink());
+        //window.location.href = GeneratePaymentLink();
+    })
     var inputTel = IMask(document.getElementById('phone'), {
         mask: '+{7}(000) 000-00-00'
     });
 }
 const CartIsEmpty = () => {
     return Object.entries(cart.products).length == 0;
+}
+const GeneratePaymentLink = async () => {
+    let data = []
+    for (const [key, value] of Object.entries(cart.products)) {
+        data.push(key);
+    }
+    const url = '/.netlify/functions/dataCart';
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(data)
+        });
+        return response.json();
+    } catch (err) {
+        console.error(err);
+        return null
+    };
 }

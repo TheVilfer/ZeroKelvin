@@ -25,5 +25,8 @@
 /* styles for cart*/
 @import 'pages/cart.css';
 
+/* styles for order*/
+@import 'pages/order.css';
+
 /* styles for footer*/
 @import 'footer.css';

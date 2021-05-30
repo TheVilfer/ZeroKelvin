@@ -1,6 +1,6 @@
 ---
 title: Доставка
-permalink: /about/
+permalink: /delivery/
 layout: template_main.njk
 ---
 Получить заказанный товар вы можете следующим образом:

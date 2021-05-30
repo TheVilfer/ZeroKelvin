@@ -121,6 +121,7 @@ const HtmlRender = () => {
 
 //order
 const InitOrder = async () => {
+
     if (CartIsEmpty()) {
         window.location.replace("https://zerokelvin.ru");
     }

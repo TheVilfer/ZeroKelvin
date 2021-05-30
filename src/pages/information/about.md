@@ -1,6 +1,22 @@
 ---
-title: О нас
+title: Доставка
 permalink: /about/
 layout: template_main.njk
 ---
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+Получить заказанный товар вы можете следующим образом:
+
+1. Почта России
+   Доставка по России:
+   Простое письмо 70р
+   Заказное письмо 120р
+   Ускоренное письмо 220р
+   Доставка в другие страны Почтой России 450р
+2. СДЭК
+   СДЭК до пункта выдачи заказов 290р
+   CДЭК курьером до двери 650р
+
+При заказе в нашем магазине от 2000 доставка осуществляется бесплатно.
+
+Отправление заказов происходит после 100% оплаты заказа и стоимости доставки.
+
+Возврат и обмен товаров происходит при оплате Клиентом транспортных расходов на доставку.

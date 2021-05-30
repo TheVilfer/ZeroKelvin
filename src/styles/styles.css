@@ -1,32 +1,35 @@
-/* Fonts*/
+/* Fonts */
 @import '/fonts/fonts.css';
 
-/* Normalize css + box sizing*/
+/* Normalize css + box sizing */
 @import 'normalize.css';
 
-/* global styles and variables*/
+/* global styles and variables */
 @import 'global.css';
 
-/* styles for header*/
+/* styles for header */
 @import 'nav.css';
 
 /* styles for swiper */
 @import 'slider/swiper-bundle.min.css';
 
-/*addon for swiper*/
+/* addon for swiper */
 @import 'modif-swiper.css';
 
-/* styles for index page*/
+/* styles for index page */
 @import 'pages/index.css';
 
-/* styles for catalog page*/
+/* styles for catalog page */
 @import 'pages/catalog.css';
 
-/* styles for cart*/
+/* styles for cart */
 @import 'pages/cart.css';
 
-/* styles for order*/
+/* styles for order */
 @import 'pages/order.css';
 
-/* styles for footer*/
+/* styles for footer */
 @import 'footer.css';
+
+/* styles for page information */
+@import 'page-information.css';

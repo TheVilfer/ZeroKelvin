@@ -12,6 +12,7 @@ let cachedDb = null;
 let outSum = 0;
 let description = "";
 let signatureValue = "";
+let link = "";
 
 const connectToDatabase = async (uri) => {
   if (cachedDb) return cachedDb;
@@ -29,34 +30,23 @@ const queryDatabase = async (db, data) => {
   let query = [];
   data.forEach(element => query.push(new mongoUtil.ObjectID(element)));
   console.log("Запрос: " + query);
-  console.log("Хэш" + md5(1));
-  let response = null;
-  try {
-    response = await db.collection("products").find({
-      _id: {
-        $in: query
-      }
-    }).toArray();
-  } catch (err) {
-    console.error(err);
-    response = {
-      "error": "fail to parse id",
-      "detail": err
+  let response = await db.collection("products").find({
+    _id: {
+      $in: query
     }
-  }
-  return {
-    statusCode: 200,
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(response),
-  };
+  }).toArray();
+  return response;
 };
-const CalculateOutSum = () => {
-
+const CalculateOutSum = async (data, counts) => {
+  //outSum = 
+  data.forEach(el => outSum += el.price * counts[el._id])
+  console.log(outSum)
 }
-const GenerateLink = (data) => {
-
+const GenerateSignatureValue = async () => {
+  signatureValue = md5(MERCHANTLOGIN + ":" + outSum + "::" + PASSWORD_ONE);
+}
+const GenerateLink = async () => {
+  link = `https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=${MERCHANTLOGIN}&OutSum=${outSum}&Description=Testing&SignatureValue=${signatureValue}&IsTest=1`;
 }
 
 module.exports.handler = async (event, context) => {
@@ -68,8 +58,24 @@ module.exports.handler = async (event, context) => {
   }
   context.callbackWaitsForEmptyEventLoop = false;
   const data = JSON.parse(event.body);
-  console.log("Пришли данные:" + data);
+  let ids = [];
+  for (const [key, value] of Object.entries(data)) {
+    ids.push(key)
+  }
+  console.log("Пришли данные:" + ids);
 
   const db = await connectToDatabase(MONGODB_URI);
-  return queryDatabase(db, data);
+  await CalculateOutSum(await queryDatabase(db, ids), data);
+  await GenerateSignatureValue();
+  await GenerateLink();
+
+  return {
+    statusCode: 200,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      "link": link
+    }),
+  };
 };

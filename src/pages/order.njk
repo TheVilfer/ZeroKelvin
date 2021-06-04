@@ -7,7 +7,7 @@ layout: main.njk
     <h1>Оплата</h1>
 </header>
 <main class="order__main">
-    <form class="order__form" action="" autocomplete="on">
+    <form class="order__form" action="re" method="POST" autocomplete="on">
         <fieldset class="fieldset fieldset_individual">
             <legend>Личные данные</legend>
             <label for="name">Имя</label>
@@ -51,6 +51,6 @@ layout: main.njk
             <label for="distribution">Хочу подписаться на Email рассылку</label>
             <input type="checkbox" name="distribution" id="distribution" value="yes">
         </fieldset>
-        <button class="order__submit" type="submit">Оформить заказ</button>
+        <button class="order__submit" type="submit" onclick="return false">Оформить заказ</button>
     </form>
 </main>

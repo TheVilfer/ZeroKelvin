@@ -119,27 +119,28 @@ const HtmlRender = () => {
 
 }
 
-//order
+//order 
 const InitOrder = async () => {
-
+    let link = (await GeneratePaymentLink())["link"];
     if (CartIsEmpty()) {
         window.location.replace("https://zerokelvin.ru");
     }
-    document.getElementsByClassName("order__submit")[0].addEventListener('click', (e) => {
-        console.log(GeneratePaymentLink());
-        //window.location.href = GeneratePaymentLink();
+    document.getElementsByClassName("order__submit")[0].addEventListener('click', async (e) => {
+        console.log(link);
+        window.location.replace(link);
+        return false;
     })
     var inputTel = IMask(document.getElementById('phone'), {
-        mask: '+{7}(000) 000-00-00'
+        mask: '+{7} (000) 000-00-00'
     });
 }
 const CartIsEmpty = () => {
     return Object.entries(cart.products).length == 0;
 }
 const GeneratePaymentLink = async () => {
-    let data = []
+    let data = {}
     for (const [key, value] of Object.entries(cart.products)) {
-        data.push(key);
+        data[key] = value.count;
     }
     const url = '/.netlify/functions/dataCart';
     try {

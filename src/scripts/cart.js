@@ -128,7 +128,6 @@ const InitOrder = async () => {
     document.getElementsByClassName("order__submit")[0].addEventListener('click', async (e) => {
         console.log(link);
         window.location.replace(link);
-        return false;
     })
     var inputTel = IMask(document.getElementById('phone'), {
         mask: '+{7} (000) 000-00-00'

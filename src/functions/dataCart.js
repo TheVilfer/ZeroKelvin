@@ -38,9 +38,9 @@ const queryDatabase = async (db, data) => {
   return response;
 };
 const CalculateOutSum = async (data, counts) => {
-  //outSum = 
-  data.forEach(el => outSum += el.price * counts[el._id])
-  console.log(outSum)
+  outSum = 0;
+  data.forEach(el => outSum += el.price * counts[el._id]);
+  console.log(outSum);
 }
 const GenerateSignatureValue = async () => {
   signatureValue = md5(MERCHANTLOGIN + ":" + outSum + "::" + PASSWORD_ONE);

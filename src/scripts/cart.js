@@ -122,13 +122,18 @@ const HtmlRender = () => {
 //order 
 const InitOrder = async () => {
     let link = (await GeneratePaymentLink())["link"];
+    let form = document.querySelector(".order__form");
     if (CartIsEmpty()) {
         window.location.replace("https://zerokelvin.ru");
     }
-    document.getElementsByClassName("order__submit")[0].addEventListener('click', async (e) => {
+    form.onsubmit = () => {
+        let userData = CollectUserData(new FormData(form));
+        link = link + "&Email=" + userData.email
+        console.log(userData)
         console.log(link);
         window.location.replace(link);
-    })
+        return false;
+    }
     var inputTel = IMask(document.getElementById('phone'), {
         mask: '+{7} (000) 000-00-00'
     });
@@ -155,4 +160,11 @@ const GeneratePaymentLink = async () => {
         console.error(err);
         return null
     };
+}
+const CollectUserData = (form) => {
+    let userData = {};
+    for (let [name, value] of form) {
+        userData[name] = value;
+    }
+    return userData;
 }

@@ -1,5 +1,5 @@
 const Amo = {};
-process.env.TEST = 23456;
+// process.env.TEST = 23456;
 console.log(process.env.TEST)
 const fetch = require('node-fetch');
 const fs = require('fs');

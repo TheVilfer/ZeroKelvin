@@ -62,7 +62,6 @@ module.exports.handler = async (event, context) => {
   for (const [key, value] of Object.entries(data)) {
     ids.push(key)
   }
-  console.log("Пришли данные:" + ids);
 
   const db = await connectToDatabase(MONGODB_URI);
   await CalculateOutSum(await queryDatabase(db, ids), data);

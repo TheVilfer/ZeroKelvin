@@ -98,7 +98,6 @@ module.exports.handler = async (event, context) => {
         await FixToken(db);
     }
     const data = JSON.parse(event.body);
-    console.log(data)
     let invoice_elements = []
     for (const [key, value] of Object.entries(data.products)) {
         invoice_elements.push({
@@ -116,9 +115,9 @@ module.exports.handler = async (event, context) => {
         "price": data.detail.totalprice,
         "_embedded": {
             "contacts": [{
-                'name': data.contact["given-name"] + " " + data.contact["family-name"],
-                'first_name': data.contact["given-name"],
-                'last_name': data.contact["family-name"],
+                "name": data.contact['given-name'] + " " + data.contact['family-name'],
+                "first_name": data.contact['given-name'] + "",
+                "last_name": data.contact['family-name'] + "",
                 'created_at': Date.now(),
                 "custom_fields_values": [{
                         "field_id": 28481,
@@ -186,7 +185,7 @@ module.exports.handler = async (event, context) => {
             }, {
                 "field_id": 982505,
                 "values": [{
-                    "value": data.detail.comment
+                    "value": data.contact.comment
                 }]
             },
             {
@@ -207,7 +206,7 @@ module.exports.handler = async (event, context) => {
         ]
     }]);
     invoice.id = invoice._embedded.elements[0].id
-    let link = Amo.request("/api/v4/leads/link", [{
+    let link = await Amo.request("/api/v4/leads/link", [{
         "entity_id": leads.id,
         "to_entity_id": invoice.id,
         "to_entity_type": "catalog_elements",

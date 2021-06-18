@@ -129,16 +129,16 @@ const InitOrder = async () => {
         window.location.replace("https://zerokelvin.ru");
     }
     let form = document.querySelector(".order__form");
-    form.onsubmit = async () => {
+    form.addEventListener("submit", async event => {
+        event.preventDefault();
         let userData = await CollectUserData(new FormData(form));
-        let link = await GeneratePaymentLink(userData)
-        // link = link["link"]
-        // link = link + "&Email=" + userData.email;
+        let link = await GeneratePaymentLink(userData);
+        link = link["link"];
+        link = link + "&Email=" + userData.email;
         console.log(userData)
         console.log(link);
-        //window.location.replace(link);
-        return false;
-    }
+        window.location.replace(link);
+    });
     var inputTel = IMask(document.getElementById('phone'), {
         mask: '+{7} (000) 000-00-00'
     });
@@ -147,21 +147,15 @@ const GeneratePaymentLink = async (userData) => {
     let cart_temp = await GetLocalStorage('cart');
     cart_temp.detail.html = null;
     cart_temp.contact = userData;
-    console.log(cart_temp)
-    try {
-        const response = await fetch("https://www.zerokelvin.ru/.netlify/functions/dataCart", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: JSON.stringify(cart_temp)
-        });
-        console.log(response);
-        return response.json();
-    } catch (err) {
-        console.error(err);
-        return null
-    };
+    const response = await fetch("https://zerokelvin.ru/.netlify/functions/dataCart", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(cart_temp)
+    });
+    console.error(await response);
+    return response.json();
 }
 const CollectUserData = async (form) => {
     let userData = {};

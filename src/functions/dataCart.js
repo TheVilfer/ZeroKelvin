@@ -57,12 +57,10 @@ module.exports.handler = async (event, context) => {
     cart.products[el._id].name = el.name
     cart.products[el._id].price = el.price
   })
-  console.log(cart.products)
   CalculateOutSum(cart)
   await GenerateSignatureValue();
   await GenerateLink();
-  await AddOrderToAmo(cart);
-
+  console.log(await AddOrderToAmo(cart));
   return {
     statusCode: 200,
     headers: {
@@ -88,17 +86,16 @@ const GenerateLink = async () => {
 }
 const AddOrderToAmo = async (cart) => {
   try {
-    const response = await fetch('https://www.zerokelvin.ru/.netlify/functions/payment', {
+    const response = await fetch('https://zerokelvin.ru/.netlify/functions/payment', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify(cart)
     });
-    console.log(response)
-    return true;
+    return response.json();
   } catch (e) {
     console.error(e);
-    return false;
+    return e;
   }
 }

@@ -148,9 +148,8 @@ const GeneratePaymentLink = async (userData) => {
     cart_temp.detail.html = null;
     cart_temp.contact = userData;
     console.log(cart_temp)
-    const url = '/.netlify/functions/dataCart';
     try {
-        const response = await fetch(url, {
+        const response = await fetch("https://www.zerokelvin.ru/.netlify/functions/dataCart", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'

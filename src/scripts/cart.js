@@ -118,34 +118,36 @@ const HtmlRender = () => {
     }
 
 }
+const CartIsEmpty = () => {
+    return Object.entries(cart.products).length == 0;
+}
+
 
 //order 
 const InitOrder = async () => {
-    let link = (await GeneratePaymentLink())["link"];
-    let form = document.querySelector(".order__form");
     if (CartIsEmpty()) {
         window.location.replace("https://zerokelvin.ru");
     }
-    form.onsubmit = () => {
-        let userData = CollectUserData(new FormData(form));
-        link = link + "&Email=" + userData.email
+    let form = document.querySelector(".order__form");
+    form.onsubmit = async () => {
+        let userData = await CollectUserData(new FormData(form));
+        let link = await GeneratePaymentLink(userData)
+        // link = link["link"]
+        // link = link + "&Email=" + userData.email;
         console.log(userData)
         console.log(link);
-        window.location.replace(link);
+        //window.location.replace(link);
         return false;
     }
     var inputTel = IMask(document.getElementById('phone'), {
         mask: '+{7} (000) 000-00-00'
     });
 }
-const CartIsEmpty = () => {
-    return Object.entries(cart.products).length == 0;
-}
-const GeneratePaymentLink = async () => {
-    let data = {}
-    for (const [key, value] of Object.entries(cart.products)) {
-        data[key] = value.count;
-    }
+const GeneratePaymentLink = async (userData) => {
+    let cart_temp = await GetLocalStorage('cart');
+    cart_temp.detail.html = null;
+    cart_temp.contact = userData;
+    console.log(cart_temp)
     const url = '/.netlify/functions/dataCart';
     try {
         const response = await fetch(url, {
@@ -153,18 +155,20 @@ const GeneratePaymentLink = async () => {
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(cart_temp)
         });
+        console.log(response);
         return response.json();
     } catch (err) {
         console.error(err);
         return null
     };
 }
-const CollectUserData = (form) => {
+const CollectUserData = async (form) => {
     let userData = {};
     for (let [name, value] of form) {
         userData[name] = value;
     }
+    console.log(userData)
     return userData;
 }

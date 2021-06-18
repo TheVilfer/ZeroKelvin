@@ -25,18 +25,18 @@ const queryDatabase = async (db) => {
     });
     return response;
 };
-const insertDatabase = async (db, data) => {
+const insertDatabase = async (db, tokens) => {
     let response = await db.collection("tokens").updateOne({
         _id: new mongoUtil.ObjectID("60c0e125e35a6baee25a652e")
     }, {
         $set: {
-            access_token: data.access_token,
-            refresh_token: data.refresh_token,
+            access_token: tokens.access_token,
+            refresh_token: tokens.refresh_token,
         }
     });
     return response;
 };
-Amo.request = async (url, data) => {
+Amo.request = async (url, datas) => {
     try {
         const response = await fetch('https://zerokelvin1.amocrm.ru' + url, {
             method: 'POST',
@@ -44,7 +44,7 @@ Amo.request = async (url, data) => {
                 'Content-Type': 'application/json;charset=utf-8',
                 'Authorization': 'Bearer ' + Amo.tokens.access_token,
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(datas)
         });
         return response.json();
     } catch (e) {
@@ -77,8 +77,8 @@ const FixToken = async (db) => {
     })
     await insertDatabase(db, Amo.tokens);
 }
-const CheckError = (data) => {
-    if (data.name == "zerokelvin1") {
+const CheckError = (res) => {
+    if (res.name == "zerokelvin1") {
         return false
     }
     console.error("token is unvalid or AmoCRM is bullshit")
@@ -97,70 +97,82 @@ module.exports.handler = async (event, context) => {
     if (CheckError(await Amo.get("/api/v4/account"))) {
         await FixToken(db);
     }
-    const data = event.body;
-    // let data = {};
-    // data.details = {}
-    // data.contact = {
-    //     'name': 'Андрей Андреев',
-    //     'first_name': 'Андрей',
-    //     'last_name': 'Андреев',
-    //     'phone': '+79995624259',
-    //     'email': 'example@uu.ru'
-    // };
-    // data.details.totalprice = 40
-    let contact = await Amo.request('/api/v4/contacts', [{
-        'name': data.contact.name,
-        'first_name': data.contact.first_name,
-        'last_name': data.contact.last_name,
-        'created_at': Date.now(),
-        "custom_fields_values": [{
-                "field_id": 28481,
-                "field_name": "Телефон",
-                "field_code": "PHONE",
-                "field_type": "multitext",
-                "values": [{
-                    "value": data.contact.phone,
-                    "enum_id": 13863,
-                    "enum_code": "MOB"
-                }]
-            },
-            {
-                "field_id": 28483,
-                "field_name": "Email",
-                "field_code": "EMAIL",
-                "field_type": "multitext",
-                "values": [{
-                    "value": data.contact.email,
-                    "enum_id": 13873,
-                    "enum_code": "PRIV"
-                }]
+    const data = JSON.parse(event.body);
+    console.log(data)
+    let invoice_elements = []
+    for (const [key, value] of Object.entries(data.products)) {
+        invoice_elements.push({
+            "value": {
+                "description": value.name,
+                "unit_price": value.price,
+                "quantity": value.count,
+                "unit_type": "шт.",
             }
-        ],
-    }])
-    contact.id = contact._embedded.contacts[0].id
-    const leads = await Amo.request('/api/v4/leads', [{
+        })
+    }
+
+    const leads = await Amo.request('/api/v4/leads/complex', [{
         "name": 'Покупка в интернет - магазине',
-        "price": data.details.totalprice,
+        "price": data.detail.totalprice,
+        "_embedded": {
+            "contacts": [{
+                'name': data.contact["given-name"] + " " + data.contact["family-name"],
+                'first_name': data.contact["given-name"],
+                'last_name': data.contact["family-name"],
+                'created_at': Date.now(),
+                "custom_fields_values": [{
+                        "field_id": 28481,
+                        "values": [{
+                            "value": data.contact.tel,
+                            "enum_id": 13863,
+                            "enum_code": "MOB"
+                        }]
+                    },
+                    {
+                        "field_id": 28483,
+                        "values": [{
+                            "value": data.contact.email,
+                            "enum_id": 13873,
+                            "enum_code": "PRIV"
+                        }]
+                    },
+                    {
+                        "field_id": 988783,
+                        "values": [{
+                                "value": data.contact.street,
+                                "enum_id": 1,
+                            },
+                            {
+                                "value": data.contact.housing,
+                                "enum_id": 2,
+                            },
+                            {
+                                "value": data.contact.city,
+                                "enum_id": 3,
+                            },
+                            {
+                                "value": data.contact.state,
+                                "enum_id": 4,
+                            },
+                            {
+                                "value": data.contact.postalcode,
+                                "enum_id": 5,
+                            },
+                            {
+                                "value": data.contact.country,
+                                "enum_id": 6,
+                            }
+                        ]
+
+                    }
+                ],
+            }]
+        },
         "status_id": 39483091,
         "pipeline_id": 4202485,
-
     }]);
-    leads.id = leads._embedded.leads[0].id
-    const invoice_elements = [{
-        "value": {
-            "description": "Описание товара",
-            "unit_price": 10,
-            "quantity": 2,
-            "unit_type": "шт.",
-        }
-    }, {
-        "value": {
-            "description": "Описание товара",
-            "unit_price": 10,
-            "quantity": 2,
-            "unit_type": "шт.",
-        }
-    }]
+    leads.id = leads[0].id
+    leads.contact = leads[0].contact_id
     const invoice = await Amo.request('/api/v4/catalogs/8693/elements', [{
         "name": "Тестовая покупка",
         "custom_fields_values": [{
@@ -174,42 +186,41 @@ module.exports.handler = async (event, context) => {
             }, {
                 "field_id": 982505,
                 "values": [{
-                    "value": "Hello world"
+                    "value": data.detail.comment
                 }]
             },
             {
                 "field_id": 982507,
                 "values": [{
-                    "value": data.details.totalprice
+                    "value": data.detail.totalprice
+                }]
+            },
+            {
+                "field_id": 982497,
+                "values": [{
+                    "value": {
+                        "entity_id": leads.contact,
+                        "entity_type": "contacts",
+                    }
                 }]
             }
         ]
     }]);
-    console.log(JSON.stringify(invoice))
     invoice.id = invoice._embedded.elements[0].id
-    let link = await Amo.request("/api/v4/leads/link", [{
-            "entity_id": leads.id,
-            "to_entity_id": invoice.id,
-            "to_entity_type": "catalog_elements",
-            "metadata": {
-                "quantity": 1,
-                "catalog_id": 8693
-            }
-        },
-        {
-            "entity_id": leads.id,
-            "to_entity_id": contact.id,
-            "to_entity_type": "contacts",
-            "metadata": {
-                "is_main": true,
-            }
+    let link = Amo.request("/api/v4/leads/link", [{
+        "entity_id": leads.id,
+        "to_entity_id": invoice.id,
+        "to_entity_type": "catalog_elements",
+        "metadata": {
+            "quantity": 1,
+            "catalog_id": 8693
         }
-    ])
+    }, ])
     return {
         statusCode: 200,
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(invoice),
+        body: JSON.stringify(link),
     };
 };

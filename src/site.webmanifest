@@ -1,8 +1,7 @@
 {
     "name": "\u041d\u043e\u043b\u044c \u041a\u0435\u043b\u044c\u0432\u0438\u043d",
     "short_name": "\u041d\u043e\u043b\u044c \u041a\u0435\u043b\u044c\u0432\u0438\u043d",
-    "icons": [
-        {
+    "icons": [{
             "src": "/android-chrome-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
@@ -13,8 +12,8 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#5bbad5",
-    "background_color": "#5bbad5",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
     "start_url": "http://zerokelvin.ru",
     "display": "standalone"
 }

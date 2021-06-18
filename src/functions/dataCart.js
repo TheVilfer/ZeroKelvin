@@ -2,6 +2,7 @@
 const mongoUtil = require("mongodb")
 const MongoClient = require("mongodb").MongoClient;
 const md5 = require("blueimp-md5");
+const fetch = require('node-fetch');
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = process.env.DB_NAME;
@@ -29,7 +30,6 @@ const connectToDatabase = async (uri) => {
 const queryDatabase = async (db, data) => {
   let query = [];
   data.forEach(element => query.push(new mongoUtil.ObjectID(element)));
-  console.log("Запрос: " + query);
   let response = await db.collection("products").find({
     _id: {
       $in: query
@@ -37,17 +37,7 @@ const queryDatabase = async (db, data) => {
   }).toArray();
   return response;
 };
-const CalculateOutSum = async (data, counts) => {
-  outSum = 0;
-  data.forEach(el => outSum += el.price * counts[el._id]);
-  console.log(outSum);
-}
-const GenerateSignatureValue = async () => {
-  signatureValue = md5(MERCHANTLOGIN + ":" + outSum + "::" + PASSWORD_ONE);
-}
-const GenerateLink = async () => {
-  link = `https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=${MERCHANTLOGIN}&OutSum=${outSum}&Description=Testing&SignatureValue=${signatureValue}&IsTest=1`;
-}
+
 
 module.exports.handler = async (event, context) => {
   if (event.httpMethod !== "POST") {
@@ -57,16 +47,21 @@ module.exports.handler = async (event, context) => {
     };
   }
   context.callbackWaitsForEmptyEventLoop = false;
-  const data = JSON.parse(event.body);
   let ids = [];
-  for (const [key, value] of Object.entries(data)) {
+  const db = await connectToDatabase(MONGODB_URI);
+  let cart = JSON.parse(event.body);
+  for (const [key, value] of Object.entries(cart.products)) {
     ids.push(key)
   }
-
-  const db = await connectToDatabase(MONGODB_URI);
-  await CalculateOutSum(await queryDatabase(db, ids), data);
+  (await queryDatabase(db, ids)).forEach(el => {
+    cart.products[el._id].name = el.name
+    cart.products[el._id].price = el.price
+  })
+  console.log(cart.products)
+  CalculateOutSum(cart)
   await GenerateSignatureValue();
   await GenerateLink();
+  await AddOrderToAmo(cart);
 
   return {
     statusCode: 200,
@@ -78,3 +73,32 @@ module.exports.handler = async (event, context) => {
     }),
   };
 };
+const CalculateOutSum = async (cart) => {
+  outSum = 0;
+  for (const [key, value] of Object.entries(cart.products)) {
+    outSum += value.price * value.count
+  }
+  cart.detail.totalprice = outSum
+}
+const GenerateSignatureValue = async () => {
+  signatureValue = md5(MERCHANTLOGIN + ":" + outSum + "::" + PASSWORD_ONE);
+}
+const GenerateLink = async () => {
+  link = `https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=${MERCHANTLOGIN}&OutSum=${outSum}&Description=Testing&SignatureValue=${signatureValue}&IsTest=1`;
+}
+const AddOrderToAmo = async (cart) => {
+  try {
+    const response = await fetch('http://localhost:8888/.netlify/functions/payment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(cart)
+    });
+    console.log(response)
+    return true;
+  } catch (e) {
+    console.error(e);
+    return false;
+  }
+}

@@ -88,7 +88,7 @@ const GenerateLink = async () => {
 }
 const AddOrderToAmo = async (cart) => {
   try {
-    const response = await fetch('http://localhost:8888/.netlify/functions/payment', {
+    const response = await fetch('https://www.zerokelvin.ru/.netlify/functions/dataCart', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

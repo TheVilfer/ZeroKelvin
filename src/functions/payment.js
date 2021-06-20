@@ -173,7 +173,7 @@ module.exports.handler = async (event, context) => {
     leads.id = leads[0].id
     leads.contact = leads[0].contact_id
     const invoice = await Amo.request('/api/v4/catalogs/8693/elements', [{
-        "name": "Тестовая покупка",
+        "name": "Счет к сделке #" + leads.id,
         "custom_fields_values": [{
                 "field_id": 982493,
                 "values": [{
@@ -220,6 +220,8 @@ module.exports.handler = async (event, context) => {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(link),
+        body: JSON.stringify({
+            "lead_id": leads.id
+        }),
     };
 };

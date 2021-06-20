@@ -3,6 +3,8 @@ const mongoUtil = require("mongodb")
 const MongoClient = require("mongodb").MongoClient;
 const md5 = require("blueimp-md5");
 const fetch = require('node-fetch');
+const orderid = require('order-id')('ELYA');
+const unique_id = orderid.generate();
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = process.env.DB_NAME;
@@ -58,9 +60,9 @@ module.exports.handler = async (event, context) => {
     cart.products[el._id].price = el.price
   })
   CalculateOutSum(cart)
-  await GenerateSignatureValue();
-  await GenerateLink();
-  console.log(await AddOrderToAmo(cart));
+  let lead = await AddOrderToAmo(cart);
+  await GenerateSignatureValue(lead["lead_id"]);
+  await GenerateLink(lead["lead_id"]);
   return {
     statusCode: 200,
     headers: {
@@ -78,11 +80,11 @@ const CalculateOutSum = async (cart) => {
   }
   cart.detail.totalprice = outSum
 }
-const GenerateSignatureValue = async () => {
-  signatureValue = md5(MERCHANTLOGIN + ":" + outSum + "::" + PASSWORD_ONE);
+const GenerateSignatureValue = async (lead_id) => {
+  signatureValue = md5(MERCHANTLOGIN + ":" + outSum + ":" + lead_id + ":" + PASSWORD_ONE);
 }
-const GenerateLink = async () => {
-  link = `https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=${MERCHANTLOGIN}&OutSum=${outSum}&Description=Testing&SignatureValue=${signatureValue}&IsTest=1`;
+const GenerateLink = async (lead_id) => {
+  link = `https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=${MERCHANTLOGIN}&OutSum=${outSum}&InvoiceID={lead_id}&Description=Testing&SignatureValue=${signatureValue}&IsTest=1`;
 }
 const AddOrderToAmo = async (cart) => {
   try {

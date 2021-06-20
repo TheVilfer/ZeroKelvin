@@ -5,6 +5,7 @@ const md5 = require("blueimp-md5");
 const MongoClient = require("mongodb").MongoClient;
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = process.env.DB_NAME;
+const querystring = require('querystring');
 const {
     Telegraf
 } = require('telegraf')
@@ -114,8 +115,8 @@ module.exports.handler = async (event, context) => {
         };
     }
     context.callbackWaitsForEmptyEventLoop = false;
-    console.log(event.body)
-    const data = event.body;
+    console.log(querystring.parse(event.body))
+    const data = querystring.parse(event.body);
     if (data.SignatureValue != md5(`${data.OutSum}:${data.InvId}:${process.env.PASSWORD_TWO}`)) {
         return {
             statusCode: 400

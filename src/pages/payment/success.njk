@@ -6,3 +6,15 @@ layout: main.njk
 <main>
     <h1 style="text-align: center;">Успешно</h1>
 </main>
+<script src="/scripts/confetti.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: {
+                y: 0.5
+            }
+        });
+    });
+</script>

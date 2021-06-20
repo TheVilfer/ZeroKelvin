@@ -117,8 +117,8 @@ module.exports.handler = async (event, context) => {
     context.callbackWaitsForEmptyEventLoop = false;
     const data = querystring.parse(event.body);
     console.log(data.SignatureValue);
-    console.log(md5(`${data.OutSum}:${data.InvId}:${process.env.PASSWORD_TWO}`))
-    if (data.SignatureValue != md5(`${data.OutSum}:${data.InvId}:${process.env.PASSWORD_TWO}`)) {
+    console.log(md5(`${data.OutSum}:${data.InvId}:${process.env.PASSWORD_TWO}`).toUpperCase())
+    if (data.SignatureValue != md5(`${data.OutSum}:${data.InvId}:${process.env.PASSWORD_TWO}`).toUpperCase()) {
         console.error("INVALID SIGNATURE VALUE")
         return {
             statusCode: 400

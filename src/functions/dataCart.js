@@ -3,8 +3,6 @@ const mongoUtil = require("mongodb")
 const MongoClient = require("mongodb").MongoClient;
 const md5 = require("blueimp-md5");
 const fetch = require('node-fetch');
-const orderid = require('order-id')('ELYA');
-const unique_id = orderid.generate();
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = process.env.DB_NAME;
@@ -13,7 +11,7 @@ const PASSWORD_ONE = process.env.PASSWORD_ONE;
 
 let cachedDb = null;
 let outSum = 0;
-let description = "";
+let description = "Покупка в научном магазине Ноль Кельвин";
 let signatureValue = "";
 let link = "";
 
@@ -84,7 +82,7 @@ const GenerateSignatureValue = async (lead_id) => {
   signatureValue = md5(MERCHANTLOGIN + ":" + outSum + ":" + lead_id + ":" + PASSWORD_ONE);
 }
 const GenerateLink = async (lead_id) => {
-  link = `https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=${MERCHANTLOGIN}&OutSum=${outSum}&InvoiceID=${lead_id}&Description=Testing&SignatureValue=${signatureValue}&IsTest=1`;
+  link = `https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=${MERCHANTLOGIN}&OutSum=${outSum}&InvoiceID=${lead_id}&Description=${description}&SignatureValue=${signatureValue}&IsTest=1`;
 }
 const AddOrderToAmo = async (cart) => {
   try {

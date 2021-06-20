@@ -21,12 +21,14 @@
   "dependencies": {
     "blueimp-md5": "^2.18.0",
     "each-async": "^1.1.1",
+    "glob-parent": "^6.0.0",
     "indent-string": "^5.0.0",
     "multiparty": "^4.2.2",
     "node-fetch": "^2.6.1",
     "order-id": "^2.1.1",
     "pug": "^3.0.1",
     "pug-code-gen": "^3.0.2",
-    "rimraf": "^2.7.1"
+    "rimraf": "^2.7.1",
+    "telegraf": "^4.3.0"
   }
 }

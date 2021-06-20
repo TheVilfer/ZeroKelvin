@@ -1,9 +1,14 @@
 const Amo = {};
 const fetch = require('node-fetch');
 const mongoUtil = require("mongodb")
+const md5 = require("blueimp-md5");
 const MongoClient = require("mongodb").MongoClient;
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = process.env.DB_NAME;
+const {
+    Telegraf
+} = require('telegraf')
+const bot = new Telegraf(process.env.BOT_TOKEN)
 
 let cachedDb = null;
 
@@ -109,18 +114,23 @@ module.exports.handler = async (event, context) => {
         };
     }
     context.callbackWaitsForEmptyEventLoop = false;
+    const data = JSON.parse(event.body);
+    if (data.SignatureValue != md5(`${data.OutSum}:${data.InvId}:${PASSWORD_TWO}`)) {
+        return {
+            statusCode: 400
+        }
+    }
     const db = await connectToDatabase(MONGODB_URI);
     Amo.tokens = await queryDatabase(db);
     if (CheckError(await Amo.get("/api/v4/account"))) {
         await FixToken(db);
     }
-    const data = JSON.parse(event.body);
-
+    bot.telegram.sendMessage(362841815, `Пришел заказ! #${data.InvId}\n На сумму ${data.OutSum}\n E-mail покупателя:${data.EMail}\n Скорее в AMO!\n https://zerokelvin1.amocrm.ru/leads`, {})
     return {
         statusCode: 200,
         headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "text/plain",
         },
-        body: JSON.stringify(data),
+        body: "OK" + data.InvId,
     };
 };

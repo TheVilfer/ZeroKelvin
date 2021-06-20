@@ -114,7 +114,8 @@ module.exports.handler = async (event, context) => {
         };
     }
     context.callbackWaitsForEmptyEventLoop = false;
-    const data = JSON.parse(event.body);
+    console.log(event.body)
+    const data = event.body;
     if (data.SignatureValue != md5(`${data.OutSum}:${data.InvId}:${process.env.PASSWORD_TWO}`)) {
         return {
             statusCode: 400

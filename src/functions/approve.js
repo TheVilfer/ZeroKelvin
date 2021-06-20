@@ -118,6 +118,7 @@ module.exports.handler = async (event, context) => {
     const data = querystring.parse(event.body);
     console.log(data.SignatureValue);
     if (data.SignatureValue != md5(`${data.OutSum}:${data.InvId}:${process.env.PASSWORD_TWO}`)) {
+        console.error("INVALID SIGNATURE VALUE")
         return {
             statusCode: 400
         }

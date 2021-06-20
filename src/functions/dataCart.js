@@ -84,7 +84,7 @@ const GenerateSignatureValue = async (lead_id) => {
   signatureValue = md5(MERCHANTLOGIN + ":" + outSum + ":" + lead_id + ":" + PASSWORD_ONE);
 }
 const GenerateLink = async (lead_id) => {
-  link = `https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=${MERCHANTLOGIN}&OutSum=${outSum}&InvoiceID={lead_id}&Description=Testing&SignatureValue=${signatureValue}&IsTest=1`;
+  link = `https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=${MERCHANTLOGIN}&OutSum=${outSum}&InvoiceID=${lead_id}&Description=Testing&SignatureValue=${signatureValue}&IsTest=1`;
 }
 const AddOrderToAmo = async (cart) => {
   try {

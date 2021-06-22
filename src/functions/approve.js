@@ -124,13 +124,15 @@ module.exports.handler = async (event, context) => {
         }
     }
     console.log(data)
-    const rst = await bot.telegram.sendMessage(362841815, `Пришел заказ! #${data.InvId}\n На сумму ${data.OutSum}\n E-mail покупателя:${data.EMail}\n Скорее в AMO!\n https://zerokelvin1.amocrm.ru/leads`, {})
-    console.log(rst)
+    await bot.telegram.sendMessage(362841815, `Пришел заказ! #${data.InvId}\n На сумму: ${data.OutSum} руб.\nE-mail покупателя:${data.EMail}\nСкорее в AMO!\n https://zerokelvin1.amocrm.ru/leads`, {})
     const db = await connectToDatabase(MONGODB_URI);
     Amo.tokens = await queryDatabase(db);
     if (CheckError(await Amo.get("/api/v4/account"))) {
         await FixToken(db);
     }
+    await Amo.patch("/api/v4/leads/" + data.InvId, {
+        "status_id": 39483094
+    })
     return {
         statusCode: 200,
         headers: {

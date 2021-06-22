@@ -131,7 +131,7 @@ module.exports.handler = async (event, context) => {
         await FixToken(db);
     }
     await Amo.patch("/api/v4/leads/" + data.InvId, {
-        "status_id": 39483094
+        "status_id": 142
     })
     return {
         statusCode: 200,

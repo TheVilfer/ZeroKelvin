@@ -123,6 +123,7 @@ module.exports.handler = async (event, context) => {
             statusCode: 400
         }
     }
+    console.log("Good")
     bot.telegram.sendMessage(362841815, `Пришел заказ! #${data.InvId}\n На сумму ${data.OutSum}\n E-mail покупателя:${data.EMail}\n Скорее в AMO!\n https://zerokelvin1.amocrm.ru/leads`, {})
     const db = await connectToDatabase(MONGODB_URI);
     Amo.tokens = await queryDatabase(db);

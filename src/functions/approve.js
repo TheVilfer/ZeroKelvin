@@ -139,7 +139,7 @@ module.exports.handler = async (event, context) => {
         "task_type_id": 1,
         "text": "Связаться с покупателем",
         "complete_till": date.setDate(date.getDate() + 1),
-        "entity_id": data.InvId,
+        "entity_id": parseInt(data.InvId),
         "entity_type": "leads",
     }])
     console.log(JSON.stringify(orfr))

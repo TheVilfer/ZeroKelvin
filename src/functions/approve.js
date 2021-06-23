@@ -124,7 +124,7 @@ module.exports.handler = async (event, context) => {
         }
     }
     console.log(data)
-    await bot.telegram.sendMessage(362841815, `Пришел заказ! #${data.InvId}\n На сумму: ${data.OutSum} руб.\nE-mail покупателя:${data.EMail}\nСкорее в AMO!\n https://zerokelvin1.amocrm.ru/leads`, {})
+    await bot.telegram.sendMessage(362841815, `Пришел заказ! #${data.InvId}\n На сумму: ${data.OutSum} руб.\nE-mail покупателя:${data.EMail}\nСкорее в AMO!\n https://zerokelvin1.amocrm.ru/leads/detail/${data.InvId}`, {})
     const db = await connectToDatabase(MONGODB_URI);
     Amo.tokens = await queryDatabase(db);
     if (CheckError(await Amo.get("/api/v4/account"))) {

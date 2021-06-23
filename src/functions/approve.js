@@ -13,8 +13,6 @@ const bot = new Telegraf(process.env.BOT_TOKEN)
 
 let cachedDb = null;
 
-let date = new Date()
-
 const FixToken = async (db) => {
     Amo.tokens = await Amo.request("/oauth2/access_token", {
         "client_id": "ce05d186-002c-4012-8df0-5c128dd5bc92",
@@ -118,6 +116,7 @@ module.exports.handler = async (event, context) => {
     }
     context.callbackWaitsForEmptyEventLoop = false;
     const data = querystring.parse(event.body);
+    let date = new Date();
     const newSV = (md5(`${data.OutSum}:${data.InvId}:${process.env.PASSWORD_TWO}`)).toUpperCase();
     if (data.SignatureValue != newSV) {
         console.error("INVALID SIGNATURE VALUE")

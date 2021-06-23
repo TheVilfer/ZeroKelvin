@@ -135,12 +135,13 @@ module.exports.handler = async (event, context) => {
     await Amo.patch("/api/v4/leads/" + data.InvId, {
         "status_id": 142
     })
-    await Amo.request("/api/v4/tasks", {
+    let orfr = await Amo.request("/api/v4/tasks", {
         "text": "Связаться с покупателем",
         "complete_till": date.setDate(date.getDate() + 1),
         "entity_id": data.InvId,
         "entity_type": "leads",
     })
+    console.log(orfr)
     return {
         statusCode: 200,
         headers: {

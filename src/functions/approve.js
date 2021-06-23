@@ -137,7 +137,7 @@ module.exports.handler = async (event, context) => {
     let orfr = await Amo.request("/api/v4/tasks", [{
         "task_type_id": 1,
         "text": "Связаться с покупателем",
-        "complete_till": date.setDate(date.getDate() + 1),
+        "complete_till": Date.now(),
         "entity_id": parseInt(data.InvId),
         "entity_type": "leads",
     }])

@@ -13,6 +13,8 @@ const bot = new Telegraf(process.env.BOT_TOKEN)
 
 let cachedDb = null;
 
+let date = new Date()
+
 const FixToken = async (db) => {
     Amo.tokens = await Amo.request("/oauth2/access_token", {
         "client_id": "ce05d186-002c-4012-8df0-5c128dd5bc92",
@@ -132,6 +134,12 @@ module.exports.handler = async (event, context) => {
     }
     await Amo.patch("/api/v4/leads/" + data.InvId, {
         "status_id": 142
+    })
+    await Amo.request("/api/v4/tasks", {
+        "text": "Связаться с покупателем",
+        "complete_till": date.setDate(date.getDate() + 1),
+        "entity_id": data.InvId,
+        "entity_type": "leads",
     })
     return {
         statusCode: 200,

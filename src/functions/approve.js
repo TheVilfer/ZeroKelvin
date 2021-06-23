@@ -126,7 +126,7 @@ module.exports.handler = async (event, context) => {
         }
     }
     console.log(data)
-    await bot.telegram.sendMessage(362841815, `Пришел заказ! #${data.InvId}\n На сумму: ${data.OutSum} руб.\nE-mail покупателя:${data.EMail}\nСкорее в AMO!\n https://zerokelvin1.amocrm.ru/leads/detail/${data.InvId}`, {})
+    await bot.telegram.sendMessage(362841815, `Пришел заказ! #${data.InvId}\nНа сумму: ${data.OutSum} руб.\nE-mail покупателя:${data.EMail}\nСкорее в AMO!\nhttps://zerokelvin1.amocrm.ru/leads/detail/${data.InvId}`, {})
     const db = await connectToDatabase(MONGODB_URI);
     Amo.tokens = await queryDatabase(db);
     if (CheckError(await Amo.get("/api/v4/account"))) {
@@ -142,7 +142,7 @@ module.exports.handler = async (event, context) => {
         "entity_id": data.InvId,
         "entity_type": "leads",
     }])
-    console.log(orfr)
+    console.log(JSON.stringify(orfr))
     return {
         statusCode: 200,
         headers: {

@@ -235,3 +235,51 @@
 .menu__item {
   transition-duration: .25s;
 }
+
+/* animation */
+/* .track {
+  position: absolute;
+  z-index: 1;
+  top: 2rem;
+  left: 2rem;
+  width: 36rem;
+  height: 36rem;
+  border-radius: 50%;
+}
+
+.circle {
+  position: absolute;
+  z-index: 1;
+  width: 36rem;
+  height: 36rem;
+  border-radius: 50%;
+}
+
+.point {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  background: darkblue;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.circle {
+  animation: rotate 10s infinite linear;
+}
+
+.nav {
+  overflow: hidden;
+  position: relative;
+} */

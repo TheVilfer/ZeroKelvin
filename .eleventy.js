@@ -28,7 +28,6 @@ module.exports = (config) => {
     config.addPassthroughCopy('src/mstile-150x150.png');
     config.addPassthroughCopy('src/safari-pinned-tab.svg');
     config.addPassthroughCopy('src/site.webmanifest');
-    config.addPassthroughCopy('src/token.json');
 
 
 

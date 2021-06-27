@@ -141,7 +141,6 @@ module.exports.handler = async (event, context) => {
         "entity_id": parseInt(data.InvId),
         "entity_type": "leads",
     }])
-    console.log(JSON.stringify(orfr))
     return {
         statusCode: 200,
         headers: {

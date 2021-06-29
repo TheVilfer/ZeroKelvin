@@ -78,70 +78,18 @@ sliders:
     <h2 class="main__title">Популярное</h2>
     <div class="page__block page__popular swiper-container swiper-popular">
         <div class="swiper-wrapper">
-            <div class="popular-item swiper-slide cart__item">
-                <img class="popular-item__image" src="/images/products/604f667c185c5ca4b32e1536.jpg" alt="">
-                <span class="popular-item__category">СТИКЕРПАКИ</span>
-                <span class="popular-item__name">Стикерпак "Биология"</span>
-                <span class="popular-item__price">145 руб</span>
-                <button class="popular-item__cart cart-add">Добавить в корзину</button>
-                <button class="popular-item__favorite icon__favorite favorite-add"></button>
+            {% for item in collections.product %}
+            {% for i in range(0, 10) %}
+            <div class="popular-item cart__item swiper-slide" data-id="{{item.data.id}}">
+                <img class="item__image" src="/images/products/{{item.data.id}}.jpg" alt="">
+                <span class="item__category">СТИКЕРПАКИ</span>
+                <span class="item__name cart__name">{{item.data.title}}</span>
+                <span class="item__price cart__price">{{item.data.price}} руб</span>
+                <button class="item__cart cart__add">Добавить в корзину</button>
+                <button class="item__favorite icon__favorite favorite__add"></button>
             </div>
-            <div class="popular-item swiper-slide">
-                <img class="popular-item__image" src="/images/products/604f667c185c5ca4b32e1536.jpg" alt="">
-                <span class="popular-item__category">СТИКЕРПАКИ</span>
-                <span class="popular-item__name">Стикерпак "Биология"</span>
-                <span class="popular-item__price">145 руб</span>
-                <button class="popular-item__cart">Добавить в корзину</button>
-                <button class="popular-item__favorite icon__favorite"></button>
-            </div>
-            <div class="popular-item swiper-slide">
-                <img class="popular-item__image" src="/images/products/604f667c185c5ca4b32e1536.jpg" alt="">
-                <span class="popular-item__category">СТИКЕРПАКИ</span>
-                <span class="popular-item__name">Стикерпак "Биология"</span>
-                <span class="popular-item__price">145 руб</span>
-                <button class="popular-item__cart">Добавить в корзину</button>
-                <button class="popular-item__favorite icon__favorite"></button>
-            </div>
-            <div class="popular-item swiper-slide">
-                <img class="popular-item__image" src="/images/products/604f667c185c5ca4b32e1536.jpg" alt="">
-                <span class="popular-item__category">СТИКЕРПАКИ</span>
-                <span class="popular-item__name">Стикерпак "Биология"</span>
-                <span class="popular-item__price">145 руб</span>
-                <button class="popular-item__cart">Добавить в корзину</button>
-                <button class="popular-item__favorite icon__favorite"></button>
-            </div>
-            <div class="popular-item swiper-slide">
-                <img class="popular-item__image" src="/images/products/604f667c185c5ca4b32e1536.jpg" alt="">
-                <span class="popular-item__category">СТИКЕРПАКИ</span>
-                <span class="popular-item__name">Стикерпак "Биология"</span>
-                <span class="popular-item__price">145 руб</span>
-                <button class="popular-item__cart">Добавить в корзину</button>
-                <button class="popular-item__favorite icon__favorite"></button>
-            </div>
-            <div class="popular-item swiper-slide">
-                <img class="popular-item__image" src="/images/products/604f667c185c5ca4b32e1536.jpg" alt="">
-                <span class="popular-item__category">СТИКЕРПАКИ</span>
-                <span class="popular-item__name">Стикерпак "Биология"</span>
-                <span class="popular-item__price">145 руб</span>
-                <button class="popular-item__cart">Добавить в корзину</button>
-                <button class="popular-item__favorite icon__favorite"></button>
-            </div>
-            <div class="popular-item swiper-slide">
-                <img class="popular-item__image" src="/images/products/604f667c185c5ca4b32e1536.jpg" alt="">
-                <span class="popular-item__category">СТИКЕРПАКИ</span>
-                <span class="popular-item__name">Стикерпак "Биология"</span>
-                <span class="popular-item__price">145 руб</span>
-                <button class="popular-item__cart">Добавить в корзину</button>
-                <button class="popular-item__favorite icon__favorite"></button>
-            </div>
-            <div class="popular-item swiper-slide">
-                <img class="popular-item__image" src="/images/products/604f667c185c5ca4b32e1536.jpg" alt="">
-                <span class="popular-item__category">СТИКЕРПАКИ</span>
-                <span class="popular-item__name">Стикерпак "Биология"</span>
-                <span class="popular-item__price">145 руб</span>
-                <button class="popular-item__cart">Добавить в корзину</button>
-                <button class="popular-item__favorite icon__favorite"></button>
-            </div>
+            {% endfor %}
+            {% endfor %}
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>

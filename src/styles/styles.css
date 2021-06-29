@@ -33,3 +33,6 @@
 
 /* styles for page information */
 @import 'pages/page-information.css';
+
+/* styles for item */
+@import 'elements/item.css';

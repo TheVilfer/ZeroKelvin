@@ -4,10 +4,11 @@
 
 .order__form {
     display: grid;
-    gap: 10px;
+    grid-gap: 10px;
 }
 
 .fieldset {
+    grid-template-columns: repeat(2, min-content);
     display: grid;
     margin: auto;
     min-width: 320px;
@@ -16,9 +17,7 @@
     padding: 30px;
 }
 
-.fieldset_individual {
-    grid-template-columns: max-content 1fr;
-}
+.fieldset_individual {}
 
 .fieldset_individual>label {
     justify-self: right;

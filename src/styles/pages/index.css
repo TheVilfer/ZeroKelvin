@@ -167,53 +167,8 @@
   height: 100%;
   max-width: 300px;
   min-width: 300px;
+  padding-bottom: 3px;
   position: relative;
-}
-
-.popular-item__image {
-  width: 100%;
-}
-
-.popular-item__category {
-  font-size: 0.8em;
-  opacity: 0.5;
-  display: block;
-  width: 100%;
-  margin: 5px 0;
-}
-
-.popular-item__name {
-  display: block;
-  width: 100%;
-  margin: 5px 0;
-}
-
-.popular-item__price {
-  display: block;
-  width: 100%;
-  margin: 5px 0;
-}
-
-.popular-item__cart {
-  width: 100%;
-  background-color: transparent;
-  border: 1px solid black;
-  border-radius: 8px;
-  display: block;
-  padding: 5px;
-}
-
-.popular-item__favorite {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 30px;
-  height: 30px;
-  background-color: transparent;
-  border: none;
-  background-repeat: no-repeat;
-  text-align: center;
-  padding: 3px;
 }
 
 .main__production {

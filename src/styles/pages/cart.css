@@ -16,17 +16,18 @@
     width: 100%;
     display: grid;
     list-style: none;
-    grid-template-columns: repeat(5, 1fr);
-    place-items: center;
-    gap: 10px;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(2, max-content);
+    gap: 3px;
 }
 
 .cart-element__image {
     width: 100%;
     height: 100%;
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 150px;
+    max-height: 150px;
     object-fit: contain;
+    grid-row: 5 span;
 }
 
 /* .cart-element__price {} */
@@ -34,5 +35,3 @@
 .cart-element__category {
     opacity: 0.5;
 }
-
-/* .cart-element__delete {} */

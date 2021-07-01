@@ -4,11 +4,24 @@ permalink: /cart/
 layout: main.njk
 ---
 <main class="page__cart">
+    <header>
+        <h1>Корзина</h1>
+    </header>
     <ul class="cart">
 
     </ul>
-    <p class="cart-total">Итого: <span class="cart-total__price">12345</span> руб</p>
-    <button class="cart-checkout">Оформить заказ</button>
+    <form class="cart__form">
+        <fieldset class="fieldset fieldset-delivery">
+            <legend>Способ доставки</legend>
+            <input type="radio" name="delivery" value="Почта России" id="RussiaPost">
+            <label for="RussiaPost">Почта России</label>
+            <input type="radio" name="delivery" value="CDEK" id="CDEK">
+            <label for="CDEK">CDEK</label>
+        </fieldset>
+        <p class="cart-total">Доставка: <span class="cart-delivey__price">12345</span> руб</p>
+        <p class="cart-total">Итого: <span class="cart-total__price">12345</span> руб</p>
+        <button class="cart-checkout">Оформить заказ</button>
+    </form>
 </main>
 <!-- <li class="cart-element" data-id="str1">
     <span class="cart-element__count">1x</span>

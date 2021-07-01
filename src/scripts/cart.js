@@ -38,8 +38,9 @@ const EnableAllAddToCart = () => {
             let parent = self.closest('.cart__item');
             let name = parent.querySelector('.cart__name').innerHTML;
             let price = parent.querySelector('.cart__price').innerHTML.split(' ')[0];
+            let type = parent.querySelector('.cart__type').innerHTML;
             let id = parent.dataset.id;
-            AddToCart(id, name, price);
+            AddToCart(id, name, price, type);
         });
     });
 };
@@ -54,6 +55,31 @@ const EnableDeleteButtons = () => {
         });
     });
 };
+const EnableInputs = () => {
+    const inputs = document.querySelectorAll('.cart-element__count__value');
+    inputs.forEach(el => {
+        el.addEventListener('input', (e) => {
+            console.log("gg")
+            console.log(el.value)
+            let self = e.currentTarget;
+            let parent = self.closest('.cart-element');
+            let id = parent.dataset.id;
+            if (el.value < 1) {
+                DeleteElement(id, parent);
+                return null
+            }
+            SetCountItem(id, el.value)
+        });
+    });
+};
+const SetCountItem = async (id, count) => {
+    cart = await GetLocalStorage("cart");
+    cart.products[id].count = count
+    await SetLocalStorage("cart", cart)
+    await CalculateTotalPrice();
+    await UpdateTotalPrice();
+    HtmlRender();
+}
 const DeleteElement = async (id, el) => {
     el.remove();
     delete cart.products[id];
@@ -66,12 +92,12 @@ const DeleteElement = async (id, el) => {
 const UpdateTotalPrice = async () => {
     document.querySelector('.cart-total__price').innerHTML = cart.detail.totalprice;
 }
-const AddToCart = (id, name, price) => {
+const AddToCart = (id, name, price, type) => {
     if (cart.products[id] == undefined) {
         cart.products[id] = {
             "id": id,
             "name": name,
-            "type": '',
+            "type": type,
             "price": price,
             "count": 1,
             "description": '',
@@ -88,6 +114,7 @@ const InitCart = async () => {
     document.querySelector('.cart').insertAdjacentHTML('afterbegin', cart.detail.html);
     UpdateTotalPrice();
     EnableDeleteButtons();
+    EnableInputs();
     CartDisable();
     document.getElementsByClassName("cart-checkout")[0].addEventListener('click', (e) => {
         window.location.href = '/order/';
@@ -109,11 +136,11 @@ const HtmlRender = () => {
     for (const [key, value] of Object.entries(cart.products)) {
         cart.detail.html +=
             `<li class="cart-element" data-id="${value.id}">
-            <span class="cart-element__count">${value.count}x</span>
             <img class = "cart-element__image" src = "/images/products/${value.id}.jpg" alt = "">
+            <span class = "cart-element__type">${value.type}</span>
             <span class = "cart-element__name">${value.name}</span>
             <span class = "cart-element__price">${value.price}руб</span>
-            <button class="cart-element__delete">Удалить</button>
+            <div class = "cart-element__count"> <button>+</button> <input class="cart-element__count__value" type="number" value="${value.count}"/> <button>-</button> </div>
         </li>`;
     }
 

@@ -41,6 +41,12 @@ const EnableAllAddToCart = () => {
             let type = parent.querySelector('.cart__type').innerHTML;
             let id = parent.dataset.id;
             AddToCart(id, name, price, type);
+            el.classList.add("cart__add-success");
+            el.innerHTML = "Добавлено в корзину!";
+            setTimeout(() => {
+                el.classList.remove("cart__add-success");
+                el.innerHTML = "Добавить в корзину";
+            }, 2000);
         });
     });
 };
@@ -58,9 +64,7 @@ const EnableDeleteButtons = () => {
 const EnableInputs = () => {
     const inputs = document.querySelectorAll('.cart-element__count__value');
     inputs.forEach(el => {
-        el.addEventListener('input', (e) => {
-            console.log("gg")
-            console.log(el.value)
+        el.addEventListener('change', async (e) => {
             let self = e.currentTarget;
             let parent = self.closest('.cart-element');
             let id = parent.dataset.id;
@@ -68,17 +72,39 @@ const EnableInputs = () => {
                 DeleteElement(id, parent);
                 return null
             }
+            console.log(el.value)
+            await SetCountItem(id, el.value)
+        });
+    });
+};
+const EnablePlus = () => {
+    const inputs = document.querySelectorAll('.cart-element__count__plus');
+    inputs.forEach(el => {
+        el.addEventListener('click', (e) => {
+            let self = e.currentTarget;
+            let parent = self.closest('.cart-element');
+            let id = parent.dataset.id;
+            SetCountItem(id, el.value)
+        });
+    });
+};
+const EnableMinus = () => {
+    const inputs = document.querySelectorAll('.cart-element__count__minus');
+    inputs.forEach(el => {
+        el.addEventListener('click', (e) => {
+            let self = e.currentTarget;
+            let parent = self.closest('.cart-element');
+            let id = parent.dataset.id;
             SetCountItem(id, el.value)
         });
     });
 };
 const SetCountItem = async (id, count) => {
-    cart = await GetLocalStorage("cart");
     cart.products[id].count = count
     await SetLocalStorage("cart", cart)
     await CalculateTotalPrice();
     await UpdateTotalPrice();
-    HtmlRender();
+    await HtmlRender();
 }
 const DeleteElement = async (id, el) => {
     el.remove();
@@ -98,28 +124,33 @@ const AddToCart = (id, name, price, type) => {
             "id": id,
             "name": name,
             "type": type,
-            "price": price,
+            "price": parseInt(price),
             "count": 1,
             "description": '',
         };
     } else {
-        cart.products[id].count += 1
+        cart.products[id].count = parseInt(cart.products[id].count) + 1
     }
     CalculateTotalPrice();
     HtmlRender();
-    SetLocalStorage('cart', cart);
     console.log(localStorage.cart);
 };
 const InitCart = async () => {
+    cart = await GetLocalStorage("cart");
     document.querySelector('.cart').insertAdjacentHTML('afterbegin', cart.detail.html);
     UpdateTotalPrice();
     EnableDeleteButtons();
     EnableInputs();
     CartDisable();
-    document.getElementsByClassName("cart-checkout")[0].addEventListener('click', (e) => {
-        window.location.href = '/order/';
-    })
+    EnableSubmit();
 };
+const EnableSubmit = async () => {
+    let form = document.querySelector(".cart__form");
+    form.addEventListener("submit", async event => {
+        event.preventDefault();
+        window.location.replace("/order/");
+    });
+}
 const CalculateTotalPrice = () => {
     cart.detail.totalprice = 0;
     for (const [key, value] of Object.entries(cart.products)) {
@@ -140,10 +171,10 @@ const HtmlRender = () => {
             <span class = "cart-element__type">${value.type}</span>
             <span class = "cart-element__name">${value.name}</span>
             <span class = "cart-element__price">${value.price}руб</span>
-            <div class = "cart-element__count"> <button>+</button> <input class="cart-element__count__value" type="number" value="${value.count}"/> <button>-</button> </div>
+            <div class = "cart-element__count"> <button class="cart-element__count__plus">+</button> <input class="cart-element__count__value" type="number" value="${value.count}"/> <button class="cart-element__count__minus">-</button> </div>
         </li>`;
     }
-
+    SetLocalStorage("cart", cart);
 }
 const CartIsEmpty = () => {
     return Object.entries(cart.products).length == 0;

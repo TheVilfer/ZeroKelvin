@@ -25,6 +25,7 @@
     "indent-string": "^5.0.0",
     "multiparty": "^4.2.2",
     "node-fetch": "^2.6.1",
+    "nodemailer": "^6.6.2",
     "order-id": "^2.1.1",
     "pug": "^3.0.1",
     "pug-code-gen": "^3.0.2",

@@ -83,10 +83,11 @@
   text-decoration: none;
   color: black;
   font-weight: 600;
+  opacity: 0.3;
 }
 
 .nav__link:hover {
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .nav__icon {

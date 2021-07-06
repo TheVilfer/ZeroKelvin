@@ -11,22 +11,15 @@ layout: main.njk
 
     </ul>
     <form class="cart__form">
-        <fieldset class="fieldset fieldset-delivery">
+        <fieldset class="fieldset-delivery">
             <legend>Способ доставки</legend>
-            <input type="radio" name="delivery" value="Почта России" id="RussiaPost">
-            <label for="RussiaPost">Почта России</label>
-            <input type="radio" name="delivery" value="CDEK" id="CDEK">
-            <label for="CDEK">CDEK</label>
+            <select class="cart__delivery__select" name="delivery">
+                <option disabled>Выберите способ доставки</option>
+                <option value="delivery_1">Почта России</option>
+            </select>
         </fieldset>
         <p class="cart-total">Доставка: <span class="cart-delivey__price">12345</span> руб</p>
         <p class="cart-total">Итого: <span class="cart-total__price">12345</span> руб</p>
         <button type="submit" class="cart-checkout">Оформить заказ</button>
     </form>
 </main>
-<!-- <li class="cart-element" data-id="str1">
-    <span class="cart-element__count">1x</span>
-    <img class="cart-element__image" src="/images/products/stickerpack_physics.jpg" alt="">
-    <span class="cart-element__name">Стикерпарк "Физика"</span>
-    <span class="cart-element__price">124Р</span>
-    <button class="cart-element__delete">Удалить</button>
-</li> -->

@@ -144,6 +144,19 @@ const InitCart = async () => {
     CartDisable();
     EnableSubmit();
 };
+const DeliveryRender = async () => {
+
+}
+const ChooseDelivery = async () => {
+    local_shopper = 0;
+    local_stickerpack = 0;
+    for (const [key, value] of Object.entries(cart.products)) {
+        if (value.type == "СТИКЕРПАКИ")
+            local_stickerpack += 1 * value.count;
+        if (value.type == "ШОППЕРЫ")
+            local_shopper += 1 * value.count;
+    }
+}
 const EnableSubmit = async () => {
     let form = document.querySelector(".cart__form");
     form.addEventListener("submit", async event => {
@@ -167,10 +180,10 @@ const HtmlRender = () => {
     for (const [key, value] of Object.entries(cart.products)) {
         cart.detail.html +=
             `<li class="cart-element" data-id="${value.id}">
-            <img class = "cart-element__image" src = "/images/products/${value.id}.jpg" alt = "">
+            <img class="cart-element__image" src="/images/products/${value.id}.jpg" alt="${value.name}">
             <span class = "cart-element__type">${value.type}</span>
             <span class = "cart-element__name">${value.name}</span>
-            <span class = "cart-element__price">${value.price}руб</span>
+            <span class = "cart-element__price">${value.price} руб.</span>
             <div class = "cart-element__count"> <button class="cart-element__count__plus">+</button> <input class="cart-element__count__value" type="number" value="${value.count}"/> <button class="cart-element__count__minus">-</button> </div>
         </li>`;
     }

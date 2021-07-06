@@ -1,7 +1,6 @@
 .page__cart {
     width: 100%;
-    height: 100vh;
-    padding: 0 10vw;
+    padding: 3rem 10vw;
 }
 
 .cart {
@@ -30,8 +29,25 @@
     grid-row: 5 span;
 }
 
-/* .cart-element__price {} */
+.cart-element__price {
+    font-weight: bold;
+}
 
-.cart-element__category {
+.cart-element__type {
     opacity: 0.5;
+}
+
+.cart-element__count__value {
+    width: 100%;
+    max-width: 6rem;
+    color: black;
+}
+
+.cart__delivery__select {
+    max-width: 12rem;
+    color: black;
+}
+
+.fieldset-delivery {
+    max-width: max-content;
 }

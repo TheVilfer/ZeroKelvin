@@ -102,6 +102,7 @@ const EnableMinus = () => {
 const SetCountItem = async (id, count) => {
     cart.products[id].count = count
     await SetLocalStorage("cart", cart)
+    await DeliveryRender();
     await CalculateTotalPrice();
     await UpdateTotalPrice();
     await HtmlRender();
@@ -142,20 +143,55 @@ const InitCart = async () => {
     EnableDeleteButtons();
     EnableInputs();
     CartDisable();
+    await DeliveryRender();
     EnableSubmit();
 };
 const DeliveryRender = async () => {
-
+    document.querySelector('.delivery__paste').innerHTML = "";
+    document.querySelector('.delivery__paste').insertAdjacentHTML('afterbegin', ChooseDelivery());
 }
-const ChooseDelivery = async () => {
+const ChooseDelivery = () => {
     local_shopper = 0;
-    local_stickerpack = 0;
+    local_stickers = 0;
+    local_telescope = 0;
+    local_pin = 0;
     for (const [key, value] of Object.entries(cart.products)) {
-        if (value.type == "СТИКЕРПАКИ")
-            local_stickerpack += 1 * value.count;
-        if (value.type == "ШОППЕРЫ")
+        if (value.type == "СТИКЕРЫ") {
+            local_stickers += 1 * value.count;
+            continue;
+        }
+        if (value.type == "ШОППЕРЫ") {
             local_shopper += 1 * value.count;
+            continue;
+        }
+        if (value.type == "ЗНАЧКИ") {
+            local_pin += 1 * value.count;
+            continue;
+        }
+        if (value.type == "ТЕЛЕСКОПЫ") {
+            local_telescope += 1 * value.count;
+            continue;
+        }
     }
+    if ((local_telescope > 0) || (local_shopper > 2)) {
+        return `<p class="delivery__information">Hello, world!</p>`
+    }
+    if (local_shopper > 0) {
+        return `<select class="cart__delivery__select" name="delivery">
+                <option disabled>Выберите способ доставки</option>
+                <option value="delivery_3">Почта России</option></select>`
+    }
+    if ((local_pin > 0) || (local_stickers > 19)) {
+        return `<select class="cart__delivery__select" name="delivery">
+                <option disabled>Выберите способ доставки</option>
+                <option value="delivery_2">Почта России</option></select>`
+    }
+    if (local_stickers > 0) {
+        return `<select class="cart__delivery__select" name="delivery">
+                <option disabled>Выберите способ доставки</option>
+                <option value="delivery_1">Почта России</option></select>`
+    }
+
 }
 const EnableSubmit = async () => {
     let form = document.querySelector(".cart__form");

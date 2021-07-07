@@ -8,15 +8,13 @@ layout: main.njk
 </header>
 <main class="page__main page__catalog">
     {% for item in collections.product %}
-    {% for i in range(0, 100) %}
     <div class="catalog-item cart__item" data-id="{{item.data.id}}">
         <img class="item__image" src="/images/products/{{item.data.id}}.jpg" alt="">
-        <span class="item__category cart__type">СТИКЕРПАКИ</span>
+        <span class="item__category cart__type">{{item.data.category}}</span>
         <span class="item__name cart__name">{{item.data.title}}</span>
         <span class="item__price cart__price">{{item.data.price}} руб</span>
         <button class="item__cart cart__add">Добавить в корзину</button>
         <button class="item__favorite icon__favorite favorite__add"></button>
     </div>
-    {% endfor %}
     {% endfor %}
 </main>

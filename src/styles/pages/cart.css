@@ -30,7 +30,7 @@
 }
 
 .cart-element__price {
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .cart-element__type {

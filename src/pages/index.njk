@@ -82,7 +82,7 @@ sliders:
             {% for i in range(0, 10) %}
             <div class="popular-item cart__item swiper-slide" data-id="{{item.data.id}}">
                 <img class="item__image" src="/images/products/{{item.data.id}}.jpg" alt="">
-                <span class="item__category cart__type">СТИКЕРПАКИ</span>
+                <span class="item__category cart__type">{{item.data.category}}</span>
                 <span class="item__name cart__name">{{item.data.title}}</span>
                 <span class="item__price cart__price">{{item.data.price}} руб</span>
                 <button class="item__cart cart__add">Добавить в корзину</button>

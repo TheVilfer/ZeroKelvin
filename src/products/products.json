@@ -1,3 +1,4 @@
 {
-    "tags": ["product"]
+    "tags": ["product"],
+    "layout": "product.njk"
 }

@@ -205,7 +205,8 @@ const CalculateTotalPrice = () => {
     for (const [key, value] of Object.entries(cart.products)) {
         cart.detail.totalprice += value.price * value.count;
     }
-    cart.detail.totalprice += delivery;
+    if (Number.isInteger(delivery))
+        cart.detail.totalprice += delivery;
 };
 const CartDisable = async () => {
     if (CartIsEmpty()) {

@@ -50,6 +50,7 @@ module.exports.handler = async (event, context) => {
   let ids = [];
   const db = await connectToDatabase(MONGODB_URI);
   let cart = JSON.parse(event.body);
+  console.log(cart);
   for (const [key, value] of Object.entries(cart.products)) {
     ids.push(key)
   }
@@ -57,6 +58,9 @@ module.exports.handler = async (event, context) => {
     cart.products[el._id].name = el.name
     cart.products[el._id].price = el.price
   })
+  cart.products["delivery"].name = "Доставка";
+  cart.products["delivery"].count = 1;
+  cart.products["delivery"].price = ChooseDelivery(cart);
   CalculateOutSum(cart)
   let lead = await AddOrderToAmo(cart);
   await GenerateSignatureValue(lead["lead_id"]);
@@ -98,4 +102,41 @@ const AddOrderToAmo = async (cart) => {
     console.error(e);
     return e;
   }
+}
+const ChooseDelivery = (cart) => {
+  local_shopper = 0;
+  local_stickers = 0;
+  local_telescope = 0;
+  local_pin = 0;
+  for (const [key, value] of Object.entries(cart.products)) {
+    if (value.type == "СТИКЕРЫ") {
+      local_stickers += 1 * value.count;
+      continue;
+    }
+    if (value.type == "ШОППЕРЫ") {
+      local_shopper += 1 * value.count;
+      continue;
+    }
+    if (value.type == "ЗНАЧКИ") {
+      local_pin += 1 * value.count;
+      continue;
+    }
+    if (value.type == "ТЕЛЕСКОПЫ") {
+      local_telescope += 1 * value.count;
+      continue;
+    }
+  }
+  if ((local_telescope > 0) || (local_shopper > 2)) {
+    return 0;
+  }
+  if (local_shopper > 0) {
+    return 350;
+  }
+  if ((local_pin > 0) || (local_stickers > 19)) {
+    return 250;
+  }
+  if (local_stickers > 0) {
+    return 120;
+  }
+  return 0
 }

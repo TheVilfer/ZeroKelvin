@@ -58,6 +58,7 @@ module.exports.handler = async (event, context) => {
     cart.products[el._id].name = el.name
     cart.products[el._id].price = el.price
   })
+  cart.products["delivery"] = {};
   cart.products["delivery"].name = "Доставка";
   cart.products["delivery"].count = 1;
   cart.products["delivery"].price = ChooseDelivery(cart);

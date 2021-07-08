@@ -1,3 +1,4 @@
+let delivery = 0;
 let cart = {
     "products": {},
     "detail": {
@@ -102,6 +103,7 @@ const EnableMinus = () => {
 const SetCountItem = async (id, count) => {
     cart.products[id].count = count
     await SetLocalStorage("cart", cart)
+    delivery = ChooseDelivery();
     await DeliveryRender();
     await CalculateTotalPrice();
     await UpdateTotalPrice();
@@ -112,6 +114,8 @@ const DeleteElement = async (id, el) => {
     delete cart.products[id];
     await CalculateTotalPrice();
     UpdateTotalPrice();
+    delivery = ChooseDelivery();
+    await DeliveryRender();
     HtmlRender();
     CartDisable();
     SetLocalStorage('cart', cart);
@@ -138,17 +142,18 @@ const AddToCart = (id, name, price, type) => {
 };
 const InitCart = async () => {
     cart = await GetLocalStorage("cart");
+    CartDisable();
     document.querySelector('.cart').insertAdjacentHTML('afterbegin', cart.detail.html);
+    delivery = ChooseDelivery();
+    await CalculateTotalPrice();
     UpdateTotalPrice();
     EnableDeleteButtons();
     EnableInputs();
-    CartDisable();
-    await DeliveryRender();
+    DeliveryRender();
     EnableSubmit();
 };
 const DeliveryRender = async () => {
-    document.querySelector('.delivery__paste').innerHTML = "";
-    document.querySelector('.delivery__paste').insertAdjacentHTML('afterbegin', ChooseDelivery());
+    document.querySelector('.cart-delivey__price').innerHTML = delivery;
 }
 const ChooseDelivery = () => {
     local_shopper = 0;
@@ -174,23 +179,18 @@ const ChooseDelivery = () => {
         }
     }
     if ((local_telescope > 0) || (local_shopper > 2)) {
-        return `<p class="delivery__information">Hello, world!</p>`
+        return "Мы хз сколько будет стоить доставка, поэтому звякнем тебе, когда ты бабки перечислишь";
     }
     if (local_shopper > 0) {
-        return `<select class="cart__delivery__select" name="delivery">
-                <option disabled>Выберите способ доставки</option>
-                <option value="delivery_3">Почта России</option></select>`
+        return 350;
     }
     if ((local_pin > 0) || (local_stickers > 19)) {
-        return `<select class="cart__delivery__select" name="delivery">
-                <option disabled>Выберите способ доставки</option>
-                <option value="delivery_2">Почта России</option></select>`
+        return 250;
     }
     if (local_stickers > 0) {
-        return `<select class="cart__delivery__select" name="delivery">
-                <option disabled>Выберите способ доставки</option>
-                <option value="delivery_1">Почта России</option></select>`
+        return 120;
     }
+    return "Мы хз сколько будет стоить доставка, поэтому звякнем тебе, когда ты бабки перечислишь";
 
 }
 const EnableSubmit = async () => {
@@ -205,6 +205,7 @@ const CalculateTotalPrice = () => {
     for (const [key, value] of Object.entries(cart.products)) {
         cart.detail.totalprice += value.price * value.count;
     }
+    cart.detail.totalprice += delivery;
 };
 const CartDisable = async () => {
     if (CartIsEmpty()) {

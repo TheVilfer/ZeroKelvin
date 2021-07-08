@@ -17,8 +17,6 @@
     padding: 30px;
 }
 
-.fieldset_individual {}
-
 .fieldset_individual>label {
     justify-self: right;
 }

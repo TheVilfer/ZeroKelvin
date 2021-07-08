@@ -17,7 +17,7 @@
     list-style: none;
     grid-template-rows: repeat(5, 1fr);
     grid-template-columns: repeat(2, max-content);
-    gap: 3px;
+    row-gap: 1px;
 }
 
 .cart-element__image {

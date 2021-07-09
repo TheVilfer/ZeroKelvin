@@ -1,7 +1,8 @@
 const Amo = {};
 const nodemailer = require("nodemailer");
 const nunjucks = require("nunjucks");
-nunjucks.configure("../mail");
+const path = require("path");
+nunjucks.configure(path.resolve(__dirname, '../mail/'));
 const fetch = require('node-fetch');
 const mongoUtil = require("mongodb")
 const md5 = require("blueimp-md5");
@@ -166,9 +167,10 @@ module.exports.handler = async (event, context) => {
     }])
     return {
         statusCode: 200,
-        headers: {
-            "Content-Type": "text/plain",
-        },
-        body: "OK" + data.InvId,
+        // headers: {
+        //     "Content-Type": "text/plain",
+        // },
+        // body: "OK" + data.InvId,
+        body: htmlMail
     };
 };

@@ -2,7 +2,6 @@ const Amo = {};
 const fs = require('fs');
 const nodemailer = require("nodemailer");
 const nunjucks = require("nunjucks");
-nunjucks.configure("/mail/")
 const path = require("path");
 const fetch = require('node-fetch');
 const mongoUtil = require("mongodb")

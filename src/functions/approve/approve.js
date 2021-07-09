@@ -142,8 +142,7 @@ module.exports.handler = async (event, context) => {
     });
     let info = await transporter.sendMail({
         from: '"Ноль Кельвин 🧬" <info@zerokelvin.ru>', // sender address
-        // to: `${data.EMail}`,
-        to: "polincool1@mail.ru",
+        to: `${data.EMail}`,
         subject: "Оповещение о заказе",
         html: htmlMail,
     });

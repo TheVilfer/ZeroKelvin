@@ -149,10 +149,7 @@ module.exports.handler = async (event, context) => {
     //     subject: "Оповещение о заказе",
     //     html: htmlMail,
     // });
-    var files = [];
-    fs.readdirSync(__dirname).forEach(file => {
-        files.push(file + " ");
-    });
+    let files = await fs.readdirSync(__dirname);
     const db = await connectToDatabase(MONGODB_URI);
     Amo.tokens = await queryDatabase(db);
     if (CheckError(await Amo.get("/api/v4/account"))) {

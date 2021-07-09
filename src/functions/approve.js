@@ -1,6 +1,7 @@
 const Amo = {};
 const nodemailer = require("nodemailer");
 const nunjucks = require("nunjucks");
+nunjucks.configure("/mail/")
 const path = require("path");
 const fetch = require('node-fetch');
 const mongoUtil = require("mongodb")
@@ -137,7 +138,7 @@ module.exports.handler = async (event, context) => {
     //     }
     // }
     await bot.telegram.sendMessage(362841815, `Пришел заказ! #${data.InvId}\nНа сумму: ${data.OutSum} руб.\nE-mail покупателя:${data.EMail}\nСкорее в AMO!\nhttps://zerokelvin1.amocrm.ru/leads/detail/${data.InvId}`, {});
-    let htmlMail = nunjucks.render('/mail/mail.html', {
+    let htmlMail = nunjucks.render('mail.html', {
         orderNumber: data.InvId
     });
     let info = await transporter.sendMail({

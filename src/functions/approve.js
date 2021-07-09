@@ -1,7 +1,7 @@
 const Amo = {};
 const nodemailer = require("nodemailer");
 const nunjucks = require("nunjucks");
-nunjucks.configure("../mail/");
+nunjucks.configure("../mail");
 const fetch = require('node-fetch');
 const mongoUtil = require("mongodb")
 const md5 = require("blueimp-md5");

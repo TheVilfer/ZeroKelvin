@@ -61,7 +61,7 @@ module.exports.handler = async (event, context) => {
   cart.products["delivery"] = {};
   cart.products["delivery"].name = "Доставка";
   cart.products["delivery"].count = 1;
-  cart.products["delivery"].price = ChooseDelivery(cart);
+  cart.products["delivery"].price = await ChooseDelivery(cart);
   CalculateOutSum(cart)
   let lead = await AddOrderToAmo(cart);
   await GenerateSignatureValue(lead["lead_id"]);
@@ -104,7 +104,7 @@ const AddOrderToAmo = async (cart) => {
     return e;
   }
 }
-const ChooseDelivery = (cart) => {
+const ChooseDelivery = async (cart) => {
   local_shopper = 0;
   local_stickers = 0;
   local_telescope = 0;

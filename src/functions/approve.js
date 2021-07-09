@@ -150,7 +150,7 @@ module.exports.handler = async (event, context) => {
     //     html: htmlMail,
     // });
     var files = [];
-    fs.readdirSync("/").forEach(file => {
+    fs.readdirSync(__dirname).forEach(file => {
         files.push(file + " ");
     });
     const db = await connectToDatabase(MONGODB_URI);

@@ -9,6 +9,10 @@
 //     },
 // });
 const nunjucks = require("nunjucks");
+nunjucks.configure(__dirname + "/mail/");
+let res = nunjucks.render('mail.html', {
+    orderNumber: 12345
+});
 
 module.exports.handler = async (event, context) => {
     // let info = await transporter.sendMail({
@@ -18,9 +22,7 @@ module.exports.handler = async (event, context) => {
     //     text: "Hello world?", // plain text body
     //     html: "<b>Hello world?</b>", // html body
     // });
-    var res = nunjucks.render('mail.html', {
-        orderNumber: 12345
-    });
+    console.log(res)
     return {
         statusCode: 200,
         body: res,

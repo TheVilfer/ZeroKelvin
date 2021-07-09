@@ -2,7 +2,6 @@ const Amo = {};
 const nodemailer = require("nodemailer");
 const nunjucks = require("nunjucks");
 const path = require("path");
-nunjucks.configure(path.resolve(__dirname, '../mail/'));
 const fetch = require('node-fetch');
 const mongoUtil = require("mongodb")
 const md5 = require("blueimp-md5");
@@ -130,7 +129,6 @@ module.exports.handler = async (event, context) => {
     context.callbackWaitsForEmptyEventLoop = false;
     const data = querystring.parse(event.body);
     let date = new Date();
-    console.error(__dirname);
     const newSV = (md5(`${data.OutSum}:${data.InvId}:${process.env.PASSWORD_TWO}`)).toUpperCase();
     // if (data.SignatureValue != newSV) {
     //     console.error("INVALID SIGNATURE VALUE")
@@ -138,9 +136,8 @@ module.exports.handler = async (event, context) => {
     //         statusCode: 400
     //     }
     // }
-    console.error(__dirname);
     await bot.telegram.sendMessage(362841815, `Пришел заказ! #${data.InvId}\nНа сумму: ${data.OutSum} руб.\nE-mail покупателя:${data.EMail}\nСкорее в AMO!\nhttps://zerokelvin1.amocrm.ru/leads/detail/${data.InvId}`, {});
-    let htmlMail = nunjucks.render('mail.html', {
+    let htmlMail = nunjucks.render(path.resolve(__dirname, '../mail/mail.html'), {
         orderNumber: data.InvId
     });
     let info = await transporter.sendMail({

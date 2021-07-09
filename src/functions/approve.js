@@ -1,7 +1,7 @@
 const Amo = {};
 const nodemailer = require("nodemailer");
 const nunjucks = require("nunjucks");
-nunjucks.configure(__dirname + "/mail/");
+nunjucks.configure("/mail/");
 const fetch = require('node-fetch');
 const mongoUtil = require("mongodb")
 const md5 = require("blueimp-md5");
@@ -120,34 +120,35 @@ let transporter = nodemailer.createTransport({
     },
 });
 module.exports.handler = async (event, context) => {
-    if (event.httpMethod !== "POST") {
-        return {
-            statusCode: 405,
-            body: "Method Not Allowed"
-        };
-    }
+    // if (event.httpMethod !== "POST") {
+    //     return {
+    //         statusCode: 405,
+    //         body: "Method Not Allowed"
+    //     };
+    // }
     context.callbackWaitsForEmptyEventLoop = false;
     const data = querystring.parse(event.body);
     let date = new Date();
+    console.error(__dirname);
     const newSV = (md5(`${data.OutSum}:${data.InvId}:${process.env.PASSWORD_TWO}`)).toUpperCase();
-    if (data.SignatureValue != newSV) {
-        console.error("INVALID SIGNATURE VALUE")
-        return {
-            statusCode: 400
-        }
-    }
-    console.log(data)
+    // if (data.SignatureValue != newSV) {
+    //     console.error("INVALID SIGNATURE VALUE")
+    //     return {
+    //         statusCode: 400
+    //     }
+    // }
+    console.error(__dirname);
     await bot.telegram.sendMessage(362841815, `Пришел заказ! #${data.InvId}\nНа сумму: ${data.OutSum} руб.\nE-mail покупателя:${data.EMail}\nСкорее в AMO!\nhttps://zerokelvin1.amocrm.ru/leads/detail/${data.InvId}`, {});
-    let htmlMail = nunjucks.render('mail.html', {
-        orderNumber: data.InvId
-    });
-    let info = await transporter.sendMail({
-        from: '"Ноль Кельвин 🧬" <info@zerokelvin.ru>', // sender address
-        // to: `${data.EMail}`,
-        to: "polincool1@mail.ru",
-        subject: "Оповещение о заказе",
-        html: htmlMail,
-    });
+    // let htmlMail = nunjucks.render('mail.html', {
+    //     orderNumber: data.InvId
+    // });
+    // let info = await transporter.sendMail({
+    //     from: '"Ноль Кельвин 🧬" <info@zerokelvin.ru>', // sender address
+    //     // to: `${data.EMail}`,
+    //     to: "polincool1@mail.ru",
+    //     subject: "Оповещение о заказе",
+    //     html: htmlMail,
+    // });
     const db = await connectToDatabase(MONGODB_URI);
     Amo.tokens = await queryDatabase(db);
     if (CheckError(await Amo.get("/api/v4/account"))) {
@@ -168,6 +169,7 @@ module.exports.handler = async (event, context) => {
         headers: {
             "Content-Type": "text/plain",
         },
-        body: "OK" + data.InvId,
+        // body: "OK" + data.InvId,
+        body: __dirname
     };
 };

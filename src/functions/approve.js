@@ -171,6 +171,6 @@ module.exports.handler = async (event, context) => {
             "Content-Type": "text/plain",
         },
         // body: "OK" + data.InvId,
-        body: files
+        body: JSON.stringify(files)
     };
 };

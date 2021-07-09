@@ -39,7 +39,6 @@ module.exports = (config) => {
     config.addPassthroughCopy('src/admin');
     config.addPassthroughCopy("src/functions");
     config.addPassthroughCopy("src/privacy");
-    config.addPassthroughCopy("src/mail");
     config.setDataDeepMerge(true);
     return {
         dir: {

@@ -1,9 +1,7 @@
 const Amo = {};
-const fs = require('fs');
 const nodemailer = require("nodemailer");
 const nunjucks = require("nunjucks");
 nunjucks.configure(__dirname)
-const path = require("path");
 const fetch = require('node-fetch');
 const mongoUtil = require("mongodb")
 const md5 = require("blueimp-md5");
@@ -122,22 +120,22 @@ let transporter = nodemailer.createTransport({
     },
 });
 module.exports.handler = async (event, context) => {
-    // if (event.httpMethod !== "POST") {
-    //     return {
-    //         statusCode: 405,
-    //         body: "Method Not Allowed"
-    //     };
-    // }
+    if (event.httpMethod !== "POST") {
+        return {
+            statusCode: 405,
+            body: "Method Not Allowed"
+        };
+    }
     context.callbackWaitsForEmptyEventLoop = false;
     const data = querystring.parse(event.body);
     let date = new Date();
     const newSV = (md5(`${data.OutSum}:${data.InvId}:${process.env.PASSWORD_TWO}`)).toUpperCase();
-    // if (data.SignatureValue != newSV) {
-    //     console.error("INVALID SIGNATURE VALUE")
-    //     return {
-    //         statusCode: 400
-    //     }
-    // }
+    if (data.SignatureValue != newSV) {
+        console.error("INVALID SIGNATURE VALUE")
+        return {
+            statusCode: 400
+        }
+    }
     await bot.telegram.sendMessage(362841815, `Пришел заказ! #${data.InvId}\nНа сумму: ${data.OutSum} руб.\nE-mail покупателя:${data.EMail}\nСкорее в AMO!\nhttps://zerokelvin1.amocrm.ru/leads/detail/${data.InvId}`, {});
     let htmlMail = nunjucks.render('mail.html', {
         orderNumber: data.InvId
@@ -149,7 +147,6 @@ module.exports.handler = async (event, context) => {
         subject: "Оповещение о заказе",
         html: htmlMail,
     });
-    let files = await fs.readdirSync(path.resolve(__dirname));
     const db = await connectToDatabase(MONGODB_URI);
     Amo.tokens = await queryDatabase(db);
     if (CheckError(await Amo.get("/api/v4/account"))) {
@@ -170,7 +167,6 @@ module.exports.handler = async (event, context) => {
         headers: {
             "Content-Type": "text/plain",
         },
-        // body: "OK" + data.InvId,
-        body: JSON.stringify(files)
+        body: "OK" + data.InvId,
     };
 };

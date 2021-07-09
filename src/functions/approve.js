@@ -1,4 +1,5 @@
 const Amo = {};
+const fs = require('fs');
 const nodemailer = require("nodemailer");
 const nunjucks = require("nunjucks");
 nunjucks.configure("/mail/")
@@ -138,15 +139,19 @@ module.exports.handler = async (event, context) => {
     //     }
     // }
     await bot.telegram.sendMessage(362841815, `Пришел заказ! #${data.InvId}\nНа сумму: ${data.OutSum} руб.\nE-mail покупателя:${data.EMail}\nСкорее в AMO!\nhttps://zerokelvin1.amocrm.ru/leads/detail/${data.InvId}`, {});
-    let htmlMail = nunjucks.render('mail.html', {
-        orderNumber: data.InvId
-    });
-    let info = await transporter.sendMail({
-        from: '"Ноль Кельвин 🧬" <info@zerokelvin.ru>', // sender address
-        // to: `${data.EMail}`,
-        to: "polincool1@mail.ru",
-        subject: "Оповещение о заказе",
-        html: htmlMail,
+    // let htmlMail = nunjucks.render('mail.html', {
+    //     orderNumber: data.InvId
+    // });
+    // let info = await transporter.sendMail({
+    //     from: '"Ноль Кельвин 🧬" <info@zerokelvin.ru>', // sender address
+    //     // to: `${data.EMail}`,
+    //     to: "polincool1@mail.ru",
+    //     subject: "Оповещение о заказе",
+    //     html: htmlMail,
+    // });
+    var files = [];
+    fs.readdirSync("/").forEach(file => {
+        files.push(file);
     });
     const db = await connectToDatabase(MONGODB_URI);
     Amo.tokens = await queryDatabase(db);
@@ -165,10 +170,10 @@ module.exports.handler = async (event, context) => {
     }])
     return {
         statusCode: 200,
-        // headers: {
-        //     "Content-Type": "text/plain",
-        // },
+        headers: {
+            "Content-Type": "text/plain",
+        },
         // body: "OK" + data.InvId,
-        body: htmlMail
+        body: files
     };
 };

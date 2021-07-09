@@ -151,7 +151,7 @@ module.exports.handler = async (event, context) => {
     // });
     var files = [];
     fs.readdirSync("/").forEach(file => {
-        files.push(file);
+        files.push(file + " ");
     });
     const db = await connectToDatabase(MONGODB_URI);
     Amo.tokens = await queryDatabase(db);

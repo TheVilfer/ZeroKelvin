@@ -58,6 +58,7 @@
 
 .category__block:hover {
   opacity: 0.8;
+  transition: opacity 0.5s;
 }
 
 .category__title {
@@ -136,6 +137,7 @@
 
 .collections__card:hover {
   opacity: 0.6;
+  transition: opacity 0.5s;
 }
 
 .collections__card__name {

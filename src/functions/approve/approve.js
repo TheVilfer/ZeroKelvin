@@ -137,15 +137,6 @@ module.exports.handler = async (event, context) => {
         }
     }
     await bot.telegram.sendMessage(362841815, `Пришел заказ! #${data.InvId}\nНа сумму: ${data.OutSum} руб.\nE-mail покупателя:${data.EMail}\nСкорее в AMO!\nhttps://zerokelvin1.amocrm.ru/leads/detail/${data.InvId}`, {});
-    let htmlMail = nunjucks.render('mail.html', {
-        orderNumber: data.InvId
-    });
-    let info = await transporter.sendMail({
-        from: '"Ноль Кельвин 🧬" <info@zerokelvin.ru>', // sender address
-        to: `${data.EMail}`,
-        subject: "Оповещение о заказе",
-        html: htmlMail,
-    });
     const db = await connectToDatabase(MONGODB_URI);
     Amo.tokens = await queryDatabase(db);
     if (CheckError(await Amo.get("/api/v4/account"))) {
@@ -161,6 +152,15 @@ module.exports.handler = async (event, context) => {
         "entity_id": parseInt(data.InvId),
         "entity_type": "leads",
     }])
+    let htmlMail = nunjucks.render('mail.html', {
+        orderNumber: data.InvId
+    });
+    let info = await transporter.sendMail({
+        from: '"Ноль Кельвин 🧬" <info@zerokelvin.ru>',
+        to: `${data.EMail}`,
+        subject: "Оповещение о заказе",
+        html: htmlMail,
+    });
     return {
         statusCode: 200,
         headers: {

@@ -41,6 +41,15 @@
   }
 }
 
+@media screen and (max-width: 330px) {
+  .main__category {
+    grid-template-columns: repeat(auto-fill, 100px);
+    grid-auto-rows: 100px;
+    justify-content: center;
+    gap: 30px 30px;
+  }
+}
+
 .category__block {
   padding: 1em;
   border-radius: 5px;

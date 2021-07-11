@@ -1,14 +1,5 @@
 .item__image {
     width: 100%;
-    height: auto;
-    max-height: 250px;
-    object-fit: cover;
-}
-
-@media screen and (max-width: 800px) {
-    .item__image {
-        max-height: 300px;
-    }
 }
 
 .item__category {

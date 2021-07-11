@@ -108,6 +108,12 @@
   }
 }
 
+@media screen and (max-width: 330px) {
+  .icon__favorite {
+    display: none;
+  }
+}
+
 /* Mobile navigation */
 .nav-mobile {
   display: none;

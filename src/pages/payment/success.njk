@@ -64,5 +64,6 @@ layout: main.njk
             spread: 120,
             startVelocity: 45,
         });
+        document.getElementById("order_number").innerHTML = new URL(location.href).searchParams.get("InvId")
     });
 </script>

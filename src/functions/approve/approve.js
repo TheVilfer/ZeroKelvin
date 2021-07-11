@@ -155,12 +155,16 @@ module.exports.handler = async (event, context) => {
     let htmlMail = nunjucks.render('mail.html', {
         orderNumber: data.InvId
     });
-    let info = await transporter.sendMail({
-        from: '"Ноль Кельвин 🧬" <info@zerokelvin.ru>',
-        to: `${data.EMail}`,
-        subject: "Оповещение о заказе",
-        html: htmlMail,
-    });
+    try {
+        let info = await transporter.sendMail({
+            from: '"Ноль Кельвин 🧬" <info@zerokelvin.ru>',
+            to: `${data.EMail}`,
+            subject: "Оповещение о заказе",
+            html: htmlMail,
+        });
+    } catch (error) {
+        console.error("Проблема с данными, письмо клиенту не ушло " + error)
+    }
     return {
         statusCode: 200,
         headers: {

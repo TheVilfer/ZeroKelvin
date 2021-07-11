@@ -240,6 +240,8 @@ const InitOrder = async () => {
     let form = document.querySelector(".order__form");
     form.addEventListener("submit", async event => {
         event.preventDefault();
+        document.querySelector(".order__submit").disabled = true;
+        document.querySelector(".order__submit").innerHTML = "Всего несколько секунд...";
         let userData = await CollectUserData(new FormData(form));
         let link = await GeneratePaymentLink(userData);
         link = link["link"];

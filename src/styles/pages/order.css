@@ -1,5 +1,5 @@
-.order__header {
-    text-align: center;
+.order__main {
+    padding: 1rem 10vw;
 }
 
 .order__form {
@@ -7,13 +7,17 @@
     grid-gap: 10px;
 }
 
+.order__header {
+    text-align: left;
+    padding-bottom: 1rem;
+}
+
 .fieldset {
-    grid-template-columns: repeat(2, min-content);
     display: grid;
     margin: auto;
     min-width: 320px;
-    max-width: 600px;
-    gap: 10px 10px;
+    max-width: 800px;
+    gap: 10px;
     padding: 30px;
 }
 

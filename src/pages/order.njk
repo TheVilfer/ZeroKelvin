@@ -3,35 +3,30 @@ title: Оплата | НАУЧНЫЕ СТИКЕРЫ
 permalink: /order/
 layout: main.njk
 ---
-<header class="order__header">
-    <h1>Оплата</h1>
-</header>
 <main class="order__main">
+    <header class="order__header">
+        <h1>Оплата</h1>
+    </header>
     <form class="order__form" autocomplete="on">
         <fieldset class="fieldset fieldset_individual">
             <legend>Личные данные</legend>
-            <label for="name">Имя</label>
-            <input type="text" name="given-name" id="name" autocomplete="given-name" required>
-            <label for="surname">Фамилия</label>
-            <input type="text" name="family-name" id="surname" autocomplete="family-name" required>
-            <label for="tel">Телефон</label>
-            <input type="tel" name="tel" id="phone" autocomplete="home tel" required>
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" autocomplete="home email" required>
-            <label for="country">Страна</label>
-            <input type="text" name="country" id="country" autocomplete="shipping country-name" required>
-            <label for="state">Регион</label>
-            <input type="text" name="state" id="state" autocomplete="shipping address-level1" required>
-            <label for="city">Город / Село</label>
-            <input type="text" name="city" id="city" autocomplete="shipping address-level2" required>
-            <label for="street">Улица, дом</label>
-            <input type="text" name="street" id="street" autocomplete="shipping address-line1" required>
-            <label for="housing">Корпус</label>
-            <input type="text" name="housing" id="housing" autocomplete="shipping address-line3">
-            <label for="room">Квартира</label>
-            <input type="text" name="room" id="room" autocomplete="shipping address-line2">
-            <label for="postalcode">Почтовый индекс</label>
-            <input type="text" name="postalcode" id="postalcode" autocomplete="shipping postal-code" required>
+            <input type="text" name="given-name" id="name" autocomplete="given-name" required placeholder="Имя">
+            <input type="text" name="family-name" id="surname" autocomplete="family-name" required
+                placeholder="Фамилия">
+            <input type="tel" name="tel" id="phone" autocomplete="home tel" required placeholder="Номер телефона">
+            <input type="email" name="email" id="email" autocomplete="home email" required placeholder="Email адресс">
+            <input type="text" name="country" id="country" autocomplete="shipping country-name" required
+                placeholder="Страна">
+            <input type="text" name="state" id="state" autocomplete="shipping address-level1" required
+                placeholder="Регион">
+            <input type="text" name="city" id="city" autocomplete="shipping address-level2" required
+                placeholder="Населённый пункт">
+            <input type="text" name="street" id="street" autocomplete="shipping address-line1" required
+                placeholder="Улица, дом">
+            <input type="text" name="housing" id="housing" autocomplete="shipping address-line3" placeholder="Корпус">
+            <input type="text" name="room" id="room" autocomplete="shipping address-line2" placeholder="Квартира">
+            <input type="text" name="postalcode" id="postalcode" autocomplete="shipping postal-code" required
+                placeholder="Почтовый индекс">
         </fieldset>
         <fieldset class="fieldset">
             <legend>Детали</legend>

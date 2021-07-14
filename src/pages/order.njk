@@ -9,16 +9,16 @@ layout: main.njk
     </header>
     <form class="order__form" autocomplete="on">
         <fieldset class="fieldset fieldset_individual">
-            <legend>Личные данные</legend>
+            <legend class="order__form__legend">Личные данные</legend>
             <input type="text" name="given-name" id="name" autocomplete="given-name" required placeholder="Имя">
             <input type="text" name="family-name" id="surname" autocomplete="family-name" required
                 placeholder="Фамилия">
             <input type="tel" name="tel" id="phone" autocomplete="home tel" required placeholder="Номер телефона">
-            <input type="email" name="email" id="email" autocomplete="home email" required placeholder="Email адресс">
+            <input type="email" name="email" id="email" autocomplete="home email" required placeholder="Email адрес">
             <input type="text" name="country" id="country" autocomplete="shipping country-name" required
                 placeholder="Страна">
             <input type="text" name="state" id="state" autocomplete="shipping address-level1" required
-                placeholder="Регион">
+                placeholder="Регион/Область">
             <input type="text" name="city" id="city" autocomplete="shipping address-level2" required
                 placeholder="Населённый пункт">
             <input type="text" name="street" id="street" autocomplete="shipping address-line1" required
@@ -28,7 +28,7 @@ layout: main.njk
             <input type="text" name="postalcode" id="postalcode" autocomplete="shipping postal-code" required
                 placeholder="Почтовый индекс">
         </fieldset>
-        <fieldset class="fieldset">
+        <fieldset class="fieldset fieldset-detail">
             <legend>Детали</legend>
             <label for="comment">Комментарий к заказу</label>
             <textarea name="comment" id="comment" cols="15" rows="1"></textarea>

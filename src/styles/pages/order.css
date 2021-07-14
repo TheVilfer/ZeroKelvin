@@ -1,10 +1,19 @@
 .order__main {
-    padding: 1rem 10vw;
+    padding: 2rem 10vw;
+    display: grid;
+    place-items: center;
 }
 
 .order__form {
     display: grid;
-    grid-gap: 10px;
+    grid-gap: 1rem;
+    width: 100%;
+    min-width: 320px;
+    max-width: 500px;
+}
+
+.order__form__legend {
+    text-align: center;
 }
 
 .order__header {
@@ -14,15 +23,13 @@
 
 .fieldset {
     display: grid;
-    margin: auto;
-    min-width: 320px;
-    max-width: 800px;
-    gap: 10px;
+    width: 100%;
+    gap: 1rem;
     padding: 30px;
 }
 
-.fieldset_individual>label {
-    justify-self: right;
+.fieldset-detail {
+    display: initial;
 }
 
 .order__submit {

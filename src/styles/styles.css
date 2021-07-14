@@ -28,6 +28,9 @@
 /* styles for order */
 @import 'pages/order.css';
 
+/* styles for order */
+@import 'pages/coming.css';
+
 /* styles for payment */
 @import 'pages/payment.css';
 

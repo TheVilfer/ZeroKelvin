@@ -1,5 +1,4 @@
 .order__main {
-    padding: 2rem 10vw;
     display: grid;
     place-items: center;
 }
@@ -8,8 +7,8 @@
     display: grid;
     grid-gap: 1rem;
     width: 100%;
-    min-width: 320px;
     max-width: 500px;
+    padding: 1rem;
 }
 
 .order__form__legend {
@@ -25,14 +24,18 @@
     display: grid;
     width: 100%;
     gap: 1rem;
-    padding: 30px;
+    padding: 3vw;
+    border: 1px solid gray;
 }
 
 .fieldset-detail {
     display: initial;
 }
 
+.fieldset-detail__textarea {
+    width: 100%;
+}
+
 .order__submit {
-    max-width: max-content;
     margin: auto;
 }

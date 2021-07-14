@@ -10,31 +10,38 @@ layout: main.njk
     <form class="order__form" autocomplete="on">
         <fieldset class="fieldset fieldset_individual">
             <legend class="order__form__legend">Личные данные</legend>
-            <input type="text" name="given-name" id="name" autocomplete="given-name" required placeholder="Имя">
-            <input type="text" name="family-name" id="surname" autocomplete="family-name" required
+            <input class="input" type="text" name="given-name" id="name" autocomplete="given-name" required
+                placeholder="Имя">
+            <input class="input" type="text" name="family-name" id="surname" autocomplete="family-name" required
                 placeholder="Фамилия">
-            <input type="tel" name="tel" id="phone" autocomplete="home tel" required placeholder="Номер телефона">
-            <input type="email" name="email" id="email" autocomplete="home email" required placeholder="Email адрес">
-            <input type="text" name="country" id="country" autocomplete="shipping country-name" required
+            <input class="input" type="tel" name="tel" id="phone" autocomplete="home tel" required
+                placeholder="Номер телефона">
+            <input class="input" type="email" name="email" id="email" autocomplete="home email" required
+                placeholder="Email адрес">
+            <input class="input" type="text" name="country" id="country" autocomplete="shipping country-name" required
                 placeholder="Страна">
-            <input type="text" name="state" id="state" autocomplete="shipping address-level1" required
+            <input class="input" type="text" name="state" id="state" autocomplete="shipping address-level1" required
                 placeholder="Регион/Область">
-            <input type="text" name="city" id="city" autocomplete="shipping address-level2" required
+            <input class="input" type="text" name="city" id="city" autocomplete="shipping address-level2" required
                 placeholder="Населённый пункт">
-            <input type="text" name="street" id="street" autocomplete="shipping address-line1" required
+            <input class="input" type="text" name="street" id="street" autocomplete="shipping address-line1" required
                 placeholder="Улица, дом">
-            <input type="text" name="housing" id="housing" autocomplete="shipping address-line3" placeholder="Корпус">
-            <input type="text" name="room" id="room" autocomplete="shipping address-line2" placeholder="Квартира">
-            <input type="text" name="postalcode" id="postalcode" autocomplete="shipping postal-code" required
-                placeholder="Почтовый индекс">
+            <input class="input" type="number" name="housing" id="housing" autocomplete="shipping address-line3"
+                placeholder="Корпус">
+            <input class="input" type="text" name="room" id="room" autocomplete="shipping address-line2"
+                placeholder="Квартира">
+            <input class="input" type="number" name="postalcode" id="postalcode" autocomplete="shipping postal-code"
+                required placeholder="Почтовый индекс">
         </fieldset>
         <fieldset class="fieldset fieldset-detail">
             <legend>Детали</legend>
             <label for="comment">Комментарий к заказу</label>
-            <textarea name="comment" id="comment" cols="15" rows="1"></textarea>
-            <label for="distribution">Хочу подписаться на Email рассылку</label>
+            <br>
+            <textarea cols="15" rows="1" class="fieldset-detail__textarea" name="comment" id="comment"></textarea>
+            <br>
             <input type="checkbox" name="distribution" id="distribution" value="yes">
+            <label for="distribution">Хочу подписаться на Email рассылку</label>
         </fieldset>
-        <button class="order__submit" type="submit">Оформить заказ</button>
+        <button class="order__submit button" type="submit">Оформить заказ</button>
     </form>
 </main>

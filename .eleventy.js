@@ -29,7 +29,6 @@ module.exports = (config) => {
     config.addPassthroughCopy('src/safari-pinned-tab.svg');
     config.addPassthroughCopy('src/site.webmanifest');
     config.addPassthroughCopy('src/robots.txt');
-    config.addPassthroughCopy('src/google1efe4cbc657fe41c.html');
 
 
 

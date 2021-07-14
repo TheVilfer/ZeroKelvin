@@ -1,5 +1,5 @@
 User-agent: *
+Allow: /
 Disallow: /cart/*
 Disallow: /order/*
 Disallow: /.netlify/*
-Allow: /

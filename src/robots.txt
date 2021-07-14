@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /cart/*
+
+User-agent: *
+Disallow: /order/*
+
+User-agent: *
+Disallow: /.netlify/*
+
+User-agent: *
+Allow: /

@@ -24,10 +24,16 @@
   font-weight: 500;
 }
 
-.main__category {
+/* .main__category {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 130px);
+  gap: 10px 10px;
+} */
+.main__category {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 150px;
   gap: 10px 10px;
 }
 
@@ -82,7 +88,13 @@
 
 @media screen and (max-width: 800px) {
   .category__title {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .category__title {
+    font-size: 0.7rem;
   }
 }
 
@@ -104,14 +116,14 @@
   background-image: url(/images/category/cards.jpg);
   background-size: cover;
   background-position: center center;
-  grid-area: span 2 / span 2;
+  grid-area: span 1 / span 1;
 }
 
 .category__boxs {
   background-image: url(/images/category/boxs.jpg);
   background-size: cover;
   background-position: center center;
-  grid-area: span 1 / span 1;
+  grid-area: span 2 / span 1;
 }
 
 .category__stocks {
@@ -121,13 +133,21 @@
   grid-area: span 1 / span 1;
 }
 
+.category__telescope {
+  background-image: url(/images/category/stocks.jpg);
+  background-size: cover;
+  background-position: center center;
+  grid-area: span 2 / span 1;
+}
+
 @media screen and (max-width: 800px) {
 
   .category__sticker,
   .category__bags,
   .category__cards,
   .category__boxs,
-  .category__stocks {
+  .category__stocks,
+  .category__telescope {
     grid-area: span 1 / span 1;
   }
 }
@@ -227,7 +247,7 @@
   align-content: center;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 800px) {
   .main__about {
     flex-direction: column;
   }
@@ -256,7 +276,7 @@
   margin-left: 2em;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 800px) {
   .about__image+.about__text {
     margin-top: 2em;
     margin-left: 0;

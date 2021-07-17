@@ -34,6 +34,11 @@ sliders:
         <article class="category__boxs category__block">
             <h3 class="category__title boxs_title"><a class="link--block" href="/catalog?filter=boxs">БОКСЫ</a></h3>
         </article>
+        <article class="category__telescope category__block">
+            <h3 class="category__title sticker_title"><a class="link--block"
+                    href="/catalog?filter=stickers">ТЕЛЕСКОПЫ</a>
+            </h3>
+        </article>
         <article class="category__stocks category__block">
             <h3 class="category__title stocks_title"><a class="link--block" href="/catalog?filter=pins">ЗНАЧКИ</a>
             </h3>
@@ -84,7 +89,7 @@ sliders:
             {% for item in collections.product %}
             {% for i in range(0, 10) %}
             <div class="popular-item cart__item swiper-slide" data-id="{{item.data.id}}">
-                <img class="item__image" src="/images/products/{{item.data.id}}.jpg" alt="">
+                <img class="item__image" loading="lazy" src="/images/products/{{item.data.id}}.jpg" alt="">
                 <span class="item__category cart__type">{{item.data.category}}</span>
                 <span class="item__name cart__name">{{item.data.title}}</span>
                 <span class="item__price cart__price">{{item.data.price}} руб</span>

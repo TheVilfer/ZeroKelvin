@@ -4,6 +4,7 @@ backend:
   squash_merges: true
 publish_mode: editorial_workflow
 media_folder: "src/images/uploads"
+public_folder: "/images/uploads"
 collections:
   - name: 'products' # Used in routes, e.g., /admin/collections/blog
     label: 'Products' # Used in the UI

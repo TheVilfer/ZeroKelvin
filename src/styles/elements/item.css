@@ -115,11 +115,20 @@
     text-decoration: none;
 }
 
-.link--block:before {
+.link--block:focus-visible {
+    outline: none;
+}
+
+.link--block::before {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     content: '';
+}
+
+.link--block:focus-visible::before {
+    outline: 5px solid deepskyblue;
+    outline-offset: -5px;
 }

@@ -1,4 +1,3 @@
-// fork code made by @stephencookdev. Thx <3
 const mongoUtil = require("mongodb")
 const MongoClient = require("mongodb").MongoClient;
 const md5 = require("blueimp-md5");

@@ -5,7 +5,7 @@
 
 .item__category {
     font-size: 0.8em;
-    opacity: 0.5;
+    color: #9e9e9e;
     display: block;
     width: 100%;
     margin: 5px 0;
@@ -34,6 +34,7 @@
     outline: none;
     white-space: nowrap;
     margin-top: 0.5rem;
+    color: black;
     transition: background-color 0.5s;
 }
 

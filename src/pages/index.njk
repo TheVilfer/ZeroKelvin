@@ -1,5 +1,5 @@
 ---
-title: Ноль Кельвин | НАУЧНЫЕ СТИКЕРЫ
+title: Главная страница
 permalink: index.html
 layout: main.njk
 sliders:
@@ -50,35 +50,26 @@ sliders:
 
     <div class="page__block page__collections swiper-container swiper-collections">
         <div class="swiper-wrapper">
-            <div href="" class="collections__card swiper-slide">
-                <div class="collections__card__name">Физика</div>
-                <div class="collections__card__icon icon__atom"></div>
-            </div>
 
-            <div href="" class="collections__card swiper-slide">
-                <div class="collections__card__name">Астрономия</div>
+            <article class="collections__card swiper-slide">
+                <a href="" class="collections__card__name link--block">Физика</a>
                 <div class="collections__card__icon icon__atom"></div>
-            </div>
+            </article>
 
-            <div href="" class="collections__card swiper-slide">
-                <div class="collections__card__name">Информатика</div>
+            <article class="collections__card swiper-slide">
+                <a href="" class="collections__card__name link--block">Космос</a>
                 <div class="collections__card__icon icon__atom"></div>
-            </div>
+            </article>
 
-            <div href="" class="collections__card swiper-slide">
-                <div class="collections__card__name">Биология</div>
+            <article href="" class="collections__card swiper-slide">
+                <a href="" class="collections__card__name link--block">Информатика</a>
                 <div class="collections__card__icon icon__atom"></div>
-            </div>
+            </article>
 
-            <div href="" class="collections__card swiper-slide">
-                <div class="collections__card__name">Биология</div>
+            <article class="collections__card swiper-slide">
+                <a href="" class="collections__card__name link--block">Биология</a>
                 <div class="collections__card__icon icon__atom"></div>
-            </div>
-
-            <div href="" class="collections__card swiper-slide">
-                <div class="collections__card__name">Биология</div>
-                <div class="collections__card__icon icon__atom"></div>
-            </div>
+            </article>
 
         </div>
     </div>
@@ -89,7 +80,8 @@ sliders:
             {% for item in collections.product %}
             {% for i in range(0, 10) %}
             <div class="popular-item cart__item swiper-slide" data-id="{{item.data.id}}">
-                <img class="item__image" loading="lazy" src="/images/products/{{item.data.id}}.jpg" alt="">
+                <img class="item__image" loading="lazy" src="/images/products/{{item.data.id}}.jpg"
+                    alt="{{item.data.title}}">
                 <span class="item__category cart__type">{{item.data.category}}</span>
                 <span class="item__name cart__name">{{item.data.title}}</span>
                 <span class="item__price cart__price">{{item.data.price}} руб</span>

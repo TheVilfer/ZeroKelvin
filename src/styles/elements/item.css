@@ -1,5 +1,6 @@
 .item__image {
     width: 100%;
+    aspect-ratio: 1/1;
 }
 
 .item__category {
@@ -99,6 +100,7 @@
     white-space: nowrap;
     margin-top: 0.5rem;
     transition: background-color 0.5s;
+    color: black;
 }
 
 .button:hover {

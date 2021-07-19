@@ -24,12 +24,6 @@
   font-weight: 500;
 }
 
-/* .main__category {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 130px);
-  gap: 10px 10px;
-} */
 .main__category {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -167,6 +161,7 @@
   background: #F5F5F5;
   border-radius: 7px;
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   flex-direction: column;

@@ -4,4 +4,7 @@
     display: grid;
     place-items: center;
     margin: auto;
+    min-height: 80vh;
+    text-align: center;
+    grid-template-rows: 1fr auto;
 }

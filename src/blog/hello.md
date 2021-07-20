@@ -5,4 +5,6 @@ permalink: /blog/hello/index.html
 ---
 # {{title}}
 
+
+
 ![Иллюстрация к проекту](/images/blog/)

@@ -33,7 +33,9 @@ collections:
     create: true # Allow users to create new documents in this collection
     slug: '{{slug}}' # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Link', name: 'permalink', widget: 'hidden', default: "/blog/{{slug}}/index.html" }
+      - { label: 'Заголовок', name: 'title', widget: 'string' }
+      - { label: "Тэги", name: "tags", widget: "select", multiple: true, min: 1, options: ["АСТРОНОМИЯ", "ЛИЧНОСТИ"], default: ["НАУКА"] }
+      - { label: "Обложка", name: "artwork", widget: "image", choose_url: true }
+      - { label: 'Ссылка на статью', name: 'permalink', widget: 'hidden', default: "/blog/{{slug}}/index.html" }
       - { label: "Layout", name: "layout", widget: "hidden", default: "template_main.njk" }
-      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Текст Статьи', name: 'body', widget: 'markdown' }

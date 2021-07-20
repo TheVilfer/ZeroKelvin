@@ -1,6 +1,7 @@
 ---
 title: Hello, world!
-layout: main.njk
+layout: template_main.njk
+permalink: /blog/hello/index.html
 ---
 # {{title}}
 

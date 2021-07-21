@@ -21,7 +21,8 @@ layout: main.njk
                 <img class="post__artwork" src="{{post.data.artwork}}" alt="">
             </picture>
             <p class="post__category">НАУКА</p>
-            <h2 class="post__title"><a class="link--block post__link" href="">{{post.data.title}}</a></h2>
+            <h2 class="post__title"><a class="link--block post__link" href="{{post.data.href}}">{{post.data.title}}</a>
+            </h2>
             <p class="post__description">{{post.data.decription}}</p>
         </article>
         {% endfor%}

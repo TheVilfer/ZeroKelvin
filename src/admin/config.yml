@@ -4,6 +4,7 @@ backend:
 publish_mode: editorial_workflow
 media_folder: "src/images/uploads"
 public_folder: "/images/uploads"
+logo_url: https://zerokelvin.ru/images/logo.svg
 collections:
   - name: 'products' # Used in routes, e.g., /admin/collections/blog
     label: 'Products' # Used in the UI
@@ -34,8 +35,11 @@ collections:
     slug: '{{slug}}' # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
       - { label: 'Заголовок', name: 'title', widget: 'string' }
-      - { label: "Тэги", name: "tags", widget: "select", multiple: true, min: 1, options: ["АСТРОНОМИЯ", "ЛИЧНОСТИ"], default: ["НАУКА"] }
-      - { label: "Обложка", name: "artwork", widget: "image", choose_url: true }
-      - { label: 'Ссылка на статью', name: 'permalink', widget: 'hidden', default: "/blog/{{slug}}/index.html" }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "template_main.njk" }
+      - { label: 'Описание поста', name: 'description', widget: 'text' }
+      - { label: "Очень короткий заголовок на английском (нужен для ссылки)", name: "short_title", widget: "string"}
+      - { label: "Тэги", name: "tags", widget: "list", add_to_top: true, min: 1, default: ["НАУКА"] }
+      - { label: "Обложка(.jpg)", name: "artwork", widget: "image", choose_url: true }
+      - { label: "Обложка(.webp)", name: "artwork_compressed", widget: "image", choose_url: true }
+      - { label: 'Ссылка на статью', name: 'permalink', widget: 'hidden', default: "/blog/{{short_title}}/index.html" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "post.njk" }
       - { label: 'Текст Статьи', name: 'body', widget: 'markdown' }

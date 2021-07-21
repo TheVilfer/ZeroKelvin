@@ -14,49 +14,16 @@ layout: main.njk
         <li class="blog__tag"><a class="link--block" href="">ИНФОРМАТИКА</a></li>
     </ul>
     <section class="blog__grid">
+        {% for post in collections.posts %}
         <article class="post">
             <picture>
-                <img class="post__artwork" src="/images/slider/2.jpg" alt="">
+                <source srcset="{{post.data.artwork_compressed}}" type="image/webp">
+                <img class="post__artwork" src="{{post.data.artwork}}" alt="">
             </picture>
             <p class="post__category">НАУКА</p>
-            <h2 class="post__title"><a class="link--block post__link" href="">Эля самая лучшая!</a></h2>
-            <p class="post__description">Это просто статья про то, что Эля просто самая лучшая и милая девочка!</p>
+            <h2 class="post__title"><a class="link--block post__link" href="">{{post.data.title}}</a></h2>
+            <p class="post__description">{{post.data.decription}}</p>
         </article>
-
-        <article class="post">
-            <picture>
-                <img class="post__artwork" src="/images/logo_1200x628.jpg" alt="">
-            </picture>
-            <p class="post__category">НАУКА</p>
-            <h2 class="post__title"><a class="link--block post__link" href="">Эля самая лучшая!</a></h2>
-            <p class="post__description">Это просто статья про то, что Эля просто самая лучшая и милая девочка!</p>
-        </article>
-
-        <article class="post">
-            <picture>
-                <img class="post__artwork" src="/images/any.jpg" alt="">
-            </picture>
-            <p class="post__category">НАУКА</p>
-            <h2 class="post__title"><a class="link--block post__link" href="">Эля самая лучшая!</a></h2>
-            <p class="post__description">Это просто статья про то, что Эля просто самая лучшая и милая девочка!</p>
-        </article>
-
-        <article class="post">
-            <picture>
-                <img class="post__artwork" src="/images/slider/2.jpg" alt="">
-            </picture>
-            <p class="post__category">НАУКА</p>
-            <h2 class="post__title"><a class="link--block post__link" href="">Эля самая лучшая!</a></h2>
-            <p class="post__description">Это просто статья про то, что Эля просто самая лучшая и милая девочка!</p>
-        </article>
-
-        <article class="post">
-            <picture>
-                <img class="post__artwork" src="/images/slider/2.jpg" alt="">
-            </picture>
-            <p class="post__category">НАУКА</p>
-            <h2 class="post__title"><a class="link--block post__link" href="">Эля самая лучшая!</a></h2>
-            <p class="post__description">Это просто статья про то, что Эля просто самая лучшая и милая девочка!</p>
-        </article>
+        {% endfor%}
     </section>
 </main>

@@ -1,0 +1,15 @@
+---
+layout: main.njk
+---
+<main class="page__post">
+    <section>
+        <header>
+            <picture>
+                <source srcset="{{artwork_compressed}}" type="image/webp">
+                <img src="{{artwork}}" alt="">
+            </picture>
+            <h1>{{title}}</h1>
+        </header>
+        {{ content | safe }}
+    </section>
+</main>

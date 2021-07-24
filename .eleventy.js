@@ -48,6 +48,10 @@ module.exports = (config) => {
         const cyrillicToTranslit = new CyrillicToTranslit();
         return `${ cyrillicToTranslit.transform(slug +"") }`;
     });
+    config.addFilter("translit", function (value) {
+        const cyrillicToTranslit = new CyrillicToTranslit();
+        return `${ cyrillicToTranslit.transform(value +"") }`;
+    });
     return {
         dir: {
             input: 'src',

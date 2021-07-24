@@ -4,7 +4,8 @@ backend:
 publish_mode: editorial_workflow
 media_folder: "src/images/uploads"
 public_folder: "/images/uploads"
-logo_url: https://zerokelvin.ru/images/logo.svg
+site_url: https://www.zerokelvin.ru/
+logo_url: https://www.zerokelvin.ru/images/logo.svg
 collections:
   - name: 'products' # Used in routes, e.g., /admin/collections/blog
     label: 'Products' # Used in the UI
@@ -36,7 +37,8 @@ collections:
     label: 'Блог' # Used in the UI
     folder: 'src/blog/' # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
-    slug: '{{fields.title}}'
+    slug: '{{year}}-{{month}}-{{day}}_{{fields.title}}'
+    preview_path: blog/{{slug}}
     fields: # The fields for each document, usually in front matter
       - { label: 'Заголовок', name: 'title', widget: 'string' }
       - { label: 'Описание поста', name: 'description', widget: 'text' }

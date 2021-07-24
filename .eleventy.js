@@ -1,3 +1,4 @@
+const CyrillicToTranslit = require("cyrillic-to-translit-js")
 module.exports = (config) => {
     config.addPassthroughCopy('src/favicon.ico');
     config.addPassthroughCopy('src/android-chrome-192x192.png');
@@ -43,6 +44,9 @@ module.exports = (config) => {
     config.setDataDeepMerge(true);
 
     config.addShortcode("year", () => `${new Date().getFullYear()}`);
+    config.addShortcode("translit", function (slug) {
+        return CyrillicToTranslit.CyrillicToTranslit().transform(slug);
+    });
     return {
         dir: {
             input: 'src',

@@ -41,6 +41,8 @@ module.exports = (config) => {
     config.addPassthroughCopy("src/functions");
     config.addPassthroughCopy("src/privacy");
     config.setDataDeepMerge(true);
+
+    config.addShortcode("year", () => `${new Date().getFullYear()}`);
     return {
         dir: {
             input: 'src',

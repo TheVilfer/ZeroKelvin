@@ -40,9 +40,9 @@ collections:
     fields: # The fields for each document, usually in front matter
       - { label: 'Заголовок', name: 'title', widget: 'string' }
       - { label: 'Описание поста', name: 'description', widget: 'text' }
-      - { label: "Тэги", name: "tags", widget: "list", add_to_top: true, min: 1, default: ["НАУКА"] }
+      - { label: "Тэги", name: "blog_tags", widget: "list", add_to_top: true, min: 1, default: ["НАУКА"] }
       - { label: "Обложка(.jpg)", name: "artwork", widget: "image", choose_url: true }
       - { label: "Обложка(.webp)", name: "artwork_compressed", widget: "image", choose_url: true }
-      - { label: 'Ссылка на статью', name: 'permalink', widget: 'hidden', default: "/blog/{{slug}}/index.html" }
+      - { label: 'Ссылка на статью', name: 'permalink', widget: 'hidden', default: "{{'/blog/{% year %}/{{slug}}/index.html'| url}}" }
       - { label: "Layout", name: "layout", widget: "hidden", default: "post.njk" }
       - { label: 'Текст Статьи', name: 'body', widget: 'markdown' }

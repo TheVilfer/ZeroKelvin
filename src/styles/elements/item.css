@@ -1,6 +1,8 @@
 .item__image {
     width: 100%;
     aspect-ratio: 1/1;
+    object-fit: contain;
+    background-color: black;
 }
 
 .item__category {

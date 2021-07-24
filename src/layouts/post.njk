@@ -2,14 +2,14 @@
 layout: main.njk
 ---
 <main class="page__post">
-    <header class="post__wrapper__header">
+    <header class="page__post__header">
         <picture>
             <source srcset="{{artwork_compressed}}" type="image/webp">
-            <img class="post__artwork" src="{{artwork}}" alt="">
+            <img class="page__post__artwork" src="{{artwork}}" alt="">
         </picture>
-        <h1 class="post__title">{{title}}</h1>
+        <h1 class="page__post__title">{{title}}</h1>
     </header>
-    <section class="post__text">
+    <section class="page__post__text">
         {{ content | safe }}
     </section>
 </main>

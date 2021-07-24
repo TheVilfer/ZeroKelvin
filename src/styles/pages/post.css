@@ -1,6 +1,19 @@
 .page__post {
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     min-width: 300px;
     margin: auto;
+}
+
+.page__post__artwork {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 3.4;
+}
+
+.page__post__title {
+    font-size: 2rem;
 }

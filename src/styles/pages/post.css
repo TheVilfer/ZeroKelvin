@@ -5,6 +5,13 @@
     margin: auto;
 }
 
+@media screen and (max-width: 800px) {
+    .page__post {
+        font-size: 1.1rem;
+        padding: 0 1vw;
+    }
+}
+
 .page__post__artwork {
     display: block;
     width: 100%;
@@ -15,5 +22,19 @@
 }
 
 .page__post__title {
-    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+    padding-top: 1rem;
+    text-align: left;
+}
+
+@media screen and (max-width: 800px) {
+    .page__post__title {
+        font-size: 1.7rem;
+    }
+}
+
+.page__post__text {
+    margin: 0;
+    padding: 0;
 }

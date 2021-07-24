@@ -44,6 +44,7 @@ module.exports = (config) => {
     config.setDataDeepMerge(true);
 
     config.addShortcode("year", () => `${new Date().getFullYear()}`);
+    config.addShortcode("youtube", (id) => `<iframe width="560" height="315" class="youtube" src="https://www.youtube.com/embed/${id}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`);
     config.addFilter("translit", function (value) {
         const cyrillicToTranslit = new CyrillicToTranslit();
         return `${ cyrillicToTranslit.transform(value +"") }`;

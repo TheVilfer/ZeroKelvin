@@ -36,13 +36,13 @@ collections:
     label: 'Блог' # Used in the UI
     folder: 'src/blog/' # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
-    slug: '{{fields.title}}'
+    slug: '{% translit fields.title %}'
     fields: # The fields for each document, usually in front matter
       - { label: 'Заголовок', name: 'title', widget: 'string' }
       - { label: 'Описание поста', name: 'description', widget: 'text' }
       - { label: "Тэги", name: "blog_tags", widget: "list", add_to_top: true, min: 1, default: ["НАУКА"] }
       - { label: "Обложка(.jpg)", name: "artwork", widget: "image", choose_url: true }
       - { label: "Обложка(.webp)", name: "artwork_compressed", widget: "image", choose_url: true }
-      - { label: 'Ссылка на статью', name: 'permalink', widget: 'hidden', default: '/blog/{% year %}/{{slug}}/index.html' }
+      - { label: 'Ссылка на статью', name: 'permalink', widget: 'hidden', default: '/blog/{% year %}/{% translit title %}/index.html' }
       - { label: "Layout", name: "layout", widget: "hidden", default: "post.njk" }
       - { label: 'Текст Статьи', name: 'body', widget: 'markdown' }

@@ -46,7 +46,7 @@ module.exports = (config) => {
     config.addShortcode("year", () => `${new Date().getFullYear()}`);
     config.addShortcode("translit", function (slug) {
         const cyrillicToTranslit = new CyrillicToTranslit();
-        return `${ cyrillicToTranslit.transform(slug) }`;
+        return `${ cyrillicToTranslit.transform(slug +"") }`;
     });
     return {
         dir: {

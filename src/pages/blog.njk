@@ -14,7 +14,7 @@ layout: main.njk
         <li class="blog__tag"><a class="link--block" href="">ИНФОРМАТИКА</a></li>
     </ul>
     <section class="blog__grid">
-        {% for post in collections.posts %}
+        {% for post in collections.posts | reverse %}
         <article class="post">
             <picture>
                 <source srcset="{{post.data.artwork_compressed}}" type="image/webp">

@@ -44,10 +44,6 @@ module.exports = (config) => {
     config.setDataDeepMerge(true);
 
     config.addShortcode("year", () => `${new Date().getFullYear()}`);
-    config.addShortcode("translit", function (slug) {
-        const cyrillicToTranslit = new CyrillicToTranslit();
-        return `${ cyrillicToTranslit.transform(slug +"") }`;
-    });
     config.addFilter("translit", function (value) {
         const cyrillicToTranslit = new CyrillicToTranslit();
         return `${ cyrillicToTranslit.transform(value +"") }`;

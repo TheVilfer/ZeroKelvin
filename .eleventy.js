@@ -1,4 +1,7 @@
 const CyrillicToTranslit = require("cyrillic-to-translit-js");
+const typesetPlugin = require('eleventy-plugin-typeset');
+const embedYouTube = require("eleventy-plugin-youtube-embed");
+
 module.exports = (config) => {
     config.addPassthroughCopy('src/favicon.ico');
     config.addPassthroughCopy('src/android-chrome-192x192.png');
@@ -44,10 +47,18 @@ module.exports = (config) => {
     config.setDataDeepMerge(true);
 
     config.addShortcode("year", () => `${new Date().getFullYear()}`);
-    config.addShortcode("youtube", (id) => `<iframe width="560" height="315" class="youtube" src="https://www.youtube.com/embed/${id}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`);
+    // config.addShortcode("youtube", (id) => `<iframe width="560" height="315" class="youtube" src="https://www.youtube.com/embed/${id}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`);
     config.addFilter("translit", function (value) {
         const cyrillicToTranslit = new CyrillicToTranslit();
         return `${ cyrillicToTranslit.transform(value +"") }`;
+    });
+
+    config.addPlugin(require("eleventy-plugin-emoji"));
+    config.addPlugin(typesetPlugin({
+        only: '.text--optimization',
+    }));
+    config.addPlugin(embedYouTube, {
+        embedClass: 'youtube'
     });
     return {
         dir: {

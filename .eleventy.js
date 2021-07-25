@@ -52,7 +52,14 @@ module.exports = (config) => {
         const cyrillicToTranslit = new CyrillicToTranslit();
         return `${ cyrillicToTranslit.transform(value +"") }`;
     });
-    config.addPlugin(embeds);
+    config.addPlugin(embeds, {
+        youtube: {
+            options: {
+                lite: true,
+                embedClass: 'youtube',
+            }
+        }
+    });
     config.addPlugin(require("eleventy-plugin-emoji"));
     config.addPlugin(typesetPlugin({
         only: '.text--optimization',

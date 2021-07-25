@@ -1,6 +1,6 @@
 const CyrillicToTranslit = require("cyrillic-to-translit-js");
 const typesetPlugin = require('eleventy-plugin-typeset');
-const embedYouTube = require("eleventy-plugin-youtube-embed");
+const embeds = require("eleventy-plugin-embed-everything");
 
 module.exports = (config) => {
     config.addPassthroughCopy('src/favicon.ico');
@@ -52,14 +52,12 @@ module.exports = (config) => {
         const cyrillicToTranslit = new CyrillicToTranslit();
         return `${ cyrillicToTranslit.transform(value +"") }`;
     });
-
+    config.addPlugin(embeds);
     config.addPlugin(require("eleventy-plugin-emoji"));
     config.addPlugin(typesetPlugin({
         only: '.text--optimization',
     }));
-    config.addPlugin(embedYouTube, {
-        embedClass: 'youtube'
-    });
+
     return {
         dir: {
             input: 'src',

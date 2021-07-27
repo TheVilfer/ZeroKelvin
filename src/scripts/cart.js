@@ -1,4 +1,5 @@
 let delivery = 0;
+let delivery_warning = "К сожалению мы не можем расчитать стоимость доставки для вас. Итоговая стоимость доставки будет озвучена нашем менеджером при звонке."
 let cart = {
     "products": {},
     "detail": {
@@ -153,7 +154,14 @@ const InitCart = async () => {
     EnableSubmit();
 };
 const DeliveryRender = async () => {
-    document.querySelector('.cart-delivey__price').innerHTML = delivery;
+    let NodeText = document.querySelector('.cart-delivey__price');
+    if (Number.isInteger(delivery)) {
+        delivery = delivery + ' руб'
+        NodeText.classList.remove("text--warning");
+    } else {
+        NodeText.classList.add("text--warning");
+    }
+    NodeText.innerHTML = delivery;
 }
 const ChooseDelivery = () => {
     local_shopper = 0;
@@ -179,7 +187,7 @@ const ChooseDelivery = () => {
         }
     }
     if ((local_telescope > 0) || (local_shopper > 2)) {
-        return "Мы хз сколько будет стоить доставка, поэтому звякнем тебе, когда ты бабки перечислишь";
+        return delivery_warning;
     }
     if (local_shopper > 0) {
         return 350;
@@ -190,7 +198,7 @@ const ChooseDelivery = () => {
     if (local_stickers > 0) {
         return 120;
     }
-    return "Мы хз сколько будет стоить доставка, поэтому звякнем тебе, когда ты бабки перечислишь";
+    return delivery_warning;
 
 }
 const EnableSubmit = async () => {

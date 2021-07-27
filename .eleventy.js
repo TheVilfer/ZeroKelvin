@@ -1,6 +1,7 @@
 const CyrillicToTranslit = require("cyrillic-to-translit-js");
 const typesetPlugin = require('eleventy-plugin-typeset');
 const embeds = require("eleventy-plugin-embed-everything");
+const tinyCSS = require('@sardine/eleventy-plugin-tinycss');
 
 module.exports = (config) => {
     config.addPassthroughCopy('src/favicon.ico');
@@ -64,6 +65,9 @@ module.exports = (config) => {
     config.addPlugin(typesetPlugin({
         only: '.text--optimization',
     }));
+    // config.addPlugin(tinyCSS, {
+    //     output: 'dist',
+    // });
 
     return {
         dir: {

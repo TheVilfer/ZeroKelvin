@@ -1,6 +1,8 @@
 .page__cart {
     width: 100%;
+    max-width: 800px;
     padding: 3rem 10vw;
+    margin: auto;
 }
 
 .cart {
@@ -16,6 +18,11 @@
         row-gap: 3rem;
     }
 
+}
+
+.cart__title {
+    text-align: center;
+    padding: 1rem;
 }
 
 .cart-element {
@@ -44,6 +51,8 @@
     max-height: 150px;
     object-fit: contain;
     grid-row: 5 span;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }
 
 .cart-element__price {

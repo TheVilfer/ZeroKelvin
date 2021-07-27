@@ -49,6 +49,7 @@
 }
 
 .logo--black {
+  display: inline;
   height: 100%;
   width: auto;
   max-height: 100px;

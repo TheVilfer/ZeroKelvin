@@ -63,7 +63,6 @@ module.exports = (config) => {
     config.addPlugin(typesetPlugin({
         only: '.text--optimization',
     }));
-
     return {
         dir: {
             input: 'src',

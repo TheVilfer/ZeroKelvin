@@ -18,6 +18,7 @@
     grid-auto-columns: max-content;
     column-gap: 1rem;
     padding-left: 4vw;
+    display: none;
 }
 
 .blog__tag {

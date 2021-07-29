@@ -86,3 +86,7 @@
 .fieldset-delivery {
     max-width: max-content;
 }
+
+.cart-total__price {
+    font-weight: bold;
+}

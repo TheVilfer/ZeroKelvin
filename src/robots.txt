@@ -3,3 +3,4 @@ Allow: /
 Disallow: /cart/*
 Disallow: /order/*
 Disallow: /.netlify/*
+Disallow: /privacy/*

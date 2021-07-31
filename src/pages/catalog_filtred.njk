@@ -1,0 +1,32 @@
+---
+pagination:
+  data: category
+  size: 1
+  alias: correct_category
+  addAllPagesToCollections: true
+permalink: /catalog/{{correct_category.eng}}/index.html
+layout: main.njk
+eleventyComputed:
+  title: "{{correct_category.ru}}"
+---
+
+<header class="page__header">
+  <img class="slide-image" src="/images/slider/1.jpg" />
+</header>
+<main class="page__main page__catalog">
+  {% for item in collections[ correct_category.eng ] %}
+  <div class="catalog-item cart__item" data-id="{{ item.data.id }}">
+    <img
+      class="item__image"
+      src="/images/products/{{ item.data.id }}.jpg"
+      alt=""
+    />
+    <span class="item__category cart__type">{{ item.data.category }}</span>
+    <span class="item__name cart__name">{{ item.data.title }}</span>
+    <span class="item__price cart__price">{{ item.data.price }} руб</span>
+    <button class="item__cart cart__add">Добавить в корзину</button>
+    <button class="item__favorite icon__favorite favorite__add"></button>
+  </div>
+  {% endfor %}
+</main>
+{% set title = collections[correct_category][0].data.category%}

@@ -1,15 +1,17 @@
 ---
 layout: main.njk
 ---
+
 <main class="page__post">
-    <header class="page__post__header">
-        <picture>
-            <source srcset="{{artwork_compressed}}" type="image/webp">
-            <img class="page__post__artwork" src="{{artwork}}" alt="">
-        </picture>
-        <h1 class="page__post__title">{{title}}</h1>
-    </header>
-    <section class="page__post__text text text--optimization">
-        {{ content | safe }}
-    </section>
+  <header class="page__post__header">
+    <picture>
+      <source srcset="{{artwork_compressed}}" type="image/webp" />
+      <img class="page__post__artwork" src="{{ artwork }}" alt="" />
+    </picture>
+    <h1 class="page__post__title">{{ title }}</h1>
+  </header>
+  <section class="page__post__text text text--optimization">
+    {{ content | safe }}
+  </section>
+  {% readerBar "8px", "black", "orange" %}
 </main>

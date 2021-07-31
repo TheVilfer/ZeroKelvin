@@ -25,6 +25,7 @@
     "eleventy-plugin-embed-everything": "^1.13.2",
     "eleventy-plugin-emoji": "^1.1.0",
     "eleventy-plugin-img2picture": "^0.0.7",
+    "eleventy-plugin-reader-bar": "^0.2.0",
     "eleventy-plugin-typeset": "github:liamfiddler/eleventy-plugin-typeset",
     "glob-parent": "^6.0.1",
     "indent-string": "^5.0.0",

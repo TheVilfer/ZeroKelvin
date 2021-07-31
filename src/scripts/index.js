@@ -1,4 +1,4 @@
-const mySwiper = new Swiper('.swiper-banner', {
+const mySwiper = new Swiper(".swiper-banner", {
   speed: 400,
   spaceBetween: 100,
   loop: true,
@@ -7,15 +7,15 @@ const mySwiper = new Swiper('.swiper-banner', {
   },
 });
 
-const collectionsSwiper = new Swiper('.swiper-collections', {
-  slidesPerView: 'auto',
-  spaceBetween: 30,
-  centeredSlides: true,
-  loop: true,
-});
+// const collectionsSwiper = new Swiper('.swiper-collections', {
+//   slidesPerView: 'auto',
+//   spaceBetween: 30,
+//   centeredSlides: true,
+//   loop: true,
+// });
 
-const catalogSwiper = new Swiper('.swiper-popular', {
-  slidesPerView: 'auto',
+const catalogSwiper = new Swiper(".swiper-popular", {
+  slidesPerView: "auto",
   spaceBetween: 30,
   centeredSlides: true,
   loop: true,
@@ -26,8 +26,18 @@ const catalogSwiper = new Swiper('.swiper-popular', {
     onlyInViewport: true,
   },
   navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
+
+var swiper = new Swiper(".product__slider", {
+  slidesPerView: 1,
+  spaceBetween: 30,
+  loop: true,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
   },
 });
 

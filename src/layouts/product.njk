@@ -1,7 +1,49 @@
 ---
 layout: main.njk
 ---
-<main>
-<h1>{{title}}</h1>
-<p>{{price}}</p>
+
+<main class="page--product">
+  <div class="swiper-container product__slider">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <picture>
+          <img src="/images/products/{{ id }}.jpg" alt="{{ title }}" />
+        </picture>
+      </div>
+      <div class="swiper-slide">
+        <picture>
+          <img src="/images/products/{{ id }}.jpg" alt="" />
+        </picture>
+      </div>
+      <div class="swiper-slide">
+        <picture>
+          <img src="/images/products/{{ id }}.jpg" alt="" />
+        </picture>
+      </div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+  <section class="product__description cart__item" data-id="{{ id }}">
+    <span class="item__category cart__type">{{ category }}</span>
+    <span class="item__name cart__name">
+      {{ title }}
+    </span>
+    <img
+      class="item__status"
+      src="/images/icons/battery-full.svg"
+      alt="Много"
+      data-tippy-content="Много"
+    />
+    <span class="item__price cart__price">{{ price }} руб.</span>
+    <button class="item__cart cart__add">Добавить в корзину</button>
+    <section class="product__details">
+      {{ content | safe }}
+    </section>
+  </section>
 </main>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script>
+  tippy("[data-tippy-content]");
+</script>

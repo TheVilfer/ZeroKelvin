@@ -1,53 +1,56 @@
 /* Fonts */
-@import '/fonts/fonts.css';
+@import "/fonts/fonts.css";
 
 /* Normalize css + box sizing */
-@import 'normalize.css';
+@import "normalize.css";
 
 /* global styles and variables */
-@import 'global.css';
+@import "global.css";
 
 /* styles for header */
-@import 'nav.css';
+@import "nav.css";
 
 /* styles for swiper */
-@import 'slider/swiper-bundle.min.css';
+@import "slider/swiper-bundle.min.css";
 
 /* addon for swiper */
-@import 'modif-swiper.css';
+@import "modif-swiper.css";
 
 /* styles for index page */
-@import 'pages/index.css';
+@import "pages/index.css";
 
 /* styles for catalog page */
-@import 'pages/catalog.css';
+@import "pages/catalog.css";
 
 /* styles for cart */
-@import 'pages/cart.css';
+@import "pages/cart.css";
 
 /* styles for order */
-@import 'pages/order.css';
+@import "pages/order.css";
 
-/* styles for order */
-@import 'pages/coming.css';
+/* styles for coming */
+@import "pages/coming.css";
 
 /* styles for blog */
-@import 'pages/blog.css';
+@import "pages/blog.css";
 
 /* styles for 404 */
-@import 'pages/404.css';
+@import "pages/404.css";
+
+/* styles for product */
+@import "pages/product.css";
 
 /* styles for post */
-@import 'pages/post.css';
+@import "pages/post.css";
 
 /* styles for payment */
-@import 'pages/payment.css';
+@import "pages/payment.css";
 
 /* styles for footer */
-@import 'footer.css';
+@import "footer.css";
 
 /* styles for page information */
-@import 'pages/page-information.css';
+@import "pages/page-information.css";
 
 /* styles for item */
-@import 'elements/item.css';
+@import "elements/item.css";

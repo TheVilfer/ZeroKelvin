@@ -63,7 +63,7 @@ sliders:
     </article>
   </section>
 
-  <h2 class="main__title" style="display: none">Коллекции</h2>
+  <!-- <h2 class="main__title">Коллекции</h2>
 
   <div
     class="page__block page__collections swiper-container swiper-collections"
@@ -89,7 +89,7 @@ sliders:
         <div class="collections__card__icon icon__atom"></div>
       </article>
     </div>
-  </div>
+  </div> -->
 
   <h2 class="main__title">Популярное</h2>
   <div class="page__block page__popular swiper-container swiper-popular">
@@ -99,17 +99,25 @@ sliders:
         class="popular-item cart__item swiper-slide"
         data-id="{{ item.data.id }}"
       >
-        <img
-          class="item__image"
-          loading="lazy"
-          src="/images/products/{{ item.data.id }}.jpg"
-          alt="{{ item.data.title }}"
-        />
-        <span class="item__category cart__type">{{ item.data.category }}</span>
-        <span class="item__name cart__name">{{ item.data.title }}</span>
-        <span class="item__price cart__price">{{ item.data.price }} руб</span>
+        <div class="item__link-zone">
+          <img
+            class="item__image"
+            loading="lazy"
+            src="/images/products/{{ item.data.id }}.jpg"
+            alt="{{ item.data.title }}"
+          />
+          <span class="item__category cart__type">
+            {{ item.data.category }}
+          </span>
+          <span class="item__name cart__name">
+            <a class="link--block" href="{{ item.url }}">
+              {{ item.data.title }}
+            </a>
+          </span>
+          <span class="item__price cart__price">{{ item.data.price }} руб</span>
+          <button class="item__favorite icon__favorite favorite__add"></button>
+        </div>
         <button class="item__cart cart__add">Добавить в корзину</button>
-        <button class="item__favorite icon__favorite favorite__add"></button>
       </div>
       {% endfor %} {% endfor %}
     </div>

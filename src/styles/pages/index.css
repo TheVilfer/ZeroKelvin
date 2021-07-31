@@ -117,7 +117,7 @@
   background-image: url(/images/category/boxs.jpg);
   background-size: cover;
   background-position: center center;
-  grid-area: span 2 / span 1;
+  grid-area: span 1 / span 1;
 }
 
 .category__stocks {
@@ -128,7 +128,19 @@
 }
 
 .category__telescope {
-  background-image: url(/images/category/stocks.jpg);
+  background-image: url(/images/category/telescope.jpg);
+  background-size: cover;
+  background-position: center 24%;
+  grid-area: span 1 / span 1;
+}
+.category__microscope {
+  background-image: url(/images/category/microscope.jpg);
+  background-size: cover;
+  background-position: center center;
+  grid-area: span 1 / span 1;
+}
+.category__sales {
+  background-image: url(/images/category/sales.jpg);
   background-size: cover;
   background-position: center center;
   grid-area: span 1 / span 1;

@@ -131,11 +131,10 @@
   background-image: url(/images/category/stocks.jpg);
   background-size: cover;
   background-position: center center;
-  grid-area: span 2 / span 1;
+  grid-area: span 1 / span 1;
 }
 
 @media screen and (max-width: 800px) {
-
   .category__sticker,
   .category__bags,
   .category__cards,
@@ -158,7 +157,7 @@
   height: 100%;
   max-height: 300px;
   min-height: 300px;
-  background: #F5F5F5;
+  background: #f5f5f5;
   border-radius: 7px;
   display: flex;
   position: relative;
@@ -185,7 +184,7 @@
   background-repeat: no-repeat;
 }
 
-.collections__card__name+.collections__card__icon {
+.collections__card__name + .collections__card__icon {
   margin-top: 50px;
 }
 
@@ -214,7 +213,7 @@
   color: white;
 }
 
-.main__production>video {
+.main__production > video {
   object-fit: cover;
   width: 100%;
   height: 100%;
@@ -264,15 +263,15 @@
   height: auto;
   align-self: center;
   justify-self: start;
-  font-size: 1.1em
+  font-size: 1.1em;
 }
 
-.about__image+.about__text {
+.about__image + .about__text {
   margin-left: 2em;
 }
 
 @media screen and (max-width: 800px) {
-  .about__image+.about__text {
+  .about__image + .about__text {
     margin-top: 2em;
     margin-left: 0;
     text-align: center;

@@ -14,8 +14,9 @@ layout: main.njk
         alt=""
       />
       <span class="item__category cart__type">{{ item.data.category }}</span>
+      <a class="link--block" href="{{ item.url }}"></a>
       <span class="item__name cart__name">
-        <a class="link--block" href="{{ item.url }}">{{ item.data.title }}</a>
+        {{ item.data.title }}
       </span>
       <span class="item__price cart__price">{{ item.data.price }} руб</span>
       <button class="item__favorite icon__favorite favorite__add"></button>

@@ -3,67 +3,72 @@ title: Успешная покупка
 permalink: /success/
 layout: main.njk
 ---
+
 <main class="payment__page">
-    <header>
-        <h1 class="payment__title">{{title}}</h1>
-    </header>
-    <section class="payment_detail">
-        <article>
-            <video autoplay loop muted playsinline id="product-icon">
-                <source src="/media/product.webm" type="video/webm">
-                <source src="/media/product.mp4" type="video/mp4">
-            </video>
-            <h2 class="payment__subtitle">Заказ #<span id="order_number">2345</span> успешно оплачен</h2>
-            <p class="payment__text">
-                Совсем скоро с вами свяжется наш менеджер для подтверждения заказа!
-            </p>
-            <p class="payment__text payment__text-thanks">
-                Спасибо за покупку!
-            </p>
-            <p class="payment__text">
-                Хорошего дня 💫
-            </p>
-        </article>
-    </section>
+  <header>
+    <h1 class="payment__title">{{ title }}</h1>
+  </header>
+  <section class="payment_detail">
+    <article>
+      <video autoplay loop muted playsinline id="product-icon">
+        <source src="/media/product.webm" type="video/webm" />
+        <source src="/media/product.mp4" type="video/mp4" />
+      </video>
+      <h2 class="payment__subtitle">
+        Заказ #<span id="order_number">2345</span> успешно оплачен
+      </h2>
+      <p class="payment__text">
+        Совсем скоро с вами свяжется наш менеджер для подтверждения заказа!
+      </p>
+      <p class="payment__text payment__text-thanks">Спасибо за покупку!</p>
+      <p class="payment__text">Хорошего дня 💫</p>
+    </article>
+  </section>
 </main>
 <script src="/scripts/confetti.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-        var count = 200;
-        var defaults = {
-            origin: {
-                y: 0.7
-            }
-        };
+  document.addEventListener("DOMContentLoaded", async () => {
+    var count = 200;
+    var defaults = {
+      origin: {
+        y: 0.7,
+      },
+    };
 
-        function fire(particleRatio, opts) {
-            confetti(Object.assign({}, defaults, opts, {
-                particleCount: Math.floor(count * particleRatio)
-            }));
-        }
+    function fire(particleRatio, opts) {
+      confetti(
+        Object.assign({}, defaults, opts, {
+          particleCount: Math.floor(count * particleRatio),
+        })
+      );
+    }
 
-        fire(0.25, {
-            spread: 26,
-            startVelocity: 55,
-        });
-        fire(0.2, {
-            spread: 60,
-        });
-        fire(0.35, {
-            spread: 100,
-            decay: 0.91,
-            scalar: 0.8
-        });
-        fire(0.1, {
-            spread: 120,
-            startVelocity: 25,
-            decay: 0.92,
-            scalar: 1.2
-        });
-        fire(0.1, {
-            spread: 120,
-            startVelocity: 45,
-        });
-        document.getElementById("order_number").innerHTML = new URL(location.href).searchParams.get("InvId")
+    fire(0.25, {
+      spread: 26,
+      startVelocity: 55,
     });
+    fire(0.2, {
+      spread: 60,
+    });
+    fire(0.35, {
+      spread: 100,
+      decay: 0.91,
+      scalar: 0.8,
+    });
+    fire(0.1, {
+      spread: 120,
+      startVelocity: 25,
+      decay: 0.92,
+      scalar: 1.2,
+    });
+    fire(0.1, {
+      spread: 120,
+      startVelocity: 45,
+    });
+    document.getElementById("order_number").innerHTML = new URL(
+      location.href
+    ).searchParams.get("InvId");
+  });
+  cart.products = null;
+  setLocalStorage("cart", cart);
 </script>

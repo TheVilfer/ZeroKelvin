@@ -3,122 +3,138 @@ title: Главная страница
 permalink: index.html
 layout: main.njk
 sliders:
-- 1
-- 5
+  - 1
 ---
+
 <header>
-    <div class="page__block swiper-container swiper-banner">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <img class="slide-image" src="images/slider/1.jpg">
-            </div>
-            <div class="swiper-slide">Slide 2</div>
-        </div>
-        <div class="swiper-pagination"></div>
+  <div class="page__block swiper-container swiper-banner">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img class="slide-image" src="images/slider/1.jpg" />
+      </div>
+      <div class="swiper-slide">Slide 2</div>
     </div>
+    <div class="swiper-pagination"></div>
+  </div>
 </header>
 <main class="page__main">
-    <h2 class="main__title">Категории</h2>
-    <section class="page__block main__category">
-        <article class="category__sticker category__block">
-            <h3 class="category__title sticker_title"><a class="link--block" href="/catalog?filter=stickers">СТИКЕРЫ</a>
-            </h3>
-        </article>
-        <article class="category__bags category__block">
-            <h3 class="category__title bags_title"><a class="link--block" href="/catalog?filter=bags">ШОППЕРЫ</a></h3>
-        </article>
-        <article class="category__cards category__block">
-            <h3 class="category__title cards_title"><a class="link--block" href="/catalog?filter=cards">ОТКРЫТКИ</a>
-            </h3>
-        </article>
-        <article class="category__boxs category__block">
-            <h3 class="category__title boxs_title"><a class="link--block" href="/catalog?filter=boxs">БОКСЫ</a></h3>
-        </article>
-        <article class="category__telescope category__block">
-            <h3 class="category__title sticker_title"><a class="link--block"
-                    href="/catalog?filter=stickers">МИКРОСКОПЫ</a>
-            </h3>
-        </article>
-        <article class="category__stocks category__block">
-            <h3 class="category__title stocks_title"><a class="link--block" href="/catalog?filter=pins">ЗНАЧКИ</a>
-            </h3>
-        </article>
-        <article class="category__bags category__block">
-            <h3 class="category__title bags_title"><a class="link--block" href="/catalog?filter=bags">АКЦИИ</a></h3>
-        </article>
-        <article class="category__sticker category__block">
-            <h3 class="category__title sticker_title"><a class="link--block"
-                    href="/catalog?filter=stickers">ТЕЛЕСКОПЫ</a>
-            </h3>
-        </article>
-    </section>
+  <h2 class="main__title">Категории</h2>
+  <section class="page__block main__category">
+    <article class="category__sticker category__block">
+      <h3 class="category__title sticker_title">
+        <a class="link--block" href="/catalog/stickers/">СТИКЕРЫ</a>
+      </h3>
+    </article>
+    <article class="category__bags category__block">
+      <h3 class="category__title bags_title">
+        <a class="link--block" href="/catalog/shopper/">ШОППЕРЫ</a>
+      </h3>
+    </article>
+    <article class="category__cards category__block">
+      <h3 class="category__title cards_title">
+        <a class="link--block" href="/catalog?filter=cards">ОТКРЫТКИ</a>
+      </h3>
+    </article>
+    <article class="category__boxs category__block">
+      <h3 class="category__title boxs_title">
+        <a class="link--block" href="/catalog?filter=boxs">БОКСЫ</a>
+      </h3>
+    </article>
+    <article class="category__telescope category__block">
+      <h3 class="category__title sticker_title">
+        <a class="link--block" href="/catalog?filter=stickers">МИКРОСКОПЫ</a>
+      </h3>
+    </article>
+    <article class="category__stocks category__block">
+      <h3 class="category__title stocks_title">
+        <a class="link--block" href="/catalog/pins/">ЗНАЧКИ</a>
+      </h3>
+    </article>
+    <article class="category__bags category__block">
+      <h3 class="category__title bags_title">
+        <a class="link--block" href="/catalog?filter=bags">АКЦИИ</a>
+      </h3>
+    </article>
+    <article class="category__sticker category__block">
+      <h3 class="category__title sticker_title">
+        <a class="link--block" href="/catalog?filter=stickers">ТЕЛЕСКОПЫ</a>
+      </h3>
+    </article>
+  </section>
 
+  <h2 class="main__title">Коллекции</h2>
 
-    <h2 class="main__title">Коллекции</h2>
+  <div
+    class="page__block page__collections swiper-container swiper-collections"
+  >
+    <div class="swiper-wrapper">
+      <article class="collections__card swiper-slide">
+        <a href="" class="collections__card__name link--block">Физика</a>
+        <div class="collections__card__icon icon__atom"></div>
+      </article>
 
-    <div class="page__block page__collections swiper-container swiper-collections">
-        <div class="swiper-wrapper">
+      <article class="collections__card swiper-slide">
+        <a href="" class="collections__card__name link--block">Космос</a>
+        <div class="collections__card__icon icon__atom"></div>
+      </article>
 
-            <article class="collections__card swiper-slide">
-                <a href="" class="collections__card__name link--block">Физика</a>
-                <div class="collections__card__icon icon__atom"></div>
-            </article>
+      <article href="" class="collections__card swiper-slide">
+        <a href="" class="collections__card__name link--block">Информатика</a>
+        <div class="collections__card__icon icon__atom"></div>
+      </article>
 
-            <article class="collections__card swiper-slide">
-                <a href="" class="collections__card__name link--block">Космос</a>
-                <div class="collections__card__icon icon__atom"></div>
-            </article>
-
-            <article href="" class="collections__card swiper-slide">
-                <a href="" class="collections__card__name link--block">Информатика</a>
-                <div class="collections__card__icon icon__atom"></div>
-            </article>
-
-            <article class="collections__card swiper-slide">
-                <a href="" class="collections__card__name link--block">Биология</a>
-                <div class="collections__card__icon icon__atom"></div>
-            </article>
-
-        </div>
+      <article class="collections__card swiper-slide">
+        <a href="" class="collections__card__name link--block">Биология</a>
+        <div class="collections__card__icon icon__atom"></div>
+      </article>
     </div>
+  </div>
 
-    <h2 class="main__title">Популярное</h2>
-    <div class="page__block page__popular swiper-container swiper-popular">
-        <div class="swiper-wrapper">
-            {% for item in collections.product %}
-            {% for i in range(0, 10) %}
-            <div class="popular-item cart__item swiper-slide" data-id="{{item.data.id}}">
-                <img class="item__image" loading="lazy" src="/images/products/{{item.data.id}}.jpg"
-                    alt="{{item.data.title}}">
-                <span class="item__category cart__type">{{item.data.category}}</span>
-                <span class="item__name cart__name">{{item.data.title}}</span>
-                <span class="item__price cart__price">{{item.data.price}} руб</span>
-                <button class="item__cart cart__add">Добавить в корзину</button>
-                <button class="item__favorite icon__favorite favorite__add"></button>
-            </div>
-            {% endfor %}
-            {% endfor %}
-        </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+  <h2 class="main__title">Популярное</h2>
+  <div class="page__block page__popular swiper-container swiper-popular">
+    <div class="swiper-wrapper">
+      {% for item in collections.product %} {% for i in range(0, 10) %}
+      <div
+        class="popular-item cart__item swiper-slide"
+        data-id="{{ item.data.id }}"
+      >
+        <img
+          class="item__image"
+          loading="lazy"
+          src="/images/products/{{ item.data.id }}.jpg"
+          alt="{{ item.data.title }}"
+        />
+        <span class="item__category cart__type">{{ item.data.category }}</span>
+        <span class="item__name cart__name">{{ item.data.title }}</span>
+        <span class="item__price cart__price">{{ item.data.price }} руб</span>
+        <button class="item__cart cart__add">Добавить в корзину</button>
+        <button class="item__favorite icon__favorite favorite__add"></button>
+      </div>
+      {% endfor %} {% endfor %}
     </div>
-    <div class="page__block main__production">
-        <video autoplay loop muted playsinline id="bgvid">
-            <source src="/media/production.webm" type="video/webm">
-            <source src="/media/production.mp4" type="video/mp4">
-        </video>
-        <div class="production__title text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae rem quam
-            esse, dolore cum voluptatem laborum impedit illo ex fugit cumque, illum dolor veniam aspernatur quod iste.
-            Perferendis, molestiae beatae?</div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+  <div class="page__block main__production">
+    <video autoplay loop muted playsinline id="bgvid">
+      <source src="/media/production.webm" type="video/webm" />
+      <source src="/media/production.mp4" type="video/mp4" />
+    </video>
+    <div class="production__title text">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae rem quam
+      esse, dolore cum voluptatem laborum impedit illo ex fugit cumque, illum
+      dolor veniam aspernatur quod iste. Perferendis, molestiae beatae?
     </div>
-    <div class="page__block main__about">
-        <img src="/images/any.jpg" alt="" class="about__image">
-        <div class="about__text text text--optimization">
-            "Наука — это атмосфера. Наука — это увлечённые люди. Я искренне хочу, чтобы в нашей жизни было больше
-            интереса к науке. Через научный мерч вы можете показать свой интерес и создать научную атмосферу...".
-            <p>
-                <a href="https://www.instagram.com/any.physics">@any.physics</a>
-            </p>
-        </div>
+  </div>
+  <div class="page__block main__about">
+    <img src="/images/any.jpg" alt="" class="about__image" />
+    <div class="about__text text text--optimization">
+      "Наука — это атмосфера. Наука — это увлечённые люди. Я искренне хочу,
+      чтобы в нашей жизни было больше интереса к науке. Через научный мерч вы
+      можете показать свой интерес и создать научную атмосферу...".
+      <p>
+        <a href="https://www.instagram.com/any.physics">@any.physics</a>
+      </p>
     </div>
+  </div>
 </main>

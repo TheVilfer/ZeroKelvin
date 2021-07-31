@@ -148,6 +148,7 @@
 .page__collections {
   padding: 0 0;
   margin: 0;
+  display: none;
 }
 
 .collections__card {

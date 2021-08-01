@@ -253,7 +253,12 @@ const InitOrder = async () => {
     document.querySelector(".order__submit").innerHTML =
       "Всего несколько секунд...";
     let userData = await CollectUserData(new FormData(form));
-    let link = await GeneratePaymentLink(userData);
+    let link = "";
+    try {
+      link = await GeneratePaymentLink(userData);
+    } catch (error) {
+      link = await GeneratePaymentLink(userData);
+    }
     link = link["link"];
     link = link + "&Email=" + userData.email;
     console.log(userData);

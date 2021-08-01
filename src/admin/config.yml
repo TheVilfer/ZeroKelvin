@@ -7,44 +7,80 @@ public_folder: "/images/uploads"
 site_url: https://www.zerokelvin.ru/
 logo_url: https://www.zerokelvin.ru/images/logo.svg
 collections:
-  - name: 'products' # Used in routes, e.g., /admin/collections/blog
-    label: 'Products' # Used in the UI
-    folder: 'src/products' # The path to the folder where the documents are stored
+  - name: "products" # Used in routes, e.g., /admin/collections/blog
+    label: "Products" # Used in the UI
+    folder: "src/products" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     nested:
       depth: 100 # max depth to show in the collection tree
-      summary: '{{title}}' # optional summary for a tree node, defaults to the inferred title field
-    slug: '{{slug}}' # Filename template, e.g., YYYY-MM-DD-title.md
+      summary: "{{title}}" # optional summary for a tree node, defaults to the inferred title field
+    slug: "{{title}}" # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Price', name: 'price', widget: 'string' }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "product.njk" }
-      - { label: 'Image', name: 'img', widget: 'string' }
-      - { label: 'Tags', name: 'tags', widget: 'list', required: true}
-      - { label: 'Body', name: 'body', widget: 'markdown' }
-    meta: { path: { widget: string, label: 'Path', index_file: 'index' } }
-  - name: 'informations' # Used in routes, e.g., /admin/collections/blog
-    label: 'Странички с информацией' # Used in the UI
-    folder: 'src/pages/information/' # The path to the folder where the documents are stored
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Price", name: "price", widget: "string" }
+      - { label: "Id", name: "id", widget: "string" }
+      - { label: "Tags", name: "tags", widget: "list", required: true }
+      - { label: "Body", name: "body", widget: "markdown" }
+    meta: { path: { widget: string, label: "Path", index_file: "index" } }
+  - name: "informations" # Used in routes, e.g., /admin/collections/blog
+    label: "Странички с информацией" # Used in the UI
+    folder: "src/pages/information/" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
-    slug: '{{slug}}' # Filename template, e.g., YYYY-MM-DD-title.md
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Link', name: 'permalink', widget: 'string', default: "/example/" }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "template_main.njk" }
-      - { label: 'Body', name: 'body', widget: 'markdown' }
-  - name: 'blog' # Used in routes, e.g., /admin/collections/blog
-    label: 'Блог' # Used in the UI
-    folder: 'src/blog/' # The path to the folder where the documents are stored
+      - { label: "Title", name: "title", widget: "string" }
+      - {
+          label: "Link",
+          name: "permalink",
+          widget: "string",
+          default: "/example/",
+        }
+      - {
+          label: "Layout",
+          name: "layout",
+          widget: "hidden",
+          default: "template_main.njk",
+        }
+      - { label: "Body", name: "body", widget: "markdown" }
+  - name: "blog" # Used in routes, e.g., /admin/collections/blog
+    label: "Блог" # Used in the UI
+    folder: "src/blog/" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
-    slug: '{{year}}-{{month}}-{{day}}_{{fields.title}}'
+    slug: "{{year}}-{{month}}-{{day}}_{{fields.title}}"
     preview_path: /blog/
     fields: # The fields for each document, usually in front matter
-      - { label: 'Заголовок', name: 'title', widget: 'string' }
-      - { label: 'Описание поста', name: 'description', widget: 'text' }
-      - { label: "Тэги", name: "blog_tags", widget: "list", add_to_top: true, min: 1, default: ["НАУКА"] }
-      - { label: "Обложка(.jpg)", name: "artwork", widget: "image", choose_url: true }
-      - { label: "Обложка(.webp)", name: "artwork_compressed", widget: "image", choose_url: true }
-      - { label: 'Ссылка на статью', name: 'permalink', widget: 'hidden', default: '/blog/{% year %}/{{ title | translit }}/index.html' }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "post.njk" }
-      - { label: 'Текст Статьи', name: 'body', widget: 'markdown' }
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Описание поста", name: "description", widget: "text" }
+      - {
+          label: "Тэги",
+          name: "blog_tags",
+          widget: "list",
+          add_to_top: true,
+          min: 1,
+          default: ["НАУКА"],
+        }
+      - {
+          label: "Обложка(.jpg)",
+          name: "artwork",
+          widget: "image",
+          choose_url: true,
+        }
+      - {
+          label: "Обложка(.webp)",
+          name: "artwork_compressed",
+          widget: "image",
+          choose_url: true,
+        }
+      - {
+          label: "Ссылка на статью",
+          name: "permalink",
+          widget: "hidden",
+          default: "/blog/{% year %}/{{ title | translit }}/index.html",
+        }
+      - {
+          label: "Layout",
+          name: "layout",
+          widget: "hidden",
+          default: "post.njk",
+        }
+      - { label: "Текст Статьи", name: "body", widget: "markdown" }

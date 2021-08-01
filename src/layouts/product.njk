@@ -6,9 +6,12 @@ layout: main.njk
   <div class="swiper-container product__slider">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <picture>
-          <img src="/images/products/{{ id }}.jpg" alt="{{ title }}" />
-        </picture>
+        <img
+          class="product__img"
+          src="/images/products/{{ id }}.jpg"
+          data-original="/images/products/{{ id }}.jpg"
+          alt="{{ title }}"
+        />
       </div>
       <div class="swiper-slide">
         <picture>

@@ -1,41 +1,37 @@
 .order__main {
-    display: grid;
-    place-items: center;
+  display: grid;
+  place-items: center;
 }
 
 .order__form {
-    display: grid;
-    grid-gap: 1rem;
-    width: 100%;
-    max-width: 500px;
-    padding: 1rem;
-}
-
-.order__form__legend {
-    text-align: center;
+  display: grid;
+  grid-gap: 1rem;
+  width: 100%;
+  max-width: 500px;
+  padding: 1rem;
 }
 
 .order__header {
-    text-align: left;
-    padding-bottom: 1rem;
+  text-align: left;
+  padding-bottom: 1rem;
 }
 
 .fieldset {
-    display: grid;
-    width: 100%;
-    gap: 1rem;
-    padding: 3vw;
-    border: 1px solid gray;
+  display: grid;
+  width: 100%;
+  gap: 1rem;
+  padding: 3vw;
+  border: 1px solid gray;
 }
 
 .fieldset-detail {
-    display: initial;
+  display: initial;
 }
 
 .fieldset-detail__textarea {
-    width: 100%;
+  width: 100%;
 }
 
 .order__submit {
-    margin: auto;
+  margin: auto;
 }

@@ -19,11 +19,6 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Price", name: "price", widget: "string" }
       - { label: "Id", name: "id", widget: "string" }
-      - label: "Short Description"
-        name: "features"
-        widget: "object"
-        fields:
-          - { label: "String", name: "string", widget: "markdown" }
       - { label: "Tags", name: "tags", widget: "list", required: true }
       - { label: "Body", name: "body", widget: "markdown" }
     meta: { path: { widget: string, label: "Path", index_file: "index" } }

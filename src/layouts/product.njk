@@ -14,14 +14,10 @@ layout: main.njk
         />
       </div>
       <div class="swiper-slide">
-        <picture>
-          <img src="/images/products/{{ id }}.jpg" alt="" />
-        </picture>
+        <img src="/images/products/{{ id }}.jpg" alt="" />
       </div>
       <div class="swiper-slide">
-        <picture>
-          <img src="/images/products/{{ id }}.jpg" alt="" />
-        </picture>
+        <img src="/images/products/{{ id }}.jpg" alt="" />
       </div>
     </div>
     <div class="swiper-button-next"></div>
@@ -35,15 +31,16 @@ layout: main.njk
     <img
       class="item__status"
       src="/images/icons/battery-full.svg"
-      alt="Много"
+      alt="Полная батарейка"
       data-tippy-content="Много"
     />
     <span class="item__price cart__price">{{ price }} руб.</span>
     <button class="item__cart cart__add">Добавить в корзину</button>
-    <section class="product__details">
-      {{ content | safe }}
+    <section class="product__details--short">
+      {{ features }}
     </section>
   </section>
+  <section class="product__details">{{ content | safe }}</section>
 </main>
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://unpkg.com/tippy.js@6"></script>

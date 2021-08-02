@@ -4,6 +4,7 @@
   margin: auto;
   display: grid;
   grid-template-columns: minmax(300px, 550px) auto;
+  grid-auto-rows: auto;
   gap: 2rem;
   padding-bottom: 1rem;
 }
@@ -19,6 +20,7 @@
   width: 100%;
   max-width: 100%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  aspect-ratio: 1/1;
 }
 .product__description {
   line-height: 1.2rem;
@@ -29,8 +31,13 @@
 .item__status:hover {
   cursor: help;
 }
-.product__details {
+.product__details--short {
   border-top: 2px solid black;
   width: 100%;
   margin-top: 1rem;
+  grid-area: 2 span / 2 span;
+  border-bottom: 2px solid black;
+}
+.product__details {
+  grid-area: 2 span / 2 span;
 }

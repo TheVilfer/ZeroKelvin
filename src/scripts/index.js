@@ -35,6 +35,7 @@ var swiper = new Swiper(".product__slider", {
   slidesPerView: 1,
   spaceBetween: 30,
   loop: true,
+  autoHeight: true,
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",

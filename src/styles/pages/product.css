@@ -36,7 +36,6 @@
   width: 100%;
   margin-top: 1rem;
   grid-area: 2 span / 2 span;
-  border-bottom: 2px solid black;
 }
 .product__details {
   grid-area: 2 span / 2 span;

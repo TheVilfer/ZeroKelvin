@@ -76,7 +76,7 @@ collections:
           label: "Ссылка на статью",
           name: "permalink",
           widget: "hidden",
-          default: "/blog/{% year %}/{{ title | translit }}/index.html",
+          default: "/blog/{% year %}/{{ title | translit | slug | url }}/index.html",
         }
       - {
           label: "Layout",

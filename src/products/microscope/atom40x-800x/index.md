@@ -2,6 +2,7 @@
 title: Микроскоп Микромед Атом 40x-800x
 price: "6350"
 id: 60e81fe55111060010ce81ee
+features: "**Тест**"
 tags:
   - microscope
 ---

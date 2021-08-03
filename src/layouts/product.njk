@@ -37,10 +37,12 @@ layout: main.njk
     <span class="item__price cart__price">{{ price }} руб.</span>
     <button class="item__cart cart__add">Добавить в корзину</button>
     <section class="product__details--short">
-      {{ features }}
+      {{ content | safe }}
     </section>
   </section>
-  <section class="product__details">{{ content | safe }}</section>
+  {% if features %}
+  <section class="product__details">{{ features }}</section>
+  {% endif%}
 </main>
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://unpkg.com/tippy.js@6"></script>

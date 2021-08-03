@@ -1,5 +1,6 @@
 ---
 title: Veber 360/50 в кейсе.
+artworks: /images/products/twitter-post-39-2-.png
 price: "2990"
 id: 61093d4e9ea3d4001108a5d5
 tags: []

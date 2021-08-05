@@ -2,7 +2,6 @@ const fs = require("fs");
 const path = require("path");
 
 const getImages = (url, image) => {
-  console.log(__dirname);
   let dirFiles = [];
   let artworks = "";
   if (image != undefined) {
@@ -24,7 +23,6 @@ module.exports = {
     images: (data) => getImages(data.page.inputPath, data.artwork),
     artwork: (data) => {
       let paths = path.dirname(data.page.filePathStem);
-      console.error(paths);
       paths = paths + "/" + data.artwork;
       return paths;
     },

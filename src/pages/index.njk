@@ -94,7 +94,7 @@ sliders:
   <h2 class="main__title">Популярное</h2>
   <div class="page__block page__popular swiper-container swiper-popular">
     <div class="swiper-wrapper">
-      {% for item in collections.popular %} {% for i in range(0, 10) %}
+      {% for item in collections.popular %} {% for i in range(0, 3) %}
       <div
         class="popular-item cart__item swiper-slide"
         data-id="{{ item.data.id }}"

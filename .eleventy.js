@@ -43,6 +43,7 @@ module.exports = (config) => {
   config.addPassthroughCopy("src/admin");
   config.addPassthroughCopy("src/functions");
   config.addPassthroughCopy("src/privacy");
+  config.addPassthroughCopy("src/products");
   config.setDataDeepMerge(true);
 
   config.addShortcode("year", () => `${new Date().getFullYear()}`);

@@ -21,12 +21,12 @@ const getImages = (url, image) => {
 module.exports = {
   eleventyComputed: {
     images: (data) => getImages(data.page.inputPath, data.artwork),
-    artwork: (data) => {
-      if (data.artwork != undefined) {
-        let paths = path.dirname(data.page.filePathStem);
-        paths = paths + "/" + data.artwork;
-        return paths;
-      }
-    },
+    // artwork: (data) => {
+    //   if (data.artwork != undefined) {
+    //     let paths = path.dirname(data.page.filePathStem);
+    //     paths = paths + "/" + data.artwork;
+    //     return paths;
+    //   }
+    // },
   },
 };

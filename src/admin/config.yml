@@ -20,7 +20,7 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - label: "Фотографии товара"
-        name: "artworks"
+        name: "artwork"
         allow_multiple: true
         widget: "image"
         choose_url: true

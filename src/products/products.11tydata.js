@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const getImages = (url, image) => {
+  console.log(__dirname);
   let dirFiles = [];
   let artworks = "";
   if (image != undefined) {

@@ -11,23 +11,22 @@ collections:
   - name: "products" # Used in routes, e.g., /admin/collections/blog
     label: "Products" # Used in the UI
     folder: "src/products" # The path to the folder where the documents are stored
-    media_folder: "src/images/products/"
-    public_folder: "/images/products/"
     create: true # Allow users to create new documents in this collection
     nested:
       depth: 100 # max depth to show in the collection tree
       summary: "{{title}}" # optional summary for a tree node, defaults to the inferred title field
     slug: "{{title}}" # Filename template, e.g., YYYY-MM-DD-title.md
-    fields: # The fields for each document, usually in front matter
+    fields:
       - { label: "Title", name: "title", widget: "string" }
-      - {
-          label: "Фотографии товара",
-          name: "artworks",
-          allow_multiple: true,
-          widget: "image",
-          choose_url: true,
-          media_library: { config: { multiple: true } },
-        }
+      - label: "Фотографии товара"
+        name: "artworks"
+        allow_multiple: true
+        widget: "image"
+        choose_url: true
+        media_folder: "images/"
+        media_library:
+          config:
+            multiple: true
       - { label: "Price", name: "price", widget: "string" }
       - { label: "Id", name: "id", widget: "string" }
       - { label: "Tags", name: "tags", widget: "list", required: true }

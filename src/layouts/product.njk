@@ -6,28 +6,22 @@ layout: main.njk
   <div class="swiper-container product__slider">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <img
-          class="product__img"
-          src="/images/products/{{ id }}.jpg"
-          data-original="/images/products/{{ id }}.jpg"
-          alt="{{ title }}"
-        />
+        <img class="product__img" src="{{ artwork }}" alt="{{ title }}" />
       </div>
+      {% for img in images %}
       <div class="swiper-slide">
-        <img src="/images/products/{{ id }}.jpg" alt="" />
+        <img class="product__img" src="{{ img }}" alt="{{ title }}" />
       </div>
-      <div class="swiper-slide">
-        <img src="/images/products/{{ id }}.jpg" alt="" />
-      </div>
+      {% endfor %}
     </div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
   </div>
   <section class="product__description cart__item" data-id="{{ id }}">
     <span class="item__category cart__type">{{ category }}</span>
-    <span class="item__name cart__name">
+    <h1 class="product__name item__name cart__name">
       {{ title }}
-    </span>
+    </h1>
     <img
       class="item__status"
       src="/images/icons/battery-full.svg"

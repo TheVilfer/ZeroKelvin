@@ -43,8 +43,9 @@ const EnableAllAddToCart = () => {
       let name = parent.querySelector(".cart__name").innerHTML;
       let price = parent.querySelector(".cart__price").innerHTML.split(" ")[0];
       let type = parent.querySelector(".cart__type").innerHTML;
+      let img = parent.querySelector(".cart__image").getAttribute("src");
       let id = parent.dataset.id;
-      AddToCart(id, name, price, type);
+      AddToCart(id, name, price, type, img);
       el.classList.add("cart__add-success");
       el.innerHTML = "Добавлено в корзину!";
       setTimeout(() => {
@@ -127,7 +128,7 @@ const UpdateTotalPrice = async () => {
   document.querySelector(".cart-total__price").innerHTML =
     cart.detail.totalprice;
 };
-const AddToCart = (id, name, price, type) => {
+const AddToCart = (id, name, price, type, img) => {
   if (cart.products[id] == undefined) {
     cart.products[id] = {
       id: id,
@@ -135,6 +136,7 @@ const AddToCart = (id, name, price, type) => {
       type: type,
       price: parseInt(price),
       count: 1,
+      img: img,
       description: "",
     };
   } else {
@@ -228,7 +230,7 @@ const HtmlRender = () => {
   cart.detail.html = "";
   for (const [key, value] of Object.entries(cart.products)) {
     cart.detail.html += `<li class="cart-element" data-id="${value.id}">
-            <img class="cart-element__image" src="/images/products/${value.id}.jpg" alt="${value.name}">
+            <img class="cart-element__image" src="${value.img}" alt="${value.name}">
             <span class = "cart-element__type">${value.type}</span>
             <span class = "cart-element__name">${value.name}</span>
             <span class = "cart-element__price">${value.price} руб.</span>

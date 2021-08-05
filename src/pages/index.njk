@@ -94,17 +94,16 @@ sliders:
   <h2 class="main__title">Популярное</h2>
   <div class="page__block page__popular swiper-container swiper-popular">
     <div class="swiper-wrapper">
-      {% for item in collections.product %} {% for i in range(0, 10) %}
+      {% for item in collections.popular %} {% for i in range(0, 10) %}
       <div
         class="popular-item cart__item swiper-slide"
         data-id="{{ item.data.id }}"
       >
         <div class="item__link-zone">
           <img
-            class="item__image"
-            loading="lazy"
-            src="/images/products/{{ item.data.id }}.jpg"
-            alt="{{ item.data.title }}"
+            class="item__image cart__image"
+            src="{{ item.data.artwork }}"
+            alt=""
           />
           <span class="item__category cart__type">
             {{ item.data.category }}

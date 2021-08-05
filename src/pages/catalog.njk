@@ -9,8 +9,8 @@ layout: main.njk
   <div class="catalog-item cart__item" data-id="{{ item.data.id }}">
     <div class="item__link-zone">
       <img
-        class="item__image"
-        src="/images/products/{{ item.data.id }}.jpg"
+        class="item__image cart__image"
+        src="{{ item.data.artwork }}"
         alt=""
       />
       <span class="item__category cart__type">{{ item.data.category }}</span>

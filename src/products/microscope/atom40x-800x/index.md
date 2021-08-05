@@ -1,6 +1,6 @@
 ---
 title: Микромед Атом 40x-800x
-artworks: images/60e81fe55111060010ce81ee.jpg
+artwork: images/60e81fe55111060010ce81ee.jpg
 price: "6350"
 id: 60e81fe55111060010ce81ee
 tags:

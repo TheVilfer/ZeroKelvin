@@ -4,6 +4,7 @@ const path = require("path");
 const getImages = (url, image) => {
   let dirFiles = [];
   let artworks = "";
+  console.log(path.dirname(url.split("src")[1]));
   if (image != undefined) {
     artworks = path.basename(image);
     let tt = path.resolve(path.dirname(url), "images/");
@@ -22,5 +23,13 @@ const getImages = (url, image) => {
 module.exports = {
   eleventyComputed: {
     images: (data) => getImages(data.page.inputPath, data.artwork),
+    artwork: (data) => {
+      if (data.artwork != undefined) {
+        let paths = path.dirname(data.page.filePathStem);
+        paths = paths + "/" + data.artwork;
+        console.log("ggg---" + paths);
+        return paths;
+      }
+    },
   },
 };

@@ -4,7 +4,8 @@ artworks: /images/products/twitter-post-39-2-.png
 artwork: images/61093d4e9ea3d4001108a5d5.jpg
 price: "2990"
 id: 61093d4e9ea3d4001108a5d5
-tags: []
+tags:
+  - telescope
 ---
 Отличный подарок для ребёнка, младшего брата или сестры. Возможно, он станет первым научным прибором в его жизни! 
 

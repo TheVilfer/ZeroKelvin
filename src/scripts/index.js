@@ -25,6 +25,7 @@ const catalogSwiper = new Swiper(".swiper-popular", {
     onlyInViewport: true,
   },
   mousewheel: {
+    forceToAxis: true,
     invert: false,
   },
   navigation: {
@@ -35,7 +36,7 @@ const catalogSwiper = new Swiper(".swiper-popular", {
 
 var swiper = new Swiper(".product__slider", {
   slidesPerView: 1,
-  spaceBetween: 30,
+  spaceBetween: 10,
   loop: true,
   autoHeight: true,
   grabCursor: true,
@@ -49,6 +50,7 @@ var swiper = new Swiper(".product__slider", {
   },
   mousewheel: {
     invert: false,
+    forceToAxis: true,
   },
   navigation: {
     nextEl: ".swiper-button-next",

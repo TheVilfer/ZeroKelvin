@@ -18,12 +18,14 @@ const catalogSwiper = new Swiper(".swiper-popular", {
   slidesPerView: "auto",
   spaceBetween: 30,
   centeredSlides: true,
+  grabCursor: true,
   loop: true,
-  loopedSlides: 3,
-  loopAdditionalSlides: 3,
   keyboard: {
     enabled: true,
     onlyInViewport: true,
+  },
+  mousewheel: {
+    invert: false,
   },
   navigation: {
     nextEl: ".swiper-button-next",
@@ -39,7 +41,7 @@ var swiper = new Swiper(".product__slider", {
   grabCursor: true,
   keyboard: {
     enabled: true,
-    onlyInViewport: false,
+    onlyInViewport: true,
   },
   zoom: {
     maxRatio: 2,

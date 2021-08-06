@@ -7,3 +7,7 @@
   from = "/*"
   to = "/404/"
   status = 404
+[[headers]]
+  for = "/model/*"
+  [headers.values]
+    Content-Type = "model/vnd.usdz+zip"

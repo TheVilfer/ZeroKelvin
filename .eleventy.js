@@ -44,7 +44,13 @@ module.exports = (config) => {
   config.addPassthroughCopy("src/functions");
   config.addPassthroughCopy("src/privacy");
   config.addPassthroughCopy("src/products");
+  config.addPassthroughCopy("src/model");
+
   config.setDataDeepMerge(true);
+  config.setFrontMatterParsingOptions({
+    excerpt: true,
+    excerpt_separator: "<!-- excerpt -->",
+  });
 
   config.addShortcode("year", () => `${new Date().getFullYear()}`);
   config.addFilter("translit", function (value) {

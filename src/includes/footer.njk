@@ -1,28 +1,52 @@
 <footer class="page__footer footer">
-
   <ul class="footer__menu">
-    <li class=""><a class="link footer__menu__link" href="">Главная</a></li>
-    <li class=""><a class="link footer__menu__link" href="">Каталог</a></li>
-    <li class=""><a class="link footer__menu__link" href="">Оплата и доставка</a></li>
-    <li class=""><a class="link footer__menu__link" href="">О нас</a></li>
-    <li class=""><a class="link footer__menu__link" href="">Статьи</a></li>
-    <li class=""><a class="link footer__menu__link" href="">Контакты</a></li>
+    <li class=""><a class="link footer__menu__link" href="/">Главная</a></li>
+    <li class="">
+      <a class="link footer__menu__link" href="/catalog/">Каталог</a>
+    </li>
+    <li class="">
+      <a class="link footer__menu__link" href="/delivery/">Оплата и доставка</a>
+    </li>
+    <li class="">
+      <a class="link footer__menu__link" href="/about/">О нас</a>
+    </li>
+    <li class=""><a class="link footer__menu__link" href="/blog">Статьи</a></li>
+    <li class="">
+      <a class="link footer__menu__link" href="/contacts/">Контакты</a>
+    </li>
   </ul>
 
-  <div class="footer__logo"><a href=""><img class="logo--black" src="/images/logo_black.svg" alt=""></a></div>
-
+  <div class="footer__logo">
+    <a href=""
+      ><img class="logo--black" src="/images/logo_black.svg" alt=""
+    /></a>
+  </div>
 
   <div class="footer__offer">
     <form action="" class="offer__form" autocomplete="on" netlify>
       <label for="email">Дарим скидку 10% на первый заказ</label>
-      <input class="form__input" id="email" type="email" name="email" placeholder="Ваш Email">
-      <input type="hidden" name="form-name" value="contact">
+      <input
+        class="form__input"
+        id="email"
+        type="email"
+        name="email"
+        placeholder="Ваш Email"
+      />
+      <input type="hidden" name="form-name" value="contact" />
       <button class="form__submit" type="submit">Подписаться</button>
     </form>
   </div>
   <ul class="footer__politic">
-    <li class="footer__politic__link"><a href="/privacy/datapolicy.pdf">Политика обработки персональных данных</a></li>
-    <li class="footer__politic__name">© 2021 Ноль Кельвин. Все права защищены.</li>
-    <li class="footer__politic__link"><a href="/privacy/publicoffer.pdf">Публичная оферта</a></li>
+    <li class="footer__politic__link">
+      <a href="/privacy/datapolicy.pdf"
+        >Политика обработки персональных данных</a
+      >
+    </li>
+    <li class="footer__politic__name">
+      © 2021 Ноль Кельвин. Все права защищены.
+    </li>
+    <li class="footer__politic__link">
+      <a href="/privacy/publicoffer.pdf">Публичная оферта</a>
+    </li>
   </ul>
 </footer>

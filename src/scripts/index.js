@@ -36,6 +36,18 @@ var swiper = new Swiper(".product__slider", {
   spaceBetween: 30,
   loop: true,
   autoHeight: true,
+  grabCursor: true,
+  keyboard: {
+    enabled: true,
+    onlyInViewport: false,
+  },
+  zoom: {
+    maxRatio: 2,
+    toggle: true,
+  },
+  mousewheel: {
+    invert: false,
+  },
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",

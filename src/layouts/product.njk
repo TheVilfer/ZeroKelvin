@@ -6,7 +6,9 @@ layout: main.njk
   <div class="swiper-container product__slider">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <img class="product__img" src="{{ artwork }}" alt="{{ title }}" />
+        <div class="swiper-zoom-container">
+          <img class="product__img" src="{{ artwork }}" alt="{{ title }}" />
+        </div>
       </div>
       {% for img in images %}
       <div class="swiper-slide">

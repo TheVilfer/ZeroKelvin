@@ -1,9 +1,15 @@
 const mySwiper = new Swiper(".swiper-banner", {
   speed: 400,
-  spaceBetween: 100,
+  spaceBetween: 30,
   loop: true,
+  grabCursor: true,
   keyboard: {
     enabled: true,
+    onlyInViewport: true,
+  },
+  mousewheel: {
+    forceToAxis: true,
+    invert: false,
   },
 });
 

@@ -9,5 +9,5 @@ tags:
 **Cостав набора**: 
 
 * Стикерпак "День Космонавтики" 
-* Стикерпак "Космос"
-* Стикерпак "Созвездия"
+* [Стикерпак "Космос"](https://www.zerokelvin.ru/products/stickers/space/)
+* [Стикерпак "Созвездия"](https://www.zerokelvin.ru/products/stickers/constellation/)

@@ -95,3 +95,12 @@ collections:
           default: "post.njk",
         }
       - { label: "Текст Статьи", name: "body", widget: "markdown" }
+  - label: "Информация"
+    name: "information"
+    files:
+      - label: "О качестве продукции на главной странице"
+        name: "about_product"
+        file: "src/_data/production.json"
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Text, name: text, widget: string }

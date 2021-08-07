@@ -139,11 +139,10 @@ sliders:
       <source src="/media/prod.mp4" type="video/mp4" />
       <source src="/media/prod.webm" type="video/webm" />
     </video>
-    <div class="production__title text">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae rem quam
-      esse, dolore cum voluptatem laborum impedit illo ex fugit cumque, illum
-      dolor veniam aspernatur quod iste. Perferendis, molestiae beatae?
-    </div>
+    <article class="production__article text">
+      <h1 class="text production__title">{{ production.title }}</h1>
+      {{ production.text }}
+    </article>
   </div>
   <div class="page__block main__about">
     <img src="/images/any.jpg" alt="" class="about__image" />

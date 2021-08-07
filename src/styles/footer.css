@@ -39,7 +39,15 @@
 }
 
 .footer__logo {
+  width: 100%;
   text-align: center;
+  position: relative;
+  place-self: center;
+}
+
+.logo--developer {
+  max-width: 50px;
+  width: 100%;
 }
 
 @media screen and (max-width: 800px) {
@@ -101,7 +109,7 @@
   text-align: center;
 }
 
-.footer__politic__link>a {
+.footer__politic__link > a {
   font-size: 0.8em;
   color: white;
 }

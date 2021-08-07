@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ title | safe }} | Ноль Кельвин</title>
-    <meta name="title" content="Ноль Кельвин" />
+    <meta name="title" content="{{ title | safe }} | Ноль Кельвин" />
     <meta
       name="description"
       content="Ноль Кельвин — научный магазин, созданный для увлеченных наукой, технологиями, космосом. Идея нашего сообщества не только в продаже научного мерча. Мы рассказываем об учёных, интересных научных фактах, публикуем научные новости, популяризируем науку!"
@@ -14,16 +14,25 @@
       href="https://www.zerokelvin.ru{{ page.url | url }}"
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.zerokelvin.ru/" />
-    <meta property="og:title" content="Ноль Кельвин" />
+    <meta
+      property="og:url"
+      content="https://www.zerokelvin.ru{{ page.url | url }}"
+    />
+    <meta property="og:title" content="{{ title | safe }} | Ноль Кельвин" />
     <meta
       property="og:description"
       content="Ноль Кельвин — научный магазин, созданный для увлеченных наукой, технологиями, космосом. Идея нашего сообщества не только в продаже научного мерча. Мы рассказываем об учёных, интересных научных фактах, публикуем научные новости, популяризируем науку!"
     />
     <meta property="og:image" content="/images/logo_1200x628.jpg" />
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://www.zerokelvin.ru/" />
-    <meta property="twitter:title" content="Ноль Кельвин" />
+    <meta
+      property="twitter:url"
+      content="https://www.zerokelvin.ru{{ page.url | url }}"
+    />
+    <meta
+      property="twitter:title"
+      content="{{ title | safe }} | Ноль Кельвин"
+    />
     <meta
       property="twitter:description"
       content="Ноль Кельвин — научный магазин, созданный для увлеченных наукой, технологиями, космосом. Идея нашего сообщества не только в продаже научного мерча. Мы рассказываем об учёных, интересных научных фактах, публикуем научные новости, популяризируем науку!"

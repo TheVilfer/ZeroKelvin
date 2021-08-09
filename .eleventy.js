@@ -1,7 +1,7 @@
 const CyrillicToTranslit = require("cyrillic-to-translit-js");
 const typesetPlugin = require("eleventy-plugin-typeset");
 const embeds = require("eleventy-plugin-embed-everything");
-const readerBar = require("eleventy-plugin-reader-bar");
+const eleventyPluginFilesMinifier = require("@sherby/eleventy-plugin-files-minifier");
 
 module.exports = (config) => {
   config.addPassthroughCopy("src/favicon.ico");
@@ -71,7 +71,7 @@ module.exports = (config) => {
       only: ".text--optimization",
     })
   );
-  config.addPlugin(readerBar);
+  // config.addPlugin(eleventyPluginFilesMinifier);
   return {
     dir: {
       input: "src",

@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@sardine/eleventy-plugin-tinycss": "^1.5.0",
+    "@sherby/eleventy-plugin-files-minifier": "^1.1.1",
     "blueimp-md5": "^2.18.0",
     "cyrillic-to-translit-js": "^3.1.0",
     "each-async": "^1.1.1",

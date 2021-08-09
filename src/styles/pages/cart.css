@@ -66,6 +66,10 @@
 .cart-element__count {
   margin-top: 5px;
 }
+.cart-element__count__plus,
+.cart-element__count__minus {
+  display: none;
+}
 
 .cart-element__count__value {
   width: 100%;

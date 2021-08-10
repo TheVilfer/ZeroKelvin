@@ -9,3 +9,7 @@ h1 {
   margin: auto;
   padding: 0 1rem;
 }
+
+.page-information__main ul {
+  padding-left: 20px;
+}

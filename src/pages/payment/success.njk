@@ -10,22 +10,31 @@ layout: main.njk
   </header>
   <section class="payment_detail">
     <article>
-      <video autoplay loop muted playsinline id="product-icon">
-        <source src="/media/product.webm" type="video/webm" />
-        <source src="/media/product.mp4" type="video/mp4" />
-      </video>
+      <lottie-player
+        class="success__img"
+        src="https://assets10.lottiefiles.com/packages/lf20_vkfehgow.json"
+        background="transparent"
+        speed="1"
+        style="width: 150px; height: 150px"
+        hover
+        autoplay
+      >
+      </lottie-player>
       <h2 class="payment__subtitle">
         Заказ #<span id="order_number">2345</span> успешно оплачен
       </h2>
       <p class="payment__text">
-        Совсем скоро с вами свяжется наш менеджер для подтверждения заказа!
+        В течение нескольких дней на указанный вами e-mail адрес мы отправим
+        трек-номер для отслеживания вашего заказа!
       </p>
-      <p class="payment__text payment__text-thanks">Спасибо за покупку!</p>
-      <p class="payment__text">Хорошего дня 💫</p>
+      <p class="payment__text-thanks">
+        Спасибо за покупку! <br />Хорошего дня 💫
+      </p>
     </article>
   </section>
 </main>
 <script src="/scripts/confetti.js"></script>
+
 <script>
   document.addEventListener("DOMContentLoaded", async () => {
     var count = 200;
@@ -70,3 +79,7 @@ layout: main.njk
     ).searchParams.get("InvId");
   });
 </script>
+<script
+  defer
+  src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
+></script>

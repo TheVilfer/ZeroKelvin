@@ -1,6 +1,6 @@
 ---
 title: Стикерпак "Космос"
-artwork: images/60e5682479b1e00b5c019239.jpg
+artwork: images/11.jpg
 price: 270
 id: 60e5682479b1e00b5c019239
 tags:

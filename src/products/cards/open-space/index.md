@@ -1,6 +1,6 @@
 ---
 title: Открытка "Открой космос"
-artwork: images/photo_2021-08-11-13.36.26.jpg
+artwork: images/img_9953-1-1-.jpg
 price: "100"
 id: 610d3a6bc7b4180011dc41ea
 tags:

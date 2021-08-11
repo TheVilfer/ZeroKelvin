@@ -27,6 +27,7 @@
   background-color: white;
   border: 0;
   cursor: pointer;
+  display: none;
 }
 
 @media screen and (max-width: 800px) {
@@ -45,7 +46,6 @@
     align-self: center;
   }
 }
-
 
 .logo {
   display: block;
@@ -75,7 +75,7 @@
   text-align: center;
 }
 
-.nav__link+.nav__link {
+.nav__link + .nav__link {
   margin-left: 2vw;
 }
 
@@ -97,12 +97,12 @@
   display: inline-block;
 }
 
-.nav__icon+.nav__icon {
+.nav__icon + .nav__icon {
   margin-left: 15px;
 }
 
 @media screen and (max-width: 800px) {
-  .nav__icon+.nav__icon {
+  .nav__icon + .nav__icon {
     margin-left: 1vw;
   }
 }
@@ -157,9 +157,9 @@
 }
 
 /* добавляем "гамбургер" */
-.menu__btn>span,
-.menu__btn>span::before,
-.menu__btn>span::after {
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
   display: block;
   position: absolute;
   width: 100%;
@@ -167,13 +167,13 @@
   background-color: #616161;
 }
 
-.menu__btn>span::before {
-  content: '';
+.menu__btn > span::before {
+  content: "";
   top: -8px;
 }
 
-.menu__btn>span::after {
-  content: '';
+.menu__btn > span::after {
+  content: "";
   top: 8px;
 }
 
@@ -190,8 +190,8 @@
   padding: 80px 0;
   list-style: none;
   text-align: left;
-  background-color: #ECEFF1;
-  box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
+  background-color: #eceff1;
+  box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
   z-index: 2;
 }
 
@@ -200,47 +200,47 @@
   display: block;
   padding: 12px 24px;
   color: #333;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 20px;
   font-weight: 600;
   text-decoration: none;
 }
 
 .menu__item:hover {
-  background-color: #CFD8DC;
+  background-color: #cfd8dc;
 }
 
-#menu__toggle:checked~.menu__btn>span {
+#menu__toggle:checked ~ .menu__btn > span {
   transform: rotate(45deg);
 }
 
-#menu__toggle:checked~.menu__btn>span::before {
+#menu__toggle:checked ~ .menu__btn > span::before {
   top: 0;
   transform: rotate(0);
 }
 
-#menu__toggle:checked~.menu__btn>span::after {
+#menu__toggle:checked ~ .menu__btn > span::after {
   top: 0;
   transform: rotate(90deg);
 }
 
-#menu__toggle:checked~.menu__box {
+#menu__toggle:checked ~ .menu__box {
   visibility: visible;
   left: 0;
 }
 
-.menu__btn>span,
-.menu__btn>span::before,
-.menu__btn>span::after {
-  transition-duration: .25s;
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  transition-duration: 0.25s;
 }
 
 .menu__box {
-  transition-duration: .25s;
+  transition-duration: 0.25s;
 }
 
 .menu__item {
-  transition-duration: .25s;
+  transition-duration: 0.25s;
 }
 
 /* animation */

@@ -1,7 +1,7 @@
 ---
 title: Бокс "Космос"
 artwork: images/img_9948-1-.jpg
-price: "1700"
+price: "1900"
 id: 610cd07368354000122f5fe0
 tags:
   - space

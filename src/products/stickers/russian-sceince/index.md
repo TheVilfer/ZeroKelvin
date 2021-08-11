@@ -1,6 +1,6 @@
 ---
 title: Стикерпак "Русские ученые"
-artwork: images/twitter-post-11.jpg
+artwork: images/twitter-post-54.jpg
 price: "270"
 id: 60e6e79399d40f00125fdb10
 ---

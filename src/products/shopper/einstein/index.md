@@ -1,6 +1,6 @@
 ---
 title: Шоппер "Эйнштейн"
-artwork: images/twitter-post-60.jpg
+artwork: images/twitter-post-60-1-.jpg
 price: 1100
 id: 60e56d1579b1e00b5c01923c
 tags:

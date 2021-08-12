@@ -35,7 +35,6 @@ collections:
           label: "Возможность добавить в корзину",
           name: "isAddToCart",
           widget: "boolean",
-          default: false,
         }
       - { label: "Body", name: "body", widget: "markdown" }
     meta: { path: { widget: string, label: "Path", index_file: "index" } }

@@ -5,6 +5,7 @@ price: "1900"
 id: 610cd07368354000122f5fe0
 tags:
   - space
+isAddToCart: true
 ---
 **Cостав бокса**:
 

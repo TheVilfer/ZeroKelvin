@@ -8,5 +8,5 @@ tags:
 ---
 **Cостав набора**:
 
-* Стикерпак "Учёные"
-* Стикерпак "Русские Учёные"
+* [Стикерпак "Учёные"](https://www.zerokelvin.ru/products/stickers/science/)
+* [Стикерпак "Русские Учёные"](https://www.zerokelvin.ru/products/stickers/russian-sceince/)

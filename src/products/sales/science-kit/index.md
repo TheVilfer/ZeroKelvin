@@ -1,6 +1,6 @@
 ---
 title: Набор "Наука"
-artwork: images/img_9775.png
+artwork: images/науки-2-.jpg
 price: "864"
 id: 610cceb4240e020012ef083d
 tags:

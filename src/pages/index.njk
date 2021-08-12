@@ -118,7 +118,11 @@ sliders:
           <span class="item__price cart__price">{{ item.data.price }} руб</span>
           <button class="item__favorite icon__favorite favorite__add"></button>
         </div>
+        {% if item.data.isAddToCart %}
         <button class="item__cart cart__add">Добавить в корзину</button>
+        {% else %}
+        <button class="item__cart item__buy">Купить</button>
+        {% endif %}
       </div>
       {% endfor %}
     </div>

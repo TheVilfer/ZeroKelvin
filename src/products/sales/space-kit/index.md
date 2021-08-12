@@ -5,10 +5,12 @@ price: "688"
 id: 610c371c5fb7ec001021567c
 tags:
   - kit
+isAddToCart: true
 ---
-**Вместе дешевле! Скидка на набор 15%!**\
-**Cостав набора**: 
 
-* [Стикерпак "День Космонавтики"](https://www.zerokelvin.ru/products/stickers/space-day/) 
-* [Стикерпак "Космос"](https://www.zerokelvin.ru/products/stickers/space/)
-* [Стикерпак "Созвездия"](https://www.zerokelvin.ru/products/stickers/constellation/)
+**Вместе дешевле! Скидка на набор 15%!**\
+**Cостав набора**:
+
+- [Стикерпак "День Космонавтики"](https://www.zerokelvin.ru/products/stickers/space-day/)
+- [Стикерпак "Космос"](https://www.zerokelvin.ru/products/stickers/space/)
+- [Стикерпак "Созвездия"](https://www.zerokelvin.ru/products/stickers/constellation/)

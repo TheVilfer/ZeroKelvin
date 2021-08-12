@@ -21,7 +21,62 @@ layout: main.njk
       <span class="item__price cart__price">{{ item.data.price }} руб</span>
       <button class="item__favorite icon__favorite favorite__add"></button>
     </div>
+    {% if item.data.isAddToCart %}
     <button class="item__cart cart__add">Добавить в корзину</button>
+    {% else %}
+    <button class="item__cart item__buy" onclick="BuyPopup()">Купить</button>
+    {% endif %}
   </div>
   {% endfor %}
 </main>
+<link
+  href="https://cdn.jsdelivr.net/npm/@sweetalert2/themes@5.0.2/minimal/minimal.min.css"
+  rel="stylesheet"
+/>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+<script>
+  function BuyPopup() {
+    Swal.fire({
+      title: "Заявка",
+      text: "Данный товар пока нельзя заказать через наш сайт, но вы можете оставить заявку на его покупку, либо найти его у нас в магазине на Wildberries",
+      icon: "info",
+      showDenyButton: true,
+      confirmButtonText: `Оставить заявку`,
+      denyButtonText: `Перейти на Wildberries`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Заявка",
+          text: "Оставьте ваш контактный номер телефона и наш менеджер обязательно c вами свяжется!",
+          input: "tel",
+          inputLabel: "Ваш номер телефона",
+          inputPlaceholder: "+7xxxxxxxxxx",
+          inputValidator: (value) => {
+            if (!value || JSON.stringify(value).length - 2 < 12) {
+              return "Вы ввели некорректный номер телефона";
+            }
+          },
+          inputAttributes: {
+            maxlength: 12,
+            autocomplete: "on",
+          },
+        }).then((rst) => {
+          fetch("/.netlify/functions/telegrambot", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json;charset=utf-8",
+            },
+            body: JSON.stringify({ tel: rst.value }),
+          });
+          Swal.fire({
+            title: "Cпасибо за заявку!",
+            text: "В течение дня с вами свяжется наш менеджер",
+            confirmButtonText: "Готово",
+          });
+        });
+      } else if (result.isDenied) {
+        window.open("https://www.wildberries.ru/brands/nol-kelvin", "_blank");
+      }
+    });
+  }
+</script>

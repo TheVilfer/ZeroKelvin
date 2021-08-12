@@ -6,6 +6,8 @@ id: 610cceb4240e020012ef083d
 tags:
   - kit
 ---
+**Вместе дешевле на 20%!**
+
 **Cостав набора**:
 
 * [Стикерпак "Физика"](https://www.zerokelvin.ru/products/stickers/physics/)

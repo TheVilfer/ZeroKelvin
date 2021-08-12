@@ -1,6 +1,6 @@
 ---
 title: Veber 360/50
-artwork: images/61093d4e9ea3d4001108a5d5.jpg
+artwork: images/twitter-post-67-1-.jpg
 price: "2990"
 id: 61093d4e9ea3d4001108a5d5
 tags:

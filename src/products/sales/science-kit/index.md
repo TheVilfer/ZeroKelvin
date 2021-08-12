@@ -10,5 +10,5 @@ tags:
 
 * [Стикерпак "Физика"](https://www.zerokelvin.ru/products/stickers/physics/)
 * [Стикерпак "Биология"](https://www.zerokelvin.ru/products/stickers/biology/)
-* Стикерпак "Химия"
-* Стикерпак "Математика"
+* [Стикерпак "Химия"](https://www.zerokelvin.ru/products/stickers/chemical/)
+* [Стикерпак "Математика"](https://www.zerokelvin.ru/products/stickers/math/)

@@ -1,6 +1,6 @@
 ---
 title: Микромед Атом 40x-640x
-artwork: images/frame-2-2-.png
+artwork: images/6-3-.jpg
 price: "2790"
 id: 60e8201998fdba00118a2a38
 ---

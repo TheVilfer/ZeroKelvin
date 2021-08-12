@@ -28,9 +28,15 @@ collections:
         media_library:
           config:
             multiple: true
-      - { label: "Price", name: "price", widget: "string" }
-      - { label: "Id", name: "id", widget: "string" }
-      - { label: "Tags", name: "tags", widget: "list", required: true }
+      - { label: "Price", name: "price", widget: "string", required: true }
+      - { label: "Id", name: "id", widget: "string", required: true }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - {
+          label: "Можно ли добавить товар в корзину?",
+          name: "isAddToCart",
+          widget: "bool",
+          default: true,
+        }
       - { label: "Body", name: "body", widget: "markdown" }
     meta: { path: { widget: string, label: "Path", index_file: "index" } }
   - name: "informations" # Used in routes, e.g., /admin/collections/blog

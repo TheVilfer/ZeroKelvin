@@ -1,8 +1,9 @@
 ---
 title: Микромед Атом 40x-640x
-artwork: images/10-1-.jpg
+artwork: images/frame-4.jpg
 price: "2790"
 id: 610cdf62220f64001131406b
+isAddToCart: true
 ---
 **Цвет:** Лайм
 

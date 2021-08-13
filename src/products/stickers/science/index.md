@@ -1,6 +1,6 @@
 ---
 title: Стикерпак "Ученые"
-artwork: images/33.jpg
+artwork: images/twitter-post-53-1-.jpg
 price: "270"
 id: 60e6e75e788c2e0011368b4a
 isAddToCart: true

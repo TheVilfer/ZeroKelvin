@@ -79,6 +79,7 @@ const EnableInputs = () => {
         return null;
       }
       await SetCountItem(id, el.value);
+      isCartAvailable();
     });
   });
 };
@@ -138,6 +139,7 @@ const InitCart = async () => {
   EnableInputs();
   DeliveryRender();
   EnableSubmit();
+  isCartAvailable();
 };
 const DeliveryRender = async () => {
   let NodeText = document.querySelector(".cart-delivey__price");
@@ -198,6 +200,16 @@ const EnableSubmit = async () => {
     window.location.replace("/order/");
   });
 };
+const isCartAvailable = () => {
+  if (cart.detail.totalprice - delivery < 350) {
+    document.querySelector(".cart-checkout").innerHTML =
+      "Минимальная сумма - 350 руб.";
+    document.querySelector(".cart-checkout").disabled = true;
+  } else if (document.querySelector(".cart-checkout").disabled) {
+    document.querySelector(".cart-checkout").disabled = false;
+    document.querySelector(".cart-checkout").innerHTML = "Оформить заказ";
+  }
+};
 const CalculateTotalPrice = () => {
   cart.detail.totalprice = 0;
   for (const [key, value] of Object.entries(cart.products)) {
@@ -207,8 +219,10 @@ const CalculateTotalPrice = () => {
 };
 const CartDisable = async () => {
   if (CartIsEmpty()) {
-    document.getElementsByClassName("cart-checkout")[0].disabled = true;
+    document.querySelector(".cart-checkout").disabled = true;
   }
+  console.log(cart.detail.totalprice - delivery);
+  console.log(delivery);
 };
 const HtmlRender = () => {
   cart.detail.html = "";

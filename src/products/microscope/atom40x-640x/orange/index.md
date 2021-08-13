@@ -3,7 +3,7 @@ title: Микромед Атом 40x-640x
 artwork: images/frame-2.jpg
 price: "2790"
 id: 60e8201998fdba00118a2a38
-isAddToCart: true
+isAddToCart: false
 ---
 
 **Цвет:** Апельсин

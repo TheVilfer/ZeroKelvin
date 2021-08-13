@@ -6,7 +6,7 @@ id: 60e56a7979b1e00b5c01923b
 tags:
   - einstein
   - pins
-isAddToCart: true
+isAddToCart: false
 ---
 
 Деревянный значок «Эйнштейн» с ручной росписью акриловыми красками, сверху покрыт лакировкой.\

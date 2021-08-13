@@ -140,7 +140,7 @@ module.exports.handler = async (event, context) => {
     };
   }
   await bot.telegram.sendMessage(
-    362841815,
+    378376869,
     `Пришел заказ! #${data.InvId}\nНа сумму: ${data.OutSum} руб.\nE-mail покупателя: ${data.EMail}\nСкорее в AMO!\nhttps://zerokelvin1.amocrm.ru/leads/detail/${data.InvId}`,
     {}
   );

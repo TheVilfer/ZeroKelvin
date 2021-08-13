@@ -1,5 +1,4 @@
 const { Telegraf } = require("telegraf");
-const querystring = require("querystring");
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
 module.exports.handler = async (event, context) => {
@@ -11,7 +10,7 @@ module.exports.handler = async (event, context) => {
   }
   const data = JSON.parse(event.body);
   await bot.telegram.sendMessage(
-    362841815,
+    378376869,
     `Оставили заявку Номер: ${data.tel}`,
     {}
   );

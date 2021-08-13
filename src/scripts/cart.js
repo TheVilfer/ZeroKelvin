@@ -1,4 +1,5 @@
 let delivery = 0;
+let delivery_text = "";
 let delivery_warning =
   "К сожалению мы не можем раcсчитать стоимость доставки для вас. Итоговая стоимость доставки будет озвучена нашем менеджером во время звонка.";
 let cart = {
@@ -77,35 +78,13 @@ const EnableInputs = () => {
         DeleteElement(id, parent);
         return null;
       }
-      console.log(el.value);
       await SetCountItem(id, el.value);
-    });
-  });
-};
-const EnablePlus = () => {
-  const inputs = document.querySelectorAll(".cart-element__count__plus");
-  inputs.forEach((el) => {
-    el.addEventListener("click", (e) => {
-      let self = e.currentTarget;
-      let parent = self.closest(".cart-element");
-      let id = parent.dataset.id;
-      SetCountItem(id, el.value);
-    });
-  });
-};
-const EnableMinus = () => {
-  const inputs = document.querySelectorAll(".cart-element__count__minus");
-  inputs.forEach((el) => {
-    el.addEventListener("click", (e) => {
-      let self = e.currentTarget;
-      let parent = self.closest(".cart-element");
-      let id = parent.dataset.id;
-      SetCountItem(id, el.value);
     });
   });
 };
 const SetCountItem = async (id, count) => {
   cart.products[id].count = count;
+  console.log("ff");
   await SetLocalStorage("cart", cart);
   delivery = ChooseDelivery();
   await DeliveryRender();
@@ -163,18 +142,19 @@ const InitCart = async () => {
 const DeliveryRender = async () => {
   let NodeText = document.querySelector(".cart-delivey__price");
   if (Number.isInteger(delivery)) {
-    delivery = delivery + " руб";
+    delivery_text = delivery + " руб";
     NodeText.classList.remove("text--warning");
   } else {
     NodeText.classList.add("text--warning");
   }
-  NodeText.innerHTML = delivery;
+  NodeText.innerHTML = delivery_text;
 };
 const ChooseDelivery = () => {
-  local_shopper = 0;
-  local_stickers = 0;
-  local_telescope = 0;
-  local_pin = 0;
+  let local_shopper = 0;
+  let local_stickers = 0;
+  let local_cards = 0;
+  let local_kits = 0;
+  let local_pin = 0;
   for (const [key, value] of Object.entries(cart.products)) {
     if (value.type == "СТИКЕРЫ") {
       local_stickers += 1 * value.count;
@@ -188,12 +168,16 @@ const ChooseDelivery = () => {
       local_pin += 1 * value.count;
       continue;
     }
-    if (value.type == "ТЕЛЕСКОПЫ") {
-      local_telescope += 1 * value.count;
+    if (value.type == "АКЦИИ") {
+      local_kits += 1 * value.count;
+      continue;
+    }
+    if (value.type == "ОТКРЫТКИ") {
+      local_cards += 1 * value.count;
       continue;
     }
   }
-  if (local_telescope > 0 || local_shopper > 2) {
+  if (local_shopper > 2) {
     return delivery_warning;
   }
   if (local_shopper > 0) {
@@ -202,7 +186,7 @@ const ChooseDelivery = () => {
   if (local_pin > 0 || local_stickers > 19) {
     return 250;
   }
-  if (local_stickers > 0) {
+  if (local_stickers > 0 || local_cards > 0 || local_kits > 0) {
     return 120;
   }
   return delivery_warning;

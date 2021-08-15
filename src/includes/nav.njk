@@ -1,13 +1,49 @@
 <nav class="nav">
   <div class="nav__header">
-    <button class="toggle-mode nav__icon icon__sun"></button>
-    <a href="/" class="nav__logo">
-      <img class="logo" src="/images/logo.svg" alt="" />
-    </a>
+    <div class="theme-selector">
+      <button class="toggle-mode nav__icon icon__sun"></button>
+    </div>
+    <div class="nav__logo">
+      <img
+        width="320"
+        height="90"
+        class="logo"
+        src="/images/logo.svg"
+        alt="Логотип Ноль Кельвин"
+      />
+      <a class="link--block" href="/"></a>
+    </div>
     <div class="nav__shop">
-      <a href="/coming/" class="nav__icon icon__favorite"></a>
-      <a href="/coming/" class="nav__icon icon__profile"></a>
-      <a href="/cart/" class="nav__icon icon__cart"></a>
+      <div class="nav__icon icon-heart">
+        <img
+          width="30"
+          height="30"
+          class="icon"
+          src="/images/icons/heart.svg"
+          alt="Сердце"
+        />
+        <a class="link--block" href="/coming/"></a>
+      </div>
+      <div class="nav__icon icon-profile">
+        <img
+          width="30"
+          height="30"
+          class="icon"
+          src="/images/icons/profile.svg"
+          alt="Силуэт котика"
+        />
+        <a class="link--block" href="/coming/"></a>
+      </div>
+      <div class="nav__icon icon-cart">
+        <img
+          width="30"
+          height="30"
+          class="icon"
+          src="/images/icons/cart.svg"
+          alt="Корзина"
+        />
+        <a class="link--block" href="/cart/"></a>
+      </div>
     </div>
   </div>
   <div class="nav__footer">
@@ -20,13 +56,6 @@
       <a href="/contacts/" class="nav__link">Контакты</a>
     </div>
   </div>
-  <!-- <div class="track">
-    <div class="circle">
-      <div class="point">
-
-      </div>
-    </div>
-  </div> -->
 </nav>
 
 <nav class="nav-mobile">
@@ -34,9 +63,36 @@
     <img class="logo-mobile" src="/images/logo_mobile.svg" alt="" />
   </a>
   <div class="nav__shop">
-    <a href="/coming/" class="nav__icon icon__favorite"></a>
-    <a href="/coming/" class="nav__icon icon__profile"></a>
-    <a href="/cart/" class="nav__icon icon__cart"></a>
+    <div class="nav__icon icon-heart">
+      <img
+        width="30"
+        height="30"
+        class="icon"
+        src="/images/icons/heart.svg"
+        alt="Сердце"
+      />
+      <a class="link--block" href="/coming/"></a>
+    </div>
+    <div class="nav__icon icon-profile">
+      <img
+        width="30"
+        height="30"
+        class="icon"
+        src="/images/icons/profile.svg"
+        alt="Силуэт котика"
+      />
+      <a class="link--block" href="/coming/"></a>
+    </div>
+    <div class="nav__icon icon-cart">
+      <img
+        width="30"
+        height="30"
+        class="icon"
+        src="/images/icons/cart.svg"
+        alt="Корзина"
+      />
+      <a class="link--block" href="/cart/"></a>
+    </div>
   </div>
   <div class="hamburger-menu">
     <input id="menu__toggle" type="checkbox" />

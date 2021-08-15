@@ -138,28 +138,24 @@ sliders:
       id="bgvid"
       poster="/images/background_video.jpg"
     >
-      <!-- <source src="/media/production.mp4" type="video/mp4" />
-      <source
-        src="/media/production@800.mp4"
-        type="video/mp4"
-        media="screen and (max-width: 800px)"
-      /> -->
       <source src="/media/prod.mp4" type="video/mp4" />
       <source src="/media/prod.webm" type="video/webm" />
     </video>
-    <article class="production__article text">
-      <h1 class="text production__title">{{ production.title }}</h1>
-      {{ production.text }}
+    <article class="production__article">
+      <h4 class="text production__title">{{ production.title }}</h4>
+      <p class="text production__text">
+        {{ production.text }}
+      </p>
     </article>
   </div>
   <div class="page__block main__about">
     <img src="/images/any.jpg" alt="Аня в очках" class="about__image" />
     <div class="about__text text text--optimization">
-      Миссия бренда Ноль Кельвин в повышении доверия к науке за счет ее
+      "Миссия бренда Ноль Кельвин в повышении доверия к науке за счет ее
       популяризации. Я искренне хочу, чтобы как можно больше людей использовали
       научный подход. Для этого я создала научный проект, который от человека к
-      человека будет прививать любовь к науке.
-      <p>
+      человека будет прививать любовь к науке."
+      <p class="about__text__link">
         <a href="https://www.instagram.com/any.physics">@any.physics</a>
       </p>
     </div>

@@ -1,6 +1,6 @@
 const mySwiper = new Swiper(".swiper-banner", {
   speed: 400,
-  spaceBetween: 30,
+  spaceBetween: 0,
   loop: true,
   grabCursor: true,
   keyboard: {

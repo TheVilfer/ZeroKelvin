@@ -63,14 +63,9 @@
   column-gap: 0.7rem;
 }
 .nav__icon {
-  width: 40px;
+  width: 30px;
   position: relative;
   display: inline-block;
-}
-@media screen and (max-width: 800px) {
-  .nav__icon {
-    width: 30px;
-  }
 }
 .icon-heart:hover > .icon {
   content: url(/images/icons/heart-hover.svg);

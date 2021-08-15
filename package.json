@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "start": "rimraf dist && eleventy --serve --quiet",
-    "deploy": "git pull && git push -f origin master",
-    "netlify": "git add . && git commit -m 'Фикс. Добавляет минорное исправление' && git push -f origin master"
+    "deploy": "git pull && git push",
+    "quick_fix": "git add . && git commit -m 'Фикс. Добавляет минорное исправление' && git push"
   },
   "author": "MadeByVilfer",
   "license": "ISC",

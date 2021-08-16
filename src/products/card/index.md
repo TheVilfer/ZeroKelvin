@@ -1,6 +1,6 @@
 ---
 title: Открытка "8 марта"
-artwork: images/8-марта-вк.jpg
+artwork: images/20210301_123831-1-.jpg
 price: "100"
 id: 611a2c67ea25e300111f3b4b
 isAddToCart: true

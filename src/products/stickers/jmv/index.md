@@ -1,6 +1,6 @@
 ---
 title: Стикерпак "ЭМВ"
-artwork: images/20210312_124318-1-1-.jpg
+artwork: images/img_0066.jpg
 price: "220"
 id: 611a2eeebbc80900119f7f2a
 isAddToCart: true

@@ -5,6 +5,7 @@ price: "864"
 id: 610cceb4240e020012ef083d
 tags:
   - kit
+  - stikers
 isAddToCart: true
 ---
 

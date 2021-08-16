@@ -204,6 +204,7 @@ const EnableSubmit = async () => {
   let form = document.querySelector(".cart__form");
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    await SetLocalStorage("cart", cart);
     window.location.replace("/order/");
   });
 };

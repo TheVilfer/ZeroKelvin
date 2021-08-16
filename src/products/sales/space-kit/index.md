@@ -1,10 +1,11 @@
 ---
-title: Космический набор
+title: 'Набор "Космический" '
 artwork: images/twitter-post-61.jpg
 price: "688"
 id: 610c371c5fb7ec001021567c
 tags:
   - kit
+  - stickers
 isAddToCart: true
 ---
 

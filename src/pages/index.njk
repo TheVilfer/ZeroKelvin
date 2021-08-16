@@ -12,7 +12,12 @@ sliders:
       <div class="swiper-slide">
         <picture>
           <source srcset="images/slider/1.webp" type="image/webp" />
-          <img class="slide-image" src="images/slider/1.jpg" />
+          <img
+            width="720"
+            height="210"
+            class="slide-image"
+            src="images/slider/1.jpg"
+          />
         </picture>
         <a class="link--block" href="/catalog/"></a>
       </div>
@@ -109,6 +114,7 @@ sliders:
             class="item__image cart__image"
             src="{{ item.data.artwork }}"
             alt="{{ item.data.title }}"
+            loading="lazy"
           />
 
           <span class="item__category cart__type">
@@ -152,7 +158,14 @@ sliders:
     </article>
   </div>
   <div class="page__block main__about">
-    <img src="/images/any.jpg" alt="Аня в очках" class="about__image" />
+    <img
+      width="230"
+      height="230"
+      loading="lazy"
+      src="/images/any.jpg"
+      alt="Аня в очках"
+      class="about__image"
+    />
     <div class="about__text text text--optimization">
       "Миссия бренда Ноль Кельвин в повышении доверия к науке за счет ее
       популяризации. Я искренне хочу, чтобы как можно больше людей использовали

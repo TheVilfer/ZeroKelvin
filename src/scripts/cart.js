@@ -7,6 +7,7 @@ let cart = {
   detail: {
     totalprice: 0,
     html: "",
+    promocode: "",
   },
 };
 document.addEventListener("DOMContentLoaded", async () => {
@@ -141,6 +142,12 @@ const InitCart = async () => {
   EnableSubmit();
   isCartAvailable();
 };
+const CheckPromocode = async () => {
+  inputPromo = document.querySelector(".promocode__input");
+  cart.detail.promocode = inputPromo.value;
+  await CalculateTotalPrice();
+  UpdateTotalPrice();
+};
 const DeliveryRender = async () => {
   let NodeText = document.querySelector(".cart-delivey__price");
   if (Number.isInteger(delivery)) {
@@ -216,6 +223,9 @@ const CalculateTotalPrice = () => {
     cart.detail.totalprice += value.price * value.count;
   }
   if (Number.isInteger(delivery)) cart.detail.totalprice += delivery;
+  if (cart.detail.promocode == "Boo") {
+    cart.detail.totalprice -= (cart.detail.totalprice / 100) * 10;
+  }
 };
 const CartDisable = async () => {
   if (CartIsEmpty()) {

@@ -82,6 +82,9 @@ const CalculateOutSum = async (cart) => {
   for (const [key, value] of Object.entries(cart.products)) {
     outSum += value.price * value.count;
   }
+  if (cart.detail.promocode == "Boo") {
+    outSum -= (outSum / 100) * 10;
+  }
   cart.detail.totalprice = outSum;
 };
 const GenerateSignatureValue = async (lead_id) => {

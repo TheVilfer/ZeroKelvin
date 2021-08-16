@@ -1,5 +1,5 @@
 ---
-title: Новогодняя
+title: Открытка "Новогодняя"
 artwork: images/отк.нг.вк-1-.jpg
 price: "100"
 id: 611a2c2261869e00114dce43

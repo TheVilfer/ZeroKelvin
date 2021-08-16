@@ -5,6 +5,7 @@ price: "459"
 id: 610ccc35d7500000112978d2
 tags:
   - kit
+  - stickers
 isAddToCart: true
 ---
 

@@ -60,6 +60,7 @@
 }
 
 .cart-element__type {
+  font-size: 0.8rem;
   opacity: 0.5;
 }
 
@@ -76,7 +77,11 @@
   max-width: 6rem;
   color: black;
 }
-
+.promocode__button {
+  max-width: min-content;
+  display: inline-block !important;
+  padding: 0.5rem !important;
+}
 .cart-total__price {
   font-weight: bold;
 }

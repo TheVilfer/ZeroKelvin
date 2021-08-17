@@ -149,6 +149,12 @@ const CheckPromocode = async () => {
     await CalculateTotalPrice();
     UpdateTotalPrice();
   }
+  if (inputPromo.value == "") {
+    cart.detail.promocode = "";
+    await CalculateTotalPrice();
+    UpdateTotalPrice();
+    SetLocalStorage("cart", cart);
+  }
 };
 const DeliveryRender = async () => {
   let NodeText = document.querySelector(".cart-delivey__price");

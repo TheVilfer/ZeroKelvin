@@ -11,31 +11,36 @@ eleventyComputed:
 ---
 
 <main class="page__main page__catalog">
-  {% for item in collections[ correct_category.eng ] %}
-  <div class="catalog-item cart__item" data-id="{{ item.data.id }}">
-    <div class="item__link-zone">
-      <img
-        width="500"
-        height="500"
-        loading="lazy"
-        class="item__image cart__image"
-        src="{{ item.data.artwork }}"
-        alt=""
-      />
-      <span class="item__category cart__type">{{ item.data.category }}</span>
-      <a class="link--block" href="{{ item.url }}"></a>
-      <span class="item__name cart__name">
-        {{ item.data.title }}
-      </span>
-      <span class="item__price cart__price">{{ item.data.price }} руб.</span>
+  <header class="header catalog__header">
+    <h1 class="page__title catalog__title">{{ title }}</h1>
+  </header>
+  <section class="catalog">
+    {% for item in collections[ correct_category.eng ] %}
+    <div class="catalog-item cart__item" data-id="{{ item.data.id }}">
+      <div class="item__link-zone">
+        <img
+          width="500"
+          height="500"
+          loading="lazy"
+          class="item__image cart__image"
+          src="{{ item.data.artwork }}"
+          alt=""
+        />
+        <span class="item__category cart__type">{{ item.data.category }}</span>
+        <a class="link--block" href="{{ item.url }}"></a>
+        <span class="item__name cart__name">
+          {{ item.data.title }}
+        </span>
+        <span class="item__price cart__price">{{ item.data.price }} руб.</span>
+      </div>
+      {% if item.data.isAddToCart %}
+      <button class="item__cart cart__add">Добавить в корзину</button>
+      {% else %}
+      <button class="item__cart item__buy" onclick="BuyPopup()">Купить</button>
+      {% endif %}
     </div>
-    {% if item.data.isAddToCart %}
-    <button class="item__cart cart__add">Добавить в корзину</button>
-    {% else %}
-    <button class="item__cart item__buy" onclick="BuyPopup()">Купить</button>
-    {% endif %}
-  </div>
-  {% endfor %}
+    {% endfor %}
+  </section>
 </main>
 <link
   href="https://cdn.jsdelivr.net/npm/@sweetalert2/themes@5.0.2/minimal/minimal.min.css"

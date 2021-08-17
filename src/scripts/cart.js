@@ -234,8 +234,6 @@ const CartDisable = async () => {
   if (CartIsEmpty()) {
     document.querySelector(".cart-checkout").disabled = true;
   }
-  console.log(cart.detail.totalprice - delivery);
-  console.log(delivery);
 };
 const HtmlRender = () => {
   cart.detail.html = "";

@@ -2,7 +2,7 @@
 title: Микромед Эврика 40х-400х
 artwork: images/microscope-micromed-evrika-40-400-600x600-1-.jpg
 price: "6590"
-id: " 60e8204f6e748f001130048c"
+id: "60e8204f6e748f001130048c"
 isAddToCart: false
 ---
 

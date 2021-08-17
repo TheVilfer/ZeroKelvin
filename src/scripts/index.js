@@ -7,6 +7,10 @@ const mySwiper = new Swiper(".swiper-banner", {
     enabled: true,
     onlyInViewport: true,
   },
+  autoplay: {
+    delay: 5000,
+    pauseOnMouseEnter: true,
+  },
   mousewheel: {
     forceToAxis: true,
     invert: false,
@@ -24,6 +28,7 @@ const catalogSwiper = new Swiper(".swiper-popular", {
   slidesPerView: "auto",
   spaceBetween: 30,
   centeredSlides: true,
+  freeMode: true,
   grabCursor: true,
   loop: true,
   keyboard: {

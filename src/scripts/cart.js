@@ -211,9 +211,9 @@ const EnableSubmit = async () => {
   });
 };
 const isCartAvailable = () => {
-  if (cart.detail.totalprice - delivery < 350) {
+  if (cart.detail.totalprice - delivery < 250) {
     document.querySelector(".cart-checkout").innerHTML =
-      "Минимальная сумма - 350 руб.";
+      "Минимальная сумма - 250 руб.";
     document.querySelector(".cart-checkout").disabled = true;
   } else if (document.querySelector(".cart-checkout").disabled) {
     document.querySelector(".cart-checkout").disabled = false;

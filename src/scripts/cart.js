@@ -226,7 +226,7 @@ const CalculateTotalPrice = () => {
     cart.detail.totalprice += value.price * value.count;
   }
   if (Number.isInteger(delivery)) cart.detail.totalprice += delivery;
-  if (cart.detail.promocode == "Boo") {
+  if (cart.detail.promocode == "Boo" || cart.detail.promocode == "math") {
     cart.detail.totalprice -= (cart.detail.totalprice / 100) * 10;
   }
 };

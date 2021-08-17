@@ -82,7 +82,7 @@ const CalculateOutSum = async (cart) => {
   for (const [key, value] of Object.entries(cart.products)) {
     outSum += value.price * value.count;
   }
-  if (cart.detail.promocode == "Boo") {
+  if (cart.detail.promocode == "Boo" || cart.detail.promocode == "math") {
     outSum -= (outSum / 100) * 10;
   }
   cart.detail.totalprice = outSum;

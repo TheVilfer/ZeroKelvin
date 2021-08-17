@@ -144,9 +144,11 @@ const InitCart = async () => {
 };
 const CheckPromocode = async () => {
   inputPromo = document.querySelector(".promocode__input");
-  cart.detail.promocode = inputPromo.value;
-  await CalculateTotalPrice();
-  UpdateTotalPrice();
+  if (cart.detail.promocode == "") {
+    cart.detail.promocode = inputPromo.value;
+    await CalculateTotalPrice();
+    UpdateTotalPrice();
+  }
 };
 const DeliveryRender = async () => {
   let NodeText = document.querySelector(".cart-delivey__price");

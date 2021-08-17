@@ -1,7 +1,8 @@
+const cart_version = "0.1";
 let delivery = 0;
 let delivery_text = "";
 let delivery_warning =
-  "К сожалению мы не можем раcсчитать стоимость доставки для вас. Итоговая стоимость доставки будет озвучена нашем менеджером во время звонка.";
+  "К сожалению мы не можем раcсчитать стоимость доставки для вас. Итоговая стоимость доставки будет озвучена нашим менеджером во время звонка.";
 let cart = {
   products: {},
   detail: {
@@ -124,11 +125,12 @@ const AddToCart = (id, name, price, type, img) => {
     cart.products[id].count = parseInt(cart.products[id].count) + 1;
   }
   CalculateTotalPrice();
-  HtmlRender();
+  SetLocalStorage("cart", cart);
   console.log(localStorage.cart);
 };
 const InitCart = async () => {
   cart = await GetLocalStorage("cart");
+  HtmlRender();
   CartDisable();
   document
     .querySelector(".cart")
@@ -148,6 +150,7 @@ const CheckPromocode = async () => {
     cart.detail.promocode = inputPromo.value;
     await CalculateTotalPrice();
     UpdateTotalPrice();
+    SetLocalStorage("cart", cart);
   }
   if (inputPromo.value == "") {
     cart.detail.promocode = "";
@@ -162,6 +165,7 @@ const DeliveryRender = async () => {
     delivery_text = delivery + " руб";
     NodeText.classList.remove("text--warning");
   } else {
+    delivery_text = delivery_warning;
     NodeText.classList.add("text--warning");
   }
   NodeText.innerHTML = delivery_text;
@@ -249,7 +253,7 @@ const HtmlRender = () => {
             <span class = "cart-element__type">${value.type}</span>
             <span class = "cart-element__name">${value.name}</span>
             <span class = "cart-element__price">${value.price} руб.</span>
-            <div class = "cart-element__count"> <button class="cart-element__count__plus">+</button> <input class="cart-element__count__value" type="number" value="${value.count}"/> <button class="cart-element__count__minus">-</button> </div>
+            <div class = "cart-element__count"> <button class="cart-element__count__plus">+</button> <input class="cart-element__count__value" type="number" value="${value.count}"/> <button class="cart-element__count__minus">-</button> шт.</div>
         </li>`;
   }
   SetLocalStorage("cart", cart);

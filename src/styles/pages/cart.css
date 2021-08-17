@@ -73,9 +73,11 @@
 }
 
 .cart-element__count__value {
-  width: 100%;
-  max-width: 6rem;
+  width: max-content;
+  max-width: 3.5rem;
   color: black;
+  border-radius: 0;
+  border: 1px solid black;
 }
 .promocode__button {
   max-width: min-content;

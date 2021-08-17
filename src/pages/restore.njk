@@ -1,0 +1,12 @@
+---
+title: Очистка
+permalink: /restore/
+layout: main.njk
+---
+
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    await localStorage.clear();
+    document.location.replace("/");
+  });
+</script>

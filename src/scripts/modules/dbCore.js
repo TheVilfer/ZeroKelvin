@@ -1,12 +1,8 @@
 const mongoUtil = require("mongodb");
 const MongoClient = require("mongodb").MongoClient;
 
-// const MONGODB_URI = process.env.MONGODB_URI;
-// const DB_NAME = process.env.DB_NAME;
-
-const MONGODB_URI =
-  "mongodb+srv://dbZero:2JRbWHDlAfun5n1N@clusterzk.kcwyc.mongodb.net";
-const DB_NAME = "kelvinsite";
+const MONGODB_URI = process.env.MONGODB_URI;
+const DB_NAME = process.env.DB_NAME;
 
 let cachedDb = null;
 

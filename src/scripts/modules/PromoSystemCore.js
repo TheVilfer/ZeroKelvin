@@ -9,6 +9,7 @@ const GetPromoFromDb = async (promocode) => {
     result = undefined;
   }
   if (result == undefined) {
+    console.error(error);
     return new Error("Ошибка при получение данных промокода");
   }
   return result;

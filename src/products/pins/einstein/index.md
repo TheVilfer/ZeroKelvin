@@ -1,6 +1,6 @@
 ---
 title: Значок "Эйнштейн"
-artwork: images/img_9966-1-.jpg
+artwork: images/img_0287.jpg
 price: 300
 id: 60e56a7979b1e00b5c01923b
 tags:

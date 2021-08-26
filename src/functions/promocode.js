@@ -11,10 +11,20 @@ module.exports.handler = async (event, context) => {
   console.log(data);
   console.log("Корзина - " + data.cart);
   console.log("Промик - " + data.promo);
-  const res = await PromoCore.Validator(data.cart, data.promo);
-  console.log(res);
-  return {
-    statusCode: 200,
-    body: JSON.stringify(res),
-  };
+  try {
+    let res = await PromoCore.Validator(data.cart, data.promo);
+    res.status = "ok";
+    return {
+      statusCode: 200,
+      body: JSON.stringify(res),
+    };
+  } catch (error) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({
+        status: "error",
+        error: error,
+      }),
+    };
+  }
 };

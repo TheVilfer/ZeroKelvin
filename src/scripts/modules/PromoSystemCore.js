@@ -2,16 +2,11 @@ const db = require("./dbCore.js");
 const cartUtils = require("./CartUtils.js");
 const collection = "promocodes";
 const GetPromoFromDb = async (promocode) => {
-  let result;
   try {
-    result = await db.QueryOne(collection, { code: promocode });
+    return await db.QueryOne(collection, { code: promocode });
   } catch (error) {
-    result = undefined;
+    throw new Error("invalid promocode");
   }
-  if (result == undefined) {
-    return new Error("Ошибка при получение данных промокода");
-  }
-  return result;
 };
 
 module.exports.Validator = async (cart, promo) => {

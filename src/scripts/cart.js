@@ -147,6 +147,7 @@ const InitCart = async () => {
   isCartAvailable();
 };
 const CheckPromocode = async (click) => {
+  let info = document.querySelector(".promocode__info");
   let inputPromo = "";
   if (click) {
     inputPromo = document.querySelector(".promocode__input").value;
@@ -155,12 +156,14 @@ const CheckPromocode = async (click) => {
       CalculateTotalPrice();
       await UpdateTotalPrice();
       await SetLocalStorage("cart", cart);
+      info.innerHTML = "Промокод успешно удалён";
       return 0;
     }
   } else {
     inputPromo = cart.detail.promocode;
     console.log(inputPromo);
   }
+  info.innerHTML = "Ищем промокод по нашим базам...";
   let resp = await (
     await fetch("/.netlify/functions/promocode", {
       method: "POST",
@@ -173,6 +176,12 @@ const CheckPromocode = async (click) => {
       }),
     })
   ).json();
+  console.log(resp);
+  if (resp.status == "error") {
+    info.innerHTML = "Промокод не найден";
+    return 0;
+  }
+  info.innerHTML = "Промокод применён";
   cart.detail.promocode = inputPromo;
   cart.detail.totalprice = resp.totalprice;
   await UpdateTotalPrice();

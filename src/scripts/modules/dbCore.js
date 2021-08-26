@@ -34,12 +34,10 @@ module.exports.Query = async (collection, data = undefined) => {
   }
 };
 module.exports.QueryOne = async (collection, data) => {
-  try {
-    const db = await connectToDatabase(MONGODB_URI);
-    let response = await db.collection(collection).findOne(data);
-    return response;
-  } catch (error) {
-    console.log(error);
-    return new Error(error);
+  const db = await connectToDatabase(MONGODB_URI);
+  let response = await db.collection(collection).findOne(data);
+  if (response == null) {
+    throw new Error("not found in DataBase");
   }
+  return response;
 };

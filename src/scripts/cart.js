@@ -8,7 +8,7 @@ let cart = {
   detail: {
     totalprice: 0,
     html: "",
-    promocode: undefined,
+    promocode: "",
   },
 };
 document.addEventListener("DOMContentLoaded", async () => {
@@ -138,42 +138,45 @@ const InitCart = async () => {
   EnableInputs();
   delivery = GetAmoutDelivery();
   await DeliveryRender();
-  if (cart.detail.promocode == undefined) {
-    console.log("rot");
+  if (cart.detail.promocode == "" || cart.detail.promocode == undefined) {
     CalculateTotalPrice();
     await UpdateTotalPrice();
   } else {
-    await CheckPromocode();
+    await CheckPromocode(false);
   }
   isCartAvailable();
 };
-const CheckPromocode = async () => {
-  inputPromo = document.querySelector(".promocode__input");
-  if (cart.detail.promocode == undefined) {
-    let resp = await (
-      await fetch("/.netlify/functions/promocode", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
-        body: JSON.stringify({
-          cart: cart.products,
-          promo: inputPromo.value,
-        }),
-      })
-    ).json();
-    cart.detail.promocode = inputPromo.value;
-    cart.detail.totalprice = resp.totalprice;
-    await UpdateTotalPrice();
-    await SetLocalStorage("cart", cart);
-    return resp;
+const CheckPromocode = async (click) => {
+  let inputPromo = "";
+  if (click) {
+    inputPromo = document.querySelector(".promocode__input").value;
+    if (inputPromo == "") {
+      cart.detail.promocode = "";
+      CalculateTotalPrice();
+      await UpdateTotalPrice();
+      await SetLocalStorage("cart", cart);
+      return 0;
+    }
+  } else {
+    inputPromo = cart.detail.promocode;
+    console.log(inputPromo);
   }
-  if (inputPromo.value == "") {
-    cart.detail.promocode = undefined;
-    CalculateTotalPrice();
-    await UpdateTotalPrice();
-    await SetLocalStorage("cart", cart);
-  }
+  let resp = await (
+    await fetch("/.netlify/functions/promocode", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({
+        cart: cart.products,
+        promo: inputPromo,
+      }),
+    })
+  ).json();
+  cart.detail.promocode = inputPromo;
+  cart.detail.totalprice = resp.totalprice;
+  await UpdateTotalPrice();
+  await SetLocalStorage("cart", cart);
 };
 const GetAmoutDelivery = () => {
   let local_shopper = 0;
@@ -228,7 +231,7 @@ const EnableSubmit = async () => {
 const isCartAvailable = () => {
   if (cart.detail.totalprice - delivery < 250) {
     document.querySelector(".cart-checkout").innerHTML =
-      "Минимальная сумма - 250 руб.";
+      "Минимальная сумма - 350 руб.";
     document.querySelector(".cart-checkout").disabled = true;
   } else if (document.querySelector(".cart-checkout").disabled) {
     EnableSubmit();

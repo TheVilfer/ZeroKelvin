@@ -8,7 +8,7 @@ let cart = {
   detail: {
     totalprice: 0,
     html: "",
-    promocode: "",
+    promocode: undefined,
   },
 };
 document.addEventListener("DOMContentLoaded", async () => {
@@ -58,16 +58,16 @@ const EnableAllAddToCart = () => {
     });
   });
 };
-const EnableDeleteButtons = () => {
-  const deleteBtn = document.querySelectorAll(".cart-element__delete");
-  deleteBtn.forEach((el) => {
-    el.addEventListener("click", (e) => {
-      let self = e.currentTarget;
-      let parent = self.closest(".cart-element");
-      let id = parent.dataset.id;
-      DeleteElement(id, parent);
-    });
-  });
+const DeliveryRender = async () => {
+  let NodeText = document.querySelector(".cart-delivey__price");
+  if (Number.isInteger(delivery)) {
+    delivery_text = delivery + " руб";
+    NodeText.classList.remove("text--warning");
+  } else {
+    delivery_text = delivery_warning;
+    NodeText.classList.add("text--warning");
+  }
+  NodeText.innerHTML = delivery_text;
 };
 const EnableInputs = () => {
   const inputs = document.querySelectorAll(".cart-element__count__value");
@@ -87,28 +87,29 @@ const EnableInputs = () => {
 };
 const SetCountItem = async (id, count) => {
   cart.products[id].count = count;
-  console.log("ff");
-  await SetLocalStorage("cart", cart);
-  delivery = ChooseDelivery();
+  delivery = GetAmoutDelivery();
   await DeliveryRender();
-  await CalculateTotalPrice();
+  CalculateTotalPrice();
   await UpdateTotalPrice();
-  await HtmlRender();
+  HtmlRender();
+  isCartAvailable();
+  await SetLocalStorage("cart", cart);
 };
 const DeleteElement = async (id, el) => {
   el.remove();
   delete cart.products[id];
-  await CalculateTotalPrice();
-  UpdateTotalPrice();
-  delivery = ChooseDelivery();
+  delivery = GetAmoutDelivery();
   await DeliveryRender();
+  CalculateTotalPrice();
+  await UpdateTotalPrice();
   HtmlRender();
-  CartDisable();
+  isCartAvailable();
   SetLocalStorage("cart", cart);
 };
 const UpdateTotalPrice = async () => {
-  document.querySelector(".cart-total__price").innerHTML =
-    cart.detail.totalprice;
+  let totalPrice = cart.detail.totalprice;
+  if (Number.isInteger(delivery)) totalPrice += delivery;
+  document.querySelector(".cart-total__price").innerHTML = totalPrice;
 };
 const AddToCart = (id, name, price, type, img) => {
   if (cart.products[id] == undefined) {
@@ -131,46 +132,50 @@ const AddToCart = (id, name, price, type, img) => {
 const InitCart = async () => {
   cart = await GetLocalStorage("cart");
   HtmlRender();
-  CartDisable();
   document
     .querySelector(".cart")
     .insertAdjacentHTML("afterbegin", cart.detail.html);
-  delivery = ChooseDelivery();
-  await CalculateTotalPrice();
-  UpdateTotalPrice();
-  EnableDeleteButtons();
   EnableInputs();
-  DeliveryRender();
-  EnableSubmit();
+  delivery = GetAmoutDelivery();
+  await DeliveryRender();
+  if (cart.detail.promocode == undefined) {
+    console.log("rot");
+    CalculateTotalPrice();
+    await UpdateTotalPrice();
+  } else {
+    await CheckPromocode();
+  }
   isCartAvailable();
 };
 const CheckPromocode = async () => {
   inputPromo = document.querySelector(".promocode__input");
-  if (cart.detail.promocode == "") {
+  if (cart.detail.promocode == undefined) {
+    let resp = await (
+      await fetch("/.netlify/functions/promocode", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify({
+          cart: cart.products,
+          promo: inputPromo.value,
+        }),
+      })
+    ).json();
     cart.detail.promocode = inputPromo.value;
-    await CalculateTotalPrice();
-    UpdateTotalPrice();
-    SetLocalStorage("cart", cart);
+    cart.detail.totalprice = resp.totalprice;
+    await UpdateTotalPrice();
+    await SetLocalStorage("cart", cart);
+    return resp;
   }
   if (inputPromo.value == "") {
-    cart.detail.promocode = "";
-    await CalculateTotalPrice();
-    UpdateTotalPrice();
-    SetLocalStorage("cart", cart);
+    cart.detail.promocode = undefined;
+    CalculateTotalPrice();
+    await UpdateTotalPrice();
+    await SetLocalStorage("cart", cart);
   }
 };
-const DeliveryRender = async () => {
-  let NodeText = document.querySelector(".cart-delivey__price");
-  if (Number.isInteger(delivery)) {
-    delivery_text = delivery + " руб";
-    NodeText.classList.remove("text--warning");
-  } else {
-    delivery_text = delivery_warning;
-    NodeText.classList.add("text--warning");
-  }
-  NodeText.innerHTML = delivery_text;
-};
-const ChooseDelivery = () => {
+const GetAmoutDelivery = () => {
   let local_shopper = 0;
   let local_stickers = 0;
   let local_cards = 0;
@@ -226,22 +231,16 @@ const isCartAvailable = () => {
       "Минимальная сумма - 250 руб.";
     document.querySelector(".cart-checkout").disabled = true;
   } else if (document.querySelector(".cart-checkout").disabled) {
+    EnableSubmit();
     document.querySelector(".cart-checkout").disabled = false;
     document.querySelector(".cart-checkout").innerHTML = "Оформить заказ";
   }
 };
+
 const CalculateTotalPrice = () => {
   cart.detail.totalprice = 0;
   for (const [key, value] of Object.entries(cart.products)) {
     cart.detail.totalprice += value.price * value.count;
-  }
-  if (Number.isInteger(delivery)) cart.detail.totalprice += delivery;
-  if (
-    cart.detail.promocode == "Boo" ||
-    cart.detail.promocode == "math" ||
-    cart.detail.promocode == "ancharts"
-  ) {
-    cart.detail.totalprice -= (cart.detail.totalprice / 100) * 10;
   }
 };
 const CartDisable = async () => {

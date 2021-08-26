@@ -9,7 +9,6 @@ const GetPromoFromDb = async (promocode) => {
     result = undefined;
   }
   if (result == undefined) {
-    console.error(error);
     return new Error("Ошибка при получение данных промокода");
   }
   return result;
@@ -21,11 +20,11 @@ module.exports.Validator = async (cart, promo) => {
   switch (promoData.type) {
     case 1:
       const discount = (totalPrice / 100) * promoData.interest;
-      return (response = {
+      return {
         discount: discount,
         cart: cartUtils.SetInterest(cart, promoData.interest),
         totalprice: totalPrice - discount,
-      });
+      };
       break;
 
     default:

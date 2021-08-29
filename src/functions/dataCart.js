@@ -2,6 +2,9 @@ const mongoUtil = require("mongodb");
 const MongoClient = require("mongodb").MongoClient;
 const md5 = require("blueimp-md5");
 const fetch = require("node-fetch");
+const PromoCore = require("../scripts/modules/PromoSystemCore.js");
+const CartUtils = require("../scripts/modules/CartUtils.js");
+const DbCore = require("../scripts/modules/dbCore.js");
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = process.env.DB_NAME;
@@ -52,18 +55,30 @@ module.exports.handler = async (event, context) => {
   const db = await connectToDatabase(MONGODB_URI);
   let cart = JSON.parse(event.body);
   console.log(cart);
-  for (const [key, value] of Object.entries(cart.products)) {
+  for (const key of Object.keys(cart.products)) {
     ids.push(key);
   }
   (await queryDatabase(db, ids)).forEach((el) => {
     cart.products[el._id].name = el.name;
     cart.products[el._id].price = el.price;
   });
-  cart.products["delivery"] = {};
-  cart.products["delivery"].name = "Доставка";
-  cart.products["delivery"].count = 1;
-  cart.products["delivery"].price = await ChooseDelivery(cart);
-  CalculateOutSum(cart);
+  if (cart.detail.promocode == "") {
+    cart.products["delivery"] = {};
+    cart.products["delivery"].name = "Доставка";
+    cart.products["delivery"].count = 1;
+    cart.products["delivery"].price = await ChooseDelivery(cart);
+    cart.detail.totalprice = CartUtils.GetTotalPrice(cart);
+  } else {
+    const DeliveryPrice = await ChooseDelivery(cart);
+    let PromoData = await PromoCore.Validator(cart, cart.detail.promocode);
+    cart = PromoData.cart;
+    cart.detail.totalprice = PromoData.totalprice;
+    cart.products["delivery"] = {};
+    cart.products["delivery"].name = "Доставка";
+    cart.products["delivery"].count = 1;
+    cart.products["delivery"].price = DeliveryPrice;
+    cart.detail.totalprice += DeliveryPrice;
+  }
   let lead = await AddOrderToAmo(cart);
   await GenerateSignatureValue(lead["lead_id"]);
   await GenerateLink(lead["lead_id"]);
@@ -76,20 +91,6 @@ module.exports.handler = async (event, context) => {
       link: link,
     }),
   };
-};
-const CalculateOutSum = async (cart) => {
-  outSum = 0;
-  for (const [key, value] of Object.entries(cart.products)) {
-    outSum += value.price * value.count;
-  }
-  if (
-    cart.detail.promocode == "Boo" ||
-    cart.detail.promocode == "math" ||
-    cart.detail.promocode == "ancharts"
-  ) {
-    outSum -= (outSum / 100) * 10;
-  }
-  cart.detail.totalprice = outSum;
 };
 const GenerateSignatureValue = async (lead_id) => {
   signatureValue = md5(
@@ -114,7 +115,7 @@ const AddOrderToAmo = async (cart) => {
     return response.json();
   } catch (e) {
     console.error(e);
-    return e;
+    throw new Error(e);
   }
 };
 const ChooseDelivery = async (cart) => {

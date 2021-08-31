@@ -8,12 +8,13 @@ let TokensConfig = {
   collection: null,
   id: null,
 };
+const CLIENT_ID = process.env.AMO_CLIENT_ID;
+const CLIENT_SECRET = process.env.AMO_CLIENT_SECRET;
 
 const FixToken = async () => {
   Tokens = await this.Request("/oauth2/access_token", {
-    client_id: "ce05d186-002c-4012-8df0-5c128dd5bc92",
-    client_secret:
-      "znFxl3nHXLdK6Hu98WuBu3klUDs66606Q4jYvsfSSBsQjxiTTx1ugTGDOVkJFpCy",
+    client_id: CLIENT_ID,
+    client_secret: CLIENT_SECRET,
     grant_type: "refresh_token",
     refresh_token: Tokens.refresh_token,
     redirect_uri: "https://zerokelvin.ru",
@@ -75,5 +76,23 @@ module.exports.Get = async (url) => {
   } catch (error) {
     console.error(error);
     throw new Error("Request(GET) fail: " + error);
+  }
+};
+
+module.exports.Patch = async (url, data) => {
+  try {
+    return (
+      await fetch("https://zerokelvin1.amocrm.ru" + url, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+          Authorization: "Bearer " + Tokens.access_token,
+        },
+        body: JSON.stringify(data),
+      })
+    ).json();
+  } catch (error) {
+    console.error(error);
+    throw new Error("Request(POST) fail: " + error);
   }
 };

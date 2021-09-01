@@ -27,12 +27,14 @@ module.exports.handler = async (event, context) => {
   for (const key of Object.keys(cart.products)) {
     ids.push(key);
   }
-  // (await DbCore.Query("products", DbCore.ConvertArrayToObjectID(ids))).forEach(
-  //   (el) => {
-  //     cart.products[el._id].name = el.name;
-  //     cart.products[el._id].price = el.price;
-  //   }
-  // );
+  (
+    await DbCore.Query("products", {
+      _id: { $in: DbCore.ConvertArrayToObjectID(ids) },
+    })
+  ).forEach((el) => {
+    cart.products[el._id].name = el.name;
+    cart.products[el._id].price = el.price;
+  });
   if (cart.detail.promocode == "") {
     cart.products["delivery"] = {};
     cart.products["delivery"].name = "Доставка";
@@ -54,8 +56,8 @@ module.exports.handler = async (event, context) => {
     cart.detail.totalprice += DeliveryPrice;
   }
   let lead = await AddOrderToAmo(cart);
-  await GenerateSignatureValue(lead["lead_id"]);
-  await GenerateLink(lead["lead_id"]);
+  await GenerateSignatureValue(lead);
+  await GenerateLink(lead);
   return {
     statusCode: 200,
     headers: {
@@ -75,66 +77,73 @@ const GenerateLink = async (lead_id) => {
   link = `https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=${MERCHANTLOGIN}&OutSum=${outSum}&InvoiceID=${lead_id}&Description=${description}&SignatureValue=${signatureValue}`;
 };
 const AddOrderToAmo = async (cart) => {
+  const lead_complex = [
+    {
+      name: "Заказ с сайта",
+      price: cart.detail.totalprice,
+      status_id: 39483091,
+      pipeline_id: 4202485,
+      _embedded: {
+        contacts: [
+          {
+            first_name: cart.contact["given-name"],
+            last_name: cart.contact["family-name"],
+            custom_fields_values: [
+              {
+                field_id: 28481,
+                values: [
+                  {
+                    value: cart.contact.tel,
+                    enum_code: "MOB",
+                  },
+                ],
+              },
+              {
+                field_id: 28483,
+                values: [
+                  {
+                    value: cart.contact.email,
+                    enum_code: "PRIV",
+                  },
+                ],
+              },
+              {
+                field_id: 988783,
+                values: [
+                  {
+                    value: cart.contact.street,
+                    enum_id: 1,
+                  },
+                  {
+                    value: cart.contact.housing,
+                    enum_id: 2,
+                  },
+                  {
+                    value: cart.contact.city,
+                    enum_id: 3,
+                  },
+                  {
+                    value: cart.contact.state,
+                    enum_id: 4,
+                  },
+                  {
+                    value: cart.contact.postalcode,
+                    enum_id: 5,
+                  },
+                  {
+                    value: cart.contact.country,
+                    enum_id: 6,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ];
   try {
-    await Amo.Init("tokens", "60c0e125e35a6baee25a652e");
-    let contact_id = (
-      await Amo.Request("/api/v4/contacts", [
-        {
-          first_name: cart.contact["given-name"],
-          last_name: cart.contact["family-name"],
-          custom_fields_values: [
-            {
-              field_id: 28481,
-              values: [
-                {
-                  value: cart.contact.tel,
-                  enum_code: "MOB",
-                },
-              ],
-            },
-            {
-              field_id: 28483,
-              values: [
-                {
-                  value: cart.contact.email,
-                  enum_code: "PRIV",
-                },
-              ],
-            },
-            {
-              field_id: 988783,
-              values: [
-                {
-                  value: "RU",
-                  enum_code: "country",
-                },
-                {
-                  value: cart.contact.state,
-                  enum_code: "state",
-                },
-                {
-                  value: cart.contact.postalcode,
-                  enum_code: "zip",
-                },
-                {
-                  value: cart.contact.city,
-                  enum_code: "city",
-                },
-                {
-                  value: cart.contact.housing,
-                  enum_code: "address_line_2",
-                },
-                {
-                  value: cart.contact.street,
-                  enum_code: "address_line_1",
-                },
-              ],
-            },
-          ],
-        },
-      ])
-    )["_embedded"]["contacts"][0]["id"];
-    console.log(JSON.stringify(contact_id));
+    let prom = Amo.Init("tokens", "60c0e125e35a6baee25a652e");
     let invoice_elements = [];
     for (const value of Object.values(cart.products)) {
       invoice_elements.push({
@@ -146,81 +155,74 @@ const AddOrderToAmo = async (cart) => {
         },
       });
     }
-    let invoice_id = await Amo.Request("/api/v4/catalogs/8693/elements", [
+    let invoice = [
       {
-        name: "Счёт покупки с сайта zerokelvin.ru",
+        name: "Cчет",
         custom_fields_values: [
+          {
+            field_id: 982493,
+            values: [
+              {
+                value: "Создан",
+              },
+            ],
+          },
           {
             field_id: 982503,
             values: invoice_elements,
           },
-          // {
-          //   field_id: 982507,
-          //   values: [
-          //     {
-          //       value: cart.detail.totalprice,
-          //     },
-          //   ],
-          // },
-          // {
-          //   field_id: 982505,
-          //   values: [
-          //     {
-          //       value: cart.contact.comment,
-          //     },
-          //   ],
-          // },
-          // {
-          //   field_id: 1023598,
-          //   values: [
-          //     {
-          //       value: cart.detail.promocode,
-          //     },
-          //   ],
-          // },
-          // {
-          //   field_id: 982497,
-          //   values: [
-          //     {
-          //       value: {
-          //         name:
-          //           cart.contact["given-name"] +
-          //           " " +
-          //           cart.contact["family-name"],
-          //         entity_id: contact_id,
-          //         entity_type: "contacts",
-          //       },
-          //     },
-          //   ],
-          // },
-        ],
-      },
-    ]);
-    // )["_embedded"].items[0].id;
-    console.log(JSON.stringify(invoice_id));
-    let lead_id = (
-      await Amo.Request("/api/v4/leads", [
-        {
-          name: "Заказ с сайта #" + invoice_id,
-          price: cart.detail.totalprice,
-          pipeline_id: 4202485,
-          status_id: 39483091,
-          _embedded: {
-            contact: [
+          {
+            field_id: 982505,
+            values: [
               {
-                id: contact_id,
-              },
-            ],
-            catalog_elements: [
-              {
-                id: invoice_id,
+                value: cart.contact.comment,
               },
             ],
           },
+          {
+            field_id: 982507,
+            values: [
+              {
+                value: cart.detail.totalprice,
+              },
+            ],
+          },
+          {
+            field_id: 1023598,
+            values: [
+              {
+                value: cart.detail.promocode,
+              },
+            ],
+          },
+        ],
+      },
+    ];
+    await prom;
+    prom = Promise.all([
+      Amo.Request("/api/v4/leads/complex", lead_complex),
+      Amo.Request("/api/v4/catalogs/8693/elements", invoice),
+    ]);
+    let list = await prom;
+    const AmoId = {
+      lead_id: list[0][0]["id"],
+      invoice_id: list[1]["_embedded"]["elements"][0]["id"],
+    };
+    const AmoLink = [
+      {
+        to_entity_id: AmoId.invoice_id,
+        to_entity_type: "catalog_elements",
+        metadata: {
+          catalog_id: 8693,
         },
-      ])
-    )["_embedded"].leads[0].id;
-    return invoice_id;
+      },
+    ];
+    prom = Promise.all([
+      Amo.Request("/api/v4/leads/" + AmoId.lead_id + "/link", AmoLink),
+    ]);
+    list = await prom;
+    console.log(JSON.stringify(list));
+    return AmoId.lead_id;
   } catch (error) {
     console.error("Failed add order to Amo: " + error);
     throw new Error("Failed add order to Amo: " + error);

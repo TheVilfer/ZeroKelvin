@@ -316,7 +316,7 @@ const GeneratePaymentLink = async (userData) => {
     },
     body: JSON.stringify(cart_temp),
   });
-  console.error(await response);
+  console.error(response);
   return response.json();
 };
 const CollectUserData = async (form) => {

@@ -72,7 +72,7 @@ layout: main.njk
         id="city"
         autocomplete="shipping address-level2"
         required
-        placeholder="Населённый пункт"
+        placeholder="Город/Населённый пункт"
       />
       <input
         class="input"
@@ -120,16 +120,75 @@ layout: main.njk
         name="comment"
         id="comment"
       ></textarea>
-      <br />
-      <input
-        type="checkbox"
-        name="distribution"
-        id="distribution"
-        value="yes"
-      />
-      <label for="distribution">Хочу подписаться на Email рассылку</label>
     </fieldset>
     <button class="order__submit button" type="submit">Оформить заказ</button>
   </form>
 </main>
 <script defer src="/scripts/imask.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link
+  href="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.6.0/dist/css/suggestions.min.css"
+  rel="stylesheet"
+/>
+<script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.6.0/dist/js/jquery.suggestions.min.js"></script>
+<script>
+  var token = "aaa642a9db3cee03cc076805206b20113f71eb93";
+  var type = "ADDRESS";
+  var $country = $("#country");
+  var $region = $("#state");
+  var $city = $("#city");
+  var $street = $("#street");
+
+  function showPostalCode(suggestion) {
+    if (suggestion.data.postal_code)
+      $("#postalcode").val(suggestion.data.postal_code);
+  }
+
+  function clearPostalCode() {
+    $("#postalcode").val("");
+  }
+  function suggestHouse(suggestion) {
+    if (suggestion.data.house) {
+      return;
+    }
+    $street.suggestions().update();
+  }
+  function combo(suggestion) {
+    showPostalCode(suggestion);
+    suggestHouse(suggestion);
+  }
+  $country.suggestions({
+    token: token,
+    type: type,
+    constraints: {
+      locations: { country: "*" },
+    },
+    bounds: "country",
+    hint: false,
+  });
+  $region.suggestions({
+    token: token,
+    type: type,
+    hint: false,
+    bounds: "region-area",
+    constraints: $country,
+  });
+  $city.suggestions({
+    token: token,
+    type: type,
+    hint: false,
+    bounds: "city",
+    constraints: $region,
+    onSelect: showPostalCode,
+    onSelectNothing: clearPostalCode,
+  });
+  $street.suggestions({
+    token: token,
+    type: type,
+    hint: false,
+    bounds: "street-house",
+    constraints: $city,
+    onSelect: combo,
+    onSelectNothing: clearPostalCode,
+  });
+</script>

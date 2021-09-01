@@ -55,6 +55,7 @@ module.exports.handler = async (event, context) => {
     cart.products["delivery"].price = DeliveryPrice;
     cart.detail.totalprice += DeliveryPrice;
   }
+  outSum = cart.detail.totalprice;
   let lead = await AddOrderToAmo(cart);
   await GenerateSignatureValue(lead);
   await GenerateLink(lead);

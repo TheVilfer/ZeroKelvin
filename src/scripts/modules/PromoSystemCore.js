@@ -18,7 +18,7 @@ module.exports.Validator = async (cart, promo) => {
       return {
         discount: discount,
         cart: cartUtils.SetInterest(cart, promoData.interest),
-        totalprice: totalPrice - discount,
+        totalprice: Math.ceil(totalPrice - discount),
       };
       break;
 

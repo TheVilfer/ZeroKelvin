@@ -28,6 +28,8 @@ module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
   let respAmo = Amo.Init("tokens", "60c0e125e35a6baee25a652e");
   const data = querystring.parse(event.body);
+  console.log(event.body);
+
   const newSV = md5(
     `${data.OutSum}:${data.InvId}:${process.env.PASSWORD_TWO}`
   ).toUpperCase();

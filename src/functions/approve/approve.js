@@ -53,15 +53,13 @@ module.exports.handler = async (event, context) => {
       name: "Заказ с сайта #" + data.InvId,
       status_id: 142,
     }),
-    Amo.Get("/api/v4/leads/12280437?with=catalog_elements"),
+    Amo.Get(`/api/v4/leads/${data.InvId}?with=catalog_elements`),
   ]);
   let listIds = await respAmo;
   respAmo = Amo.Patch(
     `/api/v4/catalogs/${listIds[1]["_embedded"]["catalog_elements"][0]["id"]}/elements`,
     {
-      name:
-        "Счет к заказу #" +
-        listIds[1]["_embedded"]["catalog_elements"][0]["id"],
+      name: `Счет к заказу #${listIds[1]["_embedded"]["catalog_elements"][0]["id"]}`,
       custom_fields_values: [
         {
           field_id: 982493,

@@ -90,6 +90,7 @@ module.exports.handler = async (event, context) => {
     console.error("Проблема с данными, письмо клиенту не ушло " + error);
   }
   await respAmo;
+  console.log(respAmo);
   await respBot;
   return {
     statusCode: 200,

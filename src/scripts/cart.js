@@ -58,16 +58,16 @@ const EnableAllAddToCart = () => {
     });
   });
 };
-const EnableDeleteButtons = () => {
-  const deleteBtn = document.querySelectorAll(".cart-element__delete");
-  deleteBtn.forEach((el) => {
-    el.addEventListener("click", (e) => {
-      let self = e.currentTarget;
-      let parent = self.closest(".cart-element");
-      let id = parent.dataset.id;
-      DeleteElement(id, parent);
-    });
-  });
+const DeliveryRender = async () => {
+  let NodeText = document.querySelector(".cart-delivey__price");
+  if (Number.isInteger(delivery)) {
+    delivery_text = delivery + " руб";
+    NodeText.classList.remove("text--warning");
+  } else {
+    delivery_text = delivery_warning;
+    NodeText.classList.add("text--warning");
+  }
+  NodeText.innerHTML = delivery_text;
 };
 const EnableInputs = () => {
   const inputs = document.querySelectorAll(".cart-element__count__value");
@@ -87,28 +87,29 @@ const EnableInputs = () => {
 };
 const SetCountItem = async (id, count) => {
   cart.products[id].count = count;
-  console.log("ff");
-  await SetLocalStorage("cart", cart);
-  delivery = ChooseDelivery();
+  delivery = GetAmoutDelivery();
   await DeliveryRender();
-  await CalculateTotalPrice();
+  CalculateTotalPrice();
   await UpdateTotalPrice();
-  await HtmlRender();
+  HtmlRender();
+  isCartAvailable();
+  await SetLocalStorage("cart", cart);
 };
 const DeleteElement = async (id, el) => {
   el.remove();
   delete cart.products[id];
-  await CalculateTotalPrice();
-  UpdateTotalPrice();
-  delivery = ChooseDelivery();
+  delivery = GetAmoutDelivery();
   await DeliveryRender();
+  CalculateTotalPrice();
+  await UpdateTotalPrice();
   HtmlRender();
-  CartDisable();
+  isCartAvailable();
   SetLocalStorage("cart", cart);
 };
 const UpdateTotalPrice = async () => {
-  document.querySelector(".cart-total__price").innerHTML =
-    cart.detail.totalprice;
+  let totalPrice = cart.detail.totalprice;
+  if (Number.isInteger(delivery)) totalPrice += delivery;
+  document.querySelector(".cart-total__price").innerHTML = totalPrice;
 };
 const AddToCart = (id, name, price, type, img) => {
   if (cart.products[id] == undefined) {
@@ -131,46 +132,62 @@ const AddToCart = (id, name, price, type, img) => {
 const InitCart = async () => {
   cart = await GetLocalStorage("cart");
   HtmlRender();
-  CartDisable();
   document
     .querySelector(".cart")
     .insertAdjacentHTML("afterbegin", cart.detail.html);
-  delivery = ChooseDelivery();
-  await CalculateTotalPrice();
-  UpdateTotalPrice();
-  EnableDeleteButtons();
   EnableInputs();
-  DeliveryRender();
-  EnableSubmit();
+  delivery = GetAmoutDelivery();
+  await DeliveryRender();
+  if (cart.detail.promocode == "" || cart.detail.promocode == undefined) {
+    CalculateTotalPrice();
+    await UpdateTotalPrice();
+  } else {
+    await CheckPromocode(false);
+  }
   isCartAvailable();
 };
-const CheckPromocode = async () => {
-  inputPromo = document.querySelector(".promocode__input");
-  if (cart.detail.promocode == "") {
-    cart.detail.promocode = inputPromo.value;
-    await CalculateTotalPrice();
-    UpdateTotalPrice();
-    SetLocalStorage("cart", cart);
-  }
-  if (inputPromo.value == "") {
-    cart.detail.promocode = "";
-    await CalculateTotalPrice();
-    UpdateTotalPrice();
-    SetLocalStorage("cart", cart);
-  }
-};
-const DeliveryRender = async () => {
-  let NodeText = document.querySelector(".cart-delivey__price");
-  if (Number.isInteger(delivery)) {
-    delivery_text = delivery + " руб";
-    NodeText.classList.remove("text--warning");
+const CheckPromocode = async (click) => {
+  let info = document.querySelector(".promocode__info");
+  let inputPromo = "";
+  if (click) {
+    inputPromo = document.querySelector(".promocode__input").value;
+    if (inputPromo == "") {
+      cart.detail.promocode = "";
+      CalculateTotalPrice();
+      await UpdateTotalPrice();
+      await SetLocalStorage("cart", cart);
+      info.innerHTML = "Промокод успешно удалён";
+      return 0;
+    }
   } else {
-    delivery_text = delivery_warning;
-    NodeText.classList.add("text--warning");
+    inputPromo = cart.detail.promocode;
+    console.log(inputPromo);
   }
-  NodeText.innerHTML = delivery_text;
+  info.innerHTML = "Ищем промокод по нашим базам...";
+  let resp = await (
+    await fetch("/.netlify/functions/promocode", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({
+        cart: cart.products,
+        promo: inputPromo,
+      }),
+    })
+  ).json();
+  console.log(resp);
+  if (resp.status == "error") {
+    info.innerHTML = "Промокод не найден";
+    return 0;
+  }
+  info.innerHTML = "Промокод применён";
+  cart.detail.promocode = inputPromo;
+  cart.detail.totalprice = resp.totalprice;
+  await UpdateTotalPrice();
+  await SetLocalStorage("cart", cart);
 };
-const ChooseDelivery = () => {
+const GetAmoutDelivery = () => {
   let local_shopper = 0;
   let local_stickers = 0;
   let local_cards = 0;
@@ -223,25 +240,19 @@ const EnableSubmit = async () => {
 const isCartAvailable = () => {
   if (cart.detail.totalprice - delivery < 250) {
     document.querySelector(".cart-checkout").innerHTML =
-      "Минимальная сумма - 250 руб.";
+      "Минимальная сумма товаров для заказа - 350 руб.";
     document.querySelector(".cart-checkout").disabled = true;
-  } else if (document.querySelector(".cart-checkout").disabled) {
+  } else {
+    EnableSubmit();
     document.querySelector(".cart-checkout").disabled = false;
     document.querySelector(".cart-checkout").innerHTML = "Оформить заказ";
   }
 };
+
 const CalculateTotalPrice = () => {
   cart.detail.totalprice = 0;
   for (const [key, value] of Object.entries(cart.products)) {
     cart.detail.totalprice += value.price * value.count;
-  }
-  if (Number.isInteger(delivery)) cart.detail.totalprice += delivery;
-  if (
-    cart.detail.promocode == "Boo" ||
-    cart.detail.promocode == "math" ||
-    cart.detail.promocode == "ancharts"
-  ) {
-    cart.detail.totalprice -= (cart.detail.totalprice / 100) * 10;
   }
 };
 const CartDisable = async () => {
@@ -305,7 +316,7 @@ const GeneratePaymentLink = async (userData) => {
     },
     body: JSON.stringify(cart_temp),
   });
-  console.error(await response);
+  console.error(response);
   return response.json();
 };
 const CollectUserData = async (form) => {

@@ -19,27 +19,46 @@ const connectToDatabase = async (uri) => {
 };
 
 module.exports.Query = async (collection, data = undefined) => {
-  try {
-    const db = await connectToDatabase(MONGODB_URI);
-    let response;
-    if (data == undefined) {
-      response = await db.collection(collection).find().toArray();
-    } else {
-      response = await db.collection(collection).find(data).toArray();
-    }
-    return response;
-  } catch (error) {
-    console.log(error);
-    return new Error(error);
+  const db = await connectToDatabase(MONGODB_URI);
+  let response;
+  if (data == undefined) {
+    response = await db.collection(collection).find().toArray();
+  } else {
+    response = await db.collection(collection).find(data).toArray();
   }
+  if (response == null) {
+    throw new Error("not found in DataBase");
+  }
+  return response;
 };
+
 module.exports.QueryOne = async (collection, data) => {
-  try {
-    const db = await connectToDatabase(MONGODB_URI);
-    let response = await db.collection(collection).findOne(data);
-    return response;
-  } catch (error) {
-    console.log(error);
-    return new Error(error);
+  const db = await connectToDatabase(MONGODB_URI);
+  let response = await db.collection(collection).findOne(data);
+  if (response == null) {
+    throw new Error("not found in DataBase");
   }
+  return response;
+};
+
+module.exports.UpdateOne = async (collection, data, id) => {
+  const db = await connectToDatabase(MONGODB_URI);
+  let response = await db.collection(collection).updateOne(
+    {
+      _id: new mongoUtil.ObjectID(id),
+    },
+    {
+      $set: data,
+    }
+  );
+  return response;
+};
+
+module.exports.ConvertArrayToObjectID = (data) => {
+  let query = [];
+  data.forEach((element) => query.push(new mongoUtil.ObjectID(element)));
+  return query;
+};
+module.exports.ConvertToObjectID = (data) => {
+  return new mongoUtil.ObjectID(data);
 };

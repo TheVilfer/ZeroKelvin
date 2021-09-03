@@ -1,44 +1,17 @@
-const mongoUtil = require("mongodb");
-const MongoClient = require("mongodb").MongoClient;
 const md5 = require("blueimp-md5");
-const fetch = require("node-fetch");
+const mongoUtil = require("mongodb");
+const PromoCore = require("../scripts/modules/PromoSystemCore.js");
+const CartUtils = require("../scripts/modules/CartUtils.js");
+const DbCore = require("../scripts/modules/dbCore.js");
+const Amo = require("../scripts/modules/AmoLibrary.js");
 
-const MONGODB_URI = process.env.MONGODB_URI;
-const DB_NAME = process.env.DB_NAME;
 const MERCHANTLOGIN = process.env.MERCHANTLOGIN;
 const PASSWORD_ONE = process.env.PASSWORD_ONE;
 
-let cachedDb = null;
 let outSum = 0;
 let description = "Покупка в научном магазине Ноль Кельвин";
 let signatureValue = "";
 let link = "";
-
-const connectToDatabase = async (uri) => {
-  if (cachedDb) return cachedDb;
-
-  const client = await MongoClient.connect(uri, {
-    useUnifiedTopology: true,
-  });
-
-  cachedDb = client.db(DB_NAME);
-
-  return cachedDb;
-};
-
-const queryDatabase = async (db, data) => {
-  let query = [];
-  data.forEach((element) => query.push(new mongoUtil.ObjectID(element)));
-  let response = await db
-    .collection("products")
-    .find({
-      _id: {
-        $in: query,
-      },
-    })
-    .toArray();
-  return response;
-};
 
 module.exports.handler = async (event, context) => {
   if (event.httpMethod !== "POST") {
@@ -49,24 +22,43 @@ module.exports.handler = async (event, context) => {
   }
   context.callbackWaitsForEmptyEventLoop = false;
   let ids = [];
-  const db = await connectToDatabase(MONGODB_URI);
   let cart = JSON.parse(event.body);
   console.log(cart);
-  for (const [key, value] of Object.entries(cart.products)) {
+  for (const key of Object.keys(cart.products)) {
     ids.push(key);
   }
-  (await queryDatabase(db, ids)).forEach((el) => {
+  (
+    await DbCore.Query("products", {
+      _id: { $in: DbCore.ConvertArrayToObjectID(ids) },
+    })
+  ).forEach((el) => {
     cart.products[el._id].name = el.name;
     cart.products[el._id].price = el.price;
   });
-  cart.products["delivery"] = {};
-  cart.products["delivery"].name = "Доставка";
-  cart.products["delivery"].count = 1;
-  cart.products["delivery"].price = await ChooseDelivery(cart);
-  CalculateOutSum(cart);
+  if (cart.detail.promocode == "") {
+    cart.products["delivery"] = {};
+    cart.products["delivery"].name = "Доставка";
+    cart.products["delivery"].count = 1;
+    cart.products["delivery"].price = await ChooseDelivery(cart.products);
+    cart.detail.totalprice = CartUtils.GetTotalPrice(cart.products);
+  } else {
+    const DeliveryPrice = await ChooseDelivery(cart.products);
+    let PromoData = await PromoCore.Validator(
+      cart.products,
+      cart.detail.promocode
+    );
+    cart.products = PromoData.cart;
+    cart.detail.totalprice = PromoData.totalprice;
+    cart.products["delivery"] = {};
+    cart.products["delivery"].name = "Доставка";
+    cart.products["delivery"].count = 1;
+    cart.products["delivery"].price = DeliveryPrice;
+    cart.detail.totalprice += DeliveryPrice;
+  }
+  outSum = cart.detail.totalprice;
   let lead = await AddOrderToAmo(cart);
-  await GenerateSignatureValue(lead["lead_id"]);
-  await GenerateLink(lead["lead_id"]);
+  await GenerateSignatureValue(lead);
+  await GenerateLink(lead);
   return {
     statusCode: 200,
     headers: {
@@ -77,20 +69,6 @@ module.exports.handler = async (event, context) => {
     }),
   };
 };
-const CalculateOutSum = async (cart) => {
-  outSum = 0;
-  for (const [key, value] of Object.entries(cart.products)) {
-    outSum += value.price * value.count;
-  }
-  if (
-    cart.detail.promocode == "Boo" ||
-    cart.detail.promocode == "math" ||
-    cart.detail.promocode == "ancharts"
-  ) {
-    outSum -= (outSum / 100) * 10;
-  }
-  cart.detail.totalprice = outSum;
-};
 const GenerateSignatureValue = async (lead_id) => {
   signatureValue = md5(
     MERCHANTLOGIN + ":" + outSum + ":" + lead_id + ":" + PASSWORD_ONE
@@ -100,21 +78,155 @@ const GenerateLink = async (lead_id) => {
   link = `https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=${MERCHANTLOGIN}&OutSum=${outSum}&InvoiceID=${lead_id}&Description=${description}&SignatureValue=${signatureValue}`;
 };
 const AddOrderToAmo = async (cart) => {
+  const lead_complex = [
+    {
+      name: "Заказ с сайта",
+      price: cart.detail.totalprice,
+      status_id: 39483091,
+      pipeline_id: 4202485,
+      _embedded: {
+        contacts: [
+          {
+            first_name: cart.contact["given-name"],
+            last_name: cart.contact["family-name"],
+            custom_fields_values: [
+              {
+                field_id: 28481,
+                values: [
+                  {
+                    value: cart.contact.tel,
+                    enum_code: "MOB",
+                  },
+                ],
+              },
+              {
+                field_id: 28483,
+                values: [
+                  {
+                    value: cart.contact.email,
+                    enum_code: "PRIV",
+                  },
+                ],
+              },
+              {
+                field_id: 988783,
+                values: [
+                  {
+                    value: cart.contact.street,
+                    enum_id: 1,
+                  },
+                  {
+                    value: cart.contact.housing,
+                    enum_id: 2,
+                  },
+                  {
+                    value: cart.contact.city,
+                    enum_id: 3,
+                  },
+                  {
+                    value: cart.contact.state,
+                    enum_id: 4,
+                  },
+                  {
+                    value: cart.contact.postalcode,
+                    enum_id: 5,
+                  },
+                  {
+                    value: cart.contact.country,
+                    enum_id: 6,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ];
   try {
-    const response = await fetch(
-      "https://zerokelvin.ru/.netlify/functions/payment",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
+    let prom = Amo.Init("tokens", "60c0e125e35a6baee25a652e");
+    let invoice_elements = [];
+    for (const value of Object.values(cart.products)) {
+      invoice_elements.push({
+        value: {
+          description: value.name,
+          unit_price: value.price,
+          quantity: value.count,
+          unit_type: "шт.",
         },
-        body: JSON.stringify(cart),
-      }
-    );
-    return response.json();
-  } catch (e) {
-    console.error(e);
-    return e;
+      });
+    }
+    let invoice = [
+      {
+        name: "Cчет",
+        custom_fields_values: [
+          {
+            field_id: 982493,
+            values: [
+              {
+                value: "Создан",
+              },
+            ],
+          },
+          {
+            field_id: 982503,
+            values: invoice_elements,
+          },
+          {
+            field_id: 982505,
+            values: [
+              {
+                value: cart.contact.comment,
+              },
+            ],
+          },
+          {
+            field_id: 982507,
+            values: [
+              {
+                value: cart.detail.totalprice,
+              },
+            ],
+          },
+          {
+            field_id: 1023598,
+            values: [
+              {
+                value: cart.detail.promocode,
+              },
+            ],
+          },
+        ],
+      },
+    ];
+    await prom;
+    prom = Promise.all([
+      Amo.Request("/api/v4/leads/complex", lead_complex),
+      Amo.Request("/api/v4/catalogs/8693/elements", invoice),
+    ]);
+    let list = await prom;
+    const AmoId = {
+      lead_id: list[0][0]["id"],
+      invoice_id: list[1]["_embedded"]["elements"][0]["id"],
+    };
+    const AmoLink = [
+      {
+        to_entity_id: AmoId.invoice_id,
+        to_entity_type: "catalog_elements",
+        metadata: {
+          catalog_id: 8693,
+        },
+      },
+    ];
+    prom = Promise.all([
+      Amo.Request("/api/v4/leads/" + AmoId.lead_id + "/link", AmoLink),
+    ]);
+    list = await prom;
+    console.log(JSON.stringify(list));
+    return AmoId.lead_id;
+  } catch (error) {
+    console.error("Failed add order to Amo: " + error);
+    throw new Error("Failed add order to Amo: " + error);
   }
 };
 const ChooseDelivery = async (cart) => {
@@ -123,7 +235,7 @@ const ChooseDelivery = async (cart) => {
   let local_cards = 0;
   let local_kits = 0;
   let local_pin = 0;
-  for (const [key, value] of Object.entries(cart.products)) {
+  for (const [key, value] of Object.entries(cart)) {
     if (value.type == "СТИКЕРЫ") {
       local_stickers += 1 * value.count;
       continue;

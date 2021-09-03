@@ -28,9 +28,6 @@ module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
   let respAmo = Amo.Init("tokens", "60c0e125e35a6baee25a652e");
   const data = querystring.parse(event.body);
-  console.log(data);
-  console.log(event.queryStringParameters);
-
   const newSV = md5(
     `${data.OutSum}:${data.InvId}:${process.env.PASSWORD_TWO}`
   ).toUpperCase();
@@ -59,9 +56,9 @@ module.exports.handler = async (event, context) => {
     Amo.Get(`/api/v4/leads/${data.InvId}?with=catalog_elements`),
   ]);
   let listIds = await respAmo;
-  console.log(listIds);
+  console.log(listIds[1]["_embedded"]["catalog_elements"][0]["id"]);
   respAmo = Amo.Patch(
-    `/api/v4/catalogs/${listIds[1]["_embedded"]["catalog_elements"][0]["id"]}/elements`,
+    `/api/v4/catalogs/8693/elements/${listIds[1]["_embedded"]["catalog_elements"][0]["id"]}`,
     {
       name: `Счет к заказу #${listIds[1]["_embedded"]["catalog_elements"][0]["id"]}`,
       custom_fields_values: [

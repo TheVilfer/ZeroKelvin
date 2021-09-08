@@ -1,0 +1,13 @@
+.page__profile {
+  width: 100%;
+  max-width: 600px;
+  min-width: 300px;
+  margin: auto;
+  padding-bottom: 1rem;
+}
+@media screen and (max-width: 800px) {
+  .page__profile {
+    font-size: 1.1rem;
+    padding: 0 1vw;
+  }
+}

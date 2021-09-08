@@ -1,0 +1,87 @@
+---
+title: Личный кабинет
+permalink: /profile/
+layout: main.njk
+---
+
+<main class="page__profile">
+  <header class="page__header">
+    <h1 class="page__title">Личный кабинет</h1>
+  </header>
+  <section class="profile__tracking">
+    <header class="tracking__header">
+      <h2 class="tracking__title">Отслеживание заказа</h2>
+    </header>
+    <article class="tracking__content">
+      <p class="tracking__info"></p>
+      <form class="tracking__form" action="" onsubmit="GetValue()">
+        <input
+          class="input"
+          placeholder="Введите номер заказа"
+          id="trackerInput"
+          type="search"
+        />
+        <button class="button tracking__form__submit" type="submit">
+          Проверить
+        </button>
+      </form>
+    </article>
+  </section>
+</main>
+<script src="/scripts/imask.js"></script>
+<script>
+  var trackerInput = IMask(document.getElementById("trackerInput"), {
+    mask: "#num",
+    blocks: {
+      num: {
+        mask: Number,
+      },
+    },
+  });
+</script>
+<script>
+  const GetValue = async () => {
+    event.preventDefault();
+    const btnSubmit = document.querySelector(".tracking__form__submit");
+    btnSubmit.disabled = true;
+    btnSubmit.innerHTML = "Ищем трек-номер...";
+    const orderCode = parseInt(trackerInput["_unmaskedValue"]);
+    if (isNaN(orderCode)) {
+      PrintInfo(true);
+      return 0;
+    }
+    await GetTrackCode(orderCode);
+    btnSubmit.disabled = false;
+    btnSubmit.innerHTML = "Проверить";
+    return orderCode;
+  };
+  const GetTrackCode = async (orderId) => {
+    try {
+      const resp = await (
+        await fetch("/.netlify/functions/getTrackCode", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json;charset=utf-8",
+          },
+          body: JSON.stringify({
+            orderId: orderId,
+          }),
+        })
+      ).json();
+
+      PrintInfo(false, resp);
+    } catch (error) {
+      PrintInfo(true);
+    }
+  };
+  const PrintInfo = (isError, data = null) => {
+    if (isError) {
+      document.querySelector(".tracking__info").innerHTML =
+        "Ваш заказ еще не имеет трек-кода, либо номер заказа указан неправильно :(";
+      return 0;
+    }
+    document.querySelector(
+      ".tracking__info"
+    ).innerHTML = `Трек-номер для отслеживания вашего заказа - ${data.message}`;
+  };
+</script>

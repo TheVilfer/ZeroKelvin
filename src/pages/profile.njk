@@ -48,6 +48,8 @@ layout: main.njk
     const orderCode = parseInt(trackerInput["_unmaskedValue"]);
     if (isNaN(orderCode)) {
       PrintInfo(true);
+      btnSubmit.disabled = false;
+      btnSubmit.innerHTML = "Проверить";
       return 0;
     }
     await GetTrackCode(orderCode);

@@ -8,6 +8,6 @@
 @media screen and (max-width: 800px) {
   .page__profile {
     font-size: 1.1rem;
-    padding: 0 1vw;
+    padding: 3vw;
   }
 }

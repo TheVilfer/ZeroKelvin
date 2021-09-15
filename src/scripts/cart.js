@@ -327,3 +327,6 @@ const CollectUserData = async (form) => {
   console.log(userData);
   return userData;
 };
+const ClearLocalStorage = async (storage) => {
+  localStorage.removeItem(storage);
+};

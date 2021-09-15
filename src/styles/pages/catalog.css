@@ -1,15 +1,12 @@
 .page__catalog {
   max-width: 80%;
   margin: auto;
+  padding: 1rem;
 }
 @media screen and (max-width: 800px) {
   .page__catalog {
     max-width: 100%;
   }
-}
-.catalog__header {
-  padding: 1rem;
-  font-size: 1.5rem;
 }
 .catalog {
   display: grid;

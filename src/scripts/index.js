@@ -68,3 +68,24 @@ var swiper = new Swiper(".product__slider", {
     prevEl: ".swiper-button-prev",
   },
 });
+
+const likesSwiper = new Swiper(".product__likes", {
+  slidesPerView: "auto",
+  spaceBetween: 30,
+  centeredSlides: true,
+  freeMode: true,
+  grabCursor: true,
+  loop: true,
+  keyboard: {
+    enabled: true,
+    onlyInViewport: true,
+  },
+  mousewheel: {
+    forceToAxis: true,
+    invert: false,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});

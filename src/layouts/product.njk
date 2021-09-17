@@ -2,47 +2,95 @@
 layout: main.njk
 ---
 
-<main class="page--product">
-  <div class="swiper-container product__slider">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <div class="swiper-zoom-container">
-          <img class="product__img" src="{{ artwork }}" alt="{{ title }}" />
+<main class="page__product">
+  <section class="product__card">
+    <div class="swiper-container product__slider">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="swiper-zoom-container">
+            <img class="product__img" src="{{ artwork }}" alt="{{ title }}" />
+          </div>
         </div>
+        {% for img in images %}
+        <div class="swiper-slide">
+          <img class="product__img" src="{{ img }}" alt="{{ title }}" />
+        </div>
+        {% endfor %}
       </div>
-      {% for img in images %}
-      <div class="swiper-slide">
-        <img class="product__img" src="{{ img }}" alt="{{ title }}" />
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+    <section class="product__description cart__item" data-id="{{ id }}">
+      <img
+        class="cart__image"
+        src="{{ artwork }}"
+        alt=""
+        style="display: none"
+      />
+      <span class="item__category cart__type">{{ category }}</span>
+      <h1 class="product__name item__name cart__name">
+        {{ title }}
+      </h1>
+      <img
+        class="item__status"
+        src="/images/icons/battery-full.svg"
+        alt="Полная батарейка"
+        data-tippy-content="Много"
+      />
+      <span class="item__price cart__price">{{ price }} руб.</span>
+      {% if isAddToCart %}
+      <button class="item__cart cart__add">Добавить в корзину</button>
+      {% else %}
+      <button class="item__cart item__buy" onclick="BuyPopup()">Купить</button>
+      {% endif %}
+      <section class="product__details--short">
+        {{ content | safe }}
+      </section>
+    </section>
+    {% if features %}
+    <section class="product__details">{{ features }}</section>
+    {% endif%}
+  </section>
+  {% if collections[tags[1]] | length > 1 %}
+  <section class="swiper-container product__likes">
+    <h2>Также из этой категории</h2>
+    <div class="swiper-wrapper">
+      {% for item in collections[tags[1]] %}
+      <div
+        class="likes__item cart__item swiper-slide"
+        data-id="{{ item.data.id }}"
+      >
+        <div class="item__link-zone">
+          <img
+            width="500"
+            height="500"
+            class="item__image cart__image"
+            src="{{ item.data.artwork }}"
+            alt="{{ item.data.title }}"
+            loading="lazy"
+          />
+
+          <span class="item__category cart__type">
+            {{ item.data.category }}
+          </span>
+          <a class="link--block" href="{{ item.url }}"></a>
+          <span class="item__name cart__name">
+            {{ item.data.title }}
+          </span>
+          <span class="item__price cart__price">{{ item.data.price }} руб</span>
+          <button class="item__favorite icon__favorite favorite__add"></button>
+        </div>
+        {% if item.data.isAddToCart %}
+        <button class="item__cart cart__add">Добавить в корзину</button>
+        {% else %}
+        <button class="item__cart item__buy">Купить</button>
+        {% endif %}
       </div>
       {% endfor %}
     </div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
-  </div>
-  <section class="product__description cart__item" data-id="{{ id }}">
-    <img class="cart__image" src="{{ artwork }}" alt="" style="display: none" />
-    <span class="item__category cart__type">{{ category }}</span>
-    <h1 class="product__name item__name cart__name">
-      {{ title }}
-    </h1>
-    <img
-      class="item__status"
-      src="/images/icons/battery-full.svg"
-      alt="Полная батарейка"
-      data-tippy-content="Много"
-    />
-    <span class="item__price cart__price">{{ price }} руб.</span>
-    {% if isAddToCart %}
-    <button class="item__cart cart__add">Добавить в корзину</button>
-    {% else %}
-    <button class="item__cart item__buy" onclick="BuyPopup()">Купить</button>
-    {% endif %}
-    <section class="product__details--short">
-      {{ content | safe }}
-    </section>
   </section>
-  {% if features %}
-  <section class="product__details">{{ features }}</section>
   {% endif%}
 </main>
 <script src="https://unpkg.com/@popperjs/core@2"></script>

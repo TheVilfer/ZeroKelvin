@@ -1,3 +1,9 @@
 {
-  "category": []
+  "category": [
+    {
+      "ru": "Hello",
+      "eng": "world",
+      "color": "ceded"
+    }
+  ]
 }

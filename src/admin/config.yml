@@ -124,4 +124,9 @@ collections:
                   name: "eng",
                   widget: "string",
                 }
-              - { label: "Цвет", name: "color", widget: "string" }
+              - {
+                  label: "Цвет",
+                  name: "color",
+                  widget: "color",
+                  allowInput: true,
+                }

@@ -109,3 +109,33 @@ collections:
         fields:
           - { label: Title, name: title, widget: string }
           - { label: Text, name: text, widget: string }
+  - label: "Категории товаров"
+    name: "category"
+    files:
+      - label: "Категории товаров"
+        name: "category"
+        file: "src/_data/category.json"
+        widget: "list"
+        fields:
+          - label: Correct
+            name: correct
+            widget: object
+            fields:
+              - {
+                  label: ru,
+                  name: ru,
+                  widget: string,
+                  default: "Название на русском",
+                }
+              - {
+                  label: eng,
+                  name: eng,
+                  widget: string,
+                  default: "Название на английском",
+                }
+              - {
+                  label: color,
+                  name: color,
+                  widget: string,
+                  default: "цвет в hex",
+                }

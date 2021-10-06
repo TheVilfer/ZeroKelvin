@@ -8,6 +8,28 @@
     max-width: 100%;
   }
 }
+.catalog__filter {
+  padding: 1rem 0;
+}
+.filter__list {
+  margin: 0;
+  padding: 0;
+  grid-template-rows: 1fr;
+  column-gap: 1em;
+}
+.filter__list__node {
+  list-style-type: none;
+  display: inline-block;
+  color: white;
+  padding: 0.3em 0.8em;
+  border-radius: 8px;
+  max-width: min-content;
+}
+.filter__list__node:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
 .catalog {
   display: grid;
   grid-gap: 3rem;

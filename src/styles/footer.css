@@ -43,12 +43,18 @@
   color: white;
   margin-bottom: 0.6rem;
 }
+.list__node a:hover {
+  opacity: 0.8;
+}
 
 .list__node--title {
   margin-bottom: 1rem;
 }
 .list__node--title a {
   text-decoration: none;
+}
+.list__node--title a:hover {
+  opacity: 1;
 }
 
 .subfooter {

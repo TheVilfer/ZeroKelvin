@@ -8,9 +8,22 @@ layout: main.njk
   <header class="header catalog__header">
     <h1 class="page__title catalog__title">{{ title }}</h1>
   </header>
+  <section class="swiper-container catalog__filter">
+    <ul class="swiper-wrapper filter__list">
+      {% for correct_category in category %}
+      <li
+        class="swiper-slide filter__list__node"
+        onclick="document.querySelector('#{{correct_category.eng}}').scrollIntoView({behavior:'smooth',block:'start'});"
+        style="background: {{ correct_category.color }};"  
+      >
+        {{ correct_category.ru }}
+      </li>
+      {% endfor%}
+    </ul>
+  </section>
 
   {% for correct_category in category %}
-  <h2>{{ correct_category.ru }}</h2>
+  <h2 id="{{ correct_category.eng }}">{{ correct_category.ru }}</h2>
   <section class="catalog">
     {% for item in collections[ correct_category.eng ] | reverse %}
     <div class="catalog-item cart__item" data-id="{{ item.data.id }}">

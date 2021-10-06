@@ -30,43 +30,43 @@ sliders:
   <section class="page__block main__category">
     <div class="category__sticker category__block">
       <h3 class="category__title sticker_title">
-        <a class="link--block" href="/catalog/stickers/">СТИКЕРЫ</a>
+        <a class="link--block" href="/catalog#stickers">СТИКЕРЫ</a>
       </h3>
     </div>
     <div class="category__bags category__block">
       <h3 class="category__title bags_title">
-        <a class="link--block" href="/catalog/shopper/">ШОППЕРЫ</a>
+        <a class="link--block" href="/catalog#shopper">ШОППЕРЫ</a>
       </h3>
     </div>
     <div class="category__cards category__block">
       <h3 class="category__title cards_title">
-        <a class="link--block" href="/catalog/cards/">ОТКРЫТКИ</a>
+        <a class="link--block" href="/catalog#cards">ОТКРЫТКИ</a>
       </h3>
     </div>
     <div class="category__microscope category__block">
       <h3 class="category__title sticker_title">
-        <a class="link--block" href="/catalog/microscope/">МИКРОСКОПЫ</a>
+        <a class="link--block" href="/catalog#microscope">МИКРОСКОПЫ</a>
       </h3>
     </div>
     <div class="category__boxs category__block">
       <h3 class="category__title boxs_title">
-        <a class="link--block" href="/catalog/boxs">БОКСЫ</a>
+        <a class="link--block" href="/catalog#boxs">БОКСЫ</a>
       </h3>
     </div>
 
     <article class="category__telescope category__block">
       <h3 class="category__title sticker_title">
-        <a class="link--block" href="/catalog/telescope/">ТЕЛЕСКОПЫ</a>
+        <a class="link--block" href="/catalog#telescope">ТЕЛЕСКОПЫ</a>
       </h3>
     </article>
     <article class="category__stocks category__block">
       <h3 class="category__title stocks_title">
-        <a class="link--block" href="/catalog/pins/">ЗНАЧКИ</a>
+        <a class="link--block" href="/catalog#pins">ЗНАЧКИ</a>
       </h3>
     </article>
     <article class="category__sales category__block">
       <h3 class="category__title sticker_title">
-        <a class="link--block" href="/catalog/sales/">АКЦИИ</a>
+        <a class="link--block" href="/catalog#sales">АКЦИИ</a>
       </h3>
     </article>
   </section>
@@ -114,7 +114,6 @@ sliders:
             class="item__image cart__image"
             src="{{ item.data.artwork }}"
             alt="{{ item.data.title }}"
-            loading="lazy"
           />
 
           <span class="item__category cart__type">
@@ -138,25 +137,27 @@ sliders:
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
   </div>
-  <div class="page__block main__production">
-    <video
-      autoplay
-      loop
-      muted
-      playsinline
-      id="bgvid"
-      poster="/images/background_video.jpg"
-    >
-      <source src="/media/prod.mp4" type="video/mp4" />
-      <source src="/media/prod.webm" type="video/webm" />
-    </video>
-    <article class="production__article">
+  <section class="page__block block__production">
+    <div class="production__content">
       <h4 class="text production__title">{{ production.title }}</h4>
-      <p class="text production__text">
+      <p class="text text--optimization production__text">
         {{ production.text }}
       </p>
-    </article>
-  </div>
+    </div>
+    <div class="production__media">
+      <video
+        autoplay
+        loop
+        muted
+        playsinline
+        id="bgvid"
+        poster="/images/background_video.jpg"
+      >
+        <source src="/media/prod.mp4" type="video/mp4" />
+        <source src="/media/prod.webm" type="video/webm" />
+      </video>
+    </div>
+  </section>
   <div class="page__block main__about">
     <img
       width="230"

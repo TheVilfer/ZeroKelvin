@@ -89,3 +89,17 @@ const likesSwiper = new Swiper(".product__likes", {
     prevEl: ".swiper-button-prev",
   },
 });
+const catalog__filter = new Swiper(".catalog__filter", {
+  cssMode: true,
+  freeMode: true,
+  spaceBetween: 1,
+  grabCursor: true,
+  keyboard: {
+    enabled: true,
+    onlyInViewport: true,
+  },
+  mousewheel: {
+    forceToAxis: true,
+    invert: false,
+  },
+});

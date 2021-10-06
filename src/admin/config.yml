@@ -113,8 +113,10 @@ collections:
         name: "category"
         file: "src/_data/category.json"
         fields:
-          [
-            { name: ru, label: ru, widget: string },
-            { name: eng, label: eng, widget: string },
-            { name: color, label: color, widget: string },
-          ]
+          - label: "category List"
+            name: "category list"
+            widget: "list"
+            fields:
+              - { label: "Tour Date", name: "ru", widget: "string" }
+              - { label: "Total Places", name: "eng", widget: "string" }
+              - { label: "Filled Places", name: "color", widget: "string" }

@@ -113,18 +113,8 @@ collections:
         name: "category"
         file: "src/_data/category.json"
         fields:
-          - label: Correct
-            name: correct
-            widget: list
-            fields:
-              - label: Author
-                name: author
-                widget: object
-                fields:
-                  - { label: Name, name: eng, widget: string, default: "Emmet" }
-                  - {
-                      label: Avatar,
-                      name: ru,
-                      widget: string,
-                      default: "/img/emmet.jpg",
-                    }
+          [
+            { name: ru, label: ru, widget: string },
+            { name: eng, label: eng, widget: string },
+            { name: color, label: color, widget: string },
+          ]

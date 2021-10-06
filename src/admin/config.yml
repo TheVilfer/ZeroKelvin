@@ -111,13 +111,17 @@ collections:
           - { label: Text, name: text, widget: string }
       - label: "Категории товаров"
         name: "category"
-        file: "src/_data/test.json"
+        file: "src/category/category.json"
         fields:
-          - label: "category List"
+          - label: "Лист категорий"
             name: "category"
             widget: "list"
             allow_add: true
             fields:
-              - { label: "Tour Date", name: "ru", widget: "string" }
-              - { label: "Total Places", name: "eng", widget: "string" }
-              - { label: "Filled Places", name: "color", widget: "string" }
+              - { label: "Название на русском", name: "ru", widget: "string" }
+              - {
+                  label: "Название на английском",
+                  name: "eng",
+                  widget: "string",
+                }
+              - { label: "Цвет", name: "color", widget: "string" }

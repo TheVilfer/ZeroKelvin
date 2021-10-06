@@ -117,21 +117,14 @@ collections:
             name: correct
             widget: list
             fields:
-              - {
-                  label: ru,
-                  name: ru,
-                  widget: string,
-                  default: "Название на русском",
-                }
-              - {
-                  label: eng,
-                  name: eng,
-                  widget: string,
-                  default: "Название на английском",
-                }
-              - {
-                  label: color,
-                  name: color,
-                  widget: string,
-                  default: "цвет в hex",
-                }
+              - label: Author
+                name: author
+                widget: object
+                fields:
+                  - { label: Name, name: eng, widget: string, default: "Emmet" }
+                  - {
+                      label: Avatar,
+                      name: ru,
+                      widget: string,
+                      default: "/img/emmet.jpg",
+                    }

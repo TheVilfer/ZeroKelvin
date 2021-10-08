@@ -28,22 +28,29 @@ collections:
         media_library:
           config:
             multiple: true
-      - { label: "Price", name: "price", widget: "string", required: true }
-      - { label: "Id", name: "id", widget: "string", required: true }
-      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Цена", name: "price", widget: "string", required: true }
+      - { label: "id", name: "id", widget: "string", required: true }
+      - { label: "Тэги", name: "tags", widget: "list" }
       - {
           label: "Возможность добавить в корзину",
           name: "isAddToCart",
           widget: "boolean",
         }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - {
+          label: "Приоритет",
+          name: "priority",
+          widget: "number",
+          value_type: "int",
+          default: 0,
+        }
+      - { label: "Описание товара", name: "body", widget: "markdown" }
     meta: { path: { widget: string, label: "Path", index_file: "index" } }
-  - name: "informations" # Used in routes, e.g., /admin/collections/blog
-    label: "Странички с информацией" # Used in the UI
-    folder: "src/pages/information/" # The path to the folder where the documents are stored
-    create: false # Allow users to create new documents in this collection
-    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
-    fields: # The fields for each document, usually in front matter
+  - name: "informations"
+    label: "Странички с информацией"
+    folder: "src/pages/information/"
+    create: false
+    slug: "{{slug}}"
+    fields:
       - { label: "Title", name: "title", widget: "string" }
       - {
           label: "Link",

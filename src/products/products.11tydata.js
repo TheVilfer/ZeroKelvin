@@ -26,5 +26,9 @@ module.exports = {
       paths = paths + "/" + data.artwork;
       return paths;
     },
+    priority: (data) => {
+      if (data.priority === undefined) return 0;
+      return data.priority;
+    },
   },
 };

@@ -25,7 +25,7 @@ layout: main.njk
   {% for correct_category in category %}
   <h2 id="{{ correct_category.eng }}">{{ correct_category.ru }}</h2>
   <section class="catalog">
-    {% for item in collections[ correct_category.eng ] | reverse %}
+    {% for item in collections[ correct_category.eng ] | sortByPriority | reverse %}
     <div class="catalog-item cart__item" data-id="{{ item.data.id }}">
       <div class="item__link-zone">
         <img

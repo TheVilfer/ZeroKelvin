@@ -53,9 +53,18 @@ module.exports = (config) => {
   });
 
   config.addShortcode("year", () => `${new Date().getFullYear()}`);
+
   config.addFilter("translit", function (value) {
     const cyrillicToTranslit = new CyrillicToTranslit();
     return `${cyrillicToTranslit.transform(value + "")}`;
+  });
+  config.addFilter("sortByPriority", (values) => {
+    const val = [...values];
+    return val.sort((a, b) => {
+      if (a.data.priority > b.data.priority) return 1;
+      if (a.data.priority < b.data.priority) return -1;
+      return 0;
+    });
   });
   config.addPlugin(embeds, {
     youtube: {

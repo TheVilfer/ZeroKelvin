@@ -6,6 +6,7 @@ id: 610ccc35d7500000112978d2
 tags:
   - kit
   - stickers
+priority: 1
 isAddToCart: true
 ---
 

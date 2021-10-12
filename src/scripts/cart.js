@@ -193,6 +193,7 @@ const GetAmoutDelivery = () => {
   let local_cards = 0;
   let local_kits = 0;
   let local_pin = 0;
+  let local_boxs = 0;
   for (const [key, value] of Object.entries(cart.products)) {
     if (value.type == "СТИКЕРЫ") {
       local_stickers += 1 * value.count;
@@ -214,11 +215,15 @@ const GetAmoutDelivery = () => {
       local_cards += 1 * value.count;
       continue;
     }
+    if (value.type == "БОКСЫ") {
+      local_boxs += 1 * value.count;
+      continue;
+    }
   }
   if (local_shopper > 2) {
     return delivery_warning;
   }
-  if (local_shopper > 0) {
+  if (local_shopper > 0 || local_boxs > 0) {
     return 350;
   }
   if (local_pin > 0 || local_stickers > 19) {

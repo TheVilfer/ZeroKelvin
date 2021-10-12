@@ -145,6 +145,7 @@ const AddOrderToAmo = async (cart) => {
   ];
   try {
     let prom = Amo.Init("tokens", "60c0e125e35a6baee25a652e");
+    console.log("babaka");
     let invoice_elements = [];
     for (const value of Object.values(cart.products)) {
       invoice_elements.push({
@@ -235,6 +236,7 @@ const ChooseDelivery = async (cart) => {
   let local_cards = 0;
   let local_kits = 0;
   let local_pin = 0;
+  let local_boxs = 0;
   for (const [key, value] of Object.entries(cart)) {
     if (value.type == "СТИКЕРЫ") {
       local_stickers += 1 * value.count;
@@ -256,11 +258,15 @@ const ChooseDelivery = async (cart) => {
       local_cards += 1 * value.count;
       continue;
     }
+    if (value.type == "БОКСЫ") {
+      local_boxs += 1 * value.count;
+      continue;
+    }
   }
   if (local_shopper > 2) {
     return 0;
   }
-  if (local_shopper > 0) {
+  if (local_shopper > 0 || local_boxs > 0) {
     return 350;
   }
   if (local_pin > 0 || local_stickers > 19) {

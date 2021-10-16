@@ -1,4 +1,4 @@
-import * as CartUtils from "./modules_es6/CartUtils.js";
+import * as CartUtils from "/scripts/modules_es6/CartUtils.js";
 const cart_version = "0.1";
 let delivery = 0;
 let delivery_text = "";

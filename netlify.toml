@@ -11,3 +11,7 @@
   for = "/model/*"
   [headers.values]
     Content-Type = "model/vnd.usdz+zip"
+[[headers]]
+  for = "/*"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"

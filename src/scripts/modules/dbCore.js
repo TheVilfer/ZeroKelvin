@@ -56,7 +56,7 @@ module.exports.UpdateOne = async (collection, data, id) => {
 
 module.exports.ConvertArrayToObjectID = (data) => {
   let query = [];
-  data.forEach((element) => query.push(new mongoUtil.ObjectID(element)));
+  data.forEach((element) => query.push(new mongoUtil.ObjectID(element.trim())));
   return query;
 };
 module.exports.ConvertToObjectID = (data) => {

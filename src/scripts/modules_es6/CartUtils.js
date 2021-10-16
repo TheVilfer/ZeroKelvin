@@ -1,17 +1,19 @@
-module.exports.GetTotalPrice = (cart) => {
+var CartUtils = {};
+
+var GetTotalPrice = CartUtils.GetTotalPrice = (cart) => {
   let TotalPrice = 0;
   for (const value of Object.values(cart)) {
     TotalPrice += value.price * value.count;
   }
   return TotalPrice;
 };
-module.exports.SetInterest = (cart, interest) => {
+var SetInterest = CartUtils.SetInterest = (cart, interest) => {
   for (const key of Object.keys(cart)) {
     cart[key].price -= (cart[key].price / 100) * interest;
   }
   return cart;
 };
-module.exports.GetDeliveryPrice = async (cart) => {
+var GetDeliveryPrice = CartUtils.GetDeliveryPrice = async (cart) => {
   let local_shopper = 0;
   let local_stickers = 0;
   let local_cards = 0;
@@ -58,3 +60,5 @@ module.exports.GetDeliveryPrice = async (cart) => {
   }
   throw new Error("Invalid cart elements");
 };
+
+export { GetDeliveryPrice, GetTotalPrice, SetInterest, CartUtils as default };

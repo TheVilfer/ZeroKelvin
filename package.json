@@ -4,7 +4,7 @@
   "description": "Ecommerce site for instagram shop @science__shop",
   "private": true,
   "scripts": {
-    "start": "rimraf dist && eleventy --serve --quiet",
+    "start": "rollup -i ./src/scripts/modules/CartUtils.js --file ./src/scripts/modules_es6/CartUtils.js -p commonjs && rimraf dist && eleventy --serve --quiet",
     "deploy": "git pull && git push",
     "quick_fix": "git add . && git commit -m 'Фикс. Добавляет минорное исправление' && git push"
   },
@@ -12,8 +12,10 @@
   "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "^0.12.1",
+    "@rollup/plugin-commonjs": "^21.0.0",
     "chalk": "^4.1.1",
     "mongodb": "^3.6.4",
+    "rollup": "^2.58.0",
     "standard": "^16.0.3",
     "style-loader": "^2.0.0"
   },

@@ -1,3 +1,4 @@
+import * as CartUtils from "./modules_es6/CartUtils.js";
 const cart_version = "0.1";
 let delivery = 0;
 let delivery_text = "";
@@ -60,6 +61,7 @@ const EnableAllAddToCart = () => {
 };
 const DeliveryRender = async () => {
   let NodeText = document.querySelector(".cart-delivey__price");
+  console.log(delivery);
   if (Number.isInteger(delivery)) {
     delivery_text = delivery + " руб";
     NodeText.classList.remove("text--warning");
@@ -87,7 +89,7 @@ const EnableInputs = () => {
 };
 const SetCountItem = async (id, count) => {
   cart.products[id].count = count;
-  delivery = GetAmoutDelivery();
+  delivery = await CartUtils.GetDeliveryPrice(cart);
   await DeliveryRender();
   CalculateTotalPrice();
   await UpdateTotalPrice();
@@ -98,7 +100,7 @@ const SetCountItem = async (id, count) => {
 const DeleteElement = async (id, el) => {
   el.remove();
   delete cart.products[id];
-  delivery = GetAmoutDelivery();
+  delivery = await CartUtils.GetDeliveryPrice(cart);
   await DeliveryRender();
   CalculateTotalPrice();
   await UpdateTotalPrice();
@@ -131,12 +133,25 @@ const AddToCart = (id, name, price, type, img) => {
 };
 const InitCart = async () => {
   cart = await GetLocalStorage("cart");
+  if (CartIsEmpty()) {
+    document.querySelector(".cart__form").remove();
+    document.querySelector(".cart").innerHTML = document.createElement(
+      "div"
+    ).innerHTML =
+      "<h2>Ваша корзина пуста!</h2> <span>Возращайтесь, когда добавите в корзину что-нибудь</span> <a href='/catalog/'>Перейти в каталог</a>";
+    return 0;
+  }
   HtmlRender();
   document
     .querySelector(".cart")
     .insertAdjacentHTML("afterbegin", cart.detail.html);
   EnableInputs();
-  delivery = GetAmoutDelivery();
+  try {
+    delivery = await CartUtils.GetDeliveryPrice(cart);
+  } catch (error) {
+    localStorage.clear();
+    window.location.replace("/");
+  }
   await DeliveryRender();
   if (cart.detail.promocode == "" || cart.detail.promocode == undefined) {
     CalculateTotalPrice();
@@ -187,53 +202,6 @@ const CheckPromocode = async (click) => {
   await UpdateTotalPrice();
   await SetLocalStorage("cart", cart);
 };
-const GetAmoutDelivery = () => {
-  let local_shopper = 0;
-  let local_stickers = 0;
-  let local_cards = 0;
-  let local_kits = 0;
-  let local_pin = 0;
-  let local_boxs = 0;
-  for (const [key, value] of Object.entries(cart.products)) {
-    if (value.type == "СТИКЕРЫ") {
-      local_stickers += 1 * value.count;
-      continue;
-    }
-    if (value.type == "ШОППЕРЫ") {
-      local_shopper += 1 * value.count;
-      continue;
-    }
-    if (value.type == "ЗНАЧКИ") {
-      local_pin += 1 * value.count;
-      continue;
-    }
-    if (value.type == "АКЦИИ") {
-      local_kits += 1 * value.count;
-      continue;
-    }
-    if (value.type == "ОТКРЫТКИ") {
-      local_cards += 1 * value.count;
-      continue;
-    }
-    if (value.type == "БОКСЫ") {
-      local_boxs += 1 * value.count;
-      continue;
-    }
-  }
-  if (local_shopper > 2) {
-    return delivery_warning;
-  }
-  if (local_shopper > 0 || local_boxs > 0) {
-    return 350;
-  }
-  if (local_pin > 0 || local_stickers > 19) {
-    return 250;
-  }
-  if (local_stickers > 0 || local_cards > 0 || local_kits > 0) {
-    return 120;
-  }
-  return delivery_warning;
-};
 const EnableSubmit = async () => {
   let form = document.querySelector(".cart__form");
   form.addEventListener("submit", async (event) => {
@@ -243,7 +211,7 @@ const EnableSubmit = async () => {
   });
 };
 const isCartAvailable = () => {
-  if (cart.detail.totalprice - delivery < 250) {
+  if (cart.detail.totalprice - delivery < 350) {
     document.querySelector(".cart-checkout").innerHTML =
       "Минимальная сумма товаров для заказа - 350 руб.";
     document.querySelector(".cart-checkout").disabled = true;
@@ -258,11 +226,6 @@ const CalculateTotalPrice = () => {
   cart.detail.totalprice = 0;
   for (const [key, value] of Object.entries(cart.products)) {
     cart.detail.totalprice += value.price * value.count;
-  }
-};
-const CartDisable = async () => {
-  if (CartIsEmpty()) {
-    document.querySelector(".cart-checkout").disabled = true;
   }
 };
 const HtmlRender = () => {

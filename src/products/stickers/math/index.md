@@ -1,6 +1,6 @@
 ---
 title: Стикерпак "Математика"
-artwork: images/twitter-post-55.jpg
+artwork: images/img_1282-1-.jpg
 price: "270"
 id: 60e6e7aab4cbae00108839cc
 tags:

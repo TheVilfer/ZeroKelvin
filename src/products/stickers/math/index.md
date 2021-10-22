@@ -1,6 +1,6 @@
 ---
 title: Стикерпак "Математика"
-artwork: images/img_1282-1-.jpg
+artwork: images/20210210_120746-2-1-.jpg
 price: "270"
 id: 60e6e7aab4cbae00108839cc
 tags:

@@ -1,6 +1,6 @@
 ---
 title: Стикерпак "Химия"
-artwork: images/twitter-post-50-2-.jpg
+artwork: images/1a2a3530-2-1-.jpg
 price: "270"
 id: 60e6e645c55b9a0011ef3248
 tags:

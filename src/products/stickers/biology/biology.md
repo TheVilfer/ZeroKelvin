@@ -1,6 +1,6 @@
 ---
 title: Стикерпак "Биология"
-artwork: images/twitter-post-48-1-.jpg
+artwork: images/20210210_152820-5-1-.jpg
 price: 270
 id: 604f667c185c5ca4b32e1536
 tags:

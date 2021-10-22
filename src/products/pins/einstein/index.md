@@ -1,12 +1,13 @@
 ---
 title: Значок "Эйнштейн"
-artwork: images/img_0287.jpg
+artwork: images/1a2a3544-2-1-.jpg
 price: 300
 id: 60e56a7979b1e00b5c01923b
 tags:
   - einstein
   - pins
-isAddToCart: false
+isAddToCart: true
+priority: 1
 ---
 
 Деревянный значок «Эйнштейн» с ручной росписью акриловыми красками, сверху покрыт лакировкой.\

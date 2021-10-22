@@ -1,6 +1,6 @@
 ---
-title: "Стикерпак Новогодний"
-artwork: images/20201201-20201201_124449-1-.jpg
+title: Стикерпак Новогодний
+artwork: images/1a2a3376-1-.jpg
 price: "270"
 id: 616575e4366f3e001283f644
 isAddToCart: true

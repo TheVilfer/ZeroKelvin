@@ -112,23 +112,27 @@ const AddOrderToAmo = async (cart) => {
                 field_id: 988783,
                 values: [
                   {
-                    value: cart.contact.street,
+                    value:
+                      "Улица: " +
+                      cart.contact.street +
+                      "корпус " +
+                      cart.contact.housing,
                     enum_id: 1,
                   },
                   {
-                    value: cart.contact.housing,
+                    value: "Квартира: " + cart.contact.room,
                     enum_id: 2,
                   },
                   {
-                    value: cart.contact.city,
+                    value: "Город: " + cart.contact.city,
                     enum_id: 3,
                   },
                   {
-                    value: cart.contact.state,
+                    value: "Область: " + cart.contact.state,
                     enum_id: 4,
                   },
                   {
-                    value: cart.contact.postalcode,
+                    value: "Индекс: " + cart.contact.postalcode,
                     enum_id: 5,
                   },
                   {

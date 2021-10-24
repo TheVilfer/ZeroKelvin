@@ -60,7 +60,7 @@ module.exports.handler = async (event, context) => {
   respAmo = Amo.Patch(
     `/api/v4/catalogs/8693/elements/${listIds[1]["_embedded"]["catalog_elements"][0]["id"]}`,
     {
-      name: `Счет к заказу #${listIds[1]["_embedded"]["catalog_elements"][0]["id"]}`,
+      name: `Счет к заказу #${data.InvId}`,
       custom_fields_values: [
         {
           field_id: 982493,

@@ -248,6 +248,11 @@
   font-size: 1em;
   line-height: 1.5;
 }
+.production__button {
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
 
 .main__about {
   width: 100%;

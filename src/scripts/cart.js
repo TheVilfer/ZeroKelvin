@@ -152,6 +152,12 @@ const InitCart = async () => {
     localStorage.clear();
     window.location.replace("/");
   }
+  document
+    .querySelector(".promocode__button")
+    .addEventListener("click", async (event) => {
+      event.preventDefault();
+      await CheckPromocode(true);
+    });
   await DeliveryRender();
   if (cart.detail.promocode == "" || cart.detail.promocode == undefined) {
     CalculateTotalPrice();
@@ -162,6 +168,7 @@ const InitCart = async () => {
   isCartAvailable();
 };
 const CheckPromocode = async (click) => {
+  console.log(click);
   let info = document.querySelector(".promocode__info");
   let inputPromo = "";
   if (click) {
@@ -211,9 +218,11 @@ const EnableSubmit = async () => {
   });
 };
 const isCartAvailable = () => {
-  if (cart.detail.totalprice - delivery < 350) {
+  console.log(cart.detail.totalprice);
+  console.log(delivery);
+  if (cart.detail.totalprice < 250) {
     document.querySelector(".cart-checkout").innerHTML =
-      "Минимальная сумма товаров для заказа - 350 руб.";
+      "Минимальная сумма товаров для заказа - 250 руб.";
     document.querySelector(".cart-checkout").disabled = true;
   } else {
     EnableSubmit();

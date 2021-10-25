@@ -1,6 +1,6 @@
 ---
 title: Стикерпак "Созвездия"
-artwork: images/2-4-1-1-.jpg
+artwork: images/20210413_140434-1-1-.jpg
 price: 270
 id: 60e5687a79b1e00b5c01923a
 tags:

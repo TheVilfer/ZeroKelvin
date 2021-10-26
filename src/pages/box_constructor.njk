@@ -1,6 +1,6 @@
 ---
 title: Конструктор боксов
-permalink: /constructors/boxs
+permalink: /constructors/boxs/
 layout: main.njk
 ---
 
@@ -8,9 +8,46 @@ layout: main.njk
   <header>
     <h1>Конструктор боксов</h1>
   </header>
-  <div class="constuctor__body">
+  <form class="constuctor__body">
     <section class="constructor__step">
       <h2>Шаг 1</h2>
+      <ul class="constructor__step__items">
+        <li class="constructor__step__item">
+          <label class="constructor__step__item__label">
+            <input
+              class="constructor__step__item__checkbox"
+              type="checkbox"
+              name="books"
+              value="3123123131§3"
+            />
+            <div class="constructor__step__item__isChecked"></div>
+            <img
+              class="constructor__step__item__image"
+              src="/images/category/bags.jpg"
+              alt=""
+            />
+            <p class="constructor__step__item__name">Книга "ЛОХ ПРЕДАЛЬНЫЙ"</p>
+            <p class="constructor__step__item__price">450 руб.</p>
+          </label>
+        </li>
+      </ul>
     </section>
-  </div>
+    <section class="constructor__step">
+      <h2>Шаг 2</h2>
+      <div class="constructor__step__items"></div>
+    </section>
+    <section class="constructor__step">
+      <h2>Шаг 3</h2>
+      <div class="constructor__step__items"></div>
+    </section>
+    <section class="constructor__step">
+      <h2>Шаг 4</h2>
+      <div class="constructor__step__items"></div>
+    </section>
+    <section class="constructor__step">
+      <h2>Шаг 5</h2>
+      <div class="constructor__step__items"></div>
+    </section>
+    <section class="constructor__total"></section>
+  </form>
 </main>

@@ -1,0 +1,41 @@
+.page__constuctor {
+  max-width: 800px;
+  margin: auto;
+}
+.constructor__step__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 200px));
+  place-content: center;
+  column-gap: 2em;
+  padding: 0;
+  margin: 0;
+}
+.constructor__step__item {
+  list-style-type: none;
+  position: relative;
+  padding: 1em;
+  border: 1px solid black;
+}
+
+.constructor__step__item__isChecked {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.constructor__step__item__checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: absolute;
+}
+.constructor__step__item__checkbox:checked
+  + .constructor__step__item__isChecked,
+.constructor__step__item:hover {
+  background-color: aqua;
+}

@@ -43,6 +43,9 @@
 /* styles for post */
 @import "pages/post.css";
 
+/* styles for box constructor */
+@import "pages/box_constructor.css";
+
 /* styles for payment */
 @import "pages/payment.css";
 

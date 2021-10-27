@@ -53,6 +53,28 @@ module.exports = (config) => {
   });
 
   config.addShortcode("year", () => `${new Date().getFullYear()}`);
+  config.addShortcode("Cbox_element", (category, data) => {
+    return `
+    <li class="constructor__step__item">
+          <label class="constructor__step__item__label">
+            <input
+              class="constructor__step__item__checkbox"
+              type="checkbox"
+              name="${category}"
+              value="${data.id};${data.price};${data.title.replace(/"/g, "'")}"
+            />
+            <div class="constructor__step__item__isChecked"></div>
+            <img
+              class="constructor__step__item__image"
+              src="${data.artwork}"
+              alt="${data.title}"
+            />
+            <p class="constructor__step__item__name">${data.title}</p>
+            <p class="constructor__step__item__price">${data.price} руб.</p>
+          </label>
+        </li>
+    `;
+  });
 
   config.addFilter("translit", function (value) {
     const cyrillicToTranslit = new CyrillicToTranslit();

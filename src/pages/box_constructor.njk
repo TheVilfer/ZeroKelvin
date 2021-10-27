@@ -12,42 +12,45 @@ layout: main.njk
     <section class="constructor__step">
       <h2>Шаг 1</h2>
       <ul class="constructor__step__items">
-        <li class="constructor__step__item">
-          <label class="constructor__step__item__label">
-            <input
-              class="constructor__step__item__checkbox"
-              type="checkbox"
-              name="books"
-              value="3123123131§3"
-            />
-            <div class="constructor__step__item__isChecked"></div>
-            <img
-              class="constructor__step__item__image"
-              src="/images/category/bags.jpg"
-              alt=""
-            />
-            <p class="constructor__step__item__name">Книга "ЛОХ ПРЕДАЛЬНЫЙ"</p>
-            <p class="constructor__step__item__price">450 руб.</p>
-          </label>
-        </li>
+        {% for item in collections.popular %} {% Cbox_element "books", item.data
+        %} {% endfor %}
       </ul>
     </section>
     <section class="constructor__step">
       <h2>Шаг 2</h2>
-      <div class="constructor__step__items"></div>
+      <div class="constructor__step__items">
+        {% for item in collections.stickers %} {% Cbox_element "stickers",
+        item.data %} {% endfor %}
+      </div>
     </section>
     <section class="constructor__step">
       <h2>Шаг 3</h2>
-      <div class="constructor__step__items"></div>
+      <div class="constructor__step__items">
+        {% for item in collections.cards %} {% Cbox_element "cards", item.data
+        %} {% endfor %}
+      </div>
     </section>
     <section class="constructor__step">
       <h2>Шаг 4</h2>
-      <div class="constructor__step__items"></div>
+      <div class="constructor__step__items">
+        {% for item in collections.pins %} {% Cbox_element "pins", item.data %}
+        {% endfor %}
+      </div>
     </section>
     <section class="constructor__step">
       <h2>Шаг 5</h2>
-      <div class="constructor__step__items"></div>
+      <div class="constructor__step__items">
+        {% for item in collections.shopper %} {% Cbox_element "shopper",
+        item.data %} {% endfor %}
+      </div>
     </section>
-    <section class="constructor__total"></section>
+    <section class="constructor__calculator">
+      <p class="constructor__calculator__totalprice__area">
+        Итого:
+        <span class="constructor__calculator__totalprice__number"></span> руб.
+      </p>
+      <button type="submit">Добавить в корзину</button>
+      <p>Минимальная сумма заказа 600 руб.</p>
+    </section>
   </form>
 </main>

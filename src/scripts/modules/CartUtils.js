@@ -58,3 +58,22 @@ module.exports.GetDeliveryPrice = async (cart) => {
   }
   throw new Error("Invalid cart elements");
 };
+module.exports.ParseBoxConstructorForm = (FormData) => {
+  let result = {};
+  result.data = {};
+  let totalprice = 0;
+  for (var value of FormData.values()) {
+    let id = value.split(";")[0];
+    let price = value.split(";")[1];
+    totalprice += parseInt(price);
+    console.log(value.split(";")[2]);
+  }
+  return totalprice;
+};
+module.exports.GetBoxPrice = (FormData) => {
+  let totalprice = 0;
+  for (var value of FormData.values()) {
+    totalprice += parseInt(value.split(";")[1]);
+  }
+  return totalprice;
+};

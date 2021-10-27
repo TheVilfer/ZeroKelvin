@@ -24,6 +24,18 @@ const Cart = async () => {
   if (window.location.pathname == "/cart/") {
     InitCart();
   }
+  if (window.location.pathname == "/constructors/boxs/") {
+    document
+      .querySelector(".constuctor__body")
+      .addEventListener("submit", (event) => {
+        event.preventDefault();
+        console.log(
+          CartUtils.GetBoxPrice(
+            new FormData(document.querySelector(".constuctor__body"))
+          )
+        );
+      });
+  }
   if (window.location.pathname == "/success/") {
     cart = null;
     SetLocalStorage("cart", cart);

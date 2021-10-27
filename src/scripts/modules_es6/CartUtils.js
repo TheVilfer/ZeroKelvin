@@ -60,5 +60,22 @@ var GetDeliveryPrice = CartUtils.GetDeliveryPrice = async (cart) => {
   }
   throw new Error("Invalid cart elements");
 };
+var ParseBoxConstructorForm = CartUtils.ParseBoxConstructorForm = (FormData) => {
+  let totalprice = 0;
+  for (var value of FormData.values()) {
+    value.split(";")[0];
+    let price = value.split(";")[1];
+    totalprice += parseInt(price);
+    console.log(value.split(";")[2]);
+  }
+  return totalprice;
+};
+var GetBoxPrice = CartUtils.GetBoxPrice = (FormData) => {
+  let totalprice = 0;
+  for (var value of FormData.values()) {
+    totalprice += parseInt(value.split(";")[1]);
+  }
+  return totalprice;
+};
 
-export { GetDeliveryPrice, GetTotalPrice, SetInterest, CartUtils as default };
+export { GetBoxPrice, GetDeliveryPrice, GetTotalPrice, ParseBoxConstructorForm, SetInterest, CartUtils as default };

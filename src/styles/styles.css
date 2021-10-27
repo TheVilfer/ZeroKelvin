@@ -7,6 +7,9 @@
 /* global styles and variables */
 @import "global.css";
 
+/* styles for item */
+@import "elements/item.css";
+
 /* styles for header */
 @import "nav.css";
 
@@ -57,6 +60,3 @@
 
 /* styles for profile */
 @import "pages/profile.css";
-
-/* styles for item */
-@import "elements/item.css";

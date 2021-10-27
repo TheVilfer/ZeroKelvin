@@ -27,13 +27,23 @@ const Cart = async () => {
   if (window.location.pathname == "/constructors/boxs/") {
     document
       .querySelector(".constuctor__body")
-      .addEventListener("submit", (event) => {
+      .addEventListener("change", (event) => {
         event.preventDefault();
-        console.log(
-          CartUtils.GetBoxPrice(
-            new FormData(document.querySelector(".constuctor__body"))
-          )
+        let boxPrice = CartUtils.GetBoxPrice(
+          new FormData(document.querySelector(".constuctor__body"))
         );
+        document.querySelector(
+          ".constructor__calculator__totalprice__number"
+        ).innerHTML = boxPrice;
+        if (boxPrice >= 600) {
+          document.querySelector(
+            ".constructor__calculator__submit__button"
+          ).disabled = false;
+        } else {
+          document.querySelector(
+            ".constructor__calculator__submit__button"
+          ).disabled = true;
+        }
       });
   }
   if (window.location.pathname == "/success/") {

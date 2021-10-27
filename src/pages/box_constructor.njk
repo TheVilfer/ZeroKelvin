@@ -45,12 +45,26 @@ layout: main.njk
       </div>
     </section>
     <section class="constructor__calculator">
-      <p class="constructor__calculator__totalprice__area">
-        Итого:
-        <span class="constructor__calculator__totalprice__number"></span> руб.
-      </p>
-      <button type="submit">Добавить в корзину</button>
-      <p>Минимальная сумма заказа 600 руб.</p>
+      <div class="constructor__calculator__totalprice__area">
+        Итого:&nbsp;
+        <span class="constructor__calculator__totalprice__number"> 0</span
+        >&nbsp;руб.
+      </div>
+      <div class="constructor__calculator__submit">
+        <button
+          class="
+            button button--fixedsize
+            constructor__calculator__submit__button
+          "
+          type="submit"
+          disabled
+        >
+          Добавить в корзину
+        </button>
+        <p class="constructor__calculator__submit__annotation">
+          Минимальная сумма заказа 600 руб.
+        </p>
+      </div>
     </section>
   </form>
 </main>

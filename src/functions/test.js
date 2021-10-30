@@ -13,7 +13,6 @@
 //     };
 // };
 const Amo = require("../scripts/modules/AmoLibrary.js");
-const DbCore = require("../scripts/modules/dbCore.js");
 module.exports.handler = async (event, context) => {
   try {
     await Amo.Init("tokens", "60c0e125e35a6baee25a652e");
@@ -23,7 +22,6 @@ module.exports.handler = async (event, context) => {
       body: error,
     };
   }
-  // const resp = await Amo.Get("/api/v4/leads/12310351?with=catalog_elements");
   const resp = null;
   return {
     statusCode: 200,

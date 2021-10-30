@@ -1,5 +1,6 @@
 var CartUtils = {};
 
+var GetBoxPrice_1;
 var GetTotalPrice = CartUtils.GetTotalPrice = (cart) => {
   let TotalPrice = 0;
   for (const value of Object.values(cart)) {
@@ -61,21 +62,29 @@ var GetDeliveryPrice = CartUtils.GetDeliveryPrice = async (cart) => {
   throw new Error("Invalid cart elements");
 };
 var ParseBoxConstructorForm = CartUtils.ParseBoxConstructorForm = (FormData) => {
-  let totalprice = 0;
-  for (var value of FormData.values()) {
-    value.split(";")[0];
-    let price = value.split(";")[1];
-    totalprice += parseInt(price);
-    console.log(value.split(";")[2]);
+  let result = {};
+  result.totalprice = GetBoxPrice(FormData);
+  if (result.totalprice < 600) return 0;
+  result.data = {};
+  for (var values of FormData.entries()) {
+    let id = values[1].split(";")[0];
+    let price = values[1].split(";")[1];
+    let name = values[1].split(";")[2];
+    let type = values[0];
+    result.data[id] = {
+      name: name,
+      price: parseInt(price),
+      type: type,
+    };
   }
-  return totalprice;
+  return result;
 };
-var GetBoxPrice = CartUtils.GetBoxPrice = (FormData) => {
+const GetBoxPrice = (GetBoxPrice_1 = CartUtils.GetBoxPrice = (FormData) => {
   let totalprice = 0;
   for (var value of FormData.values()) {
     totalprice += parseInt(value.split(";")[1]);
   }
   return totalprice;
-};
+});
 
-export { GetBoxPrice, GetDeliveryPrice, GetTotalPrice, ParseBoxConstructorForm, SetInterest, CartUtils as default };
+export { GetBoxPrice_1 as GetBoxPrice, GetDeliveryPrice, GetTotalPrice, ParseBoxConstructorForm, SetInterest, CartUtils as default };

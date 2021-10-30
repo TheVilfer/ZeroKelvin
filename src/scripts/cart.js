@@ -1,4 +1,5 @@
 import * as CartUtils from "/scripts/modules_es6/CartUtils.js";
+import * as hashcode from "/scripts/modules_es6/hashcode.js";
 const cart_version = "0.1";
 let delivery = 0;
 let delivery_text = "";
@@ -29,6 +30,7 @@ const Cart = async () => {
       .querySelector(".constuctor__body")
       .addEventListener("change", (event) => {
         event.preventDefault();
+        console.log("over");
         let boxPrice = CartUtils.GetBoxPrice(
           new FormData(document.querySelector(".constuctor__body"))
         );
@@ -45,11 +47,29 @@ const Cart = async () => {
           ).disabled = true;
         }
       });
+    document
+      .querySelector(".constuctor__body")
+      .addEventListener("submit", (event) => {
+        event.preventDefault();
+        let dataBox = CartUtils.ParseBoxConstructorForm(
+          new FormData(document.querySelector(".constuctor__body"))
+        );
+        console.log(hashcode.value(dataBox));
+        document.querySelector(".constuctor__body").reset();
+        console.log("test");
+        document.querySelector(
+          ".constructor__calculator__totalprice__number"
+        ).innerHTML = 0;
+        document.querySelector(
+          ".constructor__calculator__submit__button"
+        ).disabled = true;
+      });
   }
   if (window.location.pathname == "/success/") {
     cart = null;
     SetLocalStorage("cart", cart);
   } else {
+    await fetch("/.netlify/functions/update");
     EnableAllAddToCart();
   }
 };
@@ -135,7 +155,15 @@ const UpdateTotalPrice = async () => {
   if (Number.isInteger(delivery)) totalPrice += delivery;
   document.querySelector(".cart-total__price").innerHTML = totalPrice;
 };
-const AddToCart = (id, name, price, type, img) => {
+const AddToCart = (
+  id,
+  name,
+  price,
+  type,
+  img,
+  description = "",
+  subdata = null
+) => {
   if (cart.products[id] == undefined) {
     cart.products[id] = {
       id: id,
@@ -144,7 +172,8 @@ const AddToCart = (id, name, price, type, img) => {
       price: parseInt(price),
       count: 1,
       img: img,
-      description: "",
+      description: description,
+      subdata: subdata,
     };
   } else {
     cart.products[id].count = parseInt(cart.products[id].count) + 1;

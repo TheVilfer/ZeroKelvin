@@ -104,7 +104,7 @@
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   border-radius: 8px;
   display: block;
-  padding: 5px;
+  padding: 0.5em 2em;
   outline: none;
   white-space: nowrap;
   margin-top: 0.5rem;
@@ -124,7 +124,12 @@
   max-width: max-content;
   text-decoration: none;
   padding: 0.5em 2em;
-  background: #00e0ff;
+  background: rgb(0, 212, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 212, 255, 1) 21%,
+    rgba(9, 9, 121, 1) 100%
+  );
   color: white;
 }
 .button--fixedsize:hover {

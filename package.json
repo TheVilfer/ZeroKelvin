@@ -4,7 +4,7 @@
   "description": "Ecommerce site for instagram shop @science__shop",
   "private": true,
   "scripts": {
-    "start": "rollup -i ./src/scripts/modules/CartUtils.js --file ./src/scripts/modules_es6/CartUtils.js -p commonjs && rimraf dist && eleventy --serve --quiet",
+    "start": "rollup -i ./src/scripts/modules/CartUtils.js --file ./src/scripts/modules_es6/CartUtils.js --context window -p commonjs && rimraf dist && eleventy --serve --quiet",
     "deploy": "git pull && git push",
     "quick_fix": "git add . && git commit -m 'Фикс. Добавляет минорное исправление' && git push"
   },
@@ -32,6 +32,7 @@
     "eleventy-plugin-reader-bar": "^0.2.0",
     "eleventy-plugin-typeset": "github:liamfiddler/eleventy-plugin-typeset",
     "glob-parent": "^6.0.1",
+    "hashcode": "^1.0.3",
     "indent-string": "^5.0.0",
     "moysklad": "^0.10.0",
     "multiparty": "^4.2.2",

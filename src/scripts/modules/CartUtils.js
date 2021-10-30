@@ -60,20 +60,26 @@ module.exports.GetDeliveryPrice = async (cart) => {
 };
 module.exports.ParseBoxConstructorForm = (FormData) => {
   let result = {};
+  result.totalprice = GetBoxPrice(FormData);
+  if (result.totalprice < 600) return 0;
   result.data = {};
-  let totalprice = 0;
-  for (var value of FormData.values()) {
-    let id = value.split(";")[0];
-    let price = value.split(";")[1];
-    totalprice += parseInt(price);
-    console.log(value.split(";")[2]);
+  for (var values of FormData.entries()) {
+    let id = values[1].split(";")[0];
+    let price = values[1].split(";")[1];
+    let name = values[1].split(";")[2];
+    let type = values[0];
+    result.data[id] = {
+      name: name,
+      price: parseInt(price),
+      type: type,
+    };
   }
-  return totalprice;
+  return result;
 };
-module.exports.GetBoxPrice = (FormData) => {
+const GetBoxPrice = (module.exports.GetBoxPrice = (FormData) => {
   let totalprice = 0;
   for (var value of FormData.values()) {
     totalprice += parseInt(value.split(";")[1]);
   }
   return totalprice;
-};
+});

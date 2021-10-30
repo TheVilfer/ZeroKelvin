@@ -20,10 +20,11 @@ const Cart = async () => {
   if ((await GetLocalStorage("cart")) == null) SetLocalStorage("cart", cart);
   else cart = await GetLocalStorage("cart");
   if (window.location.pathname == "/order/") {
-    InitOrder();
+    await InitOrder();
+    await fetch("/.netlify/functions/update");
   }
   if (window.location.pathname == "/cart/") {
-    InitCart();
+    await InitCart();
   }
   if (window.location.pathname == "/constructors/boxs/") {
     document
@@ -69,7 +70,6 @@ const Cart = async () => {
     cart = null;
     SetLocalStorage("cart", cart);
   } else {
-    await fetch("/.netlify/functions/update");
     EnableAllAddToCart();
   }
 };

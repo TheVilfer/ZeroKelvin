@@ -66,17 +66,23 @@ var ParseBoxConstructorForm = CartUtils.ParseBoxConstructorForm = (FormData) => 
   result.totalprice = GetBoxPrice(FormData);
   if (result.totalprice < 600) return 0;
   result.data = {};
+  result.data.ids = [];
+  result.data.items = {};
+  result.data.desc = "Состав бокса: ";
   for (var values of FormData.entries()) {
     let id = values[1].split(";")[0];
+    result.data.ids.push(id);
     let price = values[1].split(";")[1];
     let name = values[1].split(";")[2];
+    result.data.desc += name + ", ";
     let type = values[0];
-    result.data[id] = {
+    result.data.items[id] = {
       name: name,
       price: parseInt(price),
       type: type,
     };
   }
+  result.data.desc = result.data.desc.slice(0, result.data.desc.length - 2);
   return result;
 };
 const GetBoxPrice = (GetBoxPrice_1 = CartUtils.GetBoxPrice = (FormData) => {

@@ -55,7 +55,16 @@ const Cart = async () => {
         let dataBox = CartUtils.ParseBoxConstructorForm(
           new FormData(document.querySelector(".constuctor__body"))
         );
-        console.log(hashcode.value(dataBox));
+        console.log(dataBox.data);
+        AddToCart(
+          "box;" + hashcode.value(dataBox),
+          "Бокс из конструктора боксов",
+          dataBox.totalprice,
+          "БОКСЫ",
+          "https://www.zerokelvin.ru/images/category/boxs.jpg",
+          dataBox.data.desc,
+          dataBox.data
+        );
         document.querySelector(".constuctor__body").reset();
         console.log("test");
         document.querySelector(

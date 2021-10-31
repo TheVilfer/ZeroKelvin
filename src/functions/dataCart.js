@@ -22,19 +22,52 @@ module.exports.handler = async (event, context) => {
   }
   context.callbackWaitsForEmptyEventLoop = false;
   let ids = [];
+  let ids_box = [];
+  let ids_elBox = [];
   let cart = JSON.parse(event.body);
   console.log(cart);
   for (const key of Object.keys(cart.products)) {
+    if (key.split(";")[0] == "box") {
+      ids_elBox = Array.from(
+        new Set(ids_elBox.concat(cart.products[key].subdata.ids))
+      );
+      ids_box.push(key);
+      continue;
+    }
     ids.push(key);
   }
+  ids = Array.from(new Set(ids.concat(ids_elBox)));
+  console.log(ids);
   (
     await DbCore.Query("products", {
       _id: { $in: DbCore.ConvertArrayToObjectID(ids) },
     })
   ).forEach((el) => {
-    cart.products[el._id].name = el.name;
-    cart.products[el._id].price = el.price;
+    console.log(el);
+    console.log(cart.products[el._id]);
+    if (typeof cart.products[el._id] != "undefined") {
+      cart.products[el._id].name = el.name;
+      cart.products[el._id].price = el.price;
+    }
+    ids_box.forEach((idB) => {
+      if (typeof cart.products[idB].subdata.items[el._id] != "undefined") {
+        cart.products[idB].subdata.items[el._id].name = el.name;
+        cart.products[idB].subdata.items[el._id].price = el.price;
+      }
+    });
   });
+  ids_box.forEach((el) => {
+    let tPrice = 0;
+    let tDesc = "Состав бокса: ";
+    for (let lTem in cart.products[el].subdata.items) {
+      tDesc += cart.products[el].subdata.items[lTem].name + ", ";
+      tPrice += cart.products[el].subdata.items[lTem].price;
+    }
+    tDesc = tDesc.slice(0, tDesc.length - 2);
+    cart.products[el].price = tPrice;
+    cart.contact.comment += "\n" + tDesc;
+  });
+  console.log(cart.products);
   if (cart.detail.promocode == "") {
     cart.products["delivery"] = {};
     cart.products["delivery"].name = "Доставка";

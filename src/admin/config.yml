@@ -150,14 +150,14 @@ collections:
                   label: "Баннер в формате .WEBP",
                   name: "img_compressed",
                   widget: "image",
-                  media_folder: "/images/slider/",
+                  media_folder: "src/images/slider/",
                   choose_url: false,
                 }
               - {
                   label: "Баннер в формате .JPG",
                   name: "img",
                   widget: "image",
-                  media_folder: "/images/slider/",
+                  media_folder: "src/images/slider/",
                   choose_url: false,
                 }
               - {

@@ -2,25 +2,25 @@
 title: Главная страница
 permalink: index.html
 layout: main.njk
-sliders:
-  - 1
 ---
 
 <header>
   <div class="page__block swiper-container swiper-banner">
     <div class="swiper-wrapper">
+      {% for banner in banners %}
       <div class="swiper-slide">
         <picture>
-          <source srcset="images/slider/1.webp" type="image/webp" />
+          <source srcset="{{banner.img_compressed}}" type="image/webp" />
           <img
             width="720"
             height="210"
             class="slide-image"
-            src="images/slider/1.jpg"
+            src="{{ banner.img }}"
           />
         </picture>
-        <a class="link--block" href="/catalog/"></a>
+        <a class="link--block" href="{{ banner.link }}"></a>
       </div>
+      {% endfor %}
     </div>
     <div class="swiper-pagination"></div>
   </div>

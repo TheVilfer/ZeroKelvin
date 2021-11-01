@@ -9,7 +9,7 @@ site_url: https://www.zerokelvin.ru/
 logo_url: https://www.zerokelvin.ru/images/logo.svg
 collections:
   - name: "products" # Used in routes, e.g., /admin/collections/blog
-    label: "Products" # Used in the UI
+    label: "Товары" # Used in the UI
     folder: "src/products" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     preview_path: /catalog/
@@ -18,7 +18,7 @@ collections:
       summary: "{{title}}" # optional summary for a tree node, defaults to the inferred title field
     slug: "{{title}}" # Filename template, e.g., YYYY-MM-DD-title.md
     fields:
-      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Название товара", name: "title", widget: "string" }
       - label: "Фотографии товара"
         name: "artwork"
         allow_multiple: true
@@ -118,7 +118,7 @@ collections:
           - { label: Text, name: text, widget: string }
       - label: "Категории товаров"
         name: "category"
-        file: "src/category/category.json"
+        file: "src/subdata/category.json"
         fields:
           - label: "Лист категорий"
             name: "category"
@@ -136,4 +136,33 @@ collections:
                   name: "color",
                   widget: "color",
                   allowInput: true,
+                }
+      - label: "Баннеры на главной"
+        name: "banners"
+        file: "src/subdata/banners.json"
+        fields:
+          - label: "Лист баннеров"
+            name: "banners"
+            widget: "list"
+            allow_add: true
+            fields:
+              - {
+                  label: "Баннер в формате .WEBP",
+                  name: "img_compressed",
+                  widget: "image",
+                  media_folder: "/images/slider/",
+                  choose_url: false,
+                }
+              - {
+                  label: "Баннер в формате .JPG",
+                  name: "img",
+                  widget: "image",
+                  media_folder: "/images/slider/",
+                  choose_url: false,
+                }
+              - {
+                  label: "Ссылка",
+                  name: "link",
+                  widget: "string",
+                  default: "/catalog/",
                 }

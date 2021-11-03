@@ -10,35 +10,35 @@ layout: main.njk
   </header>
   <form class="constuctor__body">
     <section class="constructor__step">
-      <h2>Шаг 1</h2>
+      <h2>Выбери книги</h2>
       <ul class="constructor__step__items">
         {% for item in collections.popular %} {% Cbox_element "books", item.data
         %} {% endfor %}
       </ul>
     </section>
     <section class="constructor__step">
-      <h2>Шаг 2</h2>
+      <h2>Выбери стикеры</h2>
       <div class="constructor__step__items">
         {% for item in collections.stickers %} {% Cbox_element "stickers",
         item.data %} {% endfor %}
       </div>
     </section>
     <section class="constructor__step">
-      <h2>Шаг 3</h2>
+      <h2>Выбери открытки</h2>
       <div class="constructor__step__items">
         {% for item in collections.cards %} {% Cbox_element "cards", item.data
         %} {% endfor %}
       </div>
     </section>
     <section class="constructor__step">
-      <h2>Шаг 4</h2>
+      <h2>Выбери значки</h2>
       <div class="constructor__step__items">
         {% for item in collections.pins %} {% Cbox_element "pins", item.data %}
         {% endfor %}
       </div>
     </section>
     <section class="constructor__step">
-      <h2>Шаг 5</h2>
+      <h2>Выбери шопперы</h2>
       <div class="constructor__step__items">
         {% for item in collections.shopper %} {% Cbox_element "shopper",
         item.data %} {% endfor %}

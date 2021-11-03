@@ -42,6 +42,6 @@
     "pug": "^3.0.1",
     "pug-code-gen": "^3.0.2",
     "rimraf": "^2.7.1",
-    "telegraf": "^4.3.0"
+    "telegraf": "4.4"
   }
 }

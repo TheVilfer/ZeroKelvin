@@ -63,11 +63,9 @@ layout: main.njk
   function BuyPopup() {
     Swal.fire({
       title: "Заявка",
-      text: "Данный товар пока нельзя заказать через наш сайт, но вы можете оставить заявку на его покупку, либо найти его у нас в магазине на Wildberries",
+      text: "Данный товар пока нельзя заказать через наш сайт, но вы можете оставить заявку на его покупку",
       icon: "info",
-      showDenyButton: true,
       confirmButtonText: `Оставить заявку`,
-      denyButtonText: `Перейти на Wildberries`,
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
@@ -99,8 +97,6 @@ layout: main.njk
             confirmButtonText: "Готово",
           });
         });
-      } else if (result.isDenied) {
-        window.open("https://www.wildberries.ru/brands/nol-kelvin", "_blank");
       }
     });
   }

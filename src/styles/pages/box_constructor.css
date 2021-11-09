@@ -4,9 +4,31 @@
   padding: 0 1vw;
   padding-bottom: 1em;
 }
+.constructor__stepInfo {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(100px, 1fr));
+  place-content: center;
+  column-gap: 0.5em;
+}
+@media screen and (max-width: 800px) {
+  .constructor__stepInfo {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    row-gap: 1em;
+  }
+}
+.stepInfo__step {
+  position: relative;
+  text-align: center;
+}
+.stepInfo__title {
+  font-weight: 600;
+}
+.stepInfo__description {
+  font-weight: 300;
+}
 .constructor__step__items {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(50px, 200px));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 200px));
   place-content: center;
   column-gap: 2em;
   row-gap: 2em;
@@ -18,16 +40,6 @@
   position: relative;
 }
 
-.constructor__step__item__isChecked {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-}
 .constructor__step__item__image {
   -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
   -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
@@ -82,7 +94,7 @@
   .constructor__calculator {
     grid-template-columns: 1fr;
     grid-template-rows: min-content 1fr;
-    max-width: 350%;
+    max-width: 100%;
   }
 }
 .constructor__calculator__totalprice__area {
@@ -101,6 +113,9 @@
 }
 .constructor__calculator__submit__button {
   display: inline;
+}
+.constructor__calculator__submit__button:disabled {
+  background: grey;
 }
 .constructor__calculator__submit__annotation {
   font-size: 0.6em;

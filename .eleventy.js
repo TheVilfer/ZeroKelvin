@@ -53,7 +53,7 @@ module.exports = (config) => {
   });
 
   config.addShortcode("year", () => `${new Date().getFullYear()}`);
-  config.addShortcode("Cbox_element", (category, data) => {
+  config.addShortcode("Cbox_element", (category, item) => {
     return `
     <li class="constructor__step__item">
           <label class="constructor__step__item__label">
@@ -61,16 +61,19 @@ module.exports = (config) => {
               class="constructor__step__item__checkbox"
               type="checkbox"
               name="${category}"
-              value="${data.id};${data.price};${data.title.replace(/"/g, "'")}"
+              value="${item.data["id"]};${item.data["price"]};${item.data[
+      "title"
+    ].replace(/"/g, "'")}"
             />
-            <div class="constructor__step__item__isChecked"></div>
             <img
               class="constructor__step__item__image"
-              src="${data.artwork}"
-              alt="${data.title}"
+              src="${item.data.artwork}"
+              alt="${item.data.title}"
             />
-            <p class="constructor__step__item__name">${data.title}</p>
-            <p class="constructor__step__item__price">${data.price} руб.</p>
+            <p class="constructor__step__item__name">${item.data.title}</p>
+            <p class="constructor__step__item__price">${
+              item.data.price
+            } руб.</p>
           </label>
         </li>
     `;

@@ -15,6 +15,9 @@ var SetInterest = CartUtils.SetInterest = (cart, interest) => {
   return cart;
 };
 var GetDeliveryPrice = CartUtils.GetDeliveryPrice = async (cart) => {
+  if (Object.keys(cart.products) == 0) {
+    return 0;
+  }
   let local_shopper = 0;
   let local_stickers = 0;
   let local_cards = 0;

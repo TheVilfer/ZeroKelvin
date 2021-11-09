@@ -24,15 +24,14 @@
   font-weight: bold;
 }
 
-.main__category {
+.category__grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-auto-rows: 150px;
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
   gap: 10px 10px;
 }
 
 @media screen and (max-width: 800px) {
-  .main__category {
+  .category__grid {
     grid-template-columns: 1fr;
     grid-template-rows: none;
     grid-auto-rows: 500px;
@@ -40,106 +39,58 @@
     gap: 30px 30px;
   }
 }
-
-.category__block {
-  padding: 1em;
-  border-radius: 5px;
-  box-shadow: 4.6px 9.3px 9.3px hsl(0deg 0% 0% / 0.36);
+.category__grid__element {
   width: 100%;
   height: 100%;
-  display: grid;
-  place-items: center;
   position: relative;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  max-height: 250px;
+  column-gap: 1em;
+  row-gap: 1em;
 }
-
-@media screen and (max-width: 800px) {
-  .category__block {
-    padding: 0.5em;
-  }
-}
-
-.category__block:hover {
+.category__grid__element:hover {
   opacity: 0.8;
+  box-shadow: none;
   transition: opacity 0.5s;
 }
-
-.category__title {
+@media screen and (max-width: 800px) {
+  .category__grid__element {
+    max-height: 100%;
+  }
+}
+.category__grid__element--long {
+  grid-area: 1 span / 2 span;
+}
+@media screen and (max-width: 800px) {
+  .category__grid__element--long {
+    grid-area: 1 span / 1 span;
+  }
+}
+.category__grid__element--tall {
+  grid-area: 2 span / 1 span;
+  max-height: 100%;
+}
+@media screen and (max-width: 800px) {
+  .category__grid__element--tall {
+    grid-area: 1 span / 1 span;
+  }
+}
+.category__grid__element__title {
+  position: absolute;
+  top: 10px;
+  left: 10px;
   color: white;
-  font-size: 1.2em;
-  line-height: 1;
-  font-size: 2rem;
-  font-weight: 700;
+  opacity: 0.8;
 }
-
-@media screen and (max-width: 800px) {
-  .category__title {
-    font-size: 1.8rem;
-  }
-}
-
-.category__sticker {
-  background-image: url(/images/category/stickers.jpg);
-  background-size: cover;
-  background-position: center center;
-  grid-area: span 3 / span 2;
-}
-
-.category__bags {
-  background-image: url(/images/category/bags.jpg);
-  background-size: cover;
-  background-position: center center;
-  grid-area: span 3 / span 1;
-}
-
-.category__cards {
-  background-image: url(/images/category/cards.jpg);
-  background-size: cover;
-  background-position: center center;
-  grid-area: span 1 / span 1;
-}
-
-.category__boxs {
-  background-image: url(/images/category/boxs.jpg);
-  background-size: cover;
-  background-position: center center;
-  grid-area: span 1 / span 1;
-}
-
-.category__stocks {
-  background-image: url(/images/category/stocks.jpg);
-  background-size: cover;
-  background-position: center center;
-  grid-area: span 1 / span 1;
-}
-
-.category__telescope {
-  background-image: url(/images/category/telescope.jpg);
-  background-size: cover;
-  background-position: center 24%;
-  grid-area: span 1 / span 1;
-}
-.category__microscope {
-  background-image: url(/images/category/microscope.jpg);
-  background-size: cover;
-  background-position: center center;
-  grid-area: span 1 / span 1;
-}
-.category__sales {
-  background-image: url(/images/category/sales.jpg);
-  background-size: cover;
-  background-position: center center;
-  grid-area: span 1 / span 1;
-}
-
-@media screen and (max-width: 800px) {
-  .category__sticker,
-  .category__bags,
-  .category__cards,
-  .category__boxs,
-  .category__stocks,
-  .category__telescope {
-    grid-area: span 1 / span 1;
-  }
+.category__grid__element__img {
+  object-fit: cover;
+  object-position: center center;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
 }
 
 .page__collections {
@@ -201,113 +152,44 @@
   padding-bottom: 3px;
   position: relative;
 }
-.block__production {
-  padding: 3rem 1rem;
+.block__about {
   display: grid;
-  grid-template-columns: repeat(2, minmax(350px, 1fr));
-  gap: 1em;
-}
-@media screen and (max-width: 800px) {
-  .block__production {
-    grid-template-columns: 1fr;
-    grid-auto-rows: min-content;
-  }
-}
-.production__content {
-  max-width: 100%;
-  display: grid;
+  grid-template-columns: repeat(2, minmax(400px, 500px));
+  grid-template-rows: 1fr 1fr;
   place-content: center;
-}
-
-.production__media > video {
-  object-fit: cover;
-  object-position: top;
-  width: 100%;
-  height: 100%;
-  filter: blur(3px) brightness(0.8);
-}
-
-.production__media {
-  max-width: 100%;
-  background: black;
-  border-radius: 8px;
-  box-shadow: 4.6px 9.3px 9.3px hsl(0deg 0% 0% / 0.36);
-}
-.production__title {
-  margin: 0;
-  padding: 0;
-  font-size: 3em;
-  line-height: 1;
-}
-@media screen and (max-width: 800px) {
-  .production__title {
-    font-size: 2.5em;
-  }
-}
-.production__text {
-  font-size: 1em;
-  line-height: 1.5;
-}
-.production__button {
-  display: grid;
   place-items: center;
-  width: 100%;
 }
-
-.main__about {
-  width: 100%;
-  min-height: min-content;
-  max-height: 100vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-content: center;
-  padding: 5rem 0;
-}
-
 @media screen and (max-width: 800px) {
-  .main__about {
-    flex-direction: column;
-    height: auto;
-    margin: 0;
-    padding: 1rem;
+  .block__about {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+    place-content: center;
+    place-items: center;
   }
 }
-
-.about__image {
-  border-radius: 50%;
-  width: 100%;
-  max-width: 230px;
-  min-width: 200px;
-  height: auto;
-  align-self: center;
-  justify-self: end;
-  box-shadow: 4.6px 9.3px 9.3px hsl(0deg 0% 0% / 0.36);
+.about__title {
+  font-weight: 500;
+  font-size: 1.2em;
+}
+@media screen and (max-width: 800px) {
+  .about__title {
+    margin-top: 0.5em;
+  }
 }
 
 .about__text {
-  width: 100%;
-  max-width: 500px;
-  height: auto;
-  align-self: center;
-  justify-self: start;
-  font-size: 1.1em;
-}
-
-.about__image + .about__text {
-  margin-left: 2em;
+  max-width: 400px;
+  margin: auto;
 }
 
 @media screen and (max-width: 800px) {
-  .about__image + .about__text {
-    margin-top: 2em;
-    margin-left: 0;
-    text-align: left;
-    font-size: 1rem;
+  .about__text {
+    margin-top: 0.3em;
+    margin-bottom: 0.5em;
   }
 }
 @media screen and (max-width: 800px) {
-  .about__text__link {
-    text-align: right;
+  .about__image {
+    max-width: 350px;
   }
 }

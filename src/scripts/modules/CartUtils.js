@@ -12,6 +12,9 @@ module.exports.SetInterest = (cart, interest) => {
   return cart;
 };
 module.exports.GetDeliveryPrice = async (cart) => {
+  if (Object.keys(cart.products) == 0) {
+    return 0;
+  }
   let local_shopper = 0;
   let local_stickers = 0;
   let local_cards = 0;

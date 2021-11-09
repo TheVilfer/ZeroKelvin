@@ -53,6 +53,15 @@ layout: main.njk
     {% endfor %}
   </section>
   {% endfor %}
+  <article class="fixedCart fixedCart--hiden">
+    <div class="fixedCart__overlay">
+    <img src="/images/icons/cart.svg" alt="">
+    <div class="fixedCart__count">
+      <span class="fixedCart__count__number"></span>
+    </div>
+    <a class="link--block" href="/cart/"></a>
+    </div>
+  </article>
 </main>
 <link
   href="https://cdn.jsdelivr.net/npm/@sweetalert2/themes@5.0.2/minimal/minimal.min.css"
@@ -100,4 +109,15 @@ layout: main.njk
       }
     });
   }
+</script>
+<script>
+  window.addEventListener('scroll', ()=>{
+    if (window.scrollY < 50) {
+    document.querySelector(".fixedCart").classList.add("fixedCart--hiden");
+    console.log("Hello world");
+  } else {
+    document.querySelector(".fixedCart").classList.remove("fixedCart--hiden");
+    console.log("Hello world333");
+  }
+  })
 </script>

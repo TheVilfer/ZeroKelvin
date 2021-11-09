@@ -26,49 +26,63 @@ layout: main.njk
   </div>
 </header>
 <main class="page__main">
-  <h2 class="main__title">Категории</h2>
-  <section class="page__block main__category">
-    <div class="category__sticker category__block">
-      <h3 class="category__title sticker_title">
-        <a class="link--block" href="/catalog#stickers">СТИКЕРЫ</a>
-      </h3>
+  <h2 class="main__title">Что посмотреть💜</h2>
+  <section class="page__block category__grid">
+    <div class="category__grid__element category__grid__element--long">
+      <h3 class="category__grid__element__title">СТИКЕРЫ</h3>
+      <picture>
+        <img
+          class="category__grid__element__img"
+          src="/images/category/stickers.jpg"
+          alt="Фотография стикеров на столе"
+        />
+      </picture>
+      <a class="link--block" href="/catalog#stickers"></a>
     </div>
-    <div class="category__bags category__block">
-      <h3 class="category__title bags_title">
-        <a class="link--block" href="/catalog#shopper">ШОППЕРЫ</a>
-      </h3>
+    <div class="category__grid__element">
+      <h3 class="category__grid__element__title">БОКСЫ</h3>
+      <picture>
+        <img
+          class="category__grid__element__img"
+          src="/images/category/boxs.jpg"
+          alt="Фотография бокса с наклейкой логотипа Ноль Кельвин"
+        />
+      </picture>
+      <a class="link--block" href="/catalog#boxs"></a>
     </div>
-    <div class="category__cards category__block">
-      <h3 class="category__title cards_title">
-        <a class="link--block" href="/catalog#cards">ОТКРЫТКИ</a>
-      </h3>
+    <div class="category__grid__element category__grid__element--tall">
+      <h3 class="category__grid__element__title">АКСЕССУАРЫ</h3>
+      <picture>
+        <img
+          class="category__grid__element__img"
+          src="/images/category/bags.jpg"
+          alt="Фотография Ани с шоппером"
+        />
+      </picture>
+      <a class="link--block" href="/catalog#pins"></a>
     </div>
-    <div class="category__microscope category__block">
-      <h3 class="category__title sticker_title">
-        <a class="link--block" href="/catalog#microscope">МИКРОСКОПЫ</a>
-      </h3>
+    <div class="category__grid__element">
+      <h3 class="category__grid__element__title">ОПТИКА</h3>
+      <picture>
+        <img
+          class="category__grid__element__img"
+          src="/images/category/telescope.jpg"
+          alt="Фотография стикеров на столе"
+        />
+      </picture>
+      <a class="link--block" href="/catalog#telescope"></a>
     </div>
-    <div class="category__boxs category__block">
-      <h3 class="category__title boxs_title">
-        <a class="link--block" href="/catalog#boxs">БОКСЫ</a>
-      </h3>
+    <div class="category__grid__element category__grid__element--long">
+      <h3 class="category__grid__element__title">ОТКРЫТКИ</h3>
+      <picture>
+        <img
+          class="category__grid__element__img"
+          src="/images/category/cards.jpg"
+          alt="Фотография открытки с надписью открой космос"
+        />
+      </picture>
+      <a class="link--block" href="/catalog#cards"></a>
     </div>
-
-    <article class="category__telescope category__block">
-      <h3 class="category__title sticker_title">
-        <a class="link--block" href="/catalog#telescope">ТЕЛЕСКОПЫ</a>
-      </h3>
-    </article>
-    <article class="category__stocks category__block">
-      <h3 class="category__title stocks_title">
-        <a class="link--block" href="/catalog#pins">ЗНАЧКИ</a>
-      </h3>
-    </article>
-    <article class="category__sales category__block">
-      <h3 class="category__title sticker_title">
-        <a class="link--block" href="/catalog#sales">АКЦИИ</a>
-      </h3>
-    </article>
   </section>
 
   <!-- <h2 class="main__title">Коллекции</h2>
@@ -99,7 +113,7 @@ layout: main.njk
     </div>
   </div> -->
 
-  <h2 class="main__title">Популярное</h2>
+  <h2 class="main__title">Ваш выбор💙</h2>
   <div class="page__block page__popular swiper-container swiper-popular">
     <div class="swiper-wrapper">
       {% for item in collections.popular %}
@@ -137,49 +151,24 @@ layout: main.njk
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
   </div>
-  <section class="page__block block__production">
-    <div class="production__content">
-      <h4 class="text production__title">{{ production.title }}</h4>
-      <p class="text text--optimization production__text">
-        {{ production.text }}
-      </p>
-      <div class="text production__button">
-        <a class="button button--fixedsize" href="/catalog/"
-          >Перейти в каталог</a
-        >
+  <section class="page__block block__about">
+    <img class="about__image" src="/images/indexAny.jpg" alt="" />
+    <div class="about__information">
+      <div class="about__title">ПОЗНАКОМИМСЯ?💙</div>
+      <div class="about__text">
+        Привет! Меня зовут Аня и я рада видеть тебя в научном сообществе Ноль
+        Кельвин. Наш проект объединяет людей увлеченных наукой, космосом и
+        технологиями! Мы любим науку и продвигаем ее вместе с вами!
       </div>
     </div>
-    <div class="production__media">
-      <video
-        autoplay
-        loop
-        muted
-        playsinline
-        id="bgvid"
-        poster="/images/background_video.jpg"
-      >
-        <source src="/media/prod.mp4" type="video/mp4" />
-        <source src="/media/prod.webm" type="video/webm" />
-      </video>
+    <div class="about__information">
+      <div class="about__title">О МАГАЗИНЕ😍</div>
+      <div class="about__text">
+        У нас вы встретите уникальные товары научной тематики неописуемого
+        качества. Каждый продукт сделан из лучших материалов и продуман до
+        мелочей, чтобы продвигать науку было космически приятно🚀.
+      </div>
     </div>
+    <img class="about__image" src="/images/indexStickers.jpg" alt="" />
   </section>
-  <div class="page__block main__about">
-    <img
-      width="230"
-      height="230"
-      loading="lazy"
-      src="/images/any.jpg"
-      alt="Аня в очках"
-      class="about__image"
-    />
-    <div class="about__text text text--optimization">
-      "Миссия бренда Ноль Кельвин в повышении доверия к науке за счет ее
-      популяризации. Я искренне хочу, чтобы как можно больше людей использовали
-      научный подход. Для этого я создала научный проект, который от человека к
-      человека будет прививать любовь к науке."
-      <p class="about__text__link">
-        <a href="https://www.instagram.com/any.physics">@any.physics</a>
-      </p>
-    </div>
-  </div>
 </main>

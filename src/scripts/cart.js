@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 const Cart = async () => {
   if ((await GetLocalStorage("cart")) == null) SetLocalStorage("cart", cart);
   else cart = await GetLocalStorage("cart");
+  UpdateCartCounter();
   if (window.location.pathname == "/order/") {
     await InitOrder();
     await fetch("/.netlify/functions/update");
@@ -29,9 +30,8 @@ const Cart = async () => {
   if (window.location.pathname == "/constructors/boxs/") {
     document
       .querySelector(".constuctor__body")
-      .addEventListener("change", (event) => {
+      .addEventListener("change", async (event) => {
         event.preventDefault();
-        console.log("over");
         let boxPrice = CartUtils.GetBoxPrice(
           new FormData(document.querySelector(".constuctor__body"))
         );
@@ -58,10 +58,10 @@ const Cart = async () => {
         console.log(dataBox.data);
         AddToCart(
           "box;" + hashcode.value(dataBox),
-          "Бокс из конструктора боксов",
+          "Конструктор боксов",
           dataBox.totalprice,
           "БОКСЫ",
-          "https://www.zerokelvin.ru/images/category/boxs.jpg",
+          "https://www.zerokelvin.ru/images/boxCustom.jpg",
           dataBox.data.desc,
           dataBox.data
         );
@@ -74,10 +74,33 @@ const Cart = async () => {
           ".constructor__calculator__submit__button"
         ).disabled = true;
       });
+    let boxPrice = CartUtils.GetBoxPrice(
+      new FormData(document.querySelector(".constuctor__body"))
+    );
+    document.querySelector(
+      ".constructor__calculator__totalprice__number"
+    ).innerHTML = boxPrice;
+    if (boxPrice >= 600) {
+      document.querySelector(
+        ".constructor__calculator__submit__button"
+      ).disabled = false;
+    } else {
+      document.querySelector(
+        ".constructor__calculator__submit__button"
+      ).disabled = true;
+    }
   }
   if (window.location.pathname == "/success/") {
-    cart = null;
+    cart = {
+      products: {},
+      detail: {
+        totalprice: 0,
+        html: "",
+        promocode: "",
+      },
+    };
     SetLocalStorage("cart", cart);
+    UpdateCartCounter();
   } else {
     EnableAllAddToCart();
   }
@@ -157,6 +180,7 @@ const DeleteElement = async (id, el) => {
   await UpdateTotalPrice();
   HtmlRender();
   isCartAvailable();
+  UpdateCartCounter();
   SetLocalStorage("cart", cart);
 };
 const UpdateTotalPrice = async () => {
@@ -188,7 +212,9 @@ const AddToCart = (
     cart.products[id].count = parseInt(cart.products[id].count) + 1;
   }
   CalculateTotalPrice();
+  UpdateCartCounter();
   SetLocalStorage("cart", cart);
+  notie.alert({ type: "success", text: "Добавлено в корзину", time: 2 });
   console.log(localStorage.cart);
 };
 const InitCart = async () => {
@@ -302,10 +328,12 @@ const HtmlRender = () => {
   for (const [key, value] of Object.entries(cart.products)) {
     cart.detail.html += `<li class="cart-element" data-id="${value.id}">
             <img class="cart-element__image" src="${value.img}" alt="${value.name}">
-            <span class = "cart-element__type">${value.type}</span>
-            <span class = "cart-element__name">${value.name}</span>
-            <span class = "cart-element__price">${value.price} руб.</span>
-            <div class = "cart-element__count"> <button class="cart-element__count__plus">+</button> <input class="cart-element__count__value" type="number" value="${value.count}"/> <button class="cart-element__count__minus">-</button> шт.</div>
+            <div class="cart-element__information">
+            <div class = "cart-element__type">${value.type}</div>
+            <div class = "cart-element__name">${value.name}</div>
+            <div class = "cart-element__description">${value.description}</div>
+            <div class = "cart-element__price"><input class="cart-element__count__value" type="number" value="${value.count}"/> x ${value.price} руб.</div>
+            </div>
         </li>`;
   }
   SetLocalStorage("cart", cart);
@@ -313,13 +341,30 @@ const HtmlRender = () => {
 const CartIsEmpty = () => {
   return Object.entries(cart.products).length == 0;
 };
-
+const UpdateCartCounter = async () => {
+  const counters = document.querySelectorAll(".fixedCart__count__number");
+  let count = 0;
+  Object.values(cart.products).forEach((el) => {
+    count += parseInt(el.count);
+  });
+  counters.forEach((el) => {
+    el.innerHTML = count;
+  });
+  console.log(count);
+};
 //order
 const InitOrder = async () => {
   if (CartIsEmpty()) {
     window.location.replace("https://zerokelvin.ru");
   }
+  const profile = JSON.parse(await GetLocalStorage("profile"));
+  if (profile != null) {
+    SetFormData("orderForm", profile);
+  }
   let form = document.querySelector(".order__form");
+  form.addEventListener("change", async (event) => {
+    SetLocalStorage("profile", JSON.stringify(await SaveFormData("orderForm")));
+  });
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     document.querySelector(".order__submit").disabled = true;
@@ -366,4 +411,20 @@ const CollectUserData = async (form) => {
 };
 const ClearLocalStorage = async (storage) => {
   localStorage.removeItem(storage);
+};
+const SaveFormData = async (formName) => {
+  let result = new Array(document.forms[formName].length);
+  Array.from(document.forms[formName]).forEach((el, index) => {
+    result[index] = {};
+    result[index].checked = el.checked;
+    result[index].value = el.value;
+  });
+  return result;
+};
+const SetFormData = async (formName, formData) => {
+  formData.forEach((el, index) => {
+    document.forms[formName][index].checked = el.checked;
+    document.forms[formName][index].value = el.value;
+  });
+  return 0;
 };

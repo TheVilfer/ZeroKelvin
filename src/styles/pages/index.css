@@ -92,7 +92,9 @@
   height: 100%;
   border-radius: 8px;
 }
-
+.category__image__glass {
+  object-position: top center;
+}
 .page__collections {
   padding: 0 0;
   margin: 0;

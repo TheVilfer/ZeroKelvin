@@ -1,8 +1,8 @@
 {
   "banners": [
     {
-      "img_compressed": "src/images/slider/1.webp",
-      "img": "src/images/slider/1.jpg",
+      "img_compressed": "/src/images/slider/слайдер-4-.webp",
+      "img": "/src/images/slider/слайдер-4-1-.jpg",
       "link": "/catalog/"
     }
   ]

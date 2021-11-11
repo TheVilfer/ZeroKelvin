@@ -4,6 +4,11 @@
       "img_compressed": "/src/images/slider/слайдер-5-.webp",
       "img": "/src/images/slider/слайдер-5-1-.jpg",
       "link": "constructors/boxs/"
+    },
+    {
+      "link": "/catalog/",
+      "img_compressed": "/src/images/slider/слайдер-6-.webp",
+      "img": "/src/images/slider/слайдер-6-2-.jpg"
     }
   ]
 }

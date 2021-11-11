@@ -8,6 +8,18 @@ layout: main.njk
   <header>
     <h1>Конструктор боксов</h1>
   </header>
+  <section class="constructor__banner">
+    <picture>
+      <source srcset="/images/slider/слайдер-4-.webp" type="image/webp" />
+      <img
+        width="720"
+        height="210"
+        class="constructor__banner__image"
+        src="/images/slider/слайдер-4-1-.jpg"
+      />
+    </picture>
+    <a class="link--block" href="#boxStep1"></a>
+  </section>
   <section class="constructor__stepInfo">
     <div class="stepInfo__step">
       <img
@@ -72,28 +84,32 @@ layout: main.njk
   </section>
   <form class="constuctor__body" name="constructorBox">
     <section class="constructor__step">
-      <h2 id="boxStep1">Шаг 1</h2>
+      <h2 class="constructor__step__title" id="boxStep1">Шаг 1</h2>
+      <div class="constructor__step__description">Выберите стикеры</div>
       <ul class="constructor__step__items">
         {% for item in collections.stickers %} {% Cbox_element "stickers", item
         %} {% endfor %}
       </ul>
     </section>
     <section class="constructor__step">
-      <h2 id="boxStep2">Шаг 2</h2>
+      <h2 class="constructor__step__title" id="boxStep2">Шаг 2</h2>
+      <div class="constructor__step__description">Выберите книги</div>
       <div class="constructor__step__items">
         {% for item in collections.books %} {% Cbox_element "books", item %} {%
         endfor %}
       </div>
     </section>
     <section class="constructor__step">
-      <h2 id="boxStep3">Шаг 3</h2>
+      <h2 class="constructor__step__title" id="boxStep3">Шаг 3</h2>
+      <div class="constructor__step__description">Выберите открытки</div>
       <div class="constructor__step__items">
         {% for item in collections.cards %} {% Cbox_element "cards", item %} {%
         endfor %}
       </div>
     </section>
     <section class="constructor__step">
-      <h2 id="boxStep4">Шаг 4</h2>
+      <h2 class="constructor__step__title" id="boxStep4">Шаг 4</h2>
+      <div class="constructor__step__description">Выберите аксессуары</div>
       <div class="constructor__step__items">
         {% for item in collections.pins %} {% Cbox_element "accessoires", item
         %} {% endfor %} {% for item in collections.shopper %} {% Cbox_element
@@ -101,7 +117,8 @@ layout: main.njk
       </div>
     </section>
     <section class="constructor__step">
-      <h2 id="boxStep5">Шаг 5</h2>
+      <h2 class="constructor__step__title" id="boxStep5">Шаг 5</h2>
+      <div class="constructor__step__description">Выберите упаковку</div>
       <div class="constructor__step__items">
         {% for item in collections.coverpaper %} {% Cbox_element "coverpaper",
         item %} {% endfor %}

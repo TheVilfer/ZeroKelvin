@@ -4,6 +4,14 @@
   padding: 0 1vw;
   padding-bottom: 1em;
 }
+.constructor__banner {
+  position: relative;
+  border-radius: 8px;
+  margin: 0.5em 0;
+}
+.constructor__banner__image {
+  border-radius: 8px;
+}
 .constructor__stepInfo {
   display: grid;
   grid-template-columns: repeat(5, minmax(100px, 1fr));
@@ -12,7 +20,7 @@
 }
 @media screen and (max-width: 800px) {
   .constructor__stepInfo {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
     row-gap: 1em;
   }
 }
@@ -26,9 +34,20 @@
 .stepInfo__description {
   font-weight: 300;
 }
+.constructor__step__title {
+  margin: 0;
+  padding: 0;
+  margin-top: 0.5em;
+}
+.constructor__step__description {
+  font-size: 0.7em;
+  margin-bottom: 1em;
+  font-weight: 200;
+  font-style: italic;
+}
 .constructor__step__items {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 200px));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 200px));
   place-content: center;
   column-gap: 2em;
   row-gap: 2em;
@@ -54,6 +73,7 @@
   margin: 0;
   padding: 0;
   margin-top: 0.5em;
+  font-weight: 500;
 }
 
 .constructor__step__item__checkbox {

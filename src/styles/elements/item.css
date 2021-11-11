@@ -110,6 +110,7 @@
   margin-top: 0.5rem;
   transition: background-color 0.5s;
   color: black;
+  font-weight: 500;
 }
 
 .button:hover {
@@ -124,16 +125,20 @@
   max-width: max-content;
   text-decoration: none;
   padding: 0.5em 2em;
-  background: rgb(0, 212, 255);
+  background: #00d2ff; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #00d2ff,
+    #3a7bd5
+  ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
-    90deg,
-    rgba(0, 212, 255, 1) 21%,
-    rgba(9, 9, 121, 1) 100%
-  );
+    to right,
+    #00d2ff,
+    #3a7bd5
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
 }
 .button--fixedsize:hover {
-  background: #00e0ff;
   opacity: 0.8;
 }
 

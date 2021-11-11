@@ -17,6 +17,9 @@
   padding-top: 0.5rem;
   border-top: 2px solid black;
 }
+.cart-delivey__price {
+  font-weight: 500;
+}
 
 .cart-element {
   width: auto;
@@ -55,16 +58,15 @@
 
 .cart-element__count__value {
   width: 100%;
-  max-width: 2.3em;
+  max-width: 1.3em;
   color: black;
   border-radius: 0;
   border: 0;
   text-align: center;
+  font-weight: 500;
 }
 .promocode__button {
-  max-width: min-content;
-  display: inline-block !important;
-  padding: 0.5rem !important;
+  display: inline-block;
 }
 .cart-total__price {
   font-weight: 600;

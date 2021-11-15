@@ -1,6 +1,6 @@
 ---
 title: Стикерпак прозрачный "Фрейд"
-artwork: images/img_2411-1-.jpg
+artwork: images/img_2412.jpg
 price: "270"
 id: " 61924f89669b6200116f7ab4"
 isAddToCart: true

@@ -1,6 +1,6 @@
 ---
 title: Телескоп Sturman 70070AZ
-artwork: images/sturman_70070az_2-600x600.jpg
+artwork: images/2.jpg
 price: "9700"
 id: 6114ffa996aba10013e56150
 tags:

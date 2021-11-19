@@ -8,120 +8,141 @@ layout: main.njk
   <header class="order__header">
     <h1>Оплата</h1>
   </header>
-  <form class="order__form" name="orderForm" autocomplete="on">
-    <fieldset class="fieldset fieldset_individual">
-      <legend class="order__form__legend">Личные данные</legend>
-      <input
-        class="input"
-        type="text"
-        name="given-name"
-        id="name"
-        autocomplete="given-name"
-        required
-        placeholder="Имя"
-      />
-      <input
-        class="input"
-        type="text"
-        name="family-name"
-        id="surname"
-        autocomplete="family-name"
-        required
-        placeholder="Фамилия"
-      />
-      <input
-        class="input"
-        type="tel"
-        name="tel"
-        id="phone"
-        autocomplete="home tel"
-        required
-        placeholder="Номер телефона"
-      />
-      <input
-        class="input"
-        type="email"
-        name="email"
-        id="email"
-        autocomplete="home email"
-        required
-        placeholder="Email адрес"
-      />
-      <input
-        class="input"
-        type="text"
-        name="country"
-        id="country"
-        autocomplete="shipping country-name"
-        required
-        placeholder="Страна"
-      />
-      <input
-        class="input"
-        type="text"
-        name="state"
-        id="state"
-        autocomplete="shipping address-level1"
-        required
-        placeholder="Регион/Область"
-      />
-      <input
-        class="input"
-        type="text"
-        name="city"
-        id="city"
-        autocomplete="shipping address-level2"
-        required
-        placeholder="Город/Населённый пункт"
-      />
-      <input
-        class="input"
-        type="text"
-        name="street"
-        id="street"
-        autocomplete="shipping address-line1"
-        required
-        placeholder="Улица, дом"
-      />
-      <input
-        class="input"
-        type="number"
-        name="housing"
-        id="housing"
-        autocomplete="shipping address-line3"
-        placeholder="Корпус"
-      />
-      <input
-        class="input"
-        type="text"
-        name="room"
-        id="room"
-        autocomplete="shipping address-line2"
-        placeholder="Квартира"
-      />
-      <input
-        class="input"
-        type="number"
-        name="postalcode"
-        id="postalcode"
-        autocomplete="shipping postal-code"
-        required
-        placeholder="Почтовый индекс"
-      />
-    </fieldset>
-    <fieldset class="fieldset fieldset-detail">
-      <legend>Детали</legend>
-      <label for="comment">Комментарий к заказу</label>
-      <br />
-      <textarea
-        cols="15"
-        rows="1"
-        class="fieldset-detail__textarea"
-        name="comment"
-        id="comment"
-      ></textarea>
-    </fieldset>
-    <button class="order__submit button" type="submit">Оформить заказ</button>
+  <form class="order__form" id="orderForm" name="orderForm" autocomplete="on">
+    <section class="order__cart">
+      <h2 class="fieldset__title">Ваш заказ</h2>
+      <ul class="cart--order"></ul>
+      <div class="cart--order__delivery">
+        Доставка: <span class="cart--order__delivery__value">0</span> руб.
+      </div>
+      <div class="cart--order__price">
+        Итого: <span class="cart--order__price__value">0</span> руб.
+      </div>
+    </section>
+
+    <section class="order__fieldset order__information">
+      <h2 class="fieldset__title">Контактые данные</h2>
+      <div class="information__contact">
+        <input
+          class="input information__input--name"
+          type="text"
+          name="given-name"
+          id="name"
+          autocomplete="given-name"
+          required
+          placeholder="Имя"
+        />
+        <input
+          class="input information__input--surname"
+          type="text"
+          name="family-name"
+          id="surname"
+          autocomplete="family-name"
+          required
+          placeholder="Фамилия"
+        />
+        <input
+          class="input information__input--tel"
+          type="tel"
+          name="tel"
+          id="phone"
+          autocomplete="home tel"
+          required
+          placeholder="Номер телефона"
+        />
+        <input
+          class="input information__input--email"
+          type="email"
+          name="email"
+          id="email"
+          autocomplete="home email"
+          required
+          placeholder="Email"
+        />
+      </div>
+      <h2 class="fieldset__title">Доставка</h2>
+      <div class="information__delivery">
+        <input
+          class="input"
+          type="text"
+          name="country"
+          id="country"
+          autocomplete="shipping country-name"
+          required
+          placeholder="Страна"
+        />
+        <input
+          class="input"
+          type="text"
+          name="state"
+          id="state"
+          autocomplete="shipping address-level1"
+          required
+          placeholder="Регион"
+        />
+        <input
+          class="input"
+          type="text"
+          name="city"
+          id="city"
+          autocomplete="shipping address-level2"
+          required
+          placeholder="Город"
+        />
+        <input
+          class="input"
+          type="text"
+          name="street"
+          id="street"
+          autocomplete="shipping address-line1"
+          required
+          placeholder="Улица, дом"
+        />
+        <input
+          class="input information__input--housing"
+          type="number"
+          name="housing"
+          id="housing"
+          autocomplete="shipping address-line3"
+          placeholder="Корпус"
+        />
+        <input
+          class="input information__input--room"
+          type="text"
+          name="room"
+          id="room"
+          autocomplete="shipping address-line2"
+          placeholder="Квартира"
+        />
+        <input
+          class="input information__input--postalcode"
+          type="number"
+          name="postalcode"
+          id="postalcode"
+          autocomplete="shipping postal-code"
+          required
+          placeholder="Индекс"
+        />
+      </div>
+      <h2 class="fieldset__title">Детали</h2>
+      <div class="information__detail">
+        <textarea
+          cols="15"
+          rows="1"
+          class="textarea information__textarea--comment"
+          name="comment"
+          id="comment"
+          placeholder="Ваш комментарий"
+        ></textarea>
+      </div>
+      <button
+        form="orderForm"
+        class="button button--fixedsize order__submit"
+        type="submit"
+      >
+        Оформить заказ
+      </button>
+    </section>
   </form>
 </main>
 <script defer src="/scripts/imask.js"></script>

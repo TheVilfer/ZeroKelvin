@@ -332,7 +332,7 @@ const HtmlRender = () => {
             <div class = "cart-element__type">${value.type}</div>
             <div class = "cart-element__name">${value.name}</div>
             <div class = "cart-element__description">${value.description}</div>
-            <div class = "cart-element__price"><input class="cart-element__count__value" type="number" value="${value.count}"/> x ${value.price} руб.</div>
+            <div class = "cart-element__price"> <span class = "cart-element__count__value--text">${value.count}</span> <input class="cart-element__count__value" type="number" value="${value.count}"/> x ${value.price} руб.</div>
             </div>
         </li>`;
   }
@@ -357,6 +357,13 @@ const InitOrder = async () => {
   if (CartIsEmpty()) {
     window.location.replace("https://zerokelvin.ru");
   }
+  document
+    .querySelector(".cart--order")
+    .insertAdjacentHTML("afterbegin", cart.detail.html);
+  document.querySelector(".cart--order__price__value").innerHTML =
+    cart.detail.totalprice + (await CartUtils.GetDeliveryPrice(cart));
+  document.querySelector(".cart--order__delivery__value").innerHTML =
+    await CartUtils.GetDeliveryPrice(cart);
   const profile = JSON.parse(await GetLocalStorage("profile"));
   if (profile != null) {
     SetFormData("orderForm", profile);

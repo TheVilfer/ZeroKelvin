@@ -55,7 +55,9 @@
   font-style: italic;
   max-width: 300px;
 }
-
+.cart .cart-element__count__value--text {
+  display: none;
+}
 .cart-element__count__value {
   width: 100%;
   max-width: 1.3em;

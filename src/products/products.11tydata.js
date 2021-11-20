@@ -20,6 +20,7 @@ const getImages = (url, image) => {
   } catch (error) {
     console.error(error);
   }
+
   return dirFiles;
 };
 

@@ -4,16 +4,20 @@ const path = require("path");
 const getImages = (url, image) => {
   let dirFiles = [];
   let artworks = "";
-  if (image != undefined) {
-    artworks = path.basename(image);
-    let tt = path.resolve(path.dirname(url), "images/");
-    tt = tt.replace("src", "dist");
-    fs.readdirSync(tt).forEach((file) => {
-      if (file == ".DS_Store") return;
-      if (file != artworks) {
-        dirFiles.push(path.join("images/", file));
-      }
-    });
+  try {
+    if (image != undefined) {
+      artworks = path.basename(image);
+      let tt = path.resolve(path.dirname(url), "images/");
+      tt = tt.replace("src", "dist");
+      fs.readdirSync(tt).forEach((file) => {
+        if (file == ".DS_Store") return;
+        if (file != artworks) {
+          dirFiles.push(path.join("images/", file));
+        }
+      });
+    }
+  } catch (error) {
+    console.error(error);
   }
   return dirFiles;
 };

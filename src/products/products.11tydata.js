@@ -10,6 +10,7 @@ const getImages = (url, image) => {
       let tt = path.resolve(path.dirname(url), "images/");
       tt = tt.replace("src", "dist");
       fs.readdirSync(tt).forEach((file) => {
+        console.log(file);
         if (file == ".DS_Store") return;
         if (file != artworks) {
           dirFiles.push(path.join("images/", file));

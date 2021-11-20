@@ -1,6 +1,5 @@
 const fs = require("fs");
 const path = require("path");
-
 const getImages = (url, image) => {
   let dirFiles = [];
   let artworks = "";
@@ -9,7 +8,7 @@ const getImages = (url, image) => {
     if (image != undefined) {
       artworks = path.basename(image);
       let tt = path.resolve(path.dirname(url), "images/");
-      tt = tt.replace("src", "dist");
+      // tt = tt.replace("src", "dist");
       console.log(tt);
       console.log(fs.readdirSync(tt));
       fs.readdirSync(tt).forEach((file) => {

@@ -1,6 +1,6 @@
 ---
 title: Стикерпак прозрачный "Эйнштейн"
-artwork: images/img_2411-1-.jpg
+artwork: images/img_2665.jpg
 price: "270"
 id: 61924f90dfebc50010b30411
 isAddToCart: true

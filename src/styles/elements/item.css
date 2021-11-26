@@ -3,7 +3,8 @@
   aspect-ratio: 1/1;
   object-fit: cover;
   background-color: transparent;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .item__category {
@@ -18,12 +19,17 @@
   display: block;
   width: 100%;
   margin: 5px 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-weight: 600;
 }
 
 .item__price {
   display: block;
   width: 100%;
   margin: 5px 0;
+  font-weight: 500;
 }
 
 .item__cart {
@@ -84,7 +90,7 @@
   color: #212121;
   padding: 0.3em 0.5em;
   width: 100%;
-
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
   height: 2.5em;
 }
 
@@ -101,6 +107,8 @@
 
 .button {
   width: 100%;
+  max-width: max-content;
+  text-decoration: none;
   background-color: white;
   border: 0;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
@@ -119,24 +127,26 @@
 .button:hover {
   background-color: #d3d3d3;
   transition: background-color 0.5s;
+  cursor: pointer;
 }
 
 .button:active {
   box-shadow: none;
 }
 .button--fixedsize {
-  max-width: max-content;
-  text-decoration: none;
-  padding: 0.5em 2em;
-  background: #00d2ff; /* fallback for old browsers */
+  background: #00d2ff;
   background: linear-gradient(39deg, #06b7d4, #1e67cc);
   background-size: 400% 400%;
 
-  -webkit-animation: ButtonAnimation 45s ease infinite;
-  -moz-animation: ButtonAnimation 45s ease infinite;
-  -o-animation: ButtonAnimation 45s ease infinite;
-  animation: ButtonAnimation 45s ease infinite;
+  -webkit-animation: ButtonAnimation 25s ease infinite;
+  -moz-animation: ButtonAnimation 25s ease infinite;
+  -o-animation: ButtonAnimation 25s ease infinite;
+  animation: ButtonAnimation 25s ease infinite;
   color: white;
+}
+.button--fixedsize:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 @-webkit-keyframes ButtonAnimation {
   0% {
@@ -182,8 +192,63 @@
     background-position: 93% 0%;
   }
 }
-.button--fixedsize:hover {
+.button--buy {
+  color: white;
+  background: linear-gradient(270deg, #12c2e9, #c471ed, #f64f59);
+  background-size: 600% 600%;
+
+  -webkit-animation: ButtonBuyAnimation 9s ease infinite;
+  -moz-animation: ButtonBuyAnimation 9s ease infinite;
+  -o-animation: ButtonBuyAnimation 9s ease infinite;
+  animation: ButtonBuyAnimation 9s ease infinite;
+}
+.button--buy:hover {
   opacity: 0.8;
+  cursor: pointer;
+}
+@-webkit-keyframes ButtonBuyAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-moz-keyframes ButtonBuyAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-o-keyframes ButtonBuyAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes ButtonBuyAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .link--block {

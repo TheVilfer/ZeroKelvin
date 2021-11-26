@@ -4,52 +4,66 @@ layout: main.njk
 
 <main class="page__product">
   <section class="product__card">
-    <div class="swiper-container product__slider">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <div class="swiper-zoom-container">
-            <img class="product__img" src="{{ artwork }}" alt="{{ title }}" />
+    <div class="product__grid">
+      <div class="swiper-container product__slider">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="swiper-zoom-container">
+              <img
+                width="700"
+                height="700"
+                class="product__img"
+                src="{{ artwork }}"
+                alt="{{ title }}"
+              />
+            </div>
           </div>
+          {% for img in images %}
+          <div class="swiper-slide">
+            <img class="product__img" src="{{ img }}" alt="{{ title }}" />
+          </div>
+          {% endfor %}
         </div>
-        {% for img in images %}
-        <div class="swiper-slide">
-          <img class="product__img" src="{{ img }}" alt="{{ title }}" />
-        </div>
-        {% endfor %}
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
       </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-    </div>
-    <section class="product__description cart__item" data-id="{{ id }}">
-      <img
-        class="cart__image"
-        src="{{ artwork }}"
-        alt=""
-        style="display: none"
-      />
-      <span class="item__category cart__type">{{ category }}</span>
-      <h1 class="product__name item__name cart__name">
-        {{ title }}
-      </h1>
-      <img
-        class="item__status"
-        src="/images/icons/battery-full.svg"
-        alt="Полная батарейка"
-        data-tippy-content="Много"
-      />
-      <span class="item__price cart__price">{{ price }} руб.</span>
-      {% if isAddToCart %}
-      <button class="item__cart cart__add">Добавить в корзину</button>
-      {% else %}
-      <button class="item__cart item__buy" onclick="BuyPopup()">Купить</button>
-      {% endif %}
-      <section class="product__details--short">
-        {{ content | safe }}
+      <section class="product__description">
+        <div class="cart__item" data-id="{{ id }}">
+          <img
+            class="cart__image"
+            src="{{ artwork }}"
+            alt=""
+            style="display: none"
+          />
+          <div class="product__category cart__type">{{ category }}</div>
+          <h1 class="product__name cart__name">{{ title }}</h1>
+          <div class="product__status">
+            <img
+              class="product__status__battery"
+              src="/images/icons/battery-full.svg"
+              alt="Полная батарейка"
+              data-tippy-content="Много"
+            />
+          </div>
+          <span class="item__price cart__price product__price"
+            >{{ price }} руб.</span
+          >
+          {% if isAddToCart %}
+          <button class="item__cart cart__add button button--buy">
+            Добавить в корзину
+          </button>
+          {% else %}
+          <button
+            class="item__cart item__buy button button--buy"
+            onclick="BuyPopup()"
+          >
+            Купить
+          </button>
+          {% endif %}
+        </div>
       </section>
-    </section>
-    {% if features %}
-    <section class="product__details">{{ features }}</section>
-    {% endif%}
+      <section class="product__details">{{ content | safe }}</section>
+    </div>
   </section>
   {% if collections[tags[1]] | length > 1 %}
   <section class="swiper-container product__likes">

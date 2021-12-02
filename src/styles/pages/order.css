@@ -73,3 +73,6 @@
   font-weight: 500;
   padding: 0.5em 0;
 }
+.deleveryService__option--placeholder {
+  opacity: 0.5;
+}

@@ -67,6 +67,8 @@ module.exports.handler = async (event, context) => {
     cart.products[el].price = tPrice;
     cart.contact.comment += "\n" + tDesc;
   });
+  cart.contact.comment +=
+    "\n" + "Способ доставки: " + cart.contact["deleveryService"];
   console.log(cart.products);
   if (cart.detail.promocode == "") {
     cart.products["delivery"] = {};

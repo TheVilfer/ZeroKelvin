@@ -78,8 +78,20 @@ layout: main.njk
         alt=""
       />
       <div class="stepInfo__title">Шаг 5</div>
-      <div class="stepInfo__description">Выберите<br />упаковку</div>
+      <div class="stepInfo__description">Выберите<br />сладости</div>
       <a class="link--block" href="#boxStep5"></a>
+    </div>
+    <div class="stepInfo__step">
+      <img
+        class="stepInfo__image"
+        width="100"
+        height="100"
+        src="/images/steps/6step.jpg"
+        alt=""
+      />
+      <div class="stepInfo__title">Шаг 6</div>
+      <div class="stepInfo__description">Выберите<br />упаковку</div>
+      <a class="link--block" href="#boxStep6"></a>
     </div>
   </section>
   <form class="constuctor__body" name="constructorBox">
@@ -118,6 +130,14 @@ layout: main.njk
     </section>
     <section class="constructor__step">
       <h2 class="constructor__step__title" id="boxStep5">Шаг 5</h2>
+      <div class="constructor__step__description">Выберите сладости</div>
+      <div class="constructor__step__items">
+        {% for item in collections.sweets %} {% Cbox_element "sweets", item %}
+        {% endfor %}
+      </div>
+    </section>
+    <section class="constructor__step">
+      <h2 class="constructor__step__title" id="boxStep6">Шаг 6</h2>
       <div class="constructor__step__description">Выберите упаковку</div>
       <div class="constructor__step__items">
         {% for item in collections.coverpaper %} {% Cbox_element "coverpaper",

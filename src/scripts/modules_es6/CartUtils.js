@@ -60,7 +60,7 @@ var GetDeliveryPrice = CartUtils.GetDeliveryPrice = async (cart) => {
     return 250;
   }
   if (local_stickers > 0 || local_cards > 0 || local_kits > 0) {
-    return 120;
+    return 190;
   }
   throw new Error("Invalid cart elements");
 };

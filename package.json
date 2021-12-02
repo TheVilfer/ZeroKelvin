@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@11ty/eleventy-cache-assets": "^2.3.0",
+    "@notionhq/client": "^0.4.9",
     "@sardine/eleventy-plugin-tinycss": "^1.5.0",
     "@sherby/eleventy-plugin-files-minifier": "^1.1.1",
     "blueimp-md5": "^2.18.0",

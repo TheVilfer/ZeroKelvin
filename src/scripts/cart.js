@@ -358,6 +358,9 @@ const InitOrder = async () => {
     window.location.replace("https://zerokelvin.ru");
   }
   document
+    .querySelectorAll(".cart-element__count__value")
+    .forEach((el) => el.remove());
+  document
     .querySelector(".cart--order")
     .insertAdjacentHTML("afterbegin", cart.detail.html);
   document.querySelector(".cart--order__price__value").innerHTML =
@@ -393,6 +396,13 @@ const InitOrder = async () => {
   var inputTel = IMask(document.getElementById("phone"), {
     mask: "+{7} (000) 000-00-00",
   });
+  if (await IsCartHave("БОКСЫ")) {
+    document.querySelector(".deleveryService__option--sdek").disabled = false;
+    document.querySelector(
+      ".deleveryService__option--placeholder"
+    ).selected = false;
+    document.querySelector(".deleveryService__option--sdek").selected = true;
+  }
 };
 const GeneratePaymentLink = async (userData) => {
   let cart_temp = await GetLocalStorage("cart");
@@ -434,4 +444,14 @@ const SetFormData = async (formName, formData) => {
     document.forms[formName][index].value = el.value;
   });
   return 0;
+};
+const IsCartHave = async (i) => {
+  if (
+    typeof Object.values(cart.products).find(
+      (el) => el.type == i.toUpperCase()
+    ) != "undefined"
+  ) {
+    return true;
+  }
+  return false;
 };

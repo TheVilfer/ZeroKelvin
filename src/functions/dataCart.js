@@ -67,6 +67,8 @@ module.exports.handler = async (event, context) => {
     cart.products[el].price = tPrice;
     cart.contact.comment += "\n" + tDesc;
   });
+  cart.contact.comment +=
+    "\n" + "Способ доставки: " + cart.contact["deleveryService"];
   console.log(cart.products);
   if (cart.detail.promocode == "") {
     cart.products["delivery"] = {};
@@ -310,7 +312,7 @@ const ChooseDelivery = async (cart) => {
     return 250;
   }
   if (local_stickers > 0 || local_cards > 0 || local_kits > 0) {
-    return 120;
+    return 190;
   }
   return 0;
 };

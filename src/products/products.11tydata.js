@@ -7,6 +7,8 @@ const getImages = (url, image) => {
     if (image != undefined) {
       artworks = path.basename(image);
       let tt = path.resolve(path.dirname(url), "images/");
+      // tt = tt.replace("src", "dist");
+
       fs.readdirSync(tt).forEach((file) => {
         if (file == ".DS_Store") return;
         if (file != artworks) {

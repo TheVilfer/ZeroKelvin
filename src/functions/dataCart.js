@@ -1,9 +1,8 @@
 const md5 = require("blueimp-md5");
-const mongoUtil = require("mongodb");
 const PromoCore = require("../scripts/modules/PromoSystemCore.js");
 const CartUtils = require("../scripts/modules/CartUtils.js");
 const DbCore = require("../scripts/modules/dbCore.js");
-const Amo = require("../scripts/modules/AmoLibrary.js");
+const Notion = require("../scripts/modules/NotionLibrary.js");
 
 const MERCHANTLOGIN = process.env.MERCHANTLOGIN;
 const PASSWORD_ONE = process.env.PASSWORD_ONE;
@@ -74,10 +73,10 @@ module.exports.handler = async (event, context) => {
     cart.products["delivery"] = {};
     cart.products["delivery"].name = "Доставка";
     cart.products["delivery"].count = 1;
-    cart.products["delivery"].price = await ChooseDelivery(cart.products);
+    cart.products["delivery"].price = await CartUtils.GetDeliveryPrice(cart);
     cart.detail.totalprice = CartUtils.GetTotalPrice(cart.products);
   } else {
-    const DeliveryPrice = await ChooseDelivery(cart.products);
+    const DeliveryPrice = await CartUtils.GetDeliveryPrice(cart);
     let PromoData = await PromoCore.Validator(
       cart.products,
       cart.detail.promocode
@@ -91,7 +90,7 @@ module.exports.handler = async (event, context) => {
     cart.detail.totalprice += DeliveryPrice;
   }
   outSum = cart.detail.totalprice;
-  let lead = await AddOrderToAmo(cart);
+  let lead = await AddOrderToNotion(cart);
   await GenerateSignatureValue(lead);
   await GenerateLink(lead);
   return {
@@ -112,207 +111,27 @@ const GenerateSignatureValue = async (lead_id) => {
 const GenerateLink = async (lead_id) => {
   link = `https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=${MERCHANTLOGIN}&OutSum=${outSum}&InvoiceID=${lead_id}&Description=${description}&SignatureValue=${signatureValue}`;
 };
-const AddOrderToAmo = async (cart) => {
-  const lead_complex = [
-    {
-      name: "Заказ с сайта",
-      price: cart.detail.totalprice,
-      status_id: 39483091,
-      pipeline_id: 4202485,
-      _embedded: {
-        contacts: [
-          {
-            first_name: cart.contact["given-name"],
-            last_name: cart.contact["family-name"],
-            custom_fields_values: [
-              {
-                field_id: 28481,
-                values: [
-                  {
-                    value: cart.contact.tel,
-                    enum_code: "MOB",
-                  },
-                ],
-              },
-              {
-                field_id: 28483,
-                values: [
-                  {
-                    value: cart.contact.email,
-                    enum_code: "PRIV",
-                  },
-                ],
-              },
-              {
-                field_id: 988783,
-                values: [
-                  {
-                    value:
-                      "Улица: " +
-                      cart.contact.street +
-                      "корпус " +
-                      cart.contact.housing,
-                    enum_id: 1,
-                  },
-                  {
-                    value: "Квартира: " + cart.contact.room,
-                    enum_id: 2,
-                  },
-                  {
-                    value: "Город: " + cart.contact.city,
-                    enum_id: 3,
-                  },
-                  {
-                    value: "Область: " + cart.contact.state,
-                    enum_id: 4,
-                  },
-                  {
-                    value: "Индекс: " + cart.contact.postalcode,
-                    enum_id: 5,
-                  },
-                  {
-                    value: cart.contact.country,
-                    enum_id: 6,
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    },
-  ];
+const AddOrderToNotion = async (cart) => {
   try {
-    let prom = Amo.Init("tokens", "60c0e125e35a6baee25a652e");
-    console.log("babaka");
-    let invoice_elements = [];
-    for (const value of Object.values(cart.products)) {
-      invoice_elements.push({
-        value: {
-          description: value.name,
-          unit_price: value.price,
-          quantity: value.count,
-          unit_type: "шт.",
-        },
-      });
-    }
-    let invoice = [
+    let res = await DbCore.QueryOne("utils", {
+      _id: DbCore.ConvertToObjectID("61afc65e88146e88f5e79ab8"),
+    });
+    res.correctOrder++;
+    await DbCore.UpdateOne(
+      "utils",
       {
-        name: "Cчет",
-        custom_fields_values: [
-          {
-            field_id: 982493,
-            values: [
-              {
-                value: "Создан",
-              },
-            ],
-          },
-          {
-            field_id: 982503,
-            values: invoice_elements,
-          },
-          {
-            field_id: 982505,
-            values: [
-              {
-                value: cart.contact.comment,
-              },
-            ],
-          },
-          {
-            field_id: 982507,
-            values: [
-              {
-                value: cart.detail.totalprice,
-              },
-            ],
-          },
-          {
-            field_id: 1023598,
-            values: [
-              {
-                value: cart.detail.promocode,
-              },
-            ],
-          },
-        ],
+        correctOrder: res.correctOrder,
       },
-    ];
-    await prom;
-    prom = Promise.all([
-      Amo.Request("/api/v4/leads/complex", lead_complex),
-      Amo.Request("/api/v4/catalogs/8693/elements", invoice),
-    ]);
-    let list = await prom;
-    const AmoId = {
-      lead_id: list[0][0]["id"],
-      invoice_id: list[1]["_embedded"]["elements"][0]["id"],
-    };
-    const AmoLink = [
-      {
-        to_entity_id: AmoId.invoice_id,
-        to_entity_type: "catalog_elements",
-        metadata: {
-          catalog_id: 8693,
-        },
-      },
-    ];
-    prom = Promise.all([
-      Amo.Request("/api/v4/leads/" + AmoId.lead_id + "/link", AmoLink),
-    ]);
-    list = await prom;
-    console.log(JSON.stringify(list));
-    return AmoId.lead_id;
+      "61afc65e88146e88f5e79ab8"
+    );
+    let contact = new Notion.ContactDB("43c93433c619428ebe683115baa214ba");
+    let order = new Notion.OrderDB("8a127df18f15497db0ef5d423b746ac5");
+    if (!(await contact.Find(cart.contact.tel))) await contact.Add(cart);
+    await order.Add(cart, contact.id, res.correctOrder);
+    await order.CreateDbListOrder();
+    await order.AddElementToListOrder(cart);
+    return res.correctOrder;
   } catch (error) {
-    console.error("Failed add order to Amo: " + error);
-    throw new Error("Failed add order to Amo: " + error);
+    throw new Error("Ошибка при добавлении данных в ноушен: " + error);
   }
-};
-const ChooseDelivery = async (cart) => {
-  let local_shopper = 0;
-  let local_stickers = 0;
-  let local_cards = 0;
-  let local_kits = 0;
-  let local_pin = 0;
-  let local_boxs = 0;
-  for (const [key, value] of Object.entries(cart)) {
-    if (value.type == "СТИКЕРЫ") {
-      local_stickers += 1 * value.count;
-      continue;
-    }
-    if (value.type == "ШОППЕРЫ") {
-      local_shopper += 1 * value.count;
-      continue;
-    }
-    if (value.type == "ЗНАЧКИ") {
-      local_pin += 1 * value.count;
-      continue;
-    }
-    if (value.type == "АКЦИИ") {
-      local_kits += 1 * value.count;
-      continue;
-    }
-    if (value.type == "ОТКРЫТКИ") {
-      local_cards += 1 * value.count;
-      continue;
-    }
-    if (value.type == "БОКСЫ") {
-      local_boxs += 1 * value.count;
-      continue;
-    }
-  }
-  if (local_shopper > 2) {
-    return 0;
-  }
-  if (local_shopper > 0 || local_boxs > 0) {
-    return 350;
-  }
-  if (local_pin > 0 || local_stickers > 19) {
-    return 250;
-  }
-  if (local_stickers > 0 || local_cards > 0 || local_kits > 0) {
-    return 190;
-  }
-  return 0;
 };

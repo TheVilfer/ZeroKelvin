@@ -157,7 +157,7 @@ class OrderDB extends DataBase {
     if (typeof this._orderListId == "undefined") {
       throw new Error("[Notion CRM] Не найден ID листа заказа");
     }
-    Object.values(cart.products).forEach(async (el) => {
+    for (const el of Object.values(cart.products)) {
       let r = await super.Add({
         parent: {
           database_id: this._orderListId,
@@ -181,7 +181,7 @@ class OrderDB extends DataBase {
         },
       });
       console.log(r);
-    });
+    }
     console.log("Закончился процесс");
   }
   async CreateDbListOrder() {

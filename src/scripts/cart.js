@@ -22,10 +22,13 @@ const Cart = async () => {
   UpdateCartCounter();
   if (window.location.pathname == "/order/") {
     await InitOrder();
-    await fetch("/.netlify/functions/update");
+    // await fetch("/.netlify/functions/update");
   }
   if (window.location.pathname == "/cart/") {
     await InitCart();
+  }
+  if (window.location.pathname == "/test/") {
+    AddToCart("60eec5efc2b9549183edede2", "Тестовый продукт", 1, "ТЕСТ", "");
   }
   if (window.location.pathname == "/constructors/boxs/") {
     document

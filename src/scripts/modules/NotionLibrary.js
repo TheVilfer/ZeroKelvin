@@ -153,6 +153,7 @@ class OrderDB extends DataBase {
     return responce;
   }
   async AddElementToListOrder(cart) {
+    console.log("Пошел процесс добавление товаров");
     if (typeof this._orderListId == "undefined") {
       throw new Error("[Notion CRM] Не найден ID листа заказа");
     }
@@ -181,6 +182,7 @@ class OrderDB extends DataBase {
       });
       console.log(r);
     });
+    console.log("Закончился процесс");
   }
   async CreateDbListOrder() {
     if (typeof this._orderPageId == "undefined") {

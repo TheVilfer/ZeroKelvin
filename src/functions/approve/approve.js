@@ -4,7 +4,7 @@ nunjucks.configure(__dirname);
 const md5 = require("blueimp-md5");
 const querystring = require("querystring");
 const { Telegraf } = require("telegraf");
-const Notion = require("../scripts/modules/NotionLibrary.js");
+const Notion = require("../../scripts/modules/NotionLibrary.js");
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 

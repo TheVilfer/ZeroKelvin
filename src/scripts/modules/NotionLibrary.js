@@ -315,41 +315,6 @@ class ContactDB extends DataBase {
   _contactPageId;
 }
 
-async function main() {
-  let contact = new ContactDB("43c93433c619428ebe683115baa214ba");
-  //   let items = new OrderDB("8a127df18f15497db0ef5d423b746ac5");
-  // console.log(
-  //   (
-  //     await items.GetPageContent({
-  //       block_id: "a7b565d2-c5c0-4453-bee8-d36e0bed930e",
-  //     })
-  //   ).results
-  // );
-  // console.log(
-  //   (
-  //     await items.Get({
-  //       database_id: "8a127df18f15497db0ef5d423b746ac5",
-  //     })
-  //   ).results[0].properties["Статус"]
-  // );
-  // console.log(await contact.Add({}));
-  // console.log(await items.Add({}, contact.id));
-  // console.log(await items.CreateDbListOrder());
-  // console.log(
-  //   await items.AddElementToListOrder([
-  //     { title: "Тест", count: "5", price: "350" },
-  //   ])
-  // );
-  // console.log(await items.UpdateStatus());
-  console.log(await contact.Find("34423"));
-  // console.log(await items.Find("54342342"));
-  // console.log(await items.UpdateStatus());
-}
-
-(async () => {
-  await main();
-})();
-
 module.exports = {
   ContactDB: ContactDB,
   DataBase: DataBase,

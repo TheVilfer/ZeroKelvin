@@ -15,6 +15,7 @@ module.exports.GetDeliveryPrice = async (cart) => {
   if (Object.keys(cart.products) == 0) {
     return 0;
   }
+  let local_test = 0;
   let local_shopper = 0;
   let local_stickers = 0;
   let local_cards = 0;
@@ -24,6 +25,10 @@ module.exports.GetDeliveryPrice = async (cart) => {
   for (const value of Object.values(cart.products)) {
     if (value.type == "СТИКЕРЫ") {
       local_stickers += 1 * value.count;
+      continue;
+    }
+    if (value.type == "ТЕСТ") {
+      local_test += 1 * value.count;
       continue;
     }
     if (value.type == "ШОППЕРЫ") {
@@ -46,6 +51,9 @@ module.exports.GetDeliveryPrice = async (cart) => {
       local_boxs += 1 * value.count;
       continue;
     }
+  }
+  if (local_test > 0) {
+    return 0;
   }
   if (local_shopper > 2) {
     return "Доставка недоступна";

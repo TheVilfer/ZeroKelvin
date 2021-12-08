@@ -361,11 +361,12 @@ const InitOrder = async () => {
     window.location.replace("https://zerokelvin.ru");
   }
   document
-    .querySelectorAll(".cart-element__count__value")
-    .forEach((el) => el.remove());
-  document
     .querySelector(".cart--order")
     .insertAdjacentHTML("afterbegin", cart.detail.html);
+  document.querySelectorAll(".cart-element__count__value").forEach((el) => {
+    console.log(el);
+    el.remove();
+  });
   document.querySelector(".cart--order__price__value").innerHTML =
     cart.detail.totalprice + (await CartUtils.GetDeliveryPrice(cart));
   document.querySelector(".cart--order__delivery__value").innerHTML =

@@ -5,7 +5,7 @@ layout: main.njk
 <main class="page__product">
   <section class="product__card">
     <div class="product__grid">
-      <div class="swiper-container product__slider">
+      <section class="swiper-container product__slider">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <div class="swiper-zoom-container">
@@ -26,7 +26,7 @@ layout: main.njk
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
-      </div>
+      </section>
       <section class="product__description">
         <div class="cart__item" data-id="{{ id }}">
           <img
@@ -45,9 +45,7 @@ layout: main.njk
               data-tippy-content="Много"
             />
           </div>
-          <span class="item__price cart__price product__price"
-            >{{ price }} руб.</span
-          >
+          <span class="item__price cart__price product__price">{{ price }} руб.</span>
           {% if isAddToCart %}
           <button class="item__cart cart__add button button--buy">
             Добавить в корзину

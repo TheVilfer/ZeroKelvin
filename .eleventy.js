@@ -71,14 +71,49 @@ module.exports = (config) => {
               alt="${item.data.title}"
             />
             <p class="constructor__step__item__name">${item.data.title}</p>
-            <p class="constructor__step__item__price">${
-              item.data.price
-            } руб.</p>
+            <p class="constructor__step__item__price" style="color:#ff7878">${parseInt(
+              item.data.price - item.data.price * 0.2
+            )} руб.</p>
           </label>
         </li>
     `;
   });
-
+  config.add;
+  config.addShortcode("cart_element", (item, classEl = "") => {
+    return `
+    <div
+        class="cart__item ${classEl}"
+        data-id="${item.data.id}"
+      >
+        <div class="item__link-zone">
+          <img
+            width="500"
+            height="500"
+            class="item__image cart__image"
+            src="${item.data.artwork}"
+            alt="${item.data.title}"
+          />
+          <span class="item__category cart__type">${item.data.category}</span>
+          <a class="link--block" href="${item.url}"></a>
+          <span class="item__name cart__name">
+            ${item.data.title}
+          </span>
+          <span class="item__price ${
+            item.data.isSale ? `item__price--sale` : ``
+          }cart__price">${item.data.price} руб.</span>
+          <div class="item__status ${
+            item.data.isSale ? "" : "item__status--hidden"
+          }">${item.data.isSale ? "SALE" : ""}</div> 
+          <button class="item__favorite icon__favorite favorite__add"></button>
+        </div>
+        ${
+          item.data.isAddToCart
+            ? '<button class="item__cart cart__add">Добавить в корзину</button>'
+            : '<button class="item__cart item__buy">Купить</button>'
+        }
+      </div>
+    `;
+  });
   config.addFilter("translit", function (value) {
     const cyrillicToTranslit = new CyrillicToTranslit();
     return `${cyrillicToTranslit.transform(value + "")}`;

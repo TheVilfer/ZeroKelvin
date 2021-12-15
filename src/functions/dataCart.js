@@ -63,7 +63,7 @@ module.exports.handler = async (event, context) => {
       tPrice += cart.products[el].subdata.items[lTem].price;
     }
     tDesc = tDesc.slice(0, tDesc.length - 2);
-    cart.products[el].price = tPrice;
+    cart.products[el].price = parseInt(tPrice - tPrice * 0.2);
     cart.contact.comment += "\n" + tDesc;
   });
   cart.contact.comment +=

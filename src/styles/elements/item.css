@@ -31,6 +31,24 @@
   margin: 5px 0;
   font-weight: 500;
 }
+.item__price--sale {
+  color: #ff7878;
+}
+.item__status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.3em;
+  color: #ff7878;
+  background-color: white;
+  opacity: 0.5;
+}
+.item__status:hover {
+  cursor: default;
+}
+.item__status--hidden {
+  display: none;
+}
 
 .item__cart {
   width: 100%;

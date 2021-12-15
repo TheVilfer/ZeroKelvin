@@ -45,7 +45,9 @@ layout: main.njk
               data-tippy-content="Много"
             />
           </div>
-          <span class="item__price cart__price product__price">{{ price }} руб.</span>
+          <span class="item__price cart__price product__price"
+            >{{ price }} руб.</span
+          >
           {% if isAddToCart %}
           <button class="item__cart cart__add button button--buy">
             Добавить в корзину
@@ -65,40 +67,10 @@ layout: main.njk
   </section>
   {% if collections[tags[1]] | length > 1 %}
   <section class="swiper-container product__likes">
-    <h2>Также из этой категории</h2>
+    <h2>ТАКЖЕ ИЗ ЭТОЙ КАТЕГОРИИ</h2>
     <div class="swiper-wrapper">
-      {% for item in collections[tags[1]] %}
-      <div
-        class="likes__item cart__item swiper-slide"
-        data-id="{{ item.data.id }}"
-      >
-        <div class="item__link-zone">
-          <img
-            width="500"
-            height="500"
-            class="item__image cart__image"
-            src="{{ item.data.artwork }}"
-            alt="{{ item.data.title }}"
-            loading="lazy"
-          />
-
-          <span class="item__category cart__type">
-            {{ item.data.category }}
-          </span>
-          <a class="link--block" href="{{ item.url }}"></a>
-          <span class="item__name cart__name">
-            {{ item.data.title }}
-          </span>
-          <span class="item__price cart__price">{{ item.data.price }} руб</span>
-          <button class="item__favorite icon__favorite favorite__add"></button>
-        </div>
-        {% if item.data.isAddToCart %}
-        <button class="item__cart cart__add">Добавить в корзину</button>
-        {% else %}
-        <button class="item__cart item__buy">Купить</button>
-        {% endif %}
-      </div>
-      {% endfor %}
+      {% for item in collections[tags[1]] %} {% cart_element item, "likes__item
+      swiper-slide" %} {% endfor %}
     </div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>

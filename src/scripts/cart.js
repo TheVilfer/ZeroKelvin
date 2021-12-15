@@ -236,8 +236,10 @@ const InitCart = async () => {
     .insertAdjacentHTML("afterbegin", cart.detail.html);
   EnableInputs();
   try {
+    console.log((await CartUtils.GetDeliveryPrice(cart)) + "///////////");
     delivery = await CartUtils.GetDeliveryPrice(cart);
   } catch (error) {
+    console.error(error);
     localStorage.clear();
     window.location.replace("/");
   }

@@ -87,37 +87,8 @@ layout: main.njk
   <h2 class="main__title">ВАШ ВЫБОР💙</h2>
   <div class="page__block page__popular swiper-container swiper-popular">
     <div class="swiper-wrapper">
-      {% for item in collections.popular %}
-      <div
-        class="popular-item cart__item swiper-slide"
-        data-id="{{ item.data.id }}"
-      >
-        <div class="item__link-zone">
-          <img
-            width="500"
-            height="500"
-            class="item__image cart__image"
-            src="{{ item.data.artwork }}"
-            alt="{{ item.data.title }}"
-          />
-
-          <span class="item__category cart__type">
-            {{ item.data.category }}
-          </span>
-          <a class="link--block" href="{{ item.url }}"></a>
-          <span class="item__name cart__name">
-            {{ item.data.title }}
-          </span>
-          <span class="item__price cart__price">{{ item.data.price }} руб</span>
-          <button class="item__favorite icon__favorite favorite__add"></button>
-        </div>
-        {% if item.data.isAddToCart %}
-        <button class="item__cart cart__add">Добавить в корзину</button>
-        {% else %}
-        <button class="item__cart item__buy">Купить</button>
-        {% endif %}
-      </div>
-      {% endfor %}
+      {% for item in collections.popular %} {% cart_element item, "popular-item
+      swiper-slide" %} {% endfor %}
     </div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>

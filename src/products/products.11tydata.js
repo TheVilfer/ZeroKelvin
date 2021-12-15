@@ -35,5 +35,9 @@ module.exports = {
       if (data.priority === undefined) return 0;
       return data.priority;
     },
+    isSale: (data) => {
+      if (data.isSale === undefined) return false;
+      return data.isSale;
+    },
   },
 };

@@ -26,30 +26,7 @@ layout: main.njk
   <h2 id="{{ correct_category.eng }}">{{ correct_category.ru }}</h2>
   <section class="catalog">
     {% for item in collections[ correct_category.eng ] | sortByPriority | reverse %}
-    <div class="catalog-item cart__item" data-id="{{ item.data.id }}">
-      <div class="item__link-zone">
-        <img
-          width="500"
-          height="500"
-          loading="lazy"
-          class="item__image cart__image"
-          src="{{ item.data.artwork }}"
-          alt="{{ item.data.title }}"
-        />
-        <span class="item__category cart__type">{{ item.data.category }}</span>
-        <a class="link--block" href="{{ item.url }}"></a>
-        <span class="item__name cart__name">
-          {{ item.data.title }}
-        </span>
-        <span class="item__price cart__price">{{ item.data.price }} руб</span>
-        <button class="item__favorite icon__favorite favorite__add"></button>
-      </div>
-      {% if item.data.isAddToCart %}
-      <button class="item__cart cart__add">Добавить в корзину</button>
-      {% else %}
-      <button class="item__cart item__buy" onclick="BuyPopup()">Купить</button>
-      {% endif %}
-    </div>
+    {% cart_element item, "catalog-item" %}
     {% endfor %}
   </section>
   {% endfor %}

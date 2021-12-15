@@ -31,6 +31,7 @@
   grid-template-columns: 300px 1fr;
   grid-auto-rows: auto;
   gap: 2rem;
+  position: relative;
 }
 @media screen and (max-width: 800px) {
   .product__grid {

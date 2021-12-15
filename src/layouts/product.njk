@@ -45,10 +45,17 @@ layout: main.njk
               data-tippy-content="Много"
             />
           </div>
+          {% if isSale %}
+          <span
+            class="item__price cart__price product__price"
+            style="color: #ff7878"
+            >{{ price }} руб.</span
+          >
+          {% else %}
           <span class="item__price cart__price product__price"
             >{{ price }} руб.</span
           >
-          {% if isAddToCart %}
+          {% endif %} {% if isAddToCart %}
           <button class="item__cart cart__add button button--buy">
             Добавить в корзину
           </button>

@@ -74,6 +74,9 @@
 .item__cart:active {
   box-shadow: none;
 }
+.cart__item {
+  position: relative;
+}
 
 .cart__add-success,
 .cart__add-success:hover {

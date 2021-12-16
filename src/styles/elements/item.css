@@ -41,7 +41,8 @@
   padding: 0.3em;
   color: #ff7878;
   background-color: white;
-  opacity: 0.5;
+  opacity: 0.8;
+  font-weight: 600;
 }
 .item__status:hover {
   cursor: default;

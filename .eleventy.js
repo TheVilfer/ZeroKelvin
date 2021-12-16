@@ -100,7 +100,7 @@ module.exports = (config) => {
           </span>
           <span class="item__price ${
             item.data.isSale ? `item__price--sale` : ``
-          }cart__price">${item.data.price} руб.</span>
+          } cart__price">${item.data.price} руб.</span>
           <div class="item__status ${
             item.data.isSale ? "" : "item__status--hidden"
           }">${item.data.isSale ? "SALE" : ""}</div> 

@@ -1,6 +1,10 @@
 const CyrillicToTranslit = require("cyrillic-to-translit-js");
+const CleanCSS = require("clean-css");
 const typesetPlugin = require("eleventy-plugin-typeset");
 const embeds = require("eleventy-plugin-embed-everything");
+const {
+  EleventyRenderPlugin
+} = require("@11ty/eleventy");
 // const eleventyPluginFilesMinifier = require("@sherby/eleventy-plugin-files-minifier");
 
 module.exports = (config) => {
@@ -38,7 +42,6 @@ module.exports = (config) => {
   config.addPassthroughCopy("src/fonts");
   config.addPassthroughCopy("src/images");
   config.addPassthroughCopy("src/scripts");
-  config.addPassthroughCopy("src/styles");
   config.addPassthroughCopy("src/media");
   config.addPassthroughCopy("src/admin");
   config.addPassthroughCopy("src/functions");
@@ -47,11 +50,6 @@ module.exports = (config) => {
   config.addPassthroughCopy("src/model");
 
   config.setDataDeepMerge(true);
-  config.setFrontMatterParsingOptions({
-    excerpt: true,
-    excerpt_separator: "<!-- excerpt -->",
-  });
-
   config.addShortcode("year", () => `${new Date().getFullYear()}`);
   config.addShortcode("Cbox_element", (category, item) => {
     return `
@@ -68,17 +66,16 @@ module.exports = (config) => {
             <img
               class="constructor__step__item__image"
               src="${item.data.artwork}"
-              alt="${item.data.title}"
+              alt="${item.data.title.replace(/"/g, "'")}"
             />
             <p class="constructor__step__item__name">${item.data.title}</p>
-            <p class="constructor__step__item__price" style="color:#ff7878">${parseInt(
-              item.data.price - item.data.price * 0.2
+            <p class="constructor__step__item__price">${parseInt(
+              item.data.price
             )} руб.</p>
           </label>
         </li>
     `;
   });
-  config.add;
   config.addShortcode("cart_element", (item, classEl = "") => {
     return `
     <div
@@ -91,7 +88,7 @@ module.exports = (config) => {
             height="500"
             class="item__image cart__image"
             src="${item.data.artwork}"
-            alt="${item.data.title}"
+            alt="${item.data.title.replace(/"/g, "'")}"
           />
           <span class="item__category cart__type">${item.data.category}</span>
           <a class="link--block" href="${item.url}"></a>
@@ -114,7 +111,7 @@ module.exports = (config) => {
       </div>
     `;
   });
-  config.addFilter("translit", function (value) {
+  config.addFilter("translit", function(value) {
     const cyrillicToTranslit = new CyrillicToTranslit();
     return `${cyrillicToTranslit.transform(value + "")}`;
   });
@@ -126,6 +123,14 @@ module.exports = (config) => {
       return 0;
     });
   });
+  config.addFilter("inStock", (values) => {
+    let val = [...values];
+    val = val.filter((el) => el.data.isAddToCart == true);
+    return val;
+  });
+  config.addFilter("cssmin", function(code) {
+    return new CleanCSS({}).minify(code).styles;
+  });
   config.addPlugin(embeds, {
     youtube: {
       options: {
@@ -134,7 +139,7 @@ module.exports = (config) => {
       },
     },
   });
-  config.addPlugin(require("eleventy-plugin-emoji"));
+  config.addPlugin(EleventyRenderPlugin);
   config.addPlugin(
     typesetPlugin({
       only: ".text--optimization",

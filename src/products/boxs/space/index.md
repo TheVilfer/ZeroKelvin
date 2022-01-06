@@ -1,14 +1,14 @@
 ---
 title: Бокс "Космос"
 artwork: images/img_9981-1-1-.jpg
-price: "1520"
+price: 1824
 id: 610cd07368354000122f5fe0
 tags:
   - space
   - sale
 isAddToCart: true
 priority: 0
-isSale: true
+isSale: false
 ---
 
 **Cостав бокса**:

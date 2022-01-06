@@ -1,11 +1,11 @@
 ---
 title: Стикерпак "ЭМВ"
 artwork: images/img_0066.jpg
-price: 176
+price: 220
 id: 611a2eeebbc80900119f7f2a
 isAddToCart: true
 priority: 2
-isSale: true
+isSale: false
 ---
 
 Шуточный стикерпак "Электромагнитные волны" снижает тревожность перед "страшными" волнами!\

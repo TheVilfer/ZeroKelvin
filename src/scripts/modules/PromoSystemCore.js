@@ -3,7 +3,9 @@ const cartUtils = require("./CartUtils.js");
 const collection = "promocodes";
 const GetPromoFromDb = async (promocode) => {
   try {
-    return await db.QueryOne(collection, { code: promocode });
+    return await db.QueryOne(collection, {
+      code: promocode
+    });
   } catch (error) {
     throw new Error("invalid promocode");
   }
@@ -17,11 +19,10 @@ module.exports.Validator = async (cart, promo) => {
       const discount = (totalPrice / 100) * promoData.interest;
       return {
         discount: discount,
-        cart: cartUtils.SetInterest(cart, promoData.interest),
-        totalprice: Math.ceil(totalPrice - discount),
+          cart: cartUtils.SetInterest(cart, promoData.interest),
+          totalprice: Math.ceil(totalPrice - discount),
       };
       break;
-
     default:
       break;
   }

@@ -39,7 +39,9 @@ module.exports.handler = async (event, context) => {
   console.log(ids);
   (
     await DbCore.Query("products", {
-      _id: { $in: DbCore.ConvertArrayToObjectID(ids) },
+      _id: {
+        $in: DbCore.ConvertArrayToObjectID(ids)
+      },
     })
   ).forEach((el) => {
     console.log(el);
@@ -63,7 +65,7 @@ module.exports.handler = async (event, context) => {
       tPrice += cart.products[el].subdata.items[lTem].price;
     }
     tDesc = tDesc.slice(0, tDesc.length - 2);
-    cart.products[el].price = parseInt(tPrice - tPrice * 0.2);
+    cart.products[el].price = parseInt(tPrice);
     cart.contact.comment += "\n" + tDesc;
   });
   cart.contact.comment +=
@@ -118,8 +120,7 @@ const AddOrderToNotion = async (cart) => {
     });
     res.correctOrder++;
     await DbCore.UpdateOne(
-      "utils",
-      {
+      "utils", {
         correctOrder: res.correctOrder,
       },
       "61afc65e88146e88f5e79ab8"

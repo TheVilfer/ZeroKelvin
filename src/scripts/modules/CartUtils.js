@@ -98,5 +98,5 @@ const GetBoxPrice = (module.exports.GetBoxPrice = (FormData) => {
   for (var value of FormData.values()) {
     totalprice += parseInt(value.split(";")[1]);
   }
-  return parseInt(totalprice - totalprice * 0.2);
+  return parseInt(totalprice);
 });

@@ -1,11 +1,12 @@
 {
-  "name": "site_science__shop",
+  "name": "zerokelvin",
   "version": "1.0.0",
-  "description": "Ecommerce site for instagram shop @science__shop",
+  "description": "Ecommerce site for instagram shop @zerokelvin.ru",
   "private": true,
   "scripts": {
-    "start": "rollup -i ./src/scripts/modules/CartUtils.js --file ./src/scripts/modules_es6/CartUtils.js --context window -p commonjs && rimraf dist && eleventy --serve --quiet",
+    "start": "rimraf dist && eleventy --serve --quiet",
     "deploy": "git pull && git push",
+    "build": "cross-env NODE_ENV=production && rollup -i ./src/scripts/modules/CartUtils.js --file ./src/scripts/modules_es6/CartUtils.js --context window -p commonjs",
     "quick_fix": "git add . && git commit -m 'Фикс. Добавляет минорное исправление' && git push"
   },
   "author": "MadeByVilfer",
@@ -13,18 +14,23 @@
   "devDependencies": {
     "@11ty/eleventy": "^1.0.0-beta.8",
     "@rollup/plugin-commonjs": "^21.0.0",
+    "@sardine/eleventy-plugin-tinycss": "^1.5.0",
+    "@sardine/eleventy-plugin-tinyhtml": "^0.1.0",
     "chalk": "^4.1.1",
+    "cross-env": "^7.0.3",
     "mongodb": "^3.6.4",
     "rollup": "^2.58.0",
     "standard": "^16.0.3",
-    "style-loader": "^2.0.0"
+    "style-loader": "^2.0.0",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
   },
   "dependencies": {
     "@11ty/eleventy-cache-assets": "^2.3.0",
     "@notionhq/client": "^0.4.9",
-    "@sardine/eleventy-plugin-tinycss": "^1.5.0",
     "@sherby/eleventy-plugin-files-minifier": "^1.1.1",
     "blueimp-md5": "^2.18.0",
+    "clean-css": "^5.2.2",
     "cyrillic-to-translit-js": "^3.1.0",
     "each-async": "^1.1.1",
     "eleventy-plugin-embed-everything": "^1.13.2",

@@ -5,177 +5,122 @@ layout: main.njk
 ---
 
 <main class="page__constuctor">
-  <header>
-    <h1>Конструктор боксов</h1>
-  </header>
-  <section class="constructor__banner">
-    <picture>
-      <source srcset="/images/slider/слайдер-5-.webp" type="image/webp" />
-      <img
-        width="720"
-        height="210"
-        class="constructor__banner__image"
-        src="/images/slider/слайдер-5-1-.jpg"
-      />
-    </picture>
-    <a class="link--block" href="#boxStep1"></a>
-  </section>
-  <section class="constructor__stepInfo">
-    <div class="stepInfo__step">
-      <img
-        class="stepInfo__image"
-        width="100"
-        height="100"
-        src="/images/steps/1step.jpg"
-        alt=""
-      />
-      <div class="stepInfo__title">Шаг 1</div>
-      <div class="stepInfo__description">Выберите<br />стикеры</div>
-      <a class="link--block" href="#boxStep1"></a>
-    </div>
-    <div class="stepInfo__step">
-      <img
-        class="stepInfo__image"
-        width="100"
-        height="100"
-        src="/images/steps/2step.jpg"
-        alt=""
-      />
-      <div class="stepInfo__title">Шаг 2</div>
-      <div class="stepInfo__description">Выберите<br />книги</div>
-      <a class="link--block" href="#boxStep2"></a>
-    </div>
-    <div class="stepInfo__step">
-      <img
-        class="stepInfo__image"
-        width="100"
-        height="100"
-        src="/images/steps/3step.jpg"
-        alt=""
-      />
-      <div class="stepInfo__title">Шаг 3</div>
-      <div class="stepInfo__description">Выберите<br />открытки</div>
-      <a class="link--block" href="#boxStep3"></a>
-    </div>
-    <div class="stepInfo__step">
-      <img
-        class="stepInfo__image"
-        width="100"
-        height="100"
-        src="/images/steps/4step.jpg"
-        alt=""
-      />
-      <div class="stepInfo__title">Шаг 4</div>
-      <div class="stepInfo__description">Выберите<br />аксессуары</div>
-      <a class="link--block" href="#boxStep4"></a>
-    </div>
-    <div class="stepInfo__step">
-      <img
-        class="stepInfo__image"
-        width="100"
-        height="100"
-        src="/images/steps/5step.jpg"
-        alt=""
-      />
-      <div class="stepInfo__title">Шаг 5</div>
-      <div class="stepInfo__description">Выберите<br />сладости</div>
-      <a class="link--block" href="#boxStep5"></a>
-    </div>
-    <div class="stepInfo__step">
-      <img
-        class="stepInfo__image"
-        width="100"
-        height="100"
-        src="/images/steps/6step.jpg"
-        alt=""
-      />
-      <div class="stepInfo__title">Шаг 6</div>
-      <div class="stepInfo__description">Выберите<br />упаковку</div>
-      <a class="link--block" href="#boxStep6"></a>
-    </div>
-  </section>
-  <form class="constuctor__body" name="constructorBox">
-    <section class="constructor__step">
-      <h2 class="constructor__step__title" id="boxStep1">Шаг 1</h2>
-      <div class="constructor__step__description">Выберите стикеры</div>
-      <ul class="constructor__step__items">
-        {% for item in collections.stickers %} {% Cbox_element "stickers", item
-        %} {% endfor %}
-      </ul>
+    <header>
+        <h1>Конструктор боксов</h1>
+    </header>
+    <section class="constructor__banner">
+        <picture>
+            <source srcset="/images/slider/слайдер-5-.webp" type="image/webp" />
+            <img width="720" height="210" class="constructor__banner__image" src="/images/slider/слайдер-5-1-.jpg" />
+        </picture>
+        <a class="link--block" href="#boxStep1"></a>
     </section>
-    <section class="constructor__step">
-      <h2 class="constructor__step__title" id="boxStep2">Шаг 2</h2>
-      <div class="constructor__step__description">Выберите книги</div>
-      <div class="constructor__step__items">
-        {% for item in collections.books %} {% Cbox_element "books", item %} {%
-        endfor %}
-      </div>
+    <section class="constructor__stepInfo">
+        <div class="stepInfo__step">
+            <img class="stepInfo__image" width="100" height="100" src="/images/steps/1step.jpg" alt="" />
+            <div class="stepInfo__title">Шаг 1</div>
+            <div class="stepInfo__description">Выберите<br />стикеры</div>
+            <a class="link--block" href="#boxStep1"></a>
+        </div>
+        <div class="stepInfo__step">
+            <img class="stepInfo__image" width="100" height="100" src="/images/steps/2step.jpg" alt="" />
+            <div class="stepInfo__title">Шаг 2</div>
+            <div class="stepInfo__description">Выберите<br />книги</div>
+            <a class="link--block" href="#boxStep2"></a>
+        </div>
+        <div class="stepInfo__step">
+            <img class="stepInfo__image" width="100" height="100" src="/images/steps/3step.jpg" alt="" />
+            <div class="stepInfo__title">Шаг 3</div>
+            <div class="stepInfo__description">Выберите<br />открытки</div>
+            <a class="link--block" href="#boxStep3"></a>
+        </div>
+        <div class="stepInfo__step">
+            <img class="stepInfo__image" width="100" height="100" src="/images/steps/4step.jpg" alt="" />
+            <div class="stepInfo__title">Шаг 4</div>
+            <div class="stepInfo__description">Выберите<br />аксессуары</div>
+            <a class="link--block" href="#boxStep4"></a>
+        </div>
+        <div class="stepInfo__step">
+            <img class="stepInfo__image" width="100" height="100" src="/images/steps/5step.jpg" alt="" />
+            <div class="stepInfo__title">Шаг 5</div>
+            <div class="stepInfo__description">Выберите<br />сладости</div>
+            <a class="link--block" href="#boxStep5"></a>
+        </div>
+        <div class="stepInfo__step">
+            <img class="stepInfo__image" width="100" height="100" src="/images/steps/6step.jpg" alt="" />
+            <div class="stepInfo__title">Шаг 6</div>
+            <div class="stepInfo__description">Выберите<br />упаковку</div>
+            <a class="link--block" href="#boxStep6"></a>
+        </div>
     </section>
-    <section class="constructor__step">
-      <h2 class="constructor__step__title" id="boxStep3">Шаг 3</h2>
-      <div class="constructor__step__description">Выберите открытки</div>
-      <div class="constructor__step__items">
-        {% for item in collections.cards %} {% Cbox_element "cards", item %} {%
-        endfor %}
-      </div>
-    </section>
-    <section class="constructor__step">
-      <h2 class="constructor__step__title" id="boxStep4">Шаг 4</h2>
-      <div class="constructor__step__description">Выберите аксессуары</div>
-      <div class="constructor__step__items">
-        {% for item in collections.pins %} {% Cbox_element "accessoires", item
-        %} {% endfor %} {% for item in collections.shopper %} {% Cbox_element
-        "accessoires", item %} {% endfor %}
-      </div>
-    </section>
-    <section class="constructor__step">
-      <h2 class="constructor__step__title" id="boxStep5">Шаг 5</h2>
-      <div class="constructor__step__description">Выберите сладости</div>
-      <div class="constructor__step__items">
-        {% for item in collections.sweets %} {% Cbox_element "sweets", item %}
-        {% endfor %}
-      </div>
-    </section>
-    <section class="constructor__step">
-      <h2 class="constructor__step__title" id="boxStep6">Шаг 6</h2>
-      <div class="constructor__step__description">Выберите упаковку</div>
-      <div class="constructor__step__items">
-        {% for item in collections.coverpaper %} {% Cbox_element "coverpaper",
+    <form class="constuctor__body" name="constructorBox">
+        <section class="constructor__step">
+            <h2 class="constructor__step__title" id="boxStep1">Шаг 1</h2>
+            <div class="constructor__step__description">Выберите стикеры</div>
+            <ul class="constructor__step__items">
+                {% for item in collections.stickers | inStock %} {% Cbox_element
+        "stickers", item %} {% endfor %}
+            </ul>
+        </section>
+        <section class="constructor__step">
+            <h2 class="constructor__step__title" id="boxStep2">Шаг 2</h2>
+            <div class="constructor__step__description">Выберите книги</div>
+            <div class="constructor__step__items">
+                {% for item in collections.books | inStock %} {% Cbox_element "books",
         item %} {% endfor %}
-      </div>
-    </section>
-    <section class="constructor__calculator">
-      <div class="constructor__calculator__totalprice__area">
-        Итого:&nbsp;
-        <span class="constructor__calculator__totalprice__number"> 0</span
-        >&nbsp;руб.
-      </div>
-      <div class="constructor__calculator__submit">
-        <button
-          class="
+            </div>
+        </section>
+        <section class="constructor__step">
+            <h2 class="constructor__step__title" id="boxStep3">Шаг 3</h2>
+            <div class="constructor__step__description">Выберите открытки</div>
+            <div class="constructor__step__items">
+                {% for item in collections.cards | inStock %} {% Cbox_element "cards",
+        item %} {% endfor %}
+            </div>
+        </section>
+        <section class="constructor__step">
+            <h2 class="constructor__step__title" id="boxStep4">Шаг 4</h2>
+            <div class="constructor__step__description">Выберите аксессуары</div>
+            <div class="constructor__step__items">
+                {% for item in collections.pins | inStock %} {% Cbox_element
+        "accessoires", item %} {% endfor %} {% for item in collections.shopper |
+        inStock %} {% Cbox_element "accessoires", item %} {% endfor %}
+            </div>
+        </section>
+        <section class="constructor__step">
+            <h2 class="constructor__step__title" id="boxStep5">Шаг 5</h2>
+            <div class="constructor__step__description">Выберите сладости</div>
+            <div class="constructor__step__items">
+                {% for item in collections.sweets | inStock %} {% Cbox_element "sweets",
+        item %} {% endfor %}
+            </div>
+        </section>
+        <section class="constructor__step">
+            <h2 class="constructor__step__title" id="boxStep6">Шаг 6</h2>
+            <div class="constructor__step__description">Выберите упаковку</div>
+            <div class="constructor__step__items">
+                {% for item in collections.coverpaper | inStock %} {% Cbox_element
+        "coverpaper", item %} {% endfor %}
+            </div>
+        </section>
+        <section class="constructor__calculator">
+            <div class="constructor__calculator__totalprice__area">
+                Итого:&nbsp;
+                <span class="constructor__calculator__totalprice__number"> 0</span>&nbsp;руб.
+            </div>
+            <div class="constructor__calculator__submit">
+                <button class="
             button button--fixedsize
             constructor__calculator__submit__button
-          "
-          type="submit"
-          disabled
-        >
-          Добавить в корзину
-        </button>
-        <p class="constructor__calculator__submit__annotation">
-          Минимальная сумма заказа 600 руб.
-        </p>
-        <p
-          class="constructor__calculator__submit__annotation"
-          style="color: #ff7878"
-        >
-          Скидка 20% уже включена в стоимость
-        </p>
-      </div>
-    </section>
-  </form>
+          " type="submit" disabled>
+                    Добавить в корзину
+                </button>
+                <p class="constructor__calculator__submit__annotation">
+                    Минимальная сумма заказа 600 руб.
+                </p>
+            </div>
+        </section>
+    </form>
 </main>
-<link
-  href="https://cdn.jsdelivr.net/npm/@sweetalert2/themes@5.0.2/minimal/minimal.min.css"
-  rel="stylesheet"
-/>
+<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/themes@5.0.2/minimal/minimal.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>

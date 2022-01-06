@@ -14,13 +14,13 @@ layout: main.njk
                 height="700"
                 class="product__img"
                 src="{{ artwork }}"
-                alt="{{ title }}"
+                alt=""
               />
             </div>
           </div>
           {% for img in images %}
           <div class="swiper-slide">
-            <img class="product__img" src="{{ img }}" alt="{{ title }}" />
+            <img class="product__img" src="{{ img }}" alt="" />
           </div>
           {% endfor %}
         </div>

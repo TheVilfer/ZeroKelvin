@@ -101,7 +101,7 @@ const GetBoxPrice = (GetBoxPrice_1 = CartUtils.GetBoxPrice = (FormData) => {
   for (var value of FormData.values()) {
     totalprice += parseInt(value.split(";")[1]);
   }
-  return parseInt(totalprice - totalprice * 0.2);
+  return parseInt(totalprice);
 });
 
 export { GetBoxPrice_1 as GetBoxPrice, GetDeliveryPrice, GetTotalPrice, ParseBoxConstructorForm, SetInterest, CartUtils as default };

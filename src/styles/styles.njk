@@ -1,0 +1,19 @@
+---
+permalink: /styles.css
+---
+
+{% set css %} {% include "../fonts/fonts.css" %} {% include
+"../styles/normalize.css" %} {% include "../styles/global.css" %} {% include
+"../styles/elements/item.css" %} {% include "../styles/nav.css" %} {% include
+"../styles/slider/swiper-bundle.min.css" %} {% include
+"../styles/modif-swiper.css" %} {% include "../styles/pages/index.css" %} {%
+include "../styles/pages/catalog.css" %} {% include "../styles/pages/cart.css"
+%} {% include "../styles/pages/order.css" %} {% include
+"../styles/pages/coming.css" %} {% include "../styles/pages/blog.css" %} {%
+include "../styles/pages/404.css" %} {% include "../styles/pages/product.css" %}
+{% include "../styles/pages/post.css" %} {% include
+"../styles/pages/box_constructor.css" %} {% include
+"../styles/pages/payment.css" %} {% include "../styles/footer.css" %} {% include
+"../styles/pages/page-information.css" %} {% include
+"../styles/pages/profile.css" %} {% endset %}
+{{ css | cssmin | safe }}

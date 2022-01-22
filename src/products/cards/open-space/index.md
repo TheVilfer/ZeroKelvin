@@ -1,10 +1,11 @@
 ---
 title: Открытка "Открой космос"
 artwork: images/img_9953-1-1-.jpg
-price: "100"
+price: 35
 id: 610d3a6bc7b4180011dc41ea
 tags:
   - space
+  - liquidation
 isAddToCart: true
 ---
 

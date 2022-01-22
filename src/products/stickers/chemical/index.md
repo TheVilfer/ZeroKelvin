@@ -1,10 +1,11 @@
 ---
 title: Стикерпак "Химия"
 artwork: images/1a2a3530-2-1-.jpg
-price: 270
+price: 69
 id: 60e6e645c55b9a0011ef3248
 tags:
   - chemical
+  - liquidation
 isAddToCart: true
 priority: 11
 isSale: false

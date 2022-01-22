@@ -1,11 +1,12 @@
 ---
 title: Стикерпак "Созвездия"
 artwork: images/20210413_140434-1-1-.jpg
-price: 270
+price: 89
 id: 60e5687a79b1e00b5c01923a
 tags:
   - popular
   - constellation
+  - liquidation
 isAddToCart: true
 priority: 7
 isSale: false

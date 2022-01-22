@@ -1,0 +1,34 @@
+---
+layout: main.njk
+permalink: /liquidation/
+---
+<main class="page__main page__catalog">
+    <header class="header catalog__header">
+        <h1 class="page__titke catalog__title">
+            Ликвидация товара
+        </h1>
+    </header>
+    <section class="catalog">
+        {% for item in collections["liquidation"] %}
+            <div class="catalog-item cart__item" data-id="{{ item.data.id }}">
+            <div class="item__link-zone">
+            <img
+            width="500"
+            height="500"
+            loading="lazy"
+            class="item__image cart__image"
+            src="{{ item.data.artwork }}"
+            alt=""
+            />
+            <span class="item__category cart__type">{{ item.data.category }}</span>
+            <a class="link--block" href="{{ item.url }}"></a>
+            <span class="item__name cart__name">
+            {{ item.data.title }}
+            </span>
+            <span class="item__price cart__price">{{ item.data.price }} руб.</span>
+            </div>
+            <button class="item__cart cart__add">Добавить в корзину</button>
+            </div>
+        {% endfor %}
+    </section>
+</main>

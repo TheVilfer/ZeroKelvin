@@ -1,11 +1,12 @@
 ---
 title: Стикерпак "Космос"
 artwork: images/11.jpg
-price: 270
+price: 89
 id: 60e5682479b1e00b5c019239
 tags:
   - popular
   - space
+  - liquidation
 isAddToCart: true
 priority: 8
 isSale: false

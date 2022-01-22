@@ -1,11 +1,12 @@
 ---
 title: Стикерпак "Физика"
 artwork: images/1a2a3484-3-1-.jpg
-price: 270
+price: 69
 id: 604f480094c3d3d4baac0381
 tags:
   - popular
   - physics
+  - liquidation
 isAddToCart: true
 priority: 12
 isSale: false

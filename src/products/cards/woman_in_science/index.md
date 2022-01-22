@@ -3,7 +3,8 @@ title: Открытка "Женщины в науке"
 artwork: images/img_6101-1-.jpg
 price: "100"
 id: 61138d548311a400115a33cf
-tags: []
+tags:
+  - liquidation
 isAddToCart: true
 ---
 

@@ -1,10 +1,11 @@
 ---
 title: Стикерпак "День космонавтики"
 artwork: images/6-2-1-.jpg
-price: 270
+price: 69
 id: 610d7f2381acfb0012cacbc7
 tags:
   - space
+  - liquidation
 isAddToCart: true
 priority: 5
 isSale: false

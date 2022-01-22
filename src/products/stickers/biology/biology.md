@@ -1,11 +1,12 @@
 ---
 title: Стикерпак "Биология"
 artwork: images/20210210_152820-5-1-.jpg
-price: 270
+price: 69
 id: 604f667c185c5ca4b32e1536
 tags:
   - popular
   - biology
+  - liquidation
 isAddToCart: true
 priority: 10
 isSale: false

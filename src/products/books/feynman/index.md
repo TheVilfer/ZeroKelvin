@@ -3,8 +3,6 @@ title: Ричард Фейнман "Радость познания"
 artwork: images/2724277_detail.jpeg
 price: 290
 id: 6187eaec73b6d70011ff825b
-tags:
-  - liquidation
 isAddToCart: false
 priority: 0
 ---

@@ -3,7 +3,7 @@ title: Стикерпак квадратный "Космос"
 artwork: images/img_20210816_120156_1-1-.jpg
 price: 220
 id: 6192461bae7f8e0010a77958
-isAddToCart: true
+isAddToCart: false
 priority: 0
 isSale: false
 ---

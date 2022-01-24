@@ -3,8 +3,6 @@ title: Открытка двухстороняя "Сатурн"
 artwork: images/img_2413-1-.jpg
 price: 35
 id: 61925243bf5425001070a3c1
-tags:
-  - liquidation
 isAddToCart: false
 priority: 0
 ---

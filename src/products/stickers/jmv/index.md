@@ -1,13 +1,13 @@
 ---
 title: Стикерпак "ЭВМ"
 artwork: images/img_0066.jpg
-price: 59
+price: "49"
 id: 611a2eeebbc80900119f7f2a
+tags:
+  - liquidation
 isAddToCart: true
 priority: 2
 isSale: false
-tags:
-  - liquidation
 ---
 
 Шуточный стикерпак "Электромагнитные волны" снижает тревожность перед "страшными" волнами!\

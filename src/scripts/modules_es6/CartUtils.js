@@ -26,9 +26,14 @@ var GetDeliveryPrice = CartUtils.GetDeliveryPrice = async (cart) => {
   let local_pin = 0;
   let local_boxs = 0;
   let local_books = 0;
+  let local_sweets = 0;
   for (const value of Object.values(cart.products)) {
     if (value.type == "СТИКЕРЫ") {
       local_stickers += 1 * value.count;
+      continue;
+    }
+    if (value.type == "СЛАДОСТИ") {
+      local_sweets += 1 * value.count;
       continue;
     }
     if (value.type == "КНИГИ") {
@@ -66,10 +71,10 @@ var GetDeliveryPrice = CartUtils.GetDeliveryPrice = async (cart) => {
   if (local_shopper > 2) {
     return "Доставка недоступна";
   }
-  if (local_shopper > 0 || local_boxs > 0) {
+  if (local_shopper > 0 || local_boxs > 0 || local_sweets > 0 || local_books > 0) {
     return 350;
   }
-  if (local_pin > 0 || local_stickers > 19 || local_books > 0) {
+  if (local_pin > 0 || local_stickers > 19) {
     return 250;
   }
   if (local_stickers > 0 || local_cards > 0 || local_kits > 0) {

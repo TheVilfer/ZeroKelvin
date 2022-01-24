@@ -2,7 +2,7 @@
 title: Кодоньо Маурицио "Математика за чашечкой кофе"
 artwork: images/mauritsio_kodono__matematika_za_chashechkoj_kofe.jpeg
 price: 290
-id: 6187ebb1a15d7e001290c61c
+id: 6187ee541a6fee0011d272a1
 isAddToCart: true
 priority: 0
 tags:

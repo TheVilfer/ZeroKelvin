@@ -5,8 +5,7 @@ price: 69
 id: 610d7f2381acfb0012cacbc7
 tags:
   - space
-  - liquidation
-isAddToCart: true
+isAddToCart: false
 priority: 5
 isSale: false
 ---

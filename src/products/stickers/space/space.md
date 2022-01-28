@@ -6,8 +6,7 @@ id: 60e5682479b1e00b5c019239
 tags:
   - popular
   - space
-  - liquidation
-isAddToCart: true
+isAddToCart: false
 priority: 8
 isSale: false
 ---

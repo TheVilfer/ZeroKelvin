@@ -1,7 +1,7 @@
 ---
 title: Открытка "Женщины в науке"
 artwork: images/img_6101-1-.jpg
-price: "100"
+price: 35
 id: 61138d548311a400115a33cf
 tags:
   - liquidation

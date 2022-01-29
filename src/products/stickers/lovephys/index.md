@@ -3,7 +3,9 @@ title: Стикер "Я люблю физику"
 artwork: images/я-люблю-физику-сториз-1-1.jpg
 price: 30
 id: "611a365a2d89b100105cd21a"
-isAddToCart: false
+isAddToCart: true
+tags:
+  - liquidation
 priority: 0
 isSale: false
 ---

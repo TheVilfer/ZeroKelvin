@@ -3,9 +3,7 @@ title: Стикер "Марсоход голографический"
 artwork: images/img_2410-1-.jpg
 price: 130
 id: " 61924cc4dfebc50010b3040d"
-tags:
-  - liquidation
-isAddToCart: true
+isAddToCart: false
 priority: 0
 isSale: false
 ---

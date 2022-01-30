@@ -6,8 +6,7 @@ id: 604f480094c3d3d4baac0381
 tags:
   - popular
   - physics
-  - liquidation
-isAddToCart: true
+isAddToCart: false
 priority: 12
 isSale: false
 ---
